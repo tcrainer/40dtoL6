@@ -1,5 +1,3 @@
-// ── Word & Topic types ──────────────────────────────────────────────────────
-
 export interface Word {
   id: string;
   topicId: string;
@@ -19,17 +17,15 @@ export interface Topic {
 }
 
 export const TOPICS: Topic[] = [
-  { id: "T1", name: "The world around us", shortName: "Umwelt", color: "#3a8a3a" },
-  { id: "T2", name: "Education & Employment", shortName: "Bildung", color: "#2a6fb5" },
-  { id: "T3", name: "Home & Abroad", shortName: "Zuhause", color: "#d97a1a" },
-  { id: "T4", name: "Personal life & Relationships", shortName: "Leben", color: "#7c4dba" },
-  { id: "SW", name: "Strukturwörter", shortName: "Struktur", color: "#6b6b6b" },
-  { id: "VB", name: "Important Verbs & Tenses", shortName: "Verben", color: "#c4a000" },
+  { id: "T1", name: "Topic 1 — Umwelt", shortName: "Umwelt", color: "#3a8a3a" },
+  { id: "T2", name: "Topic 2 — Bildung", shortName: "Bildung", color: "#2a6fb5" },
+  { id: "T3", name: "Topic 3 — Arbeit", shortName: "Arbeit", color: "#d97a1a" },
+  { id: "T4", name: "Topic 4 — Musik", shortName: "Musik", color: "#7c4dba" },
+  { id: "SW", name: "Topic 5 — Medien", shortName: "Medien", color: "#6b6b6b" },
+  { id: "VB", name: "Topic 6 — Traditionen und Feste", shortName: "Traditionen", color: "#c4a000" },
 ];
 
 export const MAX_DAY = 36;
-
-// ── Leitner system ──────────────────────────────────────────────────────────
 
 export const LEITNER_BOXES = [1, 2, 3, 4, 5, 6] as const;
 export type LeitnerBox = (typeof LEITNER_BOXES)[number];
@@ -56,8 +52,6 @@ export const BOX_COLORS: Record<LeitnerBox, { fg: string; bg: string }> = {
   6: { fg: "#7c4dba", bg: "#f0eafb" },
 };
 
-// ── Per-word learning state ─────────────────────────────────────────────────
-
 export interface WordState {
   box: LeitnerBox;
   lastReviewDate: string | null;
@@ -67,8 +61,6 @@ export interface WordState {
   totalIncorrect: number;
 }
 
-// ── Streak & Points ─────────────────────────────────────────────────────────
-
 export interface UserStats {
   points: number;
   streak: number;
@@ -76,12 +68,7 @@ export interface UserStats {
   longestStreak: number;
 }
 
-// ── Review directions ───────────────────────────────────────────────────────
-
 export type Direction = "de-to-en" | "en-to-de";
-
-// ── Grading result ──────────────────────────────────────────────────────────
-
 export type GradeResult = "correct" | "close" | "wrong";
 
 export interface GradeDetail {
@@ -91,8 +78,6 @@ export interface GradeDetail {
   normalizedUser: string;
   normalizedCorrect: string;
 }
-
-// ── Session types ───────────────────────────────────────────────────────────
 
 export type SessionType = "review" | "learn";
 
@@ -119,7 +104,5 @@ export interface SessionSummary {
   newlyMastered: string[];
   pointsEarned: number;
 }
-
-// ── App view state ──────────────────────────────────────────────────────────
 
 export type AppView = "dashboard" | "session" | "session-complete" | "browse" | "topic-detail";
