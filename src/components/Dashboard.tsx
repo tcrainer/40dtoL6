@@ -18,6 +18,7 @@ export function Dashboard() {
   const getBoxCounts = useStore((s) => s.getBoxCounts);
   const getTopicProgress = useStore((s) => s.getTopicProgress);
   const isAllRevisedToday = useStore((s) => s.isAllRevisedToday);
+  const isTopicDayTested = useStore((s) => s.isTopicDayTested);
   const resetAll = useStore((s) => s.resetAll);
   const wordStates = useStore((s) => s.wordStates);
   const stats = useStore((s) => s.stats);
@@ -58,7 +59,7 @@ export function Dashboard() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-      {/* Header with streak + points */}
+      {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <div>
           <h1 style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>GCSE German</h1>
@@ -137,11 +138,9 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* Topics with progress bars AND day grid */}
+      {/* Topics with progress + day grid */}
       <div>
-        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 10px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-          Topics
-        </h2>
+        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 10px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Topics</h2>
 
         {selectedWordIds.length > 0 && (
           <div style={{
@@ -170,7 +169,6 @@ export function Dashboard() {
                 background: "var(--color-surface)", border: "1.5px solid var(--color-border)",
                 borderRadius: "var(--radius-lg)", padding: "14px 16px",
               }}>
-                {/* Topic header with progress */}
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
                   <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: topic.color, flexShrink: 0 }} />
                   <button onClick={() => handleTopicClick(topic.id)} style={{
@@ -184,25 +182,22 @@ export function Dashboard() {
                   </span>
                 </div>
 
-                {/* Progress bar */}
                 <div style={{ height: "6px", background: "var(--color-surface-sunken)", borderRadius: "3px", overflow: "hidden", marginBottom: "10px" }}>
                   <div style={{ height: "100%", width: `${pct}%`, background: topic.color, borderRadius: "3px", transition: "width 0.3s" }} />
                 </div>
 
-                {/* Day grid */}
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
                   {days.map((day) => {
-                    const words = getWordsForTopicDay(topic.id, day);
-                    const allTested = words.every((w) => wordStates[w.id]);
                     const isSelected = topicSelected.has(day);
+                    const allTested = isTopicDayTested(topic.id, day);
 
                     return (
                       <button key={day} onClick={() => toggleDay(topic.id, day)} style={{
-                        width: "28px", height: "28px", fontSize: "10px", fontWeight: 500,
+                        width: "28px", height: "28px", fontSize: "10px", fontWeight: allTested ? 700 : 500,
                         border: isSelected ? `2px solid ${topic.color}` : "1px solid var(--color-border)",
                         borderRadius: "4px", cursor: "pointer", fontFamily: "var(--font-mono)",
-                        background: isSelected ? topic.color : allTested ? "var(--color-surface-sunken)" : "var(--color-surface)",
-                        color: isSelected ? "#fff" : allTested ? "var(--color-ink-faint)" : "var(--color-ink)",
+                        background: isSelected ? topic.color : allTested ? "#fbbf24" : "var(--color-surface)",
+                        color: isSelected ? "#fff" : allTested ? "#78350f" : "var(--color-ink)",
                       }}>
                         {day}
                       </button>
