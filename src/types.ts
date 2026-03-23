@@ -113,4 +113,4 @@ export interface SessionSummary {
   pointsEarned: number;
 }
 
-export type AppView = "dashboard" | "session" | "session-complete" | "browse" | "topic-detail";
+export type AppView = "dashboard" | "session" | "session-complete" | "browse" | "topic-detail" | "box-detail";
