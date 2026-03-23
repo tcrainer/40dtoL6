@@ -21,8 +21,8 @@ export const TOPICS: Topic[] = [
   { id: "T2", name: "Topic 2 — Bildung", shortName: "Bildung", color: "#2a6fb5" },
   { id: "T3", name: "Topic 3 — Arbeit", shortName: "Arbeit", color: "#d97a1a" },
   { id: "T4", name: "Topic 4 — Musik", shortName: "Musik", color: "#7c4dba" },
-  { id: "SW", name: "Topic 5 — Medien", shortName: "Medien", color: "#6b6b6b" },
-  { id: "VB", name: "Topic 6 — Traditionen und Feste", shortName: "Traditionen", color: "#c4a000" },
+  { id: "SW", name: "Strukturwörter", shortName: "Struktur", color: "#6b6b6b" },
+  { id: "VB", name: "Verben & Zeitformen", shortName: "Verben", color: "#c4a000" },
 ];
 
 export const MAX_DAY = 36;
