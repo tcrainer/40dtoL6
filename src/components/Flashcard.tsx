@@ -83,6 +83,7 @@ export function Flashcard() {
   useEffect(() => {
     setInput(""); setGradeResult(null); setShowBothCorrect(false);
     setVerbInputs(["", "", "", "", ""]); setVerbResults(null);
+    canAdvanceRef.current = false;
     const t = setTimeout(() => {
       if (isVerbMode) verbRefs.current[0]?.focus();
       else inputRef.current?.focus();
@@ -90,18 +91,18 @@ export function Flashcard() {
     return () => clearTimeout(t);
   }, [sessionIndex, isVerbMode]);
 
-  // Global Enter for Next Word
-  useEffect(() => {
-    const answered = gradeResult || verbResults;
-    if (!answered) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === "Enter") { e.preventDefault(); handleNext(); } };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [gradeResult, verbResults]);
+  // Ref to prevent Enter from advancing immediately after checking
+  const canAdvanceRef = useRef(false);
+
+  const handleNext = useCallback(() => {
+    canAdvanceRef.current = false;
+    setGradeResult(null); setVerbResults(null); setInput("");
+    setVerbInputs(["", "", "", "", ""]); setShowBothCorrect(false);
+    nextCard();
+  }, [nextCard]);
 
   const handleSubmit = useCallback(() => {
     if (!word || gradeResult) return;
-    // Empty = wrong
     const result = gradeAnswer(input || "", correctText, card!.direction as "de-to-en" | "en-to-de");
     if (input.trim().length === 0) result.result = "wrong";
     setGradeResult(result);
@@ -130,29 +131,47 @@ export function Flashcard() {
     recordAnswer(overall, verbInputs.join(" / "));
   }, [word, verbResults, verbInputs, perfektParts, recordAnswer]);
 
-  const handleNext = useCallback(() => {
-    setGradeResult(null); setVerbResults(null); setInput("");
-    setVerbInputs(["", "", "", "", ""]); setShowBothCorrect(false);
-    nextCard();
-  }, [nextCard]);
+  // When result appears, arm the advance after a delay
+  useEffect(() => {
+    const answered = gradeResult || verbResults;
+    if (!answered) { canAdvanceRef.current = false; return; }
+    canAdvanceRef.current = false;
+    const timer = setTimeout(() => { canAdvanceRef.current = true; }, 500);
+    return () => clearTimeout(timer);
+  }, [gradeResult, verbResults]);
+
+  // Single global keydown for Enter — only advances when armed
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key !== "Enter") return;
+      if (canAdvanceRef.current) {
+        e.preventDefault();
+        handleNext();
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [handleNext]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      if (gradeResult || verbResults) handleNext();
-      else if (isVerbMode) handleVerbSubmit();
-      else handleSubmit();
+      // Only submit — never advance. The global listener handles Next after a delay.
+      if (!gradeResult && !verbResults) {
+        if (isVerbMode) handleVerbSubmit();
+        else handleSubmit();
+      }
     }
     if (askingGerman && !gradeResult) {
       const num = parseInt(e.key);
       if (num >= 1 && num <= 7) { e.preventDefault(); insertUmlaut(UMLAUTS[num - 1], inputRef.current, input, setInput); }
     }
-  }, [gradeResult, verbResults, handleNext, handleSubmit, handleVerbSubmit, isVerbMode, askingGerman, input]);
+  }, [gradeResult, verbResults, handleSubmit, handleVerbSubmit, isVerbMode, askingGerman, input]);
 
   const handleVerbKeyDown = (e: React.KeyboardEvent, idx: number) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      if (verbResults) { handleNext(); return; }
+      if (verbResults) return; // Already answered — global listener handles Next
       if (idx < 4 && perfektParts) verbRefs.current[idx + 1]?.focus();
       else if (idx < 2 && !perfektParts) verbRefs.current[idx + 1]?.focus();
       else handleVerbSubmit();
