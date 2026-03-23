@@ -1,308 +1,355 @@
-export const topic2Raw = `
-1	die Schule	school	Ich gehe jeden Tag gern in die Schule.	I like going to school every day.
-1	die Klassenfahrt	school trip	Nächstes Jahr machen wir eine Klassenfahrt nach Berlin.	Next year we are going on a school trip to Berlin.
-1	das Fach	subject	Mein liebstes Fach ist Mathe.	My favourite subject is maths.
-1	lernen	to learn	Ich muss Vokabeln für den Test lernen.	I have to learn vocabulary for the test.
-1	die Prüfung	exam	Die Prüfung in Englisch war sehr schwer.	The exam in English was very difficult.
-1	die Hausaufgabe	homework	Ich mache meine Hausaufgabe immer nach der Schule.	I always do my homework after school.
-2	die Stunde	lesson	Die erste Stunde beginnt um acht Uhr.	The first lesson begins at eight o'clock.
-2	der Unterricht	lessons	Der Unterricht ist oft sehr interessant.	The lessons are often very interesting.
-2	die Note	mark, grade	Ich habe eine gute Note in Geschichte bekommen.	I got a good mark in history.
-2	die Pause	break, playtime	In der Pause esse ich einen Apfel mit meinen Freunden.	In the break I eat an apple with my friends.
-2	der Stundenplan	timetable	Mein Stundenplan ist dieses Jahr sehr voll.	My timetable is very full this year.
-2	die Regel	rule, regulation	Wir müssen die Regeln in der Schule respektieren.	We must respect the rules in the school.
-3	der Berufsberater /in	careers adviser	Der Berufsberater hilft mir bei meiner Karriere.	The careers adviser helps me with my career.
-3	die Arbeit	work	Die Arbeit im Büro ist manchmal langweilig.	The work in the office is sometimes boring.
-3	die Arbeitslosigkeit	unemployment	Die Arbeitslosigkeit in dieser Region ist ein großes Problem.	Unemployment in this region is a big problem.
-3	arbeiten	to work	Mein Vater arbeitet jeden Tag in einer Bank.	My father works in a bank every day.
-3	bearbeiten	to work on	Ich muss dieses Projekt heute bearbeiten.	I have to work on this project today.
-3	verdienen	to earn	In meinem Ferienjob verdiene ich viel Geld.	In my holiday job I earn a lot of money.
-4	die Stelle	job, post, position	Er sucht eine neue Stelle als Mechaniker.	He is looking for a new job as a mechanic.
-4	die Stellenanzeige	job advertisement	Ich lese die Stellenanzeigen in der Zeitung.	I read the job advertisements in the newspaper.
-4	sich bewerben um	to apply for	Ich bewerbe mich um einen Job im Supermarkt.	I am applying for a job in the supermarket.
-4	sich um einen Platz bewerben	to apply for a place	Sie bewirbt sich um einen Platz an der Universität.	She is applying for a place at the university.
-4	die Bewerbung	application	Ich schreibe am Wochenende meine Bewerbung.	I am writing my application at the weekend.
-4	die Lehre, die Ausbildung	apprenticeship	Nach der Schule mache ich eine Lehre als Bäcker.	After school I am doing an apprenticeship as a baker.
-5	der Chef /in	boss, manager	Mein Chef ist sehr freundlich und hilfsbereit.	My boss is very friendly and helpful.
-5	die Zukunft	future	In der Zukunft möchte ich im Ausland leben.	In the future I would like to live abroad.
-5	die Karriere	career	Eine gute Ausbildung ist wichtig für die Karriere.	A good education is important for the career.
-5	das Deutsch	German	Ich finde, dass Deutsch eine schöne Sprache ist.	I find that German is a beautiful language.
-5	das Englisch	English	Wir sprechen oft Englisch im Unterricht.	We often speak English in the lessons.
-5	die Naturwissenschaften	sciences	Chemie und Physik sind Naturwissenschaften.	Chemistry and physics are sciences.
-6	wissen	to know	Ich weiß nicht, wo mein Kuli ist.	I do not know where my pen is.
-6	die Geschichte	history	Wir lernen viel über den Krieg in Geschichte.	We learn a lot about the war in history.
-6	die Erdkunde	geography	In Erdkunde lernen wir viel über andere Länder.	In geography we learn a lot about other countries.
-6	die Kunst	art	Ich male sehr gern, also liebe ich Kunst.	I like painting very much, so I love art.
-6	die Kunstausrüstung	art equipment	Bitte bring morgen deine Kunstausrüstung mit!	Please bring your art equipment with you tomorrow!
-6	das Sportfest	sports day	Nächste Woche haben wir ein großes Sportfest auf dem Feld.	Next week we are having a big sports day on the field.
-7	der Sport	sport	Treibst du gern Sport am Wochenende?	Do you like doing sport at the weekend?
-7	der Informatiker /in	computer specialist, IT expert	Mein Onkel arbeitet in der Stadt als Informatiker.	My uncle works in the town as an IT expert.
-7	die Informatik	computer science	Informatik ist ein sehr nützliches Fach für die Zukunft.	Computer science is a very useful subject for the future.
-7	der Austausch	exchange	Der Austausch nach Frankreich war einfach fantastisch.	The exchange to France was simply fantastic.
-7	der Teil	part	Das ist leider der schwierigste Teil der Prüfung.	Unfortunately that is the most difficult part of the exam.
-8	anfangen	to begin, start	Die Schule fängt am Morgen um Viertel vor acht an.	School begins in the morning at a quarter to eight.
-8	brauchen	to need	Ich brauche einen neuen Rucksack für dieses Schuljahr.	I need a new backpack for this school year.
-8	gebrauchen	to use, to need	Kannst du dieses alte Buch noch gebrauchen?	Can you still use this old book?
-8	glauben	to believe	Ich glaube, dass Hausaufgaben sehr wichtig sind.	I believe that homework is very important.
-8	nachsitzen	to be in detention	Wenn man im Unterricht unhöflich ist, muss man nachsitzen.	If you are rude in lessons, you have to be in detention.
-9	sagen	to say	Was hat der Lehrer gerade gesagt?	What did the teacher just say?
-9	schreiben	to write	Wir schreiben morgen einen schweren Test in Bio.	We are writing a difficult test in biology tomorrow.
-9	sitzen	to sit, to be sitting	Ich sitze in der Klasse neben meinem besten Freund.	I sit next to my best friend in class.
-9	alt	old	Unsere Schule ist ein sehr altes Gebäude.	Our school is a very old building.
-9	hitzefrei	day off due to hot weather	Es ist dreißig Grad, also haben wir heute hitzefrei!	It is thirty degrees, so we have the day off due to hot weather today!
-10	schulfrei	no school	An Feiertagen haben wir glücklicherweise schulfrei.	On bank holidays we fortunately have no school.
-10	pünktlich sein	to be on time	Es ist wichtig, jeden Tag pünktlich zu sein.	It is important to be on time every day.
-10	sich langweilen	to be bored	Ich langweile mich oft im Matheunterricht.	I am often bored in maths lessons.
-10	sitzen bleiben	to stay down a year	Wenn die Noten schlecht sind, kann man sitzen bleiben.	If your grades are bad, you can stay down a year.
-10	das Gymnasium	grammar school	Meine große Schwester geht auf das Gymnasium.	My big sister goes to the grammar school.
-11	das Klassenzimmer	classroom	Unser Klassenzimmer ist sehr hell und ziemlich modern.	Our classroom is very bright and quite modern.
-11	das Lehrerzimmer	staff room	Die Schüler dürfen in der Pause nicht ins Lehrerzimmer gehen.	The pupils are not allowed to go into the staff room during the break.
-11	das Schulfest	school festival	Im Sommer organisieren wir ein tolles Schulfest.	In the summer we organize a great school festival.
-11	das Schullandheim	school's holiday home	Die siebte Klasse fährt für drei Tage ins Schullandheim.	Year seven is going to the school's holiday home for three days.
-11	der Ferienjob	holiday job	Mein Ferienjob im Café macht viel Spaß.	My holiday job in the café is a lot of fun.
-12	der Kindergarten	nursery school	Kleine Kinder spielen den ganzen Tag im Kindergarten.	Small children play all day in the nursery school.
-12	der Musiksaal	music room	Wir singen immer schöne Lieder im Musiksaal.	We always sing beautiful songs in the music room.
-12	der Schulaustausch	school exchange	Der Schulaustausch hilft mir, mein Deutsch zu verbessern.	The school exchange helps me to improve my German.
-12	der Schultag	school day	Mein Schultag ist oft sehr lang und anstrengend.	My school day is often very long and tiring.
-12	der Speisesaal	dining room	Um zwölf Uhr essen wir gemeinsam im Speisesaal.	At twelve o'clock we eat together in the dining room.
-13	der Tisch	desk, table	Bitte leg dein Heft jetzt auf den Tisch.	Please put your exercise book on the desk now.
-13	der Umkleideraum	changing room	Wir ziehen uns für den Sport im Umkleideraum um.	We get changed for sport in the changing room.
-13	der/die Grundschullehrer/in	primary school teacher	Mein Onkel ist ein sehr netter Grundschullehrer.	My uncle is a very nice primary school teacher.
-13	die Abiturfeier	school leavers' party	Nach den Prüfungen gibt es eine große Abiturfeier.	After the exams there is a big school leavers' party.
-13	die Gastfamilie	host family	Meine Gastfamilie in Deutschland war unglaublich freundlich.	My host family in Germany was incredibly friendly.
-14	die Geisteswissenschaften	humanities	Geschichte und Erdkunde sind interessante Geisteswissenschaften.	History and geography are interesting humanities.
-14	die Gesamtschule	comprehensive school	Ich besuche eine große Gesamtschule in der Stadt.	I attend a large comprehensive school in the town.
-14	die Grundschule	primary school	Mein kleiner Bruder geht noch in die Grundschule.	My little brother still goes to primary school.
-14	die Hauptschule	secondary school (up to age 16)	Auf der Hauptschule macht man oft ein Arbeitspraktikum.	At the secondary school you often do work experience.
-14	die Kasse	till, cash desk, checkout	Ich arbeite am Samstag an der Kasse im Supermarkt.	I work at the checkout in the supermarket on Saturday.
-15	die Klausur	exam (upper school)	Wir schreiben nächste Woche eine Klausur in Physik.	We are writing an exam in physics next week.
-15	die Mappe	briefcase, folder, file	Oh nein, ich habe meine Mappe zu Hause vergessen!	Oh no, I have forgotten my folder at home!
-15	die Mensa	dining room (uni)	Die Studenten können billig in der Mensa essen.	The students can eat cheaply in the uni dining room.
-15	die Partnerschule	twin school	Unsere englische Partnerschule liegt in London.	Our English twin school is located in London.
-15	die Realschule	secondary modern school	Nach der Realschule möchte er eine Ausbildung machen.	After the secondary modern school he would like to do an apprenticeship.
-16	die Schulbibliothek	school library	Ich lese gern ein ruhiges Buch in der Schulbibliothek.	I like reading a quiet book in the school library.
-16	die Schulregel	school rule	Eine wichtige Schulregel ist, immer pünktlich zu sein.	An important school rule is to always be on time.
-16	die Schultasche	rucksack/school bag	Meine Schultasche ist heute sehr schwer, weil ich viele Bücher habe.	My school bag is very heavy today because I have lots of books.
-16	die Schultüte	school cone (given on the first day)	Am ersten Schultag bekommen kleine Kinder in Deutschland eine Schultüte.	On the first day of school small children in Germany receive a school cone.
-16	die Sommerferien	summer holidays	In den Sommerferien fahren wir für zwei Wochen nach Spanien.	In the summer holidays we are travelling to Spain for a fortnight.
-17	abschreiben	to copy	Bitte schreiben Sie den neuen Text von der Tafel ab.	Please copy the new text from the board.
-17	abwählen	to drop (subject)	Nächstes Jahr wähle ich Kunst ab, weil es schwer ist.	Next year I am dropping art because it is difficult.
-17	annehmen	to accept	Ich nehme den neuen Ferienjob im Supermarkt gern an.	I gladly accept the new holiday job in the supermarket.
-17	beschließen	to decide	Wir beschließen, am Wochenende gemeinsam für die Prüfung zu lernen.	We decide to study together for the exam at the weekend.
-17	besprechen	to discuss, debate	Im Unterricht besprechen wir heute ein sehr interessantes Thema.	In the lesson today we are discussing a very interesting topic.
-18	bezahlen	to pay	Ich muss mein Mittagessen in der Mensa sofort bezahlen.	I have to pay for my lunch in the dining room immediately.
-18	dauern	to last	Die große Pause dauert leider nur zwanzig Minuten.	The long break unfortunately lasts only twenty minutes.
-18	denken	to think	Ich denke, dass Mathe extrem nützlich für die Karriere ist.	I think that maths is extremely useful for the career.
-18	drucken	to print	Kannst du bitte meine Hausaufgaben auf deinem Computer drucken?	Can you please print my homework on your computer?
-18	enden	to end, finish	Der lange Unterricht endet heute erst um fünfzehn Uhr.	The long lessons finish today only at 3 pm.
-19	erklären	to explain	Unser Lehrer für Biologie erklärt die Naturwissenschaften sehr gut.	Our teacher for biology explains the sciences very well.
-19	erlauben	to allow	Meine Eltern erlauben mir, am Samstag auf die Abiturfeier zu gehen.	My parents allow me to go to the school leavers' party on Saturday.
-19	erleben	to experience	Auf der Klassenfahrt nach Berlin haben wir viel erlebt.	On the school trip to Berlin we experienced a lot.
-19	fragen	to ask	Wenn ich die Grammatik nicht verstehe, frage ich den Lehrer.	If I do not understand the grammar, I ask the teacher.
-19	gelingen	to succeed	Mit viel Übung gelingt es mir, gute Noten zu bekommen.	With a lot of practice I succeed in getting good marks.
-20	hoffen	to hope	Ich hoffe, dass ich meine Klausur in Geschichte gut bestehe.	I hope that I pass my exam in history well.
-20	klingeln	to ring	Es klingelt laut und die langweilige Stunde ist endlich zu Ende.	It rings loudly and the boring lesson is finally over.
-20	konkurrieren	to compete	Beim Sportfest konkurrieren die verschiedenen Klassen miteinander.	At the sports day the different classes compete with each other.
-20	korrigieren	to correct	Am Wochenende muss der Grundschullehrer viele kleine Hefte korrigieren.	At the weekend the primary school teacher has to correct many small exercise books.
-20	meinen	to think, to mean	Was meinst du zu dieser Idee für das Schulfest?	What do you think of this idea for the school festival?
-21	reden	to talk, to speak	Wir dürfen im strengen Unterricht nicht mit Freunden reden.	We are not allowed to talk with friends in the strict lesson.
-21	schwatzen	to chat	Die Schüler schwatzen laut, wenn der Lehrer nicht im Klassenzimmer ist.	The pupils chat loudly when the teacher is not in the classroom.
-21	schätzen	to estimate, to guess	Ich schätze, dass diese schwierige Antwort richtig ist.	I guess that this difficult answer is correct.
-21	sortieren	to sort	Ich muss meine vielen Papiere in der roten Mappe sortieren.	I have to sort my many papers in the red folder.
-21	sprechen	to speak	Mein Austauschpartner spricht sehr gutes Englisch und ein bisschen Deutsch.	My exchange partner speaks very good English and a little German.
-22	studieren	to study for (an exam)	Mein Bruder studiert jeden Abend in seinem Zimmer für die Abschlussprüfung.	My brother studies every evening in his room for the final exam.
-22	suchen	to look for	Ich suche verzweifelt meinen blauen Kuli in meiner Schultasche.	I am desperately looking for my blue pen in my school bag.
-22	telefonieren	to telephone	Ich telefoniere am Abend nach den Hausaufgaben mit meiner Oma.	I telephone my grandma in the evening after the homework.
-22	tippen	to type	Ich tippe meinen langen Aufsatz schnell auf dem Computer.	I type my long essay quickly on the computer.
-22	verbessern	to improve, to correct	Ich fahre nach Frankreich, um mein mündliches Französisch zu verbessern.	I am travelling to France to improve my spoken French.
-23	verlassen	to leave	Um Punkt sechzehn Uhr verlassen wir glücklich das Schulgebäude.	At exactly 4 pm we happily leave the school building.
-23	verstehen	to understand	Ich verstehe diese komplizierte Matheaufgabe leider überhaupt nicht.	Unfortunately I do not understand this complicated maths exercise at all.
-23	versuchen	to try	Ich versuche, am Morgen immer pünktlich in der Schule zu sein.	I try to always be on time for school in the morning.
-23	vorhaben	to intend to	Ich habe vor, nach der Schule sofort eine Ausbildung zu beginnen.	I intend to start an apprenticeship immediately after school.
-23	vorstellen	to present	Heute stelle ich mein Projekt über die Umwelt der Klasse vor.	Today I am presenting my project about the environment to the class.
-24	äußern	to express	Der fleißige Schüler äußert immer oft seine Meinung im Unterricht.	The hard-working pupil always frequently expresses his opinion in the lesson.
-24	üben	to practice	Wir müssen die neuen englischen Vokabeln jeden Tag zu Hause üben.	We must practise the new English vocabulary every day at home.
-24	eine Note bekommen	to get a grade	Wenn man fleißig lernt, kann man am Ende eine gute Note bekommen.	If you study hard, you can get a good grade at the end.
-24	eine Prüfung machen	to take an exam	Am Ende des Schuljahres müssen wir eine wichtige Prüfung machen.	At the end of the school year we have to take an important exam.
-24	eine Rolle spielen	to play a role	Gute Noten spielen eine sehr wichtige Rolle für die Karriere.	Good grades play a very important role for the career.
-25	sich interessieren für	to be interested in	Ich interessiere mich sehr für Informatik und Technik.	I am very interested in computer science and technology.
-25	zu Ende gehen	to come to an end	Der Schultag geht endlich zu Ende und ich fahre nach Hause.	The school day is finally coming to an end and I am travelling home.
-25	arbeitslos	unemployed	Mein Onkel ist im Moment leider arbeitslos und sucht eine Stelle.	My uncle is unfortunately unemployed at the moment and is looking for a job.
-25	erfolgreich	successful	Nach seinem Studium wurde er ein sehr erfolgreicher Geschäftsmann.	After his university studies he became a very successful businessman.
-25	falsch	incorrect, false	Oh nein, ich glaube diese Antwort im Test ist leider falsch.	Oh no, I believe this answer in the test is unfortunately incorrect.
-26	freiwillig	optional	Dieser Kurs nach der Schule ist komplett freiwillig, aber sehr nützlich.	This course after school is completely optional, but very useful.
-26	gastfreundlich	welcoming	Die nette Gastfamilie in München war unglaublich gastfreundlich.	The nice host family in Munich was incredibly welcoming.
-26	interessant	interesting	Ich finde den Austausch mit der Partnerschule extrem interessant.	I find the exchange with the twin school extremely interesting.
-26	jung	young	Die neuen Schüler in der fünften Klasse sind noch sehr jung.	The new pupils in year five are still very young.
-26	kompliziert	complicated	Die Grammatik in der Fremdsprache ist manchmal etwas kompliziert.	The grammar in the foreign language is sometimes a bit complicated.
-27	langweilig	boring	Dieser alte Dokumentarfilm über Geschichte ist extrem langweilig.	This old documentary about history is extremely boring.
-27	leicht	easy	Glücklicherweise sind die Hausaufgaben in Kunst diese Woche sehr leicht.	Fortunately the homework in art is very easy this week.
-27	mündlich	orally, spoken	Nächste Woche haben wir eine schwere mündliche Prüfung in Französisch.	Next week we have a difficult spoken exam in French.
-27	notwendig	necessary	Es ist absolut notwendig, für die Klausur am Freitag zu lernen.	It is absolutely necessary to learn for the exam on Friday.
-27	nötig	necessary	Ein guter Abschluss ist für diesen gut bezahlten Job nötig.	A good qualification is necessary for this well paid job.
-28	nützlich	useful	Ein großes Wörterbuch ist beim Schreiben von Aufsätzen sehr nützlich.	A large dictionary is very useful when writing essays.
-28	qualifiziert	qualified	Der neue Berufsberater an unserer Schule ist hoch qualifiziert.	The new careers adviser at our school is highly qualified.
-28	richtig	correct, true	Das ist fantastisch, deine Lösung für die Aufgabe ist völlig richtig!	That is fantastic, your solution for the exercise is completely correct!
-28	schriftlich	written	Morgen haben wir eine lange schriftliche Prüfung in der Turnhalle.	Tomorrow we have a long written exam in the gym.
-28	schwach	weak	Obwohl er lernt, ist er leider noch ziemlich schwach in Mathe.	Although he learns, he is unfortunately still quite weak in maths.
-29	schwer	difficult	Viele Schüler finden, dass Chemie ein extrem schweres Fach ist.	Many pupils find that chemistry is an extremely difficult subject.
-29	streng	strict	Unser Lehrer für Erdkunde ist sehr streng, aber auch fair.	Our teacher for geography is very strict, but also fair.
-29	unnützlich	useless	Ich finde dieses alte Schulbuch völlig unnützlich für die Prüfung.	I find this old textbook completely useless for the exam.
-29	überqualifiziert	over-qualified	Er bekam die einfache Stelle nicht, weil er total überqualifiziert war.	He did not get the simple job because he was totally over-qualified.
-29	der /die Auszubildende	trainee	Der junge Auszubildende lernt in der Werkstatt, Autos zu reparieren.	The young trainee is learning to repair cars in the garage.
-30	der Briefträger /in	postman	Der freundliche Briefträger bringt uns jeden Morgen pünktlich die Post.	The friendly postman brings us the post on time every morning.
-30	der Polizist /in	policeman policewoman	Die Polizistin hilft den kleinen Kindern sicher über die laute Straße.	The policewoman helps the small children safely across the loud street.
-30	Handys benutzen	to use phones	Wir dürfen auf dem Schulhof keine Handys benutzen.	We are not allowed to use phones in the playground.
-30	bitten um	to ask for	Wenn ich Probleme habe, muss ich den Lehrer um Hilfe bitten.	If I have problems, I have to ask the teacher for help.
-30	etwas leisten	to achieve something	Wenn man fleißig in der Schule ist, kann man im Leben viel leisten.	If you are hard-working in school, you can achieve a lot in life.
-31	setzen (sich)	to sit down	Ich setze mich auf den Stuhl in der ersten Reihe.	I sit down on the chair in the front row.
-31	sich entscheiden	to decide	Nach der Schule muss ich mich für einen Beruf entscheiden.	After school I have to decide on a profession.
-31	sich entschuldigen	to excuse	Ich entschuldige mich für meine schlechten Hausaufgaben.	I excuse myself for my bad homework.
-31	sich melden	to put up one's hand	Der fleißige Schüler meldet sich, wenn er die Antwort weiß.	The hard-working pupil puts up his hand when he knows the answer.
-31	streben nach	to strive, aspire	Viele ehrgeizige Schüler streben nach exzellenten Noten.	Many ambitious pupils strive for excellent grades.
-32	willkommen heißen	to welcome	Der Direktor heißt die neuen Schüler in der Aula willkommen.	The headmaster welcomes the new pupils in the hall.
-32	das Arabisch	Arabic	Mein bester Freund lernt am Dienstagnachmittag Arabisch.	My best friend is learning Arabic on Tuesday afternoon.
-32	das Arbeitspraktikum	work experience	Nächstes Jahr mache ich ein Arbeitspraktikum in einer Bank.	Next year I am doing work experience in a bank.
-32	das Beispiel	example	Kannst du mir bitte ein gutes Beispiel für dieses Wort geben?	Can you please give me a good example for this word?
-32	das Bild	picture	Wir malen ein wunderschönes Bild im Kunstunterricht.	We are painting a beautiful picture in art class.
-33	das Blatt	sheet (of paper)	Ich brauche dringend ein neues Blatt Papier für den Test.	I urgently need a new sheet of paper for the test.
-33	das Buch	book	Ich lese in der Pause ein spannendes Buch in der Bibliothek.	I am reading an exciting book in the library during the break.
-33	das Büro	office	Die freundliche Sekretärin arbeitet jeden Tag im Büro.	The friendly secretary works in the office every day.
-33	das Chinesisch	Chinese	Ich finde, dass Chinesisch eine sehr schwere Fremdsprache ist.	I find that Chinese is a very difficult foreign language.
-33	das Diplom	diploma	Nach dem langen Studium an der Uni bekommt man ein Diplom.	After the long university studies you get a diploma.
-34	das Erlebnis	experience	Der Schulaustausch nach Berlin war ein absolut tolles Erlebnis.	The school exchange to Berlin was an absolutely great experience.
-34	das Fest	festival	Das Fest in der Schule am Ende des Jahres war sehr lustig.	The festival at school at the end of the year was very fun.
-34	das Formular	form	Bitte füllen Sie dieses Formular für Ihre Bewerbung aus.	Please fill in this form for your application.
-34	das Französisch	French	Mein großer Bruder spricht unglaublich gutes Französisch.	My big brother speaks incredibly good French.
-34	das Gehalt	salary	Ein erfolgreicher Geschäftsmann bekommt oft ein hohes Gehalt.	A successful businessman often gets a high salary.
-35	das Heft	exercise book	Bitte schreibe die neuen Vokabeln ordentlich in dein rotes Heft.	Please write the new vocabulary neatly in your red exercise book.
-35	das Heimweh	homesickness	Auf der ersten Klassenfahrt hatte der kleine Junge starkes Heimweh.	On the first school trip the little boy had strong homesickness.
-35	das Interview	interview	Morgen habe ich ein sehr wichtiges Interview für den Ferienjob.	Tomorrow I have a very important interview for the holiday job.
-35	das Italienisch	Italian	Italienisch ist ohne Zweifel mein absolutes Lieblingsfach.	Italian is without a doubt my absolute favourite subject.
-35	das Labor	laboratory	In Chemie machen wir oft interessante Experimente im Labor.	In chemistry we often do interesting experiments in the laboratory.
-36	das Lieblingsfach	favourite subject	Was ist eigentlich dein Lieblingsfach in der Schule?	What is actually your favourite subject at school?
-36	das Lineal	ruler	Ich brauche ein langes Lineal, um eine gerade Linie zu zeichnen.	I need a long ruler to draw a straight line.
-36	das Model	model	Meine Cousine arbeitet am Wochenende als Model für Kleidung.	My cousin works at the weekend as a model for clothes.
-36	das Notizheft	notebook	Ich schreibe meine Hausaufgaben jeden Tag in mein Notizheft.	I write my homework in my notebook every day.
-36	das Papier	paper	Wir recyceln in unserem Klassenzimmer das ganze Papier.	We recycle all the paper in our classroom.
-37	das Pflichtfach	compulsory subject	Mathe ist an unserer Schule leider ein strenges Pflichtfach.	Maths is unfortunately a strict compulsory subject at our school.
-37	das Radiergummi	rubber (eraser)	Kannst du mir bitte kurz dein Radiergummi leihen?	Can you please lend me your rubber briefly?
-37	das Referat	presentation	Ich muss morgen ein langes Referat über deutsche Geschichte halten.	I have to give a long presentation about German history tomorrow.
-37	das Russisch	Russian	In unserer Schule können wir am Dienstagnachmittag Russisch lernen.	In our school we can learn Russian on Tuesday afternoon.
-37	das Schulbuch	textbook	Du musst dein dickes Schulbuch jeden Tag in die Schule mitbringen.	You must bring your thick textbook to school with you every day.
-38	das Schuletui	pencil case	Mein roter Kuli und mein Bleistift sind in meinem Schuletui.	My red pen and my pencil are in my pencil case.
-38	das Schulzeugnis	end-of-term report	Meine Eltern waren sehr stolz, denn mein Schulzeugnis war toll.	My parents were very proud because my end-of-term report was great.
-38	das Semester	semester	Das erste Semester an der neuen Universität beginnt im Oktober.	The first semester at the new university begins in October.
-38	das Spanisch	Spanish	Ich lerne fleißig Spanisch, weil wir im Sommer nach Spanien fahren.	I am learning Spanish hard because we are travelling to Spain in the summer.
-38	das Studium	university studies	Ein normales Studium an der Universität dauert oft drei Jahre.	Normal university studies often last three years.
-39	das Telefonat	telephone call	Das kurze Telefonat mit dem zukünftigen Chef war sehr positiv.	The short telephone call with the future boss was very positive.
-39	das Textbuch	textbook	Bitte lest jetzt sofort die Seite zehn im Textbuch.	Please read page ten in the textbook right now.
-39	das Theaterstück	play, theatre show	Die engagierte Theater-AG führt nächste Woche ein neues Theaterstück auf.	The dedicated drama club is performing a new play next week.
-39	das Vorstellungsgespräch	interview	Ich bin ziemlich nervös vor meinem Vorstellungsgespräch am Montag.	I am quite nervous before my interview on Monday.
-39	das Wahlfach	optional subject	Glücklicherweise ist Kunst ein kreatives Wahlfach in der zehnten Klasse.	Fortunately art is a creative optional subject in year ten.
-40	das Wort	word	Entschuldigung, ich kenne dieses deutsche Wort leider noch nicht.	Excuse me, I unfortunately do not know this German word yet.
-40	das Wörterbuch	dictionary	Wir dürfen in der schweren Prüfung ein zweisprachiges Wörterbuch benutzen.	We are allowed to use a bilingual dictionary in the difficult exam.
-40	das Zeugnis	report	Am letzten Schultag bekommen wir unser wichtiges Zeugnis.	On the last school day we get our important report.
-40	das stimmt	that's correct	Ja, das stimmt, diese Hausaufgabe in Physik ist wirklich extrem schwer.	Yes, that's correct, this homework in physics is really extremely difficult.
-40	der Anrufbeantworter	answerphone, voicemail	Bitte hinterlassen Sie nach dem Piepton eine Nachricht auf dem Anrufbeantworter.	Please leave a message on the answerphone after the tone.
-41	der Aufsatz	essay	Ich schreibe einen langen Aufsatz über meine Pläne für die Zukunft.	I am writing a long essay about my plans for the future.
-41	der Ausflug	excursion, outing	Am Wochenende machen wir einen tollen Ausflug in die Berge.	At the weekend we are going on a great excursion into the mountains.
-41	der Beamer	data projector	Der Lehrer zeigt uns einen französischen Film mit dem Beamer.	The teacher shows us a French film with the data projector.
-41	der Bleistift	pencil	Hast du zufällig einen spitzen Bleistift für mein Kunstprojekt?	Do you happen to have a sharp pencil for my art project?
-41	der Fehler	mistake	Ich habe nur einen einzigen kleinen Fehler im Grammatiktest gemacht.	I only made a single small mistake in the grammar test.
-42	der Fortschritt	progress, improvement	Ich mache dank meinem tollen Lehrer einen großen Fortschritt in Englisch.	I am making great progress in English thanks to my great teacher.
-42	der Gast	guest	Unser englischer Gast aus der Partnerschule kommt heute Abend endlich an.	Our English guest from the twin school is finally arriving this evening.
-42	der Hauptschulabschluss	lowest qualification	Er hat den Hauptschulabschluss gemacht und sucht jetzt eifrig eine Lehre.	He has done the lowest qualification and is now eagerly looking for an apprenticeship.
-42	der Hof	playground	Wir spielen in der großen Pause oft Fußball auf dem Hof.	We often play football in the playground during the long break.
-42	der Kopfhörer	headphones	Ich höre auf dem Schulweg oft Musik mit meinem neuen Kopfhörer.	I often listen to music on the way to school with my new headphones.
-43	der Kugelschreiber	ballpoint pen	Dieser blaue Kugelschreiber schreibt sehr gut und flüssig.	This blue ballpoint pen writes very well and smoothly.
-43	der Kuli	ballpoint pen	Entschuldigung, hast du vielleicht einen Kuli für mich?	Excuse me, do you perhaps have a ballpoint pen for me?
-43	der Lehrling	apprentice	Der neue Lehrling in der großen Bäckerei ist unglaublich fleißig.	The new apprentice in the large baker's shop is incredibly hard-working.
-43	der Lohn	wage(s), pay	Der Lohn für diesen kleinen Ferienjob ist leider ziemlich niedrig.	The wage for this small holiday job is unfortunately quite low.
-43	der Nachhilfelehrer	tutor, private instructor	Mein netter Nachhilfelehrer hilft mir jeden Mittwoch nach der Schule mit Mathe.	My nice tutor helps me with maths every Wednesday after school.
-44	der Projektor	overhead projector	Der alte Projektor in unserem dunklen Klassenzimmer ist schon wieder kaputt.	The old overhead projector in our dark classroom is broken again.
-44	der Rucksack	backpack	Mein schwerer Rucksack voller Schulbücher steht sicher unter dem Tisch.	My heavy backpack full of textbooks is standing safely under the desk.
-44	der Satz	sentence	Bitte schreibe einen ganzen Satz auf Deutsch in dein Heft.	Please write a full sentence in German in your exercise book.
-44	der Schulanfang	beginning of term	Nach dem Schulanfang im September muss ich sofort wieder viel lernen.	After the beginning of term in September I have to study a lot again immediately.
-44	der Schulhof	playground	Die jungen Schüler dürfen den Schulhof in der kurzen Pause nicht verlassen.	The young pupils are not allowed to leave the playground during the short break.
-45	der Spitzer	sharpener	Ich brauche heute unbedingt einen Spitzer für meinen alten Bleistift.	I really need a sharpener for my old pencil today.
-45	der Stuhl	chair	Der hölzerne Stuhl im Musiksaal ist leider überhaupt nicht sehr bequem.	The wooden chair in the music room is unfortunately not very comfortable at all.
-45	der Taschenrechner	calculator	Wir dürfen in der strengen Matheprüfung definitiv keinen Taschenrechner benutzen.	We are definitely not allowed to use a calculator in the strict maths exam.
-45	der Tennisplatz	tennis court	Nach dem langen Unterricht spielen wir mit Freunden auf dem Tennisplatz.	After the long lessons we play with friends on the tennis court.
-45	der Termin	appointment	Ich habe heute Nachmittag einen wichtigen Termin beim Berufsberater.	I have an important appointment with the careers adviser this afternoon.
-46	der Universitäts-abschluss	university degree	Mein älterer Bruder hat einen guten Universitätsabschluss in Mathe.	My older brother has a good university degree in maths.
-46	der Wettbewerb	competition	Ich nehme am Samstag an einem spannenden Wettbewerb teil.	I am taking part in an exciting competition on Saturday.
-46	der/die Angestellte	employee	Der neue Angestellte arbeitet wirklich hart im Büro.	The new employee works really hard in the office.
-46	der/die Austauschpartner/in	exchange partner	Mein Austauschpartner kommt nächste Woche zu uns nach England.	My exchange partner is coming to us in England next week.
-46	der/die Lehrer/in	teacher	Unsere Lehrerin für Geschichte ist streng, aber sehr freundlich.	Our history teacher is strict but very friendly.
-47	der/die Schüler/in	pupil	Der fleißige Schüler macht immer abends seine Hausaufgaben.	The hard-working pupil always does his homework in the evening.
-47	die Abschlussprüfung	final exam	Ich muss noch sehr viel für meine Abschlussprüfung im Sommer lernen.	I still have to study a lot for my final exam in the summer.
-47	die Aula	hall	Wir versammeln uns jeden Morgen in der großen Aula.	We gather in the large hall every morning.
-47	die Aussprache	pronunciation	Deine deutsche Aussprache ist wirklich fantastisch geworden!	Your German pronunciation has become really fantastic!
-47	die Bildung	education	Eine gute Bildung ist extrem wichtig für eine erfolgreiche Zukunft.	A good education is extremely important for a successful future.
-48	die Biologie	biology	In Biologie lernen wir im Moment viel über Pflanzen und Tiere.	In biology we are learning a lot about plants and animals at the moment.
-48	die Bürgerkunde	citizenship	Bürgerkunde ist ein sehr interessantes und aktuelles Fach.	Citizenship is a very interesting and current subject.
-48	die Chemie	chemistry	Ich finde die vielen Experimente in Chemie extrem spannend.	I find the many experiments in chemistry extremely exciting.
-48	die Eintrittskarte	ticket	Ich kaufe heute Nachmittag eine Eintrittskarte für das Konzert.	I am buying a ticket for the concert this afternoon.
-48	die Erziehung	education	Meine Eltern legen großen Wert auf eine gute Erziehung.	My parents attach great importance to a good education.
-49	die Fabrik	factory	Mein Onkel arbeitet schon seit zehn Jahren in einer Fabrik.	My uncle has already been working in a factory for ten years.
-49	die Fachhochschule	technical college	Nach der Schule möchte er Informatik an einer Fachhochschule studieren.	After school he would like to study computer science at a technical college.
-49	die Firma	firm, company	Diese große Firma produziert sehr moderne und schnelle Autos.	This large company produces very modern and fast cars.
-49	die Fremdsprache	foreign language	Es ist im Beruf unglaublich nützlich, eine zweite Fremdsprache zu lernen.	It is incredibly useful in a career to learn a second foreign language.
-49	die Gesellschaft	company	Er arbeitet als erfolgreicher Manager für eine internationale Gesellschaft.	He works as a successful manager for an international company.
-50	die Lehrlingsstelle	an apprenticeship	Sie hat eine tolle Lehrlingsstelle als Friseurin im Zentrum gefunden.	She has found a great apprenticeship as a hairdresser in the centre.
-50	die Mathe	maths	Die Mathe ist oft recht schwer, aber eigentlich ziemlich logisch.	Maths is often quite difficult, but actually quite logical.
-50	die Mittagspause	lunch break	In der Mittagspause esse ich mein leckeres belegtes Brot.	In the lunch break I eat my delicious sandwich.
-50	die Musik	music	Ich höre sehr gern Musik, wenn ich am Abend meine Hausaufgaben mache.	I really like listening to music when I do my homework in the evening.
-50	die Oberstufe	sixth form	Die älteren Schüler in der Oberstufe haben oft viel Stress.	The older pupils in the sixth form often have a lot of stress.
-51	die Physik	physics	Wir haben morgen leider einen sehr schwierigen Test in Physik.	Unfortunately we have a very difficult test in physics tomorrow.
-51	die Preisverleihung	prize giving	Die jährliche Preisverleihung findet heute Abend in der Turnhalle statt.	The annual prize giving takes place in the gym this evening.
-51	die Psychologie	psychology	Ich möchte später unbedingt Psychologie an der Universität studieren.	I absolutely want to study psychology at the university later.
-51	die Religion	religious education	Im Fach Religion diskutieren wir mit dem Lehrer über viele wichtige Themen.	In religious education we discuss many important topics with the teacher.
-51	die Schere	scissors	Bitte pass auf, diese neue Schere auf dem Tisch ist sehr scharf!	Please watch out, these new scissors on the table are very sharp!
-52	die Schularbeit	test (in class)	Ich bin total nervös vor der nächsten großen Schularbeit.	I am totally nervous before the next big test.
-52	die Sozialkunde	social studies	Der junge Lehrer für Sozialkunde erklärt alles sehr klar und deutlich.	The young teacher for social studies explains everything very clearly and distinctly.
-52	die Spende	donation	Wir sammeln in der Schule Geld für eine Spende an die Wohltatsorganisation.	We are collecting money at school for a donation to the charity organisation.
-52	die Sprache	language	Deutsch ist eine sehr logische, aber machmal komplizierte Sprache.	German is a very logical, but sometimes complicated language.
-52	die Tafel	board	Der Lehrer schreibt die neuen französischen Wörter deutlich an die Tafel.	The teacher writes the new French words clearly on the board.
-53	die Tasche	bag, pocket	Ich stecke meinen blauen Kuli schnell in die Tasche.	I quickly put my blue pen into the pocket.
-53	die Turnhalle	gym	Wir spielen jeden Freitag im Winter Basketball in der Turnhalle.	We play basketball in the gym every Friday in winter.
-53	die Universität	university	Mein ältester Bruder studiert fleißig Medizin an der Universität.	My eldest brother studies medicine hard at the university.
-53	die Verabredung	appointment	Ich habe heute am späten Nachmittag eine Verabredung mit dem Zahnarzt.	I have an appointment with the dentist late this afternoon today.
-53	die Wand	wall	In unserem schönen Klassenzimmer hängt eine riesige Landkarte an der Wand.	In our beautiful classroom a huge map hangs on the wall.
-54	die Wohltatsorganisation	charity organisation	Ich helfe am Wochenende oft ehrenamtlich bei einer Wohltatsorganisation.	I often help voluntarily at a charity organisation at the weekend.
-54	gut bezahlt	well paid	Die verantwortungsvolle Stelle als Ingenieur ist glücklicherweise sehr gut bezahlt.	The responsible job as an engineer is fortunately very well paid.
-54	schlecht bezahlt	poorly paid	Leider ist dieser einfache Ferienjob an der Kasse ziemlich schlecht bezahlt.	Unfortunately this simple holiday job at the checkout is quite poorly paid.
-54	durchfallen nicht bestehen	to fail an exam	Wenn ich nicht genug lerne, falle ich am Ende in der Prüfung durch.	If I do not study enough, I will fail the exam in the end.
-54	eine Prüfung bestehen	to pass an exam	Ich hoffe wirklich, dass ich meine schwierige Prüfung am Dienstag bestehe.	I really hope that I pass my difficult exam on Tuesday.
-55	gut sein in etwas	to be good at something	Meine kleine Schwester ist seit der Grundschule sehr gut in Mathe.	My little sister has been very good at maths since primary school.
-55	sich vorbereiten auf	to prepare for	Ich bereite mich jeden Tag gründlich auf die Abschlussprüfung vor.	I prepare myself thoroughly for the final exam every day.
-55	das interaktive Whiteboard	interactive whiteboard	Unser moderner Lehrer benutzt das interaktive Whiteboard in fast jeder Stunde.	Our modern teacher uses the interactive whiteboard in almost every lesson.
-55	der Arbeitnehmer /in	employee, worker	Der erfahrene Arbeitnehmer fordert dieses Jahr ein besseres Gehalt.	The experienced employee demands a better salary this year.
-55	der Beamte /in	civil servant, official	Mein Vater arbeitet schon lange als Beamter für unsere Stadt.	My father has worked as a civil servant for our town for a long time.
-56	der Buchhalter /in	accountant	Der konzentrierte Buchhalter rechnet sehr genau in seinem ruhigen Büro.	The focused accountant calculates very precisely in his quiet office.
-56	der Bäcker /in	baker	Der Bäcker steht jeden Tag extrem früh am Morgen auf.	The baker gets up extremely early in the morning every day.
-56	der Direktor /in	headmaster	Der neue Direktor hält eine fantastische Rede in der Aula.	The new headmaster gives a fantastic speech in the hall.
-56	der Elektriker /in	electrician	Der Elektriker repariert das kaputte Licht in unserem alten Haus.	The electrician repairs the broken light in our old house.
-56	der Ingenieur /in	engineer	Der Ingenieur entwirft eine unglaublich lange Brücke für die Hauptstadt.	The engineer designs an incredibly long bridge for the capital city.
-57	der Journalist /in	journalist	Die Journalistin schreibt heute einen langen Artikel für die lokale Zeitung.	The journalist is writing a long article for the local newspaper today.
-57	der Kassierer /in	cashier	Der junge Kassierer im Supermarkt um die Ecke ist immer sehr freundlich.	The young cashier in the supermarket around the corner is always very friendly.
-57	der Kaufmann die Kauffrau	businessman businesswoman	Die Kauffrau telefoniert oft mit wichtigen Kunden im Ausland.	The businesswoman often telephones important clients abroad.
-57	der Kellner /in	waiter/waitress	Der Kellner bringt uns das leckere Essen sofort im Restaurant.	The waiter brings us the delicious food immediately in the restaurant.
-57	der Klempner /in	plumber	Wir rufen den Klempner an, weil die Dusche im Badezimmer komplett kaputt ist.	We are calling the plumber because the shower in the bathroom is completely broken.
-58	der Maler /in	painter	Der Maler streicht die Wände im Klassenzimmer in einem hellen Blau.	The painter paints the walls in the classroom in a bright blue.
-58	der Maurer /in	bricklayer, mason, builder	Der Maurer baut fleißig ein neues Haus am ruhigen Stadtrand.	The builder is building a new house hard on the quiet outskirts.
-58	der Mechaniker /in	mechanic	Der Mechaniker repariert unser kaputtes Auto schnell in der Werkstatt.	The mechanic repairs our broken car quickly in the garage.
-58	der Pilot /in	pilot	Der erfahrene Pilot fliegt das riesige Flugzeug sicher nach Spanien.	The experienced pilot flies the huge aeroplane safely to Spain.
-58	der Tag der Abschlussfeier	graduation day	Der Tag der Abschlussfeier ist ein sehr wichtiges und emotionales Ereignis.	Graduation day is a very important and emotional event.
-59	der Taxifahrer /in	taxi driver	Der Taxifahrer fährt uns am Morgen schnell und sicher zum Bahnhof.	The taxi driver drives us quickly and safely to the station in the morning.
-59	die Mittlere Reife	GCSE	Nach der zehnten Klasse mache ich hoffentlich meine Mittlere Reife.	After year ten I will hopefully do my GCSEs.
-59	der Geschäftsmann die Geschäftsfrau	businessman businesswoman	Der erfolgreiche Geschäftsmann fliegt morgen früh nach Asien.	The successful businessman is flying to Asia tomorrow morning.
-59	zu den Akten legen	to file away	Die Sekretärin legt das wichtige Dokument nach dem Gespräch zu den Akten.	The secretary files the important document away after the conversation.
-59	das Abitur / die Matura	A-Levels	Ich muss hart lernen, um nächstes Jahr ein gutes Abitur zu machen.	I have to study hard to get good A-Levels next year.
-60	der Arzt / die Ärztin	doctor	Wenn ich richtig krank bin, gehe ich natürlich sofort zum Arzt.	When I am really ill, I naturally go to the doctor immediately.
-60	der Friseur die Friseuse	hairdresser	Meine Schwester arbeitet samstags als Friseurin im Stadtzentrum.	My sister works as a hairdresser in the town centre on Saturdays.
-60	der Koch die Köchin	cook, chef	Der Koch bereitet ein köstliches Mittagessen in der Hotelküche zu.	The chef prepares a delicious lunch in the hotel kitchen.
-60	der Steward die Stewardess	flight attendant, air steward/stewardess	Die freundliche Stewardess bringt uns Getränke und Snacks im Flugzeug.	The friendly flight attendant brings us drinks and snacks on the aeroplane.
-60	der Zahnarzt /die Zahnärztin	dentist	Du musst wirklich zweimal im Jahr zur Kontrolle zum Zahnarzt gehen.	You really must go to the dentist twice a year for a check-up.
-`;
+Day	German	English	German Example	English Translation	Importance
+1	der Beruf (e)	occupation, profession	Was ist Ihr Beruf?	What is your occupation?	★★★★ Essential
+1	der Arbeitnehmer (-) / der Angestellte (n)	employee	Der Arbeitnehmer hat Rechte.	The employee has rights.	★★★★ Essential
+1	der Arbeitgeber (-)	employer	Der Arbeitgeber bietet gute Bedingungen.	The employer offers good conditions.	★★★★ Essential
+1	anstellen / einstellen / beschäftigen	to employ	Die Firma stellt neue Mitarbeiter ein.	The company is employing new staff.	★★★★ Essential
+1	berufstätig	employed, having a job	Sie ist seit zehn Jahren berufstätig.	She has been employed for ten years.	★★★★ Essential
+1	die Firma / das Unternehmen	firm, company	Die Firma hat 500 Mitarbeiter.	The company has 500 employees.	★★★★ Essential
+1	der Betrieb (e)	business, company, factory	Er arbeitet in einem kleinen Betrieb.	He works in a small business.	★★★★ Essential
+1	verdienen	to earn	Sie verdient gut als Ingenieurin.	She earns well as an engineer.	★★★★ Essential
+1	das Gehalt (ä-er)	salary	Das Gehalt wird am Ende des Monats gezahlt.	The salary is paid at the end of the month.	★★★★ Essential
+1	die Karriere (n)	career	Sie hat eine erfolgreiche Karriere gemacht.	She has had a successful career.	★★★★ Essential
+1	eine Stelle suchen	to look for a job	Er sucht seit Monaten eine Stelle.	He has been looking for a job for months.	★★★★ Essential
+1	sich bewerben um (AKK)	to apply for	Ich bewerbe mich um die Stelle als Manager.	I am applying for the position of manager.	★★★★ Essential
+2	die Bewerbung	the application	Ich habe meine Bewerbung abgeschickt.	I have sent my application.	★★★★ Essential
+2	die Ausbildung / die Lehre (n)	training, apprenticeship	Die Ausbildung dauert drei Jahre.	The training lasts three years.	★★★★ Essential
+2	die Qualifikation (en)	qualifications	Welche Qualifikationen haben Sie?	What qualifications do you have?	★★★★ Essential
+2	die Erfahrung / die Berufserfahrung	experience (professional)	Berufserfahrung ist für diese Stelle wichtig.	Professional experience is important for this job.	★★★★ Essential
+2	die Aufgabe (n)	task	Das ist eine schwierige Aufgabe.	That is a difficult task.	★★★★ Essential
+2	der Kollege (n) / die Kollegin (nen)	colleague	Meine Kollegin hilft mir immer.	My colleague always helps me.	★★★★ Essential
+2	der Mitarbeiter (-)	colleague, employee	Die Mitarbeiter sind zufrieden.	The employees are satisfied.	★★★★ Essential
+2	die Steuer (n)	tax	Die Steuern in Deutschland sind hoch.	Taxes in Germany are high.	★★★★ Essential
+2	die Anforderung (en)	demand, requirement	Die Anforderungen an die Stelle sind hoch.	The requirements for the job are high.	★★★★ Essential
+2	verantwortlich / zuständig für (Akk)	responsible for	Er ist für das Projekt verantwortlich.	He is responsible for the project.	★★★★ Essential
+2	gut bezahlt	well paid	Diese Arbeit ist gut bezahlt.	This work is well paid.	★★★★ Essential
+2	fleißig	hard-working	Deutsche Arbeitnehmer gelten als fleißig.	German employees are considered hard-working.	★★★★ Essential
+3	arbeitslos / erwerbslos	unemployed	Er ist seit einem Jahr arbeitslos.	He has been unemployed for a year.	★★★★ Essential
+3	die Arbeitslosigkeit	unemployment	Die Arbeitslosigkeit ist gestiegen.	Unemployment has risen.	★★★★ Essential
+3	die Wirtschaft	the economy	Die deutsche Wirtschaft wächst langsam.	The German economy is growing slowly.	★★★★ Essential
+3	der Gewinn (e)	profit	Die Firma hat einen hohen Gewinn erzielt.	The company made a high profit.	★★★★ Essential
+3	der Verlust (e)	loss	Das Unternehmen hat Verluste gemacht.	The company made losses.	★★★★ Essential
+3	die Konkurrenz	competition	Die Konkurrenz ist in dieser Branche groß.	Competition is fierce in this industry.	★★★★ Essential
+3	konkurrenzfähig	competitive	Deutsche Produkte sind sehr konkurrenzfähig.	German products are very competitive.	★★★★ Essential
+3	der Kunde / die Kundin	customer	Der Kunde ist immer König.	The customer is always king.	★★★★ Essential
+3	herstellen / erzeugen	to make, produce, manufacture	Deutschland stellt viele Autos her.	Germany manufactures many cars.	★★★★ Essential
+3	der Hersteller (-)	manufacturer	BMW ist ein bekannter Hersteller.	BMW is a well-known manufacturer.	★★★★ Essential
+3	die Dienstleistungsbranche	service industry	Die Dienstleistungsbranche wächst schnell.	The service industry is growing fast.	★★★★ Essential
+3	Angebot und Nachfrage	supply and demand	Angebot und Nachfrage bestimmen den Preis.	Supply and demand determine the price.	★★★★ Essential
+4	der Import / der Export	import / export	Deutschland ist für seinen Export bekannt.	Germany is known for its exports.	★★★★ Essential
+4	importieren / exportieren	to import / to export	Wir exportieren Maschinen in alle Welt.	We export machines worldwide.	★★★★ Essential
+4	die Rezession (en)	recession	Während einer Rezession steigt die Arbeitslosigkeit.	During a recession unemployment rises.	★★★★ Essential
+4	die Finanzkrise (n)	financial crisis	Die Finanzkrise hat viele Firmen getroffen.	The financial crisis hit many companies.	★★★★ Essential
+4	die Währung (en)	currency	Der Euro ist die gemeinsame Währung.	The euro is the common currency.	★★★★ Essential
+4	die Inflation	inflation	Die Inflation ist auf 6% gestiegen.	Inflation has risen to 6%.	★★★★ Essential
+4	investieren / die Investition (en)	to invest / investment	Firmen investieren in neue Technologien.	Companies invest in new technologies.	★★★★ Essential
+4	der Staat (en)	state	Der Staat muss die Wirtschaft unterstützen.	The state must support the economy.	★★★★ Essential
+4	die Einkommenssteuer (n)	income tax	Die Einkommenssteuer ist progressiv.	Income tax is progressive.	★★★★ Essential
+4	der Lebensstandard	standard of living	Der Lebensstandard in Deutschland ist hoch.	The standard of living in Germany is high.	★★★★ Essential
+4	das Recht (e)	right	Jeder hat das Recht auf faire Arbeit.	Everyone has the right to fair work.	★★★★ Essential
+4	die Gleichstellung	equal opportunities	Gleichstellung ist ein wichtiges Thema.	Equal opportunities is an important topic.	★★★★ Essential
+5	die Arbeitsbelastung	workload	Die Arbeitsbelastung hat zugenommen.	The workload has increased.	★★★★ Essential
+5	die Gleitzeit	flexible working hours, flexitime	Viele Firmen bieten Gleitzeit an.	Many companies offer flexitime.	★★★★ Essential
+5	von zu Hause arbeiten / das Homeoffice	working from home / home office	Seit Corona arbeiten viele im Homeoffice.	Since Covid many work from home.	★★★★ Essential
+5	eine gute Work-Life-Balance haben	to have a good work-life balance	Eine gute Work-Life-Balance ist wichtig.	A good work-life balance is important.	★★★★ Essential
+5	der steigende Leistungsdruck	increasing pressure to achieve	Der steigende Leistungsdruck macht krank.	The increasing pressure to perform causes illness.	★★★★ Essential
+5	die Ganztagsarbeit	full-time work	Nicht jeder möchte Ganztagsarbeit.	Not everyone wants full-time work.	★★★★ Essential
+5	die Teilzeitarbeit / die Teilzeit	part-time work	Viele Mütter arbeiten in Teilzeit.	Many mothers work part-time.	★★★★ Essential
+5	freiberuflich / selbstständig arbeiten	self-employed / freelance	Er arbeitet seit fünf Jahren selbstständig.	He has been self-employed for five years.	★★★★ Essential
+5	der Urlaub (e)	holiday, leave	Ich habe 30 Tage Urlaub im Jahr.	I have 30 days holiday per year.	★★★★ Essential
+5	Überstunden machen	to do overtime	Viele Angestellte machen regelmäßig Überstunden.	Many employees regularly do overtime.	★★★★ Essential
+5	der Arbeitstag (e)	working day	Ein typischer Arbeitstag beginnt um acht.	A typical working day starts at eight.	★★★★ Essential
+5	in Rente gehen / der Rentner (-)	to retire / pensioner	Er geht nächstes Jahr in Rente.	He is retiring next year.	★★★★ Essential
+6	die Arbeitslosenhilfe / das Arbeitslosengeld	unemployment benefit	Er bekommt Arbeitslosengeld vom Staat.	He receives unemployment benefit from the state.	★★★★ Essential
+6	eine Arbeitslosenquote von 5%	an unemployment rate of 5%	Die Arbeitslosenquote liegt bei 5%.	The unemployment rate is at 5%.	★★★★ Essential
+6	die Arbeitslosenzahlen	unemployment figures	Die Arbeitslosenzahlen sind gesunken.	Unemployment figures have fallen.	★★★★ Essential
+6	entlassen / feuern	to sack, dismiss	Die Firma hat 200 Arbeiter entlassen.	The company dismissed 200 workers.	★★★★ Essential
+6	die Kündigung (en)	notice of dismissal	Er hat seine Kündigung bekommen.	He received his notice of dismissal.	★★★★ Essential
+6	die Armut	poverty	Armut ist ein wachsendes Problem.	Poverty is a growing problem.	★★★★ Essential
+6	die Sorge (n)	worry, concern	Er hat große Sorgen um seinen Arbeitsplatz.	He is very worried about his job.	★★★★ Essential
+6	gleicher Lohn für gleiche Arbeit	equal pay for equal work	Frauen fordern gleichen Lohn für gleiche Arbeit.	Women demand equal pay for equal work.	★★★★ Essential
+6	die Gewerkschaft (en)	trade union	Die Gewerkschaft kämpft für bessere Löhne.	The trade union fights for better wages.	★★★★ Essential
+6	streiken / der Streik (s)	to strike / strike	Die Arbeiter streiken für höhere Löhne.	The workers are striking for higher wages.	★★★★ Essential
+6	der gesetzliche Mindestlohn	statutory minimum wage	Der Mindestlohn wurde auf 12 Euro erhöht.	The minimum wage was raised to 12 euros.	★★★★ Essential
+6	der Anstieg der Lebenshaltungskosten	the rise in living costs	Der Anstieg der Lebenshaltungskosten belastet viele.	The rise in living costs burdens many.	★★★★ Essential
+7	die Künstliche Intelligenz (KI)	artificial intelligence (AI)	KI verändert die Arbeitswelt grundlegend.	AI is fundamentally changing the world of work.	★★★★ Essential
+7	die Digitalisierung	digitalisation	Die Digitalisierung schafft neue Berufe.	Digitalisation creates new professions.	★★★★ Essential
+7	der Fachkräftemangel	skilled worker shortage	Der Fachkräftemangel betrifft viele Branchen.	The skilled worker shortage affects many industries.	★★★★ Essential
+7	die Nachhaltigkeit	sustainability	Nachhaltigkeit wird für Firmen immer wichtiger.	Sustainability is becoming increasingly important for companies.	★★★★ Essential
+7	die Energiewende	energy transition	Die Energiewende kostet Milliarden.	The energy transition costs billions.	★★★★ Essential
+7	die Lieferkette (n) / Lieferkettenprobleme	supply chain / supply chain problems	Lieferkettenprobleme haben die Produktion gestört.	Supply chain problems disrupted production.	★★★★ Essential
+7	das Bürgergeld	citizens income (replaced Hartz IV)	Das Bürgergeld hat Hartz IV ersetzt.	Citizens income has replaced Hartz IV.	★★★★ Essential
+7	die Vier-Tage-Woche	the four-day working week	Immer mehr Firmen testen die Vier-Tage-Woche.	More and more companies are testing the four-day week.	★★★★ Essential
+7	das hybride Arbeiten	hybrid working	Hybrides Arbeiten ist nach Corona normal geworden.	Hybrid working has become normal after Covid.	★★★★ Essential
+7	die Automatisierung	automation	Die Automatisierung bedroht viele Arbeitsplätze.	Automation threatens many jobs.	★★★★ Essential
+7	der Klimawandel	climate change	Der Klimawandel beeinflusst die Wirtschaft.	Climate change affects the economy.	★★★★ Essential
+7	der demografische Wandel	demographic change	Der demografische Wandel führt zum Fachkräftemangel.	Demographic change leads to a skills shortage.	★★★★ Essential
+8	das Einkommen	income	Ein niedriges Einkommen reicht kaum zum Leben.	A low income is barely enough to live on.	★★★ Very Important
+8	ausgeben (i-a-e)	to spend (money)	Sie gibt viel Geld für Kleidung aus.	She spends a lot of money on clothes.	★★★ Very Important
+8	die Ausgaben / Einnahmen und Ausgaben	outgoings / income and expenditure	Die Ausgaben übersteigen die Einnahmen.	Expenditure exceeds income.	★★★ Very Important
+8	sparen für	to save for	Wir sparen für ein neues Auto.	We are saving for a new car.	★★★ Very Important
+8	die Miete (n) / mieten	rent / to rent	Die Mieten in München sind sehr hoch.	Rents in Munich are very high.	★★★ Very Important
+8	die Versicherung	insurance	Jeder braucht eine Krankenversicherung.	Everyone needs health insurance.	★★★ Very Important
+8	die Krankenversicherung (en)	health insurance	In Deutschland ist die Krankenversicherung Pflicht.	In Germany health insurance is compulsory.	★★★ Very Important
+8	ein niedriges / mittleres / hohes Einkommen	a low / medium / high income	Viele haben nur ein niedriges Einkommen.	Many have only a low income.	★★★ Very Important
+8	das kann ich mir nicht leisten	I cannot afford that	Eine große Wohnung kann ich mir nicht leisten.	I cannot afford a big flat.	★★★ Very Important
+8	die Inflation ist gestiegen	inflation has risen	Die Inflation ist auf über 5% gestiegen.	Inflation has risen to over 5%.	★★★ Very Important
+9	sich arbeitslos melden	to register as unemployed	Er hat sich beim Arbeitsamt arbeitslos gemeldet.	He registered as unemployed at the job centre.	★★★ Very Important
+9	der Arbeitsplatzabbau	job cuts	Der Arbeitsplatzabbau trifft die ganze Region.	Job cuts affect the whole region.	★★★ Very Important
+9	die Langzeitarbeitslosigkeit	long-term unemployment	Langzeitarbeitslosigkeit ist schwer zu bekämpfen.	Long-term unemployment is hard to combat.	★★★ Very Important
+9	die Kurzarbeit	short-time working	Während Corona wurde viel Kurzarbeit gemacht.	During Covid a lot of short-time working was done.	★★★ Very Important
+9	die Selbstachtung	self-respect, self-esteem	Arbeitslosigkeit schadet der Selbstachtung.	Unemployment damages self-esteem.	★★★ Very Important
+9	Arbeitsplätze gingen verloren	jobs were lost	Tausende Arbeitsplätze gingen verloren.	Thousands of jobs were lost.	★★★ Very Important
+9	betroffen sind vor allem ...	those most affected are...	Betroffen sind vor allem junge Menschen.	Those most affected are young people.	★★★ Very Important
+9	vorzeitig in den Ruhestand gehen	to take early retirement	Viele gehen vorzeitig in den Ruhestand.	Many take early retirement.	★★★ Very Important
+9	er ist auf Sozialhilfe angewiesen	he is dependent on state benefits	Er ist auf Sozialhilfe angewiesen.	He depends on state benefits.	★★★ Very Important
+9	sie geraten in finanzielle Schwierigkeiten	they get into financial difficulties	Viele Familien geraten in finanzielle Schwierigkeiten.	Many families get into financial difficulties.	★★★ Very Important
+10	sich beschweren / die Beschwerde (n)	to complain / complaint	Die Mitarbeiter beschweren sich über die Bedingungen.	The staff complain about conditions.	★★★ Very Important
+10	das Mobbing	bullying / harassment	Mobbing am Arbeitsplatz ist ein ernstes Problem.	Bullying at work is a serious problem.	★★★ Very Important
+10	die Pflicht (en)	duty	Es ist unsere Pflicht gute Arbeit zu leisten.	It is our duty to do good work.	★★★ Very Important
+10	die Schichtarbeit	shift work	Schichtarbeit ist schlecht für die Gesundheit.	Shift work is bad for health.	★★★ Very Important
+10	die Stimmung (en)	atmosphere, mood	Die Stimmung im Büro ist sehr gut.	The atmosphere in the office is very good.	★★★ Very Important
+10	der Feiertag (e)	day off, holiday	In Bayern gibt es viele Feiertage.	In Bavaria there are many public holidays.	★★★ Very Important
+10	der Elternurlaub	paternity / maternity leave	In Deutschland gibt es großzügigen Elternurlaub.	In Germany there is generous parental leave.	★★★ Very Important
+10	die Frustration (en)	frustration	Die Frustration unter den Arbeitern wächst.	Frustration among workers is growing.	★★★ Very Important
+10	die Zeitarbeit	temporary work	Zeitarbeit bietet wenig Sicherheit.	Temporary work offers little security.	★★★ Very Important
+10	eine 35-Stunden-Woche	a 35-hour working week	In Frankreich gibt es eine 35-Stunden-Woche.	In France there is a 35-hour working week.	★★★ Very Important
+11	die Frauenquote	proportion of jobs set for women	Die Frauenquote soll Gleichstellung fördern.	The women quota should promote equality.	★★★ Very Important
+11	das Kindergeld	child benefit	Kindergeld hilft vielen Familien.	Child benefit helps many families.	★★★ Very Important
+11	die Kinderkrippe (n)	crèche, nursery	Es gibt nicht genug Kinderkrippen.	There are not enough nurseries.	★★★ Very Important
+11	die Lohngleichheit	equality of pay	Lohngleichheit ist noch nicht erreicht.	Pay equality has not yet been achieved.	★★★ Very Important
+11	die sexuelle Belästigung	sexual harassment	Sexuelle Belästigung am Arbeitsplatz ist verboten.	Sexual harassment at work is forbidden.	★★★ Very Important
+11	Frauen sind Benachteiligungen ausgesetzt	women face discrimination	Frauen sind immer noch Benachteiligungen ausgesetzt.	Women still face discrimination.	★★★ Very Important
+11	der Anteil von Frauen in führenden Positionen	the proportion of women in top positions	Der Anteil von Frauen in führenden Positionen steigt.	The proportion of women in top positions is rising.	★★★ Very Important
+11	zurück in den Beruf	go back to work/careers	Nach der Elternzeit wollen viele zurück in den Beruf.	After parental leave many want to go back to work.	★★★ Very Important
+11	der Arbeitskampf	industrial action	Die Gewerkschaft droht mit Arbeitskampf.	The union is threatening industrial action.	★★★ Very Important
+11	die Tarifverhandlungen	pay negotiations, collective bargaining	Die Tarifverhandlungen sind gescheitert.	Pay negotiations have failed.	★★★ Very Important
+12	der Lebenslauf (ä-e)	curriculum vitae, CV	Ein guter Lebenslauf ist sehr wichtig.	A good CV is very important.	★★★ Very Important
+12	das Vorstellungsgespräch	the interview	Ich habe morgen ein Vorstellungsgespräch.	I have an interview tomorrow.	★★★ Very Important
+12	das Bewerbungsschreiben (-)	letter of application	Das Bewerbungsschreiben muss fehlerfrei sein.	The application letter must be error-free.	★★★ Very Important
+12	gute Kenntnisse in ...	a good knowledge of...	Gute Kenntnisse in Englisch sind erforderlich.	A good knowledge of English is required.	★★★ Very Important
+12	sehr motiviert	well motivated	Ich bin sehr motiviert für diese Stelle.	I am well motivated for this position.	★★★ Very Important
+12	persönliche Daten	personal details	Persönliche Daten stehen am Anfang des Lebenslaufs.	Personal details are at the start of the CV.	★★★ Very Important
+12	die Unterlagen	documents, papers	Bitte senden Sie Ihre Unterlagen per E-Mail.	Please send your documents by email.	★★★ Very Important
+12	ein Formular ausfüllen	to fill in a form	Sie müssen dieses Formular ausfüllen.	You must fill in this form.	★★★ Very Important
+12	ich kann fließend Deutsch	I can speak fluent German	Ich kann fließend Deutsch und Englisch.	I speak fluent German and English.	★★★ Very Important
+12	sich bewerben um eine Stelle als ...	to apply for a job as...	Ich bewerbe mich um eine Stelle als Verkäufer.	I am applying for a job as a salesperson.	★★★ Very Important
+13	einen guten Eindruck machen	to make a good impression	Im Vorstellungsgespräch muss man einen guten Eindruck machen.	In the interview you have to make a good impression.	★★★ Very Important
+13	der Arbeitsvertrag (ä-e)	job contract	Lesen Sie den Arbeitsvertrag sorgfältig.	Read the job contract carefully.	★★★ Very Important
+13	einen Vertrag unterschreiben	to sign a contract	Er hat den Vertrag gestern unterschrieben.	He signed the contract yesterday.	★★★ Very Important
+13	die Zusage (n)	firm job offer	Ich habe eine Zusage bekommen!	I received a job offer!	★★★ Very Important
+13	man hat mir die Stelle angeboten	they offered me the job	Man hat mir die Stelle als Teamleiter angeboten.	They offered me the position of team leader.	★★★ Very Important
+13	jemandem eine Absage erteilen	to turn s.o. down	Leider mussten wir ihm eine Absage erteilen.	Unfortunately we had to turn him down.	★★★ Very Important
+13	der sichere Arbeitsplatz (ä-e)	job security	Ein sicherer Arbeitsplatz ist vielen wichtig.	Job security is important to many.	★★★ Very Important
+13	die Gehaltserhöhung (en)	pay rise	Ich möchte um eine Gehaltserhöhung bitten.	I would like to ask for a pay rise.	★★★ Very Important
+13	die Berufsaussichten / Aufstiegsmöglichkeiten	career prospects	Die Berufsaussichten in der IT sind sehr gut.	Career prospects in IT are very good.	★★★ Very Important
+13	beruflich erfolgreich sein	to be successful in ones career	Um beruflich erfolgreich zu sein muss man flexibel sein.	To be successful in your career you must be flexible.	★★★ Very Important
+14	die Berufsberatung	careers advice	Die Berufsberatung hilft bei der Berufswahl.	Careers advice helps with choosing a career.	★★★ Very Important
+14	das Berufspraktikum	work experience	Ein Berufspraktikum ist für Schüler wichtig.	Work experience is important for pupils.	★★★ Very Important
+14	die Berufswahl	choice of career	Die Berufswahl fällt vielen Jugendlichen schwer.	Choosing a career is hard for many young people.	★★★ Very Important
+14	Was sind Sie von Beruf?	What do you do for a living?	Was sind Sie von Beruf? – Ich bin Lehrerin.	What do you do for a living? – I am a teacher.	★★★ Very Important
+14	die Annonce (n)	advertisement	Ich habe die Annonce in der Zeitung gelesen.	I read the advertisement in the newspaper.	★★★ Very Important
+14	die Arbeitsmarktlage	state of the job market	Die Arbeitsmarktlage hat sich verbessert.	The state of the job market has improved.	★★★ Very Important
+14	das Stellenangebot (e)	job vacancy	Es gibt viele Stellenangebote im Internet.	There are many job vacancies online.	★★★ Very Important
+14	eine freie Stelle / eine passende Stelle	vacancy / a suitable job	Es gibt eine freie Stelle in der Marketingabteilung.	There is a vacancy in the marketing department.	★★★ Very Important
+14	die Stellenbeschreibung (en)	job description	Lesen Sie die Stellenbeschreibung sorgfältig.	Read the job description carefully.	★★★ Very Important
+14	das Arbeitsamt (ä-er)	job centre	Das Arbeitsamt vermittelt Arbeitssuchende.	The job centre places job seekers.	★★★ Very Important
+15	die Abteilung (-en)	department	Er arbeitet in der Marketingabteilung.	He works in the marketing department.	★★★ Very Important
+15	die Arbeitskräfte (pl) / die Belegschaft	workforce, employees	Die Belegschaft ist mit den Bedingungen unzufrieden.	The workforce is unhappy with the conditions.	★★★ Very Important
+15	am Arbeitsplatz	at work, in the office	Am Arbeitsplatz muss man professionell sein.	At work one must be professional.	★★★ Very Important
+15	die Fabrik (en)	factory	Die Fabrik produziert Autoteile.	The factory produces car parts.	★★★ Very Important
+15	der Geschäftsführer (-)	managing director, CEO	Der Geschäftsführer leitet das Unternehmen.	The CEO manages the company.	★★★ Very Important
+15	das Personal	personnel, staff	Das Personal wurde reduziert.	Staff was reduced.	★★★ Very Important
+15	die Konferenz (en) / die Besprechung (en)	meeting, conference	Wir haben eine Besprechung um zehn Uhr.	We have a meeting at ten o clock.	★★★ Very Important
+15	der Vorgesetzte (n)	line manager	Mein Vorgesetzter ist immer erreichbar.	My line manager is always available.	★★★ Very Important
+15	die Branche (n)	area of business, industry	Die Automobilbranche ist in der Krise.	The automotive industry is in crisis.	★★★ Very Important
+15	leistungsorientiert	performance-oriented	Deutsche Firmen sind sehr leistungsorientiert.	German companies are very performance-oriented.	★★★ Very Important
+16	befördert werden / die Beförderung	to gain promotion / promotion	Sie wurde zur Abteilungsleiterin befördert.	She was promoted to department head.	★★★ Very Important
+16	das Fachwissen	specialised knowledge	Fachwissen ist in diesem Beruf entscheidend.	Specialised knowledge is crucial in this profession.	★★★ Very Important
+16	eine Frist einhalten	to keep to a deadline	Man muss die Frist einhalten.	You must keep to the deadline.	★★★ Very Important
+16	der Termin (e)	appointment, deadline	Ich habe einen wichtigen Termin.	I have an important appointment.	★★★ Very Important
+16	Verantwortung tragen	to take responsibility	Er trägt viel Verantwortung.	He bears a lot of responsibility.	★★★ Very Important
+16	die Zufriedenheit am Arbeitsplatz	job satisfaction	Zufriedenheit am Arbeitsplatz ist entscheidend.	Job satisfaction is crucial.	★★★ Very Important
+16	pendeln / der Pendler (-)	to commute / commuter	Millionen Deutsche pendeln jeden Tag.	Millions of Germans commute every day.	★★★ Very Important
+16	sich hocharbeiten	to work ones way up	Er hat sich vom Praktikanten hochgearbeitet.	He worked his way up from intern.	★★★ Very Important
+16	der Fleiß	hard work, diligence	Fleiß ist der Schlüssel zum Erfolg.	Diligence is the key to success.	★★★ Very Important
+16	arbeiten bei	to work for	Sie arbeitet bei Siemens.	She works for Siemens.	★★★ Very Important
+17	die Aktie (n)	share	Die Aktien sind stark gefallen.	Shares have dropped sharply.	★★★ Very Important
+17	der Auftrag / die Bestellung (en)	order	Wir haben einen großen Auftrag bekommen.	We received a large order.	★★★ Very Important
+17	Bankrott machen / pleitegehen	to go bankrupt	Die Firma ist pleitegegangen.	The company went bankrupt.	★★★ Very Important
+17	die Börse (n)	stock exchange	Die Börse hat heute viel verloren.	The stock exchange lost a lot today.	★★★ Very Important
+17	finanzieren	to finance	Wie finanzieren Sie Ihr Projekt?	How do you finance your project?	★★★ Very Important
+17	der multinationale Konzern (e)	multinational company	Multinationale Konzerne dominieren den Markt.	Multinational companies dominate the market.	★★★ Very Important
+17	rentabel / die Rentabilität	profitable / profitability	Das Unternehmen ist sehr rentabel.	The company is very profitable.	★★★ Very Important
+17	schließen / stilllegen	to close down (factory)	Die Fabrik wurde stillgelegt.	The factory was closed down.	★★★ Very Important
+17	die Übernahme (n) / übernehmen	takeover / to take over	Die Übernahme war sehr umstritten.	The takeover was very controversial.	★★★ Very Important
+17	die Ware (n)	goods	Die Waren werden weltweit exportiert.	The goods are exported worldwide.	★★★ Very Important
+18	Produktionsprozesse automatisieren	to automate production	Firmen automatisieren immer mehr Prozesse.	Companies are automating more and more processes.	★★★ Very Important
+18	Arbeitskräfte durch Roboter ersetzen	to replace workers with robots	Roboter ersetzen Arbeitskräfte in Fabriken.	Robots are replacing workers in factories.	★★★ Very Important
+18	die Produktion ins Ausland verlagern	to transfer production abroad	Viele Firmen verlagern die Produktion nach Asien.	Many companies transfer production to Asia.	★★★ Very Important
+18	das Geschäft blüht / geht schlecht	business is booming / slack	Das Geschäft blüht seit der Digitalisierung.	Business has been booming since digitalisation.	★★★ Very Important
+18	in finanzielle Schwierigkeiten geraten	to get into financial difficulties	Kleine Firmen geraten oft in finanzielle Schwierigkeiten.	Small companies often get into financial difficulties.	★★★ Very Important
+18	der Besitzer (-)	owner	Der Besitzer hat die Firma verkauft.	The owner sold the company.	★★★ Very Important
+18	der Chef (s)	head, boss	Mein Chef ist sehr streng.	My boss is very strict.	★★★ Very Important
+18	der Manager (-) / der Direktor (en)	manager / director	Der Manager leitet das Team.	The manager leads the team.	★★★ Very Important
+18	das Angebot	goods on offer	Das Angebot ist sehr vielfältig.	The range of goods is very diverse.	★★★ Very Important
+18	die Konkurrenzfähigkeit	competitiveness	Deutschland muss seine Konkurrenzfähigkeit stärken.	Germany must strengthen its competitiveness.	★★★ Very Important
+19	der Arbeitskräftemangel	labour shortage	Der Arbeitskräftemangel ist ein großes Problem.	The labour shortage is a big problem.	★★★ Very Important
+19	flexibel	adaptable, flexible	Arbeitnehmer müssen flexibel sein.	Employees must be flexible.	★★★ Very Important
+19	die neuen Technologien	new technologies	Neue Technologien verändern die Arbeitswelt.	New technologies are changing the world of work.	★★★ Very Important
+19	die Umschulung	retraining	Eine Umschulung kann neue Chancen eröffnen.	Retraining can open up new opportunities.	★★★ Very Important
+19	neue Arbeitsplätze wurden geschaffen	new jobs were created	Durch die IT wurden viele Arbeitsplätze geschaffen.	Many jobs were created through IT.	★★★ Very Important
+19	sich den veränderten Verhältnissen anpassen	to adapt to change	Man muss sich den veränderten Verhältnissen anpassen.	One must adapt to changing circumstances.	★★★ Very Important
+19	mit dem technischen Wandel zurechtkommen	to cope with technological change	Ältere Mitarbeiter müssen mit dem technischen Wandel zurechtkommen.	Older employees must cope with technological change.	★★★ Very Important
+19	der Mangel an qualifizierten Arbeitskräften	shortage of qualified staff	Es gibt einen Mangel an qualifizierten Arbeitskräften.	There is a shortage of qualified staff.	★★★ Very Important
+19	Maßnahmen zum Abbau der Arbeitslosigkeit	measures to reduce unemployment	Die Regierung ergreift Maßnahmen zum Abbau der Arbeitslosigkeit.	The government is taking measures to reduce unemployment.	★★★ Very Important
+19	die Lebenshaltungskosten steigen	the cost of living is rising	Die Lebenshaltungskosten steigen immer weiter.	The cost of living keeps rising.	★★★ Very Important
+20	der Abzug / nach Abzug von Steuern (Netto)	deduction / after tax	Nach Abzug von Steuern bleibt wenig übrig.	After tax there is little left.	★★★ Very Important
+20	das Bargeld / bar bezahlen	cash / to pay cash	Viele Deutsche bezahlen gern bar.	Many Germans like to pay cash.	★★★ Very Important
+20	die Kreditkarte (n)	credit card	Kann ich mit Kreditkarte bezahlen?	Can I pay by credit card?	★★★ Very Important
+20	schulden	to owe	Er schuldet mir noch 50 Euro.	He still owes me 50 euros.	★★★ Very Important
+20	das Konto	account	Ich habe ein Konto bei der Sparkasse.	I have an account at the Sparkasse.	★★★ Very Important
+20	besitzen	to own	Er besitzt ein Haus in Berlin.	He owns a house in Berlin.	★★★ Very Important
+20	eine Rechnung bezahlen	to settle a bill	Bitte bezahlen Sie die Rechnung.	Please settle the bill.	★★★ Very Important
+20	der Zins (en)	interest	Die Zinsen sind gestiegen.	Interest rates have risen.	★★★ Very Important
+20	über seine Verhältnisse leben	to live beyond ones means	Viele junge Leute leben über ihre Verhältnisse.	Many young people live beyond their means.	★★★ Very Important
+20	50 000 Euro Schulden haben	to be 50000 euros in debt	Er hat 50 000 Euro Schulden.	He is 50000 euros in debt.	★★★ Very Important
+21	von der Hand in den Mund leben	to live from hand to mouth	Viele Familien leben von der Hand in den Mund.	Many families live from hand to mouth.	★★ Important
+21	den Gürtel enger schnallen	to tighten ones belt	Wir müssen den Gürtel enger schnallen.	We have to tighten our belts.	★★ Important
+21	in den roten Zahlen stecken	to be in the red	Die Firma steckt in den roten Zahlen.	The company is in the red.	★★ Important
+21	er hat Geldsorgen	he has got money problems	Er hat Geldsorgen seit der Krise.	He has had money problems since the crisis.	★★ Important
+21	das verfügbare Einkommen	disposable income	Das verfügbare Einkommen sinkt.	Disposable income is falling.	★★ Important
+21	die Kaufkraft	purchasing power	Die Kaufkraft der Verbraucher sinkt.	Consumers purchasing power is falling.	★★ Important
+21	das Bruttoeinkommen / das Nettoeinkommen	gross income / net income	Das Nettoeinkommen ist viel niedriger als das Brutto.	Net income is much lower than gross.	★★ Important
+21	ohne Abzüge (Brutto)	before deductions (gross)	Brutto verdient er 4000 Euro.	Before deductions he earns 4000 euros.	★★ Important
+21	in einer Krankenkasse sein	to have health insurance	In Deutschland muss man in einer Krankenkasse sein.	In Germany you must have health insurance.	★★ Important
+21	das Onlinebanking	online banking	Onlinebanking ist heute Standard.	Online banking is standard today.	★★ Important
+22	die Arbeitsplatzteilung / das Jobsharing	job sharing	Jobsharing ist eine moderne Arbeitsform.	Job sharing is a modern form of work.	★★ Important
+22	eine verantwortungsvolle Stelle	a responsible job	Sie hat eine verantwortungsvolle Stelle.	She has a responsible job.	★★ Important
+22	der Tarifvertrag (ä-e)	pay agreement	Der Tarifvertrag wurde verhandelt.	The pay agreement was negotiated.	★★ Important
+22	einen Konflikt lösen	to resolve a conflict	Man muss Konflikte am Arbeitsplatz lösen.	You must resolve conflicts at work.	★★ Important
+22	die Auseinandersetzung (en)	disagreement	Es gab eine Auseinandersetzung zwischen Chef und Mitarbeitern.	There was a disagreement between boss and staff.	★★ Important
+22	hoch qualifiziert	well qualified	Wir suchen hoch qualifizierte Mitarbeiter.	We are looking for well-qualified staff.	★★ Important
+22	die Eigenschaft (en)	personal characteristic	Teamfähigkeit ist eine wichtige Eigenschaft.	Teamwork is an important characteristic.	★★ Important
+22	jemanden um Rat bitten	to ask s.o. for advice	Er bittet seinen Mentor um Rat.	He asks his mentor for advice.	★★ Important
+22	der Öffentliche Dienst	civil service	Im Öffentlichen Dienst ist der Job sicher.	In the civil service the job is secure.	★★ Important
+22	der Beamte (-n) / die Beamtin (nen)	civil servant	Beamte haben eine sichere Stelle.	Civil servants have secure jobs.	★★ Important
+23	der Unternehmer	entrepreneur, businessman	Unternehmer tragen ein hohes Risiko.	Entrepreneurs bear a high risk.	★★ Important
+23	im Geschäft sein	to be in business	Er ist seit 20 Jahren im Geschäft.	He has been in business for 20 years.	★★ Important
+23	der gelernte Arbeiter / der Facharbeiter (-)	skilled worker	Facharbeiter werden dringend gesucht.	Skilled workers are urgently needed.	★★ Important
+23	der ungelernte Arbeiter (-)	unskilled worker	Ungelernte Arbeiter verdienen weniger.	Unskilled workers earn less.	★★ Important
+23	der Feierabend	closing time (and the time after)	Nach Feierabend geht er ins Fitnessstudio.	After work he goes to the gym.	★★ Important
+23	der Geschäftsmann / die Geschäftsfrau	businessman / businesswoman	Sie ist eine erfolgreiche Geschäftsfrau.	She is a successful businesswoman.	★★ Important
+23	der Verkäufer (-)	salesperson / shop assistant	Der Verkäufer hat mich gut beraten.	The salesperson advised me well.	★★ Important
+23	der Lieferant (en) / die Lieferung (en)	supplier / delivery	Der Lieferant hat die Ware pünktlich geliefert.	The supplier delivered the goods on time.	★★ Important
+23	sich selbstständig machen	to go into business	Er hat sich mit 30 selbstständig gemacht.	He went into business at 30.	★★ Important
+23	durch Erfahrung lernen	to learn by experience	Man lernt am besten durch Erfahrung.	You learn best through experience.	★★ Important
+24	die Handelsbilanz / die Zahlungsbilanz	balance of trade / balance of payments	Deutschland hat eine positive Handelsbilanz.	Germany has a positive balance of trade.	★★ Important
+24	der Aufschwung	upturn (economic)	Der wirtschaftliche Aufschwung hat begonnen.	The economic upturn has begun.	★★ Important
+24	die Einheitswährung	single currency	Der Euro ist die Einheitswährung der EU.	The euro is the single currency of the EU.	★★ Important
+24	die Handelsschranke (n)	trade barrier	Handelsschranken behindern den Export.	Trade barriers hinder exports.	★★ Important
+24	der Kurs (e)	exchange rate, share price	Der Kurs des Euro ist gestiegen.	The euro exchange rate has risen.	★★ Important
+24	der Protektionismus	protectionism	Protektionismus schadet dem Welthandel.	Protectionism damages world trade.	★★ Important
+24	eine schnell wachsende Wirtschaft	a booming economy	Indien hat eine schnell wachsende Wirtschaft.	India has a booming economy.	★★ Important
+24	der Dollar ist stark gefallen / gestiegen	the dollar has dropped / risen sharply	Der Dollar ist stark gefallen.	The dollar has dropped sharply.	★★ Important
+24	die Wachstumsprognose (n)	growth forecast	Die Wachstumsprognose wurde gesenkt.	The growth forecast was lowered.	★★ Important
+24	rückläufig	in decline	Die Exporte sind rückläufig.	Exports are in decline.	★★ Important
+25	die Milliarde (n)	billion	Der Umsatz beträgt drei Milliarden Euro.	Turnover amounts to three billion euros.	★★ Important
+25	der Zinssatz (ä-e)	interest rate	Die EZB hat den Zinssatz gesenkt.	The ECB has lowered the interest rate.	★★ Important
+25	der Kapitalismus	capitalism	Kapitalismus hat Vorteile und Nachteile.	Capitalism has advantages and disadvantages.	★★ Important
+25	die Massenproduktion	mass production	Massenproduktion senkt die Kosten.	Mass production reduces costs.	★★ Important
+25	der Mittelstand	Germany medium-sized companies	Der Mittelstand ist das Rückgrat der deutschen Wirtschaft.	SMEs are the backbone of the German economy.	★★ Important
+25	die Fusion (en)	merger	Die Fusion der zwei Konzerne wurde genehmigt.	The merger of the two corporations was approved.	★★ Important
+25	der Jahresumsatz	annual turnover	Der Jahresumsatz liegt bei 10 Millionen.	Annual turnover is 10 million.	★★ Important
+25	die Lohnkosten	wage costs	Die Lohnkosten in Deutschland sind hoch.	Wage costs in Germany are high.	★★ Important
+25	Arbeitskräfte einsparen	to cut back on jobs	Die Firma will Arbeitskräfte einsparen.	The company wants to cut back on jobs.	★★ Important
+25	die Marktkräfte	market forces	Marktkräfte bestimmen den Preis.	Market forces determine the price.	★★ Important
+26	die erneuerbaren Energien	renewable energies	Deutschland investiert in erneuerbare Energien.	Germany invests in renewable energies.	★★ Important
+26	die Zuwanderung von Fachkräften	immigration of skilled workers	Die Zuwanderung von Fachkräften soll erleichtert werden.	Immigration of skilled workers should be made easier.	★★ Important
+26	die Start-up-Kultur	start-up culture	Berlin hat eine lebendige Start-up-Kultur.	Berlin has a vibrant start-up culture.	★★ Important
+26	der CO2-Ausstoß	CO2 emissions	Der CO2-Ausstoß muss reduziert werden.	CO2 emissions must be reduced.	★★ Important
+26	die Elektromobilität / das E-Auto	electric mobility / electric car	Die Elektromobilität wächst schnell.	Electric mobility is growing fast.	★★ Important
+26	der Datenschutz	data protection	Datenschutz ist in der EU streng geregelt.	Data protection is strictly regulated in the EU.	★★ Important
+26	die Gig-Economy	the gig economy	Die Gig-Economy bietet Flexibilität aber wenig Sicherheit.	The gig economy offers flexibility but little security.	★★ Important
+26	die psychische Gesundheit am Arbeitsplatz	mental health at work	Psychische Gesundheit am Arbeitsplatz wird immer wichtiger.	Mental health at work is becoming increasingly important.	★★ Important
+26	quiet quitting / die innere Kündigung	quiet quitting / disengaging from work	Quiet quitting ist ein wachsendes Phänomen.	Quiet quitting is a growing phenomenon.	★★ Important
+26	die Gehaltstransparenz	salary transparency	Gehaltstransparenz soll den Gender Pay Gap verringern.	Salary transparency should reduce the gender pay gap.	★★ Important
+27	die Stellenvermittlung (en)	employment agency	Die Stellenvermittlung hat mir geholfen.	The employment agency helped me.	★★ Important
+27	die Referenz (en)	referee, reference	Können Sie mir eine Referenz geben?	Can you give me a reference?	★★ Important
+27	die Verdienstmöglichkeiten (pl)	earning potential	Die Verdienstmöglichkeiten sind gut.	The earning potential is good.	★★ Important
+27	beschäftigt	busy (a lot to do)	Ich bin heute sehr beschäftigt.	I am very busy today.	★★ Important
+27	die Geschäftsstelle / die Filiale (n)	branch, office	Die Filiale in Hamburg wird geschlossen.	The Hamburg branch is being closed.	★★ Important
+27	die Diversität am Arbeitsplatz	diversity in the workplace	Diversität am Arbeitsplatz fördert Innovation.	Diversity in the workplace promotes innovation.	★★ Important
+27	der Mindestlohn wurde erhöht	the minimum wage was increased	Der Mindestlohn wurde auf 12,41 Euro erhöht.	The minimum wage was raised to 12.41 euros.	★★ Important
+27	Geschick im Umgang mit Menschen haben	to be good at dealing with people	Als Lehrer muss man Geschick im Umgang mit Menschen haben.	As a teacher you need to be good at dealing with people.	★★ Important
+28	die Produktivität pro Kopf	output per head	Die Produktivität pro Kopf ist gestiegen.	Output per head has risen.	★★ Important
+28	die Arbeitsbeziehungen	industrial relations	Die Arbeitsbeziehungen haben sich verbessert.	Industrial relations have improved.	★★ Important
+28	seine Spitzenposition behaupten	to maintain its leading position	Deutschland will seine Spitzenposition behaupten.	Germany wants to maintain its leading position.	★★ Important
+28	ihre Produkte sind qualitativ besser	their products are of better quality	Ihre Produkte sind qualitativ besser als die Konkurrenz.	Their products are of better quality than the competition.	★★ Important
+28	sie sind auf deutsches Know-how angewiesen	they rely on German know-how	Viele Länder sind auf deutsches Know-how angewiesen.	Many countries rely on German know-how.	★★ Important
+28	der Einsatz neuer Techniken	the introduction of new technologies	Der Einsatz neuer Techniken steigert die Produktivität.	The use of new technologies increases productivity.	★★ Important
+28	freie Arbeitsplätze	vacancies	Es gibt viele freie Arbeitsplätze in der Pflege.	There are many vacancies in nursing.	★★ Important
+28	Gegenmaßnahmen ergreifen	to take counter-measures	Die Regierung muss Gegenmaßnahmen ergreifen.	The government must take counter-measures.	★★ Important
+29	die Geschäftszeiten	business hours	Die Geschäftszeiten sind von 9 bis 17 Uhr.	Business hours are 9 to 5.	★★ Important
+29	sich nach der Decke strecken	to cut ones coat according to ones cloth	Man muss sich nach der Decke strecken.	You must live within your means.	★★ Important
+29	seinen Verhältnissen entsprechend leben	to live within ones means	Man sollte seinen Verhältnissen entsprechend leben.	One should live within ones means.	★★ Important
+29	sie ist knapp bei Kasse	she is hard up	Sie ist knapp bei Kasse diesen Monat.	She is hard up this month.	★★ Important
+29	Geld allein macht nicht glücklich	money does not make you happy	Geld allein macht nicht glücklich aber es beruhigt.	Money alone does not make you happy but it helps.	★★ Important
+29	das Geld aus dem Fenster werfen	to spend money like water	Er wirft das Geld aus dem Fenster.	He spends money like water.	★★ Important
+29	seine Bankgeschäfte elektronisch erledigen	to do ones banking electronically	Immer mehr Menschen erledigen Bankgeschäfte online.	More and more people do banking online.	★★ Important
+29	ich bin blank	I am broke	Am Ende des Monats bin ich immer blank.	At the end of the month I am always broke.	★★ Important
+30	die unterschiedliche Entlohnung	pay differentials	Die unterschiedliche Entlohnung ist ungerecht.	The pay gap is unfair.	★★ Important
+30	Schutzvorschriften für Schwangere	regulations to protect pregnant women	Es gibt Schutzvorschriften für Schwangere.	There are regulations to protect pregnant women.	★★ Important
+30	Deutschkenntnisse erforderlich	knowledge of German required	Für diese Stelle sind Deutschkenntnisse erforderlich.	Knowledge of German is required for this job.	★★ Important
+30	seine EDV-Kenntnisse nutzen	to use ones knowledge of computers	Man muss seine EDV-Kenntnisse nutzen.	One must use ones IT knowledge.	★★ Important
+30	Wie steht der Kurs momentan?	What is the rate of exchange?	Wie steht der Kurs des Euro momentan?	What is the euro exchange rate at the moment?	★★ Important
+30	das Handelsvolumen hat sich rasch vergrößert	trade has increased rapidly	Das Handelsvolumen hat sich rasch vergrößert.	Trade volume has increased rapidly.	★★ Important
+30	sein Anteil am gesamten Weltexport beträgt 5%	its share of world exports = 5%	Sein Anteil am gesamten Weltexport beträgt 5%.	Its share of total world exports amounts to 5%.	★★ Important
+30	sie leben wie Gott in Frankreich	they live a life of luxury	Sie leben wie Gott in Frankreich.	They live a life of luxury.	★★ Important
+31	die Arbeitsschutzvorschriften	health and safety regulations	Die Arbeitsschutzvorschriften müssen eingehalten werden.	Health and safety regulations must be observed.	★ Specialist
+31	die dynamische Rente	index-linked pension	Die dynamische Rente steigt mit der Inflation.	The index-linked pension rises with inflation.	★ Specialist
+31	die Gelegenheitsarbeit	casual work	Gelegenheitsarbeit bietet wenig Sicherheit.	Casual work offers little security.	★ Specialist
+31	der Lohnstopp	pay freeze	Der Lohnstopp betrifft alle Mitarbeiter.	The pay freeze affects all employees.	★ Specialist
+31	im Pensionsalter	of retirement age	Im Pensionsalter reist er gern.	At retirement age he likes to travel.	★ Specialist
+31	die Probezeit	probationary period	Die Probezeit dauert drei Monate.	The probationary period lasts three months.	★ Specialist
+31	eine stumpfsinnige Arbeit	boring work / job	Das ist eine stumpfsinnige Arbeit.	That is boring work.	★ Specialist
+31	außerhalb der normalen Arbeitszeiten arbeiten	to work unsocial hours	Ärzte arbeiten oft außerhalb der normalen Arbeitszeiten.	Doctors often work unsocial hours.	★ Specialist
+31	heute war viel los	it was a busy day today	Heute war im Büro viel los.	It was a busy day in the office today.	★ Specialist
+32	die Dunkelziffer	estimated number of unreported cases	Die Dunkelziffer ist wahrscheinlich höher.	The estimated number of unreported cases is probably higher.	★ Specialist
+32	fristlos	without notice	Er wurde fristlos entlassen.	He was dismissed without notice.	★ Specialist
+32	der Kündigungsschutz	protection against wrongful dismissal	Der Kündigungsschutz ist gesetzlich geregelt.	Protection against dismissal is regulated by law.	★ Specialist
+32	rausfliegen	to get the sack (informal)	Wenn du so weitermachst fliegst du raus.	If you carry on like this you will get the sack.	★ Specialist
+32	bestimmte Arbeitsplätze überflüssig machen	to make certain jobs superfluous	Roboter machen bestimmte Arbeitsplätze überflüssig.	Robots make certain jobs superfluous.	★ Specialist
+32	der Personalschwund	natural wastage	Der Personalschwund wird nicht aufgefangen.	Natural wastage is not being compensated.	★ Specialist
+32	der Rationalisierungsschub	the drive to rationalise	Ein Rationalisierungsschub hat viele Jobs gekostet.	The drive to rationalise cost many jobs.	★ Specialist
+33	die Arbeitsstreitigkeit	work dispute	Die Arbeitsstreitigkeit dauert schon Wochen.	The work dispute has lasted weeks already.	★ Specialist
+33	der Gewerkschafter (-)	trade unionist	Der Gewerkschafter fordert höhere Löhne.	The trade unionist demands higher wages.	★ Specialist
+33	der Schlichtungsversuch scheiterte	the arbitration attempt failed	Der Schlichtungsversuch scheiterte an den Forderungen.	The arbitration attempt failed over the demands.	★ Specialist
+33	wild streiken	to go on unofficial strike	Die Arbeiter drohten wild zu streiken.	The workers threatened to go on unofficial strike.	★ Specialist
+33	die Lohntarife kündigen	to terminate the wage rates	Die Gewerkschaft will die Lohntarife kündigen.	The union wants to terminate the wage rates.	★ Specialist
+33	einen neutralen Schlichter einbeziehen	to call in an independent arbitrator	Man sollte einen neutralen Schlichter einbeziehen.	They should call in an independent arbitrator.	★ Specialist
+33	die Urlaubsverlängerung	lengthening the holiday	Die Urlaubsverlängerung wurde abgelehnt.	The holiday extension was rejected.	★ Specialist
+33	die Kosten des Streiks werden auf ... beziffert	the cost of the strike is estimated at...	Die Kosten des Streiks werden auf 10 Mio. beziffert.	The cost of the strike is estimated at 10 million.	★ Specialist
+34	die Abwertung	devaluation	Die Abwertung der Währung schadet dem Import.	The devaluation of the currency harms imports.	★ Specialist
+34	das Außenhandelsdefizit	trade gap deficit	Das Außenhandelsdefizit wächst.	The trade deficit is growing.	★ Specialist
+34	die Handelsziffern	trade figures	Die Handelsziffern wurden veröffentlicht.	The trade figures were published.	★ Specialist
+34	eine harte Währung	a stable currency	Der Schweizer Franken ist eine harte Währung.	The Swiss franc is a stable currency.	★ Specialist
+34	die Transportkosten	transport costs	Die Transportkosten sind gestiegen.	Transport costs have risen.	★ Specialist
+34	zahlungsunfähig / insolvent	insolvent	Die Firma wurde zahlungsunfähig.	The company became insolvent.	★ Specialist
+34	die Aktiengesellschaft (en) / AG	public limited company, plc	BMW ist eine Aktiengesellschaft.	BMW is a public limited company.	★ Specialist
+35	die Spesen	business expenses	Die Spesen werden erstattet.	Business expenses will be reimbursed.	★ Specialist
+35	die Steuervergünstigung (en)	tax allowance	Familien bekommen Steuervergünstigungen.	Families receive tax allowances.	★ Specialist
+35	das Weihnachtsgeld	Christmas bonus	Nicht jeder bekommt Weihnachtsgeld.	Not everyone gets a Christmas bonus.	★ Specialist
+35	der Zahltag (e)	pay day	Der Zahltag ist immer am 25.	Pay day is always on the 25th.	★ Specialist
+35	die Geheimzahl eingeben	to tap in ones PIN	Bitte geben Sie Ihre Geheimzahl ein.	Please enter your PIN.	★ Specialist
+35	der Börsenmakler (-)	stockbroker	Der Börsenmakler handelt mit Aktien.	The stockbroker trades shares.	★ Specialist
+35	der Betriebsleiter (-)	works manager	Der Betriebsleiter überwacht die Produktion.	The works manager oversees production.	★ Specialist
+36	der Buchhalter (-)	accountant	Der Buchhalter prüft die Bücher.	The accountant checks the books.	★ Specialist
+36	das Baugewerbe	construction industry	Das Baugewerbe boomt.	The construction industry is booming.	★ Specialist
+36	im Aufsichtsrat sitzen	to be on the board of directors	Er sitzt im Aufsichtsrat eines Konzerns.	He sits on the board of a corporation.	★ Specialist
+36	der Verlag (e)	publishing company	Der Verlag veröffentlicht Schulbücher.	The publishing company publishes textbooks.	★ Specialist
+36	das Hotelgewerbe	hotel trade	Das Hotelgewerbe leidet unter Personalmangel.	The hotel trade suffers from staff shortages.	★ Specialist
+36	der Drückeberger (-)	shirker	Niemand mag einen Drückeberger.	Nobody likes a shirker.	★ Specialist
+36	die Sparte (n)	line of business	In welcher Sparte arbeiten Sie?	What line of business are you in?	★ Specialist
+36	er hat es aus eigener Kraft zum Millionär gebracht	he is a self-made millionaire	Er hat es aus eigener Kraft zum Millionär gebracht.	He is a self-made millionaire.	★ Specialist
+36	vorrätig haben / sein	to have / be in stock	Haben Sie das Produkt vorrätig?	Do you have the product in stock?	★ Specialist
+36	die Wartung	maintenance, servicing	Regelmäßige Wartung ist wichtig.	Regular maintenance is important.	★ Specialist
