@@ -50,6 +50,14 @@ function stripToPrefix(s: string): string {
   return s.replace(/^to\s+/i, "").trim();
 }
 
+/**
+ * Strip "the " prefix from English nouns.
+ * e.g. "the environment" → "environment"
+ */
+function stripThePrefix(s: string): string {
+  return s.replace(/^the\s+/i, "").trim();
+}
+
 /** Core normalization pipeline. */
 function normalize(s: string): string {
   let n = s.trim().toLowerCase();
@@ -89,13 +97,19 @@ function getAcceptableAnswers(correct: string, stripArt: boolean, isEnglish: boo
     const noArt = normalizeForCompare(stripArticle(alt), stripArt);
     if (noArt.length > 0 && noArt !== n) answers.push(noArt);
 
-    // For English: also accept without "to" prefix (for verbs)
+    // For English: also accept without "to" prefix (for verbs) and without "the" (for nouns)
     if (isEnglish) {
       const noTo = normalizeForCompare(stripToPrefix(alt), stripArt);
       if (noTo.length > 0 && noTo !== n) answers.push(noTo);
 
       const noToNoArt = normalizeForCompare(stripToPrefix(stripArticle(alt)), stripArt);
       if (noToNoArt.length > 0 && noToNoArt !== n && noToNoArt !== noTo) answers.push(noToNoArt);
+
+      const noThe = normalizeForCompare(stripThePrefix(alt), stripArt);
+      if (noThe.length > 0 && noThe !== n) answers.push(noThe);
+
+      const noTheNoArt = normalizeForCompare(stripThePrefix(stripArticle(alt)), stripArt);
+      if (noTheNoArt.length > 0 && !answers.includes(noTheNoArt)) answers.push(noTheNoArt);
     }
   }
 
@@ -130,9 +144,11 @@ export function gradeAnswer(
 
   const userExpanded = expandUmlauts(normalizedUser);
 
-  // For English: also strip "to" from user input
+  // For English: also strip "to" and "the" from user input
   const userNoTo = isEnglish ? normalizeForCompare(stripToPrefix(trimmedUser), stripArt) : normalizedUser;
   const userNoToExpanded = expandUmlauts(userNoTo);
+  const userNoThe = isEnglish ? normalizeForCompare(stripThePrefix(trimmedUser), stripArt) : normalizedUser;
+  const userNoTheExpanded = expandUmlauts(userNoThe);
 
   let bestResult: GradeResult = "wrong";
   let bestCorrectNorm = acceptableAnswers[0] || normalizeForCompare(trimmedCorrect, stripArt);
@@ -143,7 +159,9 @@ export function gradeAnswer(
       normalizedUser === acceptable ||
       userExpanded === acceptable ||
       userNoTo === acceptable ||
-      userNoToExpanded === acceptable
+      userNoToExpanded === acceptable ||
+      userNoThe === acceptable ||
+      userNoTheExpanded === acceptable
     ) {
       return {
         result: "correct",
@@ -155,7 +173,7 @@ export function gradeAnswer(
     }
 
     const acceptableExpanded = expandUmlauts(acceptable);
-    if (userExpanded === acceptableExpanded || userNoToExpanded === acceptableExpanded) {
+    if (userExpanded === acceptableExpanded || userNoToExpanded === acceptableExpanded || userNoTheExpanded === acceptableExpanded) {
       return {
         result: "correct",
         userAnswer: trimmedUser,
@@ -170,7 +188,9 @@ export function gradeAnswer(
       levenshtein(normalizedUser, acceptable),
       levenshtein(userExpanded, acceptableExpanded),
       levenshtein(userNoTo, acceptable),
-      levenshtein(userNoToExpanded, acceptableExpanded)
+      levenshtein(userNoToExpanded, acceptableExpanded),
+      levenshtein(userNoThe, acceptable),
+      levenshtein(userNoTheExpanded, acceptableExpanded)
     );
 
     const maxLen = Math.max(normalizedUser.length, acceptable.length);
