@@ -266,77 +266,89 @@ export function Flashcard() {
         /* ── REGULAR WORD MODE ── English always on top, German below */
         <AnimatePresence mode="wait">
           <motion.div key={sessionIndex} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.15 }}
-            style={{ background: "var(--color-surface)", border: gradeResult ? `3px solid ${gradeResult.result === "correct" ? "#16a34a" : gradeResult.result === "close" ? "#d97706" : "#dc2626"}` : "1.5px solid var(--color-border)", borderRadius: "var(--radius-xl)", overflow: "hidden" }}>
+            style={{ background: "var(--color-surface)", border: gradeResult ? `3px solid ${gradeResult.result === "wrong" ? "#dc2626" : "#16a34a"}` : "1.5px solid var(--color-border)", borderRadius: "var(--radius-xl)", overflow: "hidden" }}>
 
             {/* ── ENGLISH SECTION (always on top) ── */}
-            <div style={{
-              background: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#dcfce7" : "#eef2ff",
-              padding: "24px 28px", borderBottom: `3px solid ${gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#6366f1"}`,
-              position: "relative",
-            }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
-                <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#4338ca" }}>English</div>
-                {englishStar && <div style={{ color: "#16a34a", display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 600 }}><Star size={14} fill="#16a34a" /> Known</div>}
-              </div>
+            {(() => {
+              const isGood = gradeResult && gradeResult.result !== "wrong";
+              const isBad = gradeResult && gradeResult.result === "wrong";
+              const bgColor = isGood ? "#dcfce7" : isBad ? "#fce4ec" : "#eef2ff";
+              const accentColor = isGood ? "#16a34a" : isBad ? "#dc2626" : "#6366f1";
+              const textColor = isGood ? "#15803d" : isBad ? "#991b1b" : "#4338ca";
+              const wordColor = isGood ? "#15803d" : isBad ? "#dc2626" : "var(--color-ink)";
+              return (
+                <div style={{ background: bgColor, padding: "24px 28px", borderBottom: `3px solid ${accentColor}`, position: "relative" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                    <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: textColor }}>English</div>
+                    {englishStar && <div style={{ color: "#16a34a", display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 600 }}><Star size={14} fill="#16a34a" /> Known</div>}
+                  </div>
 
-              {isDeToEn && !gradeResult ? (
-                <>
-                  <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
-                    placeholder="Type English translation..." autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} autoFocus
-                    style={{ width: "100%", boxSizing: "border-box", fontSize: "18px", padding: "14px 16px", borderRadius: "var(--radius-md)", border: "2px solid #6366f1", background: "var(--color-surface)" }} />
-                  {word.englishSentence && (
-                    <div style={{ fontSize: "15px", color: "#4338ca", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
-                      {makeGapFill(word.englishSentence, word.english) || ""}
-                    </div>
+                  {isDeToEn && !gradeResult ? (
+                    <>
+                      <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
+                        placeholder="Type English translation..." autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} autoFocus
+                        style={{ width: "100%", boxSizing: "border-box", fontSize: "18px", padding: "14px 16px", borderRadius: "var(--radius-md)", border: "2px solid #6366f1", background: "var(--color-surface)" }} />
+                      {word.englishSentence && (
+                        <div style={{ fontSize: "15px", color: "#4338ca", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
+                          {makeGapFill(word.englishSentence, word.english) || ""}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0", color: wordColor }}>{word.english}</div>
+                      {word.englishSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: textColor, opacity: 0.65, marginTop: "8px" }}>{word.englishSentence}</div>}
+                    </>
                   )}
-                </>
-              ) : (
-                <>
-                  <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#15803d" : "var(--color-ink)" }}>{word.english}</div>
-                  {word.englishSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#4338ca", opacity: 0.65, marginTop: "8px" }}>{word.englishSentence}</div>}
-                </>
-              )}
-            </div>
+                </div>
+              );
+            })()}
 
             {/* ── GERMAN SECTION (always below) ── */}
-            <div style={{
-              background: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#dcfce7" : "#fef9e0",
-              padding: "24px 28px", position: "relative",
-            }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
-                <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#b45309" }}>Deutsch</div>
-                {germanStar && <div style={{ color: "#16a34a", display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 600 }}><Star size={14} fill="#16a34a" /> Known</div>}
-              </div>
-
-              {askingGerman && !gradeResult ? (
-                <>
-                  <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
-                    placeholder="Type German translation..." autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} autoFocus
-                    style={{ width: "100%", boxSizing: "border-box", fontSize: "18px", padding: "14px 16px", borderRadius: "var(--radius-md)", border: "2px solid #d97a1a", background: "var(--color-surface)" }} />
-                  <div style={{ display: "flex", gap: "4px", marginTop: "10px", justifyContent: "center" }}>
-                    {UMLAUTS.map((ch, i) => (
-                      <button key={ch} onClick={() => insertUmlaut(ch, inputRef.current, input, setInput)} style={{
-                        width: "38px", height: "38px", fontSize: "17px", fontWeight: 500,
-                        border: "1px solid var(--color-border)", borderRadius: "6px",
-                        background: "var(--color-surface)", cursor: "pointer", fontFamily: "var(--font-sans)", position: "relative", display: "flex", alignItems: "center", justifyContent: "center",
-                      }}>
-                        <span style={{ fontSize: "8px", position: "absolute", top: "2px", right: "4px", color: "var(--color-ink-faint)" }}>{i + 1}</span>{ch}
-                      </button>
-                    ))}
+            {(() => {
+              const isGood = gradeResult && gradeResult.result !== "wrong";
+              const isBad = gradeResult && gradeResult.result === "wrong";
+              const bgColor = isGood ? "#dcfce7" : isBad ? "#fce4ec" : "#fef9e0";
+              const textColor = isGood ? "#16a34a" : isBad ? "#dc2626" : "#b45309";
+              const wordColor = isGood ? "#15803d" : isBad ? "#dc2626" : "var(--color-ink)";
+              return (
+                <div style={{ background: bgColor, padding: "24px 28px", position: "relative" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                    <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: textColor }}>Deutsch</div>
+                    {germanStar && <div style={{ color: "#16a34a", display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 600 }}><Star size={14} fill="#16a34a" /> Known</div>}
                   </div>
-                  {word.germanSentence && (
-                    <div style={{ fontSize: "15px", color: "#b45309", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
-                      {makeGapFill(word.germanSentence, word.german) || ""}
-                    </div>
+
+                  {askingGerman && !gradeResult ? (
+                    <>
+                      <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
+                        placeholder="Type German translation..." autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} autoFocus
+                        style={{ width: "100%", boxSizing: "border-box", fontSize: "18px", padding: "14px 16px", borderRadius: "var(--radius-md)", border: "2px solid #d97a1a", background: "var(--color-surface)" }} />
+                      <div style={{ display: "flex", gap: "4px", marginTop: "10px", justifyContent: "center" }}>
+                        {UMLAUTS.map((ch, i) => (
+                          <button key={ch} onClick={() => insertUmlaut(ch, inputRef.current, input, setInput)} style={{
+                            width: "38px", height: "38px", fontSize: "17px", fontWeight: 500,
+                            border: "1px solid var(--color-border)", borderRadius: "6px",
+                            background: "var(--color-surface)", cursor: "pointer", fontFamily: "var(--font-sans)", position: "relative", display: "flex", alignItems: "center", justifyContent: "center",
+                          }}>
+                            <span style={{ fontSize: "8px", position: "absolute", top: "2px", right: "4px", color: "var(--color-ink-faint)" }}>{i + 1}</span>{ch}
+                          </button>
+                        ))}
+                      </div>
+                      {word.germanSentence && (
+                        <div style={{ fontSize: "15px", color: "#b45309", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
+                          {makeGapFill(word.germanSentence, word.german) || ""}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0", color: wordColor }}>{word.german}</div>
+                      {word.germanSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: textColor, opacity: 0.65, marginTop: "8px" }}>{word.germanSentence}</div>}
+                    </>
                   )}
-                </>
-              ) : (
-                <>
-                  <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#15803d" : "var(--color-ink)" }}>{word.german}</div>
-                  {word.germanSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#b45309", opacity: 0.65, marginTop: "8px" }}>{word.germanSentence}</div>}
-                </>
-              )}
-            </div>
+                </div>
+              );
+            })()}
           </motion.div>
         </AnimatePresence>
       )}
@@ -354,37 +366,26 @@ export function Flashcard() {
       {/* Feedback for regular words */}
       {gradeResult && !isVerbMode && (
         <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-          {/* Big result banner */}
           <div style={{
-            padding: "16px 20px", borderRadius: "var(--radius-lg)", marginBottom: "10px",
+            padding: "14px 20px", borderRadius: "var(--radius-lg)", marginBottom: "10px",
             background: gradeResult.result === "correct" ? "#dcfce7" : gradeResult.result === "close" ? "#fef3c7" : "#fce4ec",
             border: `2px solid ${gradeResult.result === "correct" ? "#16a34a" : gradeResult.result === "close" ? "#d97706" : "#dc2626"}`,
+            display: "flex", alignItems: "center", gap: "10px",
           }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              {gradeResult.result === "correct" && <Check size={24} style={{ color: "#16a34a" }} />}
-              {gradeResult.result === "close" && <AlertTriangle size={24} style={{ color: "#d97706" }} />}
-              {gradeResult.result === "wrong" && <X size={24} style={{ color: "#dc2626" }} />}
-              <div>
-                <div style={{ fontSize: "18px", fontWeight: 700, color: gradeResult.result === "correct" ? "#16a34a" : gradeResult.result === "close" ? "#d97706" : "#dc2626" }}>
-                  {gradeResult.result === "correct" ? "Correct! +10pts" : gradeResult.result === "close" ? "Almost! +7pts (check spelling)" : "Incorrect"}
-                </div>
-                {gradeResult.result === "close" && <div style={{ fontSize: "13px", color: "#92400e", marginTop: "2px" }}>Your answer was close but not exact</div>}
+            {gradeResult.result === "correct" && <Check size={24} style={{ color: "#16a34a" }} />}
+            {gradeResult.result === "close" && <AlertTriangle size={24} style={{ color: "#d97706" }} />}
+            {gradeResult.result === "wrong" && <X size={24} style={{ color: "#dc2626" }} />}
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: "17px", fontWeight: 700, color: gradeResult.result === "correct" ? "#16a34a" : gradeResult.result === "close" ? "#d97706" : "#dc2626" }}>
+                {gradeResult.result === "correct" ? "Correct! +10pts" : gradeResult.result === "close" ? "Almost! +7pts" : "Incorrect"}
               </div>
+              {gradeResult.result !== "correct" && (
+                <div style={{ fontSize: "13px", color: "var(--color-ink-muted)", marginTop: "2px" }}>
+                  You typed: <em>{gradeResult.userAnswer || "nothing"}</em>
+                </div>
+              )}
             </div>
           </div>
-
-          {gradeResult.result !== "correct" && (
-            <div style={{ display: "flex", gap: "8px", marginBottom: "10px" }}>
-              <div style={{ flex: 1, padding: "12px 16px", borderRadius: "var(--radius-md)", background: "#fce4ec", border: "1px solid #fca5a5" }}>
-                <div style={{ fontSize: "10px", fontWeight: 700, textTransform: "uppercase", color: "#dc2626", marginBottom: "4px" }}>You typed</div>
-                <div style={{ fontSize: "15px", fontStyle: "italic", color: "#dc2626" }}>{gradeResult.userAnswer || "nothing"}</div>
-              </div>
-              <div style={{ flex: 1, padding: "12px 16px", borderRadius: "var(--radius-md)", background: "#dcfce7", border: "1px solid #86efac" }}>
-                <div style={{ fontSize: "10px", fontWeight: 700, textTransform: "uppercase", color: "#16a34a", marginBottom: "4px" }}>Correct</div>
-                <div style={{ fontSize: "15px", fontWeight: 600, color: "#15803d" }}>{correctText}</div>
-              </div>
-            </div>
-          )}
         </motion.div>
       )}
 
