@@ -266,45 +266,49 @@ export function Flashcard() {
         /* ── REGULAR WORD MODE ── English always on top, German below */
         <AnimatePresence mode="wait">
           <motion.div key={sessionIndex} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.15 }}
-            style={{ background: "var(--color-surface)", border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-xl)", overflow: "hidden" }}>
+            style={{ background: "var(--color-surface)", border: gradeResult ? `3px solid ${gradeResult.result === "correct" ? "#16a34a" : gradeResult.result === "close" ? "#d97706" : "#dc2626"}` : "1.5px solid var(--color-border)", borderRadius: "var(--radius-xl)", overflow: "hidden" }}>
 
-            {/* ── ENGLISH SECTION (always on top, blue) ── */}
-            <div style={{ background: "#eef2ff", padding: "24px 28px", borderBottom: "3px solid #6366f1", position: "relative" }}>
+            {/* ── ENGLISH SECTION (always on top) ── */}
+            <div style={{
+              background: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#dcfce7" : "#eef2ff",
+              padding: "24px 28px", borderBottom: `3px solid ${gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#6366f1"}`,
+              position: "relative",
+            }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
-                <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#4338ca" }}>English</div>
+                <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#4338ca" }}>English</div>
                 {englishStar && <div style={{ color: "#16a34a", display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 600 }}><Star size={14} fill="#16a34a" /> Known</div>}
               </div>
 
               {isDeToEn && !gradeResult ? (
-                /* Asking for English — input here */
                 <>
                   <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
                     placeholder="Type English translation..." autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} autoFocus
                     style={{ width: "100%", boxSizing: "border-box", fontSize: "18px", padding: "14px 16px", borderRadius: "var(--radius-md)", border: "2px solid #6366f1", background: "var(--color-surface)" }} />
                   {word.englishSentence && (
-                    <div style={{ fontSize: "14px", color: "#4338ca", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
+                    <div style={{ fontSize: "15px", color: "#4338ca", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
                       {makeGapFill(word.englishSentence, word.english) || ""}
                     </div>
                   )}
                 </>
               ) : (
-                /* Show English */
                 <>
-                  <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0" }}>{word.english}</div>
-                  {word.englishSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: "#4338ca", opacity: 0.65, marginTop: "8px" }}>{word.englishSentence}</div>}
+                  <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#15803d" : "var(--color-ink)" }}>{word.english}</div>
+                  {word.englishSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#4338ca", opacity: 0.65, marginTop: "8px" }}>{word.englishSentence}</div>}
                 </>
               )}
             </div>
 
-            {/* ── GERMAN SECTION (always below, yellow) ── */}
-            <div style={{ background: "#fef9e0", padding: "24px 28px", position: "relative" }}>
+            {/* ── GERMAN SECTION (always below) ── */}
+            <div style={{
+              background: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#dcfce7" : "#fef9e0",
+              padding: "24px 28px", position: "relative",
+            }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
-                <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#b45309" }}>Deutsch</div>
+                <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#b45309" }}>Deutsch</div>
                 {germanStar && <div style={{ color: "#16a34a", display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 600 }}><Star size={14} fill="#16a34a" /> Known</div>}
               </div>
 
               {askingGerman && !gradeResult ? (
-                /* Asking for German — input here */
                 <>
                   <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
                     placeholder="Type German translation..." autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} autoFocus
@@ -321,16 +325,15 @@ export function Flashcard() {
                     ))}
                   </div>
                   {word.germanSentence && (
-                    <div style={{ fontSize: "14px", color: "#b45309", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
+                    <div style={{ fontSize: "15px", color: "#b45309", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
                       {makeGapFill(word.germanSentence, word.german) || ""}
                     </div>
                   )}
                 </>
               ) : (
-                /* Show German */
                 <>
-                  <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0" }}>{word.german}</div>
-                  {word.germanSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: "#b45309", opacity: 0.65, marginTop: "8px" }}>{word.germanSentence}</div>}
+                  <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#15803d" : "var(--color-ink)" }}>{word.german}</div>
+                  {word.germanSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: gradeResult && (gradeResult.result === "correct" || gradeResult.result === "close") ? "#16a34a" : "#b45309", opacity: 0.65, marginTop: "8px" }}>{word.germanSentence}</div>}
                 </>
               )}
             </div>
