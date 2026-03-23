@@ -9,28 +9,18 @@ import { ArrowLeft, ArrowRight, Check, X, AlertTriangle, Star } from "lucide-rea
 
 const UMLAUTS = ["ä", "ö", "ü", "ß", "Ä", "Ö", "Ü"];
 
-/** Build a gap-fill hint from an example sentence by blanking out the target word. */
 function makeGapFill(sentence: string, targetWord: string): string | null {
   if (!sentence || !targetWord) return null;
-  // Try to find the target word (without article) in the sentence
   const plain = targetWord.replace(/^(der|die|das|den|dem|des|ein|eine)\s+/i, "").trim();
   if (plain.length < 2) return null;
-
-  // Case-insensitive search
   const idx = sentence.toLowerCase().indexOf(plain.toLowerCase());
   if (idx === -1) return null;
-
-  const before = sentence.slice(0, idx);
-  const after = sentence.slice(idx + plain.length);
-  const blank = "______";
-  return `${before}${blank}${after}`;
+  return sentence.slice(0, idx) + "______" + sentence.slice(idx + plain.length);
 }
 
 export function Flashcard() {
   const sessionCards = useStore((s) => s.sessionCards);
   const sessionIndex = useStore((s) => s.sessionIndex);
-  const sessionResults = useStore((s) => s.sessionResults);
-  const sessionType = useStore((s) => s.sessionType);
   const recordAnswer = useStore((s) => s.recordAnswer);
   const nextCard = useStore((s) => s.nextCard);
   const getWordState = useStore((s) => s.getWordState);
@@ -48,19 +38,18 @@ export function Flashcard() {
   const isDeToEn = card?.direction === "de-to-en";
   const promptText = word ? (isDeToEn ? word.german : word.english) : "";
   const correctText = word ? (isDeToEn ? word.english : word.german) : "";
-  const promptSentence = word ? (isDeToEn ? word.englishSentence : word.germanSentence) : "";
-  const answerSentence = word ? (isDeToEn ? word.germanSentence : word.englishSentence) : "";
 
-  // Gap fill for the answer side
+  // Only show the sentence in the PROMPT language (not the answer language!)
+  const promptSentence = word ? (isDeToEn ? word.germanSentence : word.englishSentence) : "";
+
+  // Gap fill uses the ANSWER-language sentence with the answer blanked out
   const gapFill = word ? makeGapFill(
-    isDeToEn ? word.germanSentence : word.englishSentence,
+    isDeToEn ? word.englishSentence : word.germanSentence,
     correctText
   ) : null;
 
-  const topic = word ? TOPICS.find((t) => t.id === word.topicId) : null;
   const boxColors = wordState ? BOX_COLORS[wordState.box as LeitnerBox] : null;
 
-  // Focus input on card change
   useEffect(() => {
     setInput("");
     setGradeResult(null);
@@ -87,13 +76,12 @@ export function Flashcard() {
       if (gradeResult) handleNext();
       else if (input.trim().length > 0) handleSubmit();
     }
-    // Number keys 1-7 for umlauts
     const num = parseInt(e.key);
-    if (num >= 1 && num <= 7 && !gradeResult) {
+    if (num >= 1 && num <= 7 && !gradeResult && !isDeToEn) {
       e.preventDefault();
       insertUmlaut(UMLAUTS[num - 1]);
     }
-  }, [gradeResult, handleNext, handleSubmit, input]);
+  }, [gradeResult, handleNext, handleSubmit, input, isDeToEn]);
 
   const insertUmlaut = (char: string) => {
     const el = inputRef.current;
@@ -160,24 +148,25 @@ export function Flashcard() {
             borderRadius: "var(--radius-xl)", overflow: "hidden",
           }}
         >
-          {/* Prompt section (blue-ish) */}
+          {/* Prompt section */}
           <div style={{
             background: isDeToEn ? "#eef2ff" : "#fef9e0",
-            padding: "16px 20px",
+            padding: "20px 24px",
             borderBottom: `3px solid ${isDeToEn ? "#6366f1" : "#d97a1a"}`,
           }}>
             <div style={{
               fontSize: "11px", fontWeight: 700, textTransform: "uppercase",
-              letterSpacing: "0.08em", marginBottom: "10px",
+              letterSpacing: "0.08em", marginBottom: "12px",
               color: isDeToEn ? "#4338ca" : "#b45309",
             }}>
               {isDeToEn ? "Deutsch" : "English"}
             </div>
-            <div style={{ fontSize: "22px", fontWeight: 700, textAlign: "center", margin: "8px 0" }}>
+            <div style={{ fontSize: "24px", fontWeight: 700, textAlign: "center", margin: "8px 0" }}>
               {promptText}
             </div>
+            {/* Only show the prompt-language sentence — NOT the answer language */}
             {promptSentence && (
-              <div style={{ fontSize: "13px", fontStyle: "italic", textAlign: "center", color: isDeToEn ? "#4338ca" : "#b45309", opacity: 0.7 }}>
+              <div style={{ fontSize: "13px", fontStyle: "italic", textAlign: "center", color: isDeToEn ? "#4338ca" : "#b45309", opacity: 0.6, marginTop: "4px" }}>
                 {promptSentence}
               </div>
             )}
@@ -186,7 +175,7 @@ export function Flashcard() {
           {/* Answer section */}
           <div style={{
             background: isDeToEn ? "#fef9e0" : "#eef2ff",
-            padding: "16px 20px",
+            padding: "20px 24px",
           }}>
             {!gradeResult ? (
               <>
@@ -223,28 +212,25 @@ export function Flashcard() {
                         border: "1px solid var(--color-border)", borderRadius: "6px",
                         background: "var(--color-surface)", cursor: "pointer",
                         display: "flex", flexDirection: "column", alignItems: "center",
-                        justifyContent: "center", fontFamily: "var(--font-sans)",
-                        position: "relative",
+                        justifyContent: "center", fontFamily: "var(--font-sans)", position: "relative",
                       }}>
-                        <span style={{ fontSize: "8px", position: "absolute", top: "2px", right: "4px", color: "var(--color-ink-faint)" }}>
-                          {i + 1}
-                        </span>
+                        <span style={{ fontSize: "8px", position: "absolute", top: "2px", right: "4px", color: "var(--color-ink-faint)" }}>{i + 1}</span>
                         {ch}
                       </button>
                     ))}
                   </div>
                 )}
 
-                {/* Gap fill hint */}
-                {gapFill && !gradeResult && (
-                  <div style={{ fontSize: "12px", color: isDeToEn ? "#b45309" : "#4338ca", opacity: 0.6, textAlign: "center", marginTop: "8px", fontStyle: "italic" }}>
+                {/* Gap fill hint — uses answer-language sentence with blanks */}
+                {gapFill && (
+                  <div style={{ fontSize: "12px", color: isDeToEn ? "#b45309" : "#4338ca", opacity: 0.5, textAlign: "center", marginTop: "8px", fontStyle: "italic" }}>
                     {gapFill}
                   </div>
                 )}
               </>
             ) : (
               <>
-                {/* Show answer */}
+                {/* Reveal the correct answer */}
                 <div style={{
                   fontSize: "11px", fontWeight: 700, textTransform: "uppercase",
                   letterSpacing: "0.08em", marginBottom: "8px",
@@ -252,12 +238,13 @@ export function Flashcard() {
                 }}>
                   {isDeToEn ? "English" : "Deutsch"}
                 </div>
-                <div style={{ fontSize: "22px", fontWeight: 700, textAlign: "center", margin: "8px 0" }}>
+                <div style={{ fontSize: "24px", fontWeight: 700, textAlign: "center", margin: "8px 0" }}>
                   {correctText}
                 </div>
-                {answerSentence && (
-                  <div style={{ fontSize: "13px", fontStyle: "italic", textAlign: "center", color: isDeToEn ? "#b45309" : "#4338ca", opacity: 0.7 }}>
-                    {answerSentence}
+                {/* Now show the answer-language sentence too */}
+                {(isDeToEn ? word.englishSentence : word.germanSentence) && (
+                  <div style={{ fontSize: "13px", fontStyle: "italic", textAlign: "center", color: isDeToEn ? "#b45309" : "#4338ca", opacity: 0.6, marginTop: "4px" }}>
+                    {isDeToEn ? word.englishSentence : word.germanSentence}
                   </div>
                 )}
               </>
@@ -269,7 +256,6 @@ export function Flashcard() {
       {/* Feedback */}
       {gradeResult && (
         <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.15 }}>
-          {/* Result badge */}
           <div style={{
             display: "flex", alignItems: "center", gap: "8px",
             padding: "10px 16px", borderRadius: "var(--radius-md)", marginBottom: "8px",
@@ -286,28 +272,20 @@ export function Flashcard() {
             </span>
           </div>
 
-          {/* Your answer vs correct */}
           {gradeResult.result !== "correct" && (
-            <div style={{
-              padding: "10px 16px", borderRadius: "var(--radius-md)", marginBottom: "6px",
-              background: "#fce4ec",
-            }}>
+            <div style={{ padding: "10px 16px", borderRadius: "var(--radius-md)", marginBottom: "6px", background: "#fce4ec" }}>
               <div style={{ fontSize: "10px", fontWeight: 600, textTransform: "uppercase", color: "#dc2626", marginBottom: "2px" }}>You typed</div>
               <div style={{ fontSize: "14px", fontStyle: "italic", color: "#dc2626" }}>{gradeResult.userAnswer || "nothing"}</div>
             </div>
           )}
 
           {gradeResult.result !== "correct" && (
-            <div style={{
-              padding: "10px 16px", borderRadius: "var(--radius-md)", marginBottom: "8px",
-              background: "#dcfce7",
-            }}>
+            <div style={{ padding: "10px 16px", borderRadius: "var(--radius-md)", marginBottom: "8px", background: "#dcfce7" }}>
               <div style={{ fontSize: "10px", fontWeight: 600, textTransform: "uppercase", color: "#16a34a", marginBottom: "2px" }}>Correct answer</div>
               <div style={{ fontSize: "14px", fontWeight: 600, color: "#15803d" }}>{correctText}</div>
             </div>
           )}
 
-          {/* Next button */}
           <button onClick={handleNext} style={{
             width: "100%", padding: "14px", fontSize: "15px", fontWeight: 700,
             border: "none", borderRadius: "var(--radius-lg)",
@@ -315,30 +293,25 @@ export function Flashcard() {
             cursor: "pointer", fontFamily: "var(--font-sans)",
             display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
           }}>
-            {sessionIndex < sessionCards.length - 1 ? (
-              <>Next Word <ArrowRight size={16} /></>
-            ) : "Finish Session"}
+            {sessionIndex < sessionCards.length - 1 ? <>Next Word <ArrowRight size={16} /></> : "Finish Session"}
           </button>
         </motion.div>
       )}
 
-      {/* Check button (when no result yet) */}
+      {/* Check button */}
       {!gradeResult && (
-        <div style={{ display: "flex", gap: "8px" }}>
-          <button onClick={handleSubmit} disabled={input.trim().length === 0} style={{
-            flex: 1, padding: "14px", fontSize: "15px", fontWeight: 700,
-            border: "none", borderRadius: "var(--radius-lg)", fontFamily: "var(--font-sans)",
-            background: input.trim().length > 0 ? "#6366f1" : "var(--color-surface-sunken)",
-            color: input.trim().length > 0 ? "#fff" : "var(--color-ink-faint)",
-            cursor: input.trim().length > 0 ? "pointer" : "not-allowed",
-            display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-          }}>
-            Check Answer <ArrowRight size={16} />
-          </button>
-        </div>
+        <button onClick={handleSubmit} disabled={input.trim().length === 0} style={{
+          width: "100%", padding: "14px", fontSize: "15px", fontWeight: 700,
+          border: "none", borderRadius: "var(--radius-lg)", fontFamily: "var(--font-sans)",
+          background: input.trim().length > 0 ? "#6366f1" : "var(--color-surface-sunken)",
+          color: input.trim().length > 0 ? "#fff" : "var(--color-ink-faint)",
+          cursor: input.trim().length > 0 ? "pointer" : "not-allowed",
+          display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+        }}>
+          Check Answer <ArrowRight size={16} />
+        </button>
       )}
 
-      {/* Keyboard hint */}
       <div style={{ textAlign: "center", fontSize: "11px", color: "var(--color-ink-faint)" }}>
         Press <kbd style={{ fontFamily: "var(--font-mono)", fontSize: "10px", padding: "2px 6px", border: "1px solid var(--color-border)", borderRadius: "4px", background: "var(--color-surface)" }}>Enter</kbd> to {gradeResult ? "go to next word" : "check answer"}
         {!isDeToEn && !gradeResult && <> · Keys <kbd style={{ fontFamily: "var(--font-mono)", fontSize: "10px", padding: "2px 6px", border: "1px solid var(--color-border)", borderRadius: "4px", background: "var(--color-surface)" }}>1</kbd>–<kbd style={{ fontFamily: "var(--font-mono)", fontSize: "10px", padding: "2px 6px", border: "1px solid var(--color-border)", borderRadius: "4px", background: "var(--color-surface)" }}>7</kbd> for umlauts</>}
