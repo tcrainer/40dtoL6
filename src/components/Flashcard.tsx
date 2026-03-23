@@ -151,6 +151,20 @@ export function Flashcard() {
     nextCard();
   }, [nextCard]);
 
+  // Global Enter key listener — works when no input is focused (after answer shown)
+  useEffect(() => {
+    const answered = gradeResult || verbResults;
+    if (!answered) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleNext();
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [gradeResult, verbResults, handleNext]);
+
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       e.preventDefault();
