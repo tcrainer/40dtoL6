@@ -1,24 +1,16 @@
 import type { Word } from "@/types";
 import { MAX_DAY } from "@/types";
 
-// ── Raw data imports ────────────────────────────────────────────────────────
-
 import { topic1Raw } from "./topic1";
 import { topic2Raw } from "./topic2";
 import { topic3Raw } from "./topic3";
 import { topic4Raw } from "./topic4";
-import { topic5Raw } from "./topic5";
-import { topic6Raw } from "./topic6";
 import { structuralRaw } from "./structural";
 import { verbsRaw } from "./verbs";
-import { writingRaw } from "./writing";
 
-// ── Parser ──────────────────────────────────────────────────────────────────
-
-/** Remap days to fit within MAX_DAY (36). Days 1-36 stay, 37-60 get compressed into 13-36. */
+/** Remap days to fit within MAX_DAY (36). */
 function remapDay(day: number): number {
   if (day <= MAX_DAY) return day;
-  // Map 37-60 → 13-36 proportionally
   const mapped = 13 + Math.round(((day - 37) / (60 - 37)) * (36 - 13));
   return Math.min(MAX_DAY, Math.max(1, mapped));
 }
@@ -41,52 +33,35 @@ function parseTopicVocab(topicId: string, rawData: string): Word[] {
       if (parts[5]) {
         const impStr = parts[5].trim();
         const starCount = (impStr.match(/★/g) || []).length;
-        if (starCount > 0) {
-          importance = starCount;
-        } else {
-          const num = parseInt(impStr, 10);
-          if (num >= 1 && num <= 4) importance = num;
-        }
+        if (starCount > 0) importance = starCount;
+        else { const num = parseInt(impStr, 10); if (num >= 1 && num <= 4) importance = num; }
       }
 
       const rawDay = parseInt(dayStr, 10);
       if (isNaN(rawDay) || !german || !english) return null;
 
-      const day = remapDay(rawDay);
-
       return {
         id: `${topicId}_${index}`,
         topicId,
-        day,
-        german,
-        english,
-        germanSentence,
-        englishSentence,
-        importance,
+        day: remapDay(rawDay),
+        german, english, germanSentence, englishSentence, importance,
       } satisfies Word;
     })
     .filter((w): w is Word => w !== null);
 }
 
-// ── Parsed vocabulary ───────────────────────────────────────────────────────
-
 let _cachedWords: Word[] | null = null;
 
 export function getAllWords(): Word[] {
   if (_cachedWords) return _cachedWords;
-
   _cachedWords = [
     ...parseTopicVocab("T1", topic1Raw),
     ...parseTopicVocab("T2", topic2Raw),
     ...parseTopicVocab("T3", topic3Raw),
     ...parseTopicVocab("T4", topic4Raw),
-    ...parseTopicVocab("T5", topic5Raw),
-    ...parseTopicVocab("T6", topic6Raw),
     ...parseTopicVocab("SW", structuralRaw),
     ...parseTopicVocab("VB", verbsRaw),
-    ...parseTopicVocab("WR", writingRaw),
   ];
-
   return _cachedWords;
 }
 
@@ -108,8 +83,17 @@ export function getWordsNewOnDay(day: number): Word[] {
 
 export function getTopicWordCounts(): Record<string, number> {
   const counts: Record<string, number> = {};
-  for (const w of getAllWords()) {
-    counts[w.topicId] = (counts[w.topicId] || 0) + 1;
-  }
+  for (const w of getAllWords()) counts[w.topicId] = (counts[w.topicId] || 0) + 1;
   return counts;
+}
+
+/** Get unique days for a topic. */
+export function getTopicDays(topicId: string): number[] {
+  const days = new Set(getWordsByTopic(topicId).map((w) => w.day));
+  return [...days].sort((a, b) => a - b);
+}
+
+/** Get words for a specific topic and day. */
+export function getWordsForTopicDay(topicId: string, day: number): Word[] {
+  return getAllWords().filter((w) => w.topicId === topicId && w.day === day);
 }

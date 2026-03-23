@@ -8,7 +8,7 @@ export interface Word {
   english: string;
   germanSentence: string;
   englishSentence: string;
-  importance: number; // 1–4 stars
+  importance: number;
 }
 
 export interface Topic {
@@ -23,11 +23,8 @@ export const TOPICS: Topic[] = [
   { id: "T2", name: "Education & Employment", shortName: "Bildung", color: "#2a6fb5" },
   { id: "T3", name: "Home & Abroad", shortName: "Zuhause", color: "#d97a1a" },
   { id: "T4", name: "Personal life & Relationships", shortName: "Leben", color: "#7c4dba" },
-  { id: "T5", name: "B1 Advanced vocabulary", shortName: "B1", color: "#d94f4f" },
-  { id: "T6", name: "Opinion, Intensifiers & Adj.", shortName: "Meinung", color: "#a16b07" },
   { id: "SW", name: "Strukturwörter", shortName: "Struktur", color: "#6b6b6b" },
   { id: "VB", name: "Important Verbs & Tenses", shortName: "Verben", color: "#c4a000" },
-  { id: "WR", name: "Writing phrases", shortName: "Schreiben", color: "#2d5a27" },
 ];
 
 export const MAX_DAY = 36;
@@ -37,40 +34,26 @@ export const MAX_DAY = 36;
 export const LEITNER_BOXES = [1, 2, 3, 4, 5, 6] as const;
 export type LeitnerBox = (typeof LEITNER_BOXES)[number];
 
-/**
- * Box 0 = untested (not in LEITNER_BOXES, handled separately)
- * Box 1: every session (0 = always due)
- * Box 2: every 2 days
- * Box 3: every 4 days
- * Box 4: every 8 days
- * Box 5: every 14 days
- * Box 6: mastered — no scheduled review
- */
 export const BOX_INTERVALS: Record<LeitnerBox, number> = {
-  1: 0,
-  2: 2,
-  3: 4,
-  4: 8,
-  5: 14,
-  6: Infinity,
+  1: 0, 2: 2, 3: 4, 4: 8, 5: 14, 6: Infinity,
 };
 
 export const BOX_LABELS: Record<LeitnerBox, string> = {
-  1: "Struggling",
-  2: "2-day review",
-  3: "4-day review",
-  4: "8-day review",
-  5: "14-day review",
-  6: "Mastered",
+  1: "empty me every day!",
+  2: "see you tomorrow!",
+  3: "see you in a few days!",
+  4: "see you in a week!",
+  5: "see you in a fortnight!",
+  6: "mastered",
 };
 
 export const BOX_COLORS: Record<LeitnerBox, { fg: string; bg: string }> = {
-  1: { fg: "var(--color-box1)", bg: "var(--color-box1-bg)" },
-  2: { fg: "var(--color-box2)", bg: "var(--color-box2-bg)" },
-  3: { fg: "var(--color-box3)", bg: "var(--color-box3-bg)" },
-  4: { fg: "var(--color-box4)", bg: "var(--color-box4-bg)" },
-  5: { fg: "var(--color-box5)", bg: "var(--color-box5-bg)" },
-  6: { fg: "var(--color-box6)", bg: "var(--color-box6-bg)" },
+  1: { fg: "#d94f4f", bg: "#fce8e8" },
+  2: { fg: "#d97a1a", bg: "#fef0de" },
+  3: { fg: "#c4a000", bg: "#fef9e0" },
+  4: { fg: "#3a8a3a", bg: "#e6f4e8" },
+  5: { fg: "#2a6fb5", bg: "#e4f0fb" },
+  6: { fg: "#7c4dba", bg: "#f0eafb" },
 };
 
 // ── Per-word learning state ─────────────────────────────────────────────────
@@ -82,6 +65,15 @@ export interface WordState {
   enToDeCorrect: boolean;
   totalCorrect: number;
   totalIncorrect: number;
+}
+
+// ── Streak & Points ─────────────────────────────────────────────────────────
+
+export interface UserStats {
+  points: number;
+  streak: number;
+  lastActiveDate: string | null;
+  longestStreak: number;
 }
 
 // ── Review directions ───────────────────────────────────────────────────────
@@ -125,6 +117,7 @@ export interface SessionSummary {
   promoted: string[];
   demoted: string[];
   newlyMastered: string[];
+  pointsEarned: number;
 }
 
 // ── App view state ──────────────────────────────────────────────────────────

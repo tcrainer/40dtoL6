@@ -1,387 +1,310 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type {
-  AppView,
-  Direction,
-  GradeResult,
-  LeitnerBox,
-  SessionCard,
-  SessionResult,
-  SessionSummary,
-  SessionType,
-  WordState,
+  AppView, Direction, GradeResult, LeitnerBox, SessionCard,
+  SessionResult, SessionSummary, SessionType, WordState, UserStats,
 } from "@/types";
 import { BOX_INTERVALS, MAX_DAY } from "@/types";
 import { getAllWords } from "@/data/vocabulary";
 
-// ── Helpers ─────────────────────────────────────────────────────────────────
-
-function todayISO(): string {
-  return new Date().toISOString().slice(0, 10);
+function todayISO(): string { return new Date().toISOString().slice(0, 10); }
+function daysBetween(a: string, b: string): number {
+  return Math.floor((new Date(b).getTime() - new Date(a).getTime()) / 86400000);
 }
-
-function daysBetween(dateA: string, dateB: string): number {
-  const a = new Date(dateA);
-  const b = new Date(dateB);
-  return Math.floor((b.getTime() - a.getTime()) / (1000 * 60 * 60 * 24));
-}
-
 function isDue(state: WordState): boolean {
-  const box = state.box;
-  if (box === 6) return false;
-  if (box === 1) return true;
+  if (state.box === 6) return false;
+  if (state.box === 1) return true;
   if (!state.lastReviewDate) return true;
-  const interval = BOX_INTERVALS[box];
-  const elapsed = daysBetween(state.lastReviewDate, todayISO());
-  return elapsed >= interval;
+  return daysBetween(state.lastReviewDate, todayISO()) >= BOX_INTERVALS[state.box];
+}
+function shuffle<T>(arr: T[]): T[] {
+  const s = [...arr];
+  for (let i = s.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [s[i], s[j]] = [s[j], s[i]]; }
+  return s;
 }
 
-function shuffleArray<T>(arr: T[]): T[] {
-  const shuffled = [...arr];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+/**
+ * Build session cards with batched directions:
+ * Take words, split into groups of ~5, for each group:
+ * test all in direction A, then all in direction B.
+ */
+function buildSessionCards(wordIds: string[]): SessionCard[] {
+  const cards: SessionCard[] = [];
+  const batchSize = 5;
+
+  for (let i = 0; i < wordIds.length; i += batchSize) {
+    const batch = wordIds.slice(i, i + batchSize);
+    const firstDir: Direction = Math.random() < 0.5 ? "de-to-en" : "en-to-de";
+    const secondDir: Direction = firstDir === "de-to-en" ? "en-to-de" : "de-to-en";
+
+    // Shuffle within batch
+    const shuffledBatch = shuffle(batch);
+
+    // Direction A for all words in batch
+    for (const id of shuffledBatch) {
+      cards.push({ wordId: id, direction: firstDir });
+    }
+    // Direction B for same words (re-shuffled)
+    for (const id of shuffle(shuffledBatch)) {
+      cards.push({ wordId: id, direction: secondDir });
+    }
   }
-  return shuffled;
+  return cards;
 }
 
-// ── Store types ─────────────────────────────────────────────────────────────
+const defaultWordState = (): WordState => ({
+  box: 1, lastReviewDate: null, deToEnCorrect: false, enToDeCorrect: false, totalCorrect: 0, totalIncorrect: 0,
+});
+const defaultStats = (): UserStats => ({
+  points: 0, streak: 0, lastActiveDate: null, longestStreak: 0,
+});
 
 interface AppState {
   view: AppView;
   setView: (v: AppView) => void;
-
-  // Topic detail
   selectedTopicId: string | null;
   setSelectedTopicId: (id: string | null) => void;
-
   currentDay: number;
   setCurrentDay: (d: number) => void;
-
   wordStates: Record<string, WordState>;
   getWordState: (wordId: string) => WordState | null;
-  initWordState: (wordId: string) => void;
+  stats: UserStats;
+  addPoints: (pts: number) => void;
+  updateStreak: () => void;
 
-  // Session
+  // Session — now flat list, no phases
   sessionType: SessionType;
   sessionCards: SessionCard[];
   sessionIndex: number;
   sessionResults: SessionResult[];
-  sessionDirectionPhase: 1 | 2;
-  sessionFirstDirection: Direction;
 
   startReviewSession: () => void;
   startLearnSession: () => void;
+  startCustomSession: (wordIds: string[]) => void;
   recordAnswer: (grade: GradeResult, userAnswer: string) => void;
-  advanceCard: () => void;
+  nextCard: () => void;
   getSessionSummary: () => SessionSummary;
 
   getDueWordIds: () => string[];
   getNewWordIds: () => string[];
   getBoxCounts: () => Record<LeitnerBox | 0, number>;
+  getDueTodayCount: () => number;
+  isAllRevisedToday: () => boolean;
   getTopicProgress: (topicId: string) => { total: number; mastered: number; inProgress: number; untested: number };
-
   resetAll: () => void;
 }
-
-const defaultWordState = (): WordState => ({
-  box: 1,
-  lastReviewDate: null,
-  deToEnCorrect: false,
-  enToDeCorrect: false,
-  totalCorrect: 0,
-  totalIncorrect: 0,
-});
-
-// ── Store ───────────────────────────────────────────────────────────────────
 
 export const useStore = create<AppState>()(
   persist(
     (set, get) => ({
       view: "dashboard",
       setView: (v) => set({ view: v }),
-
       selectedTopicId: null,
       setSelectedTopicId: (id) => set({ selectedTopicId: id }),
-
       currentDay: 1,
       setCurrentDay: (d) => set({ currentDay: Math.max(1, Math.min(MAX_DAY, d)) }),
-
       wordStates: {},
+      getWordState: (wid) => get().wordStates[wid] || null,
+      stats: defaultStats(),
 
-      getWordState: (wordId) => {
-        return get().wordStates[wordId] || null;
-      },
+      addPoints: (pts) => set((s) => ({ stats: { ...s.stats, points: s.stats.points + pts } })),
 
-      initWordState: (wordId) => {
-        const current = get().wordStates[wordId];
-        if (!current) {
-          set((s) => ({
-            wordStates: { ...s.wordStates, [wordId]: defaultWordState() },
-          }));
-        }
-      },
+      updateStreak: () => set((s) => {
+        const today = todayISO();
+        const last = s.stats.lastActiveDate;
+        let ns = s.stats.streak;
+        if (!last || daysBetween(last, today) > 1) ns = 1;
+        else if (daysBetween(last, today) === 1) ns = s.stats.streak + 1;
+        return { stats: { ...s.stats, streak: ns, lastActiveDate: today, longestStreak: Math.max(s.stats.longestStreak, ns) } };
+      }),
 
       sessionType: "review",
       sessionCards: [],
       sessionIndex: 0,
       sessionResults: [],
-      sessionDirectionPhase: 1,
-      sessionFirstDirection: "de-to-en",
 
-      // Review: due words from boxes 1–5
       startReviewSession: () => {
         const { wordStates, currentDay } = get();
-        const allWords = getAllWords();
-
         const dueIds: string[] = [];
-        for (const word of allWords) {
-          if (word.day > currentDay) continue;
-          const ws = wordStates[word.id];
-          if (!ws) continue;
-          if (isDue(ws)) dueIds.push(word.id);
+        for (const w of getAllWords()) {
+          if (w.day > currentDay) continue;
+          const ws = wordStates[w.id];
+          if (ws && isDue(ws)) dueIds.push(w.id);
+        }
+        dueIds.sort((a, b) => (wordStates[a]?.box || 1) - (wordStates[b]?.box || 1));
+
+        // Reset direction flags for due words
+        const newStates = { ...get().wordStates };
+        for (const id of dueIds) {
+          if (newStates[id]) newStates[id] = { ...newStates[id], deToEnCorrect: false, enToDeCorrect: false };
         }
 
-        dueIds.sort((a, b) => {
-          const boxA = wordStates[a]?.box || 1;
-          const boxB = wordStates[b]?.box || 1;
-          return boxA - boxB;
-        });
-
-        const cards: SessionCard[] = dueIds.map((id) => ({
-          wordId: id,
-          direction: "de-to-en",
-        }));
-
         set({
-          view: "session",
-          sessionType: "review",
-          sessionCards: shuffleArray(cards),
-          sessionIndex: 0,
-          sessionResults: [],
-          sessionDirectionPhase: 1,
-          sessionFirstDirection: Math.random() < 0.5 ? "de-to-en" : "en-to-de",
+          view: "session", sessionType: "review",
+          sessionCards: buildSessionCards(dueIds),
+          sessionIndex: 0, sessionResults: [], wordStates: newStates,
         });
+        get().updateStreak();
       },
 
-      // Learn: new (untested) words for current day
       startLearnSession: () => {
         const { wordStates, currentDay } = get();
-        const allWords = getAllWords();
-
         const newIds: string[] = [];
-        for (const word of allWords) {
-          if (word.day > currentDay) continue;
-          if (!wordStates[word.id]) newIds.push(word.id);
+        for (const w of getAllWords()) {
+          if (w.day > currentDay) continue;
+          if (!wordStates[w.id]) newIds.push(w.id);
         }
-
-        const cards: SessionCard[] = newIds.map((id) => ({
-          wordId: id,
-          direction: "de-to-en",
-        }));
-
-        // Initialize word states for new words
         const newStates = { ...get().wordStates };
-        for (const id of newIds) {
-          if (!newStates[id]) newStates[id] = defaultWordState();
-        }
+        for (const id of newIds) newStates[id] = defaultWordState();
 
         set({
-          view: "session",
-          sessionType: "learn",
-          sessionCards: cards,
-          sessionIndex: 0,
-          sessionResults: [],
-          sessionDirectionPhase: 1,
-          sessionFirstDirection: Math.random() < 0.5 ? "de-to-en" : "en-to-de",
-          wordStates: newStates,
+          view: "session", sessionType: "learn",
+          sessionCards: buildSessionCards(newIds),
+          sessionIndex: 0, sessionResults: [], wordStates: newStates,
         });
+        get().updateStreak();
+      },
+
+      startCustomSession: (wordIds) => {
+        const newStates = { ...get().wordStates };
+        for (const id of wordIds) {
+          if (!newStates[id]) newStates[id] = defaultWordState();
+          else newStates[id] = { ...newStates[id], deToEnCorrect: false, enToDeCorrect: false };
+        }
+        set({
+          view: "session", sessionType: "learn",
+          sessionCards: buildSessionCards(wordIds),
+          sessionIndex: 0, sessionResults: [], wordStates: newStates,
+        });
+        get().updateStreak();
       },
 
       recordAnswer: (grade, userAnswer) => {
-        const { sessionCards, sessionIndex, sessionDirectionPhase, sessionFirstDirection } = get();
+        const { sessionCards, sessionIndex } = get();
         if (sessionIndex >= sessionCards.length) return;
-
         const card = sessionCards[sessionIndex];
-        const currentDirection: Direction =
-          sessionDirectionPhase === 1
-            ? sessionFirstDirection
-            : sessionFirstDirection === "de-to-en"
-              ? "en-to-de"
-              : "de-to-en";
-
-        const result: SessionResult = {
-          wordId: card.wordId,
-          direction: currentDirection,
-          grade,
-          userAnswer,
-        };
 
         const passing = grade === "correct" || grade === "close";
         const ws = { ...(get().wordStates[card.wordId] || defaultWordState()) };
 
-        if (currentDirection === "de-to-en") {
-          ws.deToEnCorrect = passing;
-        } else {
-          ws.enToDeCorrect = passing;
-        }
+        if (card.direction === "de-to-en") ws.deToEnCorrect = passing;
+        else ws.enToDeCorrect = passing;
+        if (passing) ws.totalCorrect++; else ws.totalIncorrect++;
 
-        if (passing) ws.totalCorrect += 1;
-        else ws.totalIncorrect += 1;
+        const pts = grade === "correct" ? 10 : grade === "close" ? 7 : 0;
 
         set((s) => ({
-          sessionResults: [...s.sessionResults, result],
+          sessionResults: [...s.sessionResults, { wordId: card.wordId, direction: card.direction, grade, userAnswer }],
           wordStates: { ...s.wordStates, [card.wordId]: ws },
+          stats: { ...s.stats, points: s.stats.points + pts },
         }));
       },
 
-      advanceCard: () => {
-        const { sessionCards, sessionIndex, sessionDirectionPhase, wordStates, sessionType } = get();
+      nextCard: () => {
+        const { sessionCards, sessionIndex, wordStates, sessionType } = get();
         if (sessionIndex >= sessionCards.length) return;
 
-        if (sessionDirectionPhase === 1) {
-          set({ sessionDirectionPhase: 2 });
-          return;
+        const currentCard = sessionCards[sessionIndex];
+        const ws = wordStates[currentCard.wordId];
+
+        // Check if both directions for this word have now been answered
+        if (ws) {
+          const bothAnswered = sessionCards.filter(c => c.wordId === currentCard.wordId).length <= 2;
+          const bothDone = ws.deToEnCorrect !== undefined && ws.enToDeCorrect !== undefined;
+          // Check if the second direction card has already been played
+          const answeredCards = get().sessionResults.filter(r => r.wordId === currentCard.wordId);
+          if (answeredCards.length >= 2) {
+            // Apply Leitner
+            const bothCorrect = ws.deToEnCorrect && ws.enToDeCorrect;
+            const isFirstTest = ws.totalCorrect + ws.totalIncorrect <= 2;
+            const updated = { ...ws };
+
+            if (sessionType === "learn" && isFirstTest) {
+              updated.box = (bothCorrect ? 5 : 2) as LeitnerBox;
+            } else {
+              updated.box = bothCorrect ? Math.min(6, updated.box + 1) as LeitnerBox : 1 as LeitnerBox;
+            }
+            updated.lastReviewDate = todayISO();
+
+            set((s) => ({
+              wordStates: { ...s.wordStates, [currentCard.wordId]: updated },
+            }));
+          }
         }
 
-        // Phase 2 complete — apply Leitner logic
-        const card = sessionCards[sessionIndex];
-        const ws = { ...wordStates[card.wordId] };
-
-        const bothCorrect = ws.deToEnCorrect && ws.enToDeCorrect;
-        const isFirstTest = ws.totalCorrect + ws.totalIncorrect <= 2; // just tested 2 directions
-
-        if (sessionType === "learn" && isFirstTest) {
-          // First time testing: correct → box 5, wrong → box 2
-          if (bothCorrect) {
-            ws.box = 5 as LeitnerBox;
-          } else {
-            ws.box = 2 as LeitnerBox;
-          }
-        } else {
-          // Normal Leitner: promote or demote
-          if (bothCorrect) {
-            ws.box = Math.min(6, ws.box + 1) as LeitnerBox;
-          } else {
-            ws.box = 1 as LeitnerBox;
-          }
-        }
-
-        ws.lastReviewDate = todayISO();
-        ws.deToEnCorrect = false;
-        ws.enToDeCorrect = false;
-
-        const nextIndex = sessionIndex + 1;
-        const isComplete = nextIndex >= sessionCards.length;
-
-        set((s) => ({
-          wordStates: { ...s.wordStates, [card.wordId]: ws },
-          sessionIndex: nextIndex,
-          sessionDirectionPhase: 1,
-          sessionFirstDirection: Math.random() < 0.5 ? "de-to-en" : "en-to-de",
-          view: isComplete ? "session-complete" : s.view,
-        }));
+        const nextIdx = sessionIndex + 1;
+        set({
+          sessionIndex: nextIdx,
+          view: nextIdx >= sessionCards.length ? "session-complete" : get().view,
+        });
       },
 
       getSessionSummary: () => {
         const { sessionType, sessionResults, wordStates } = get();
-
-        const wordResultMap = new Map<string, { deOk: boolean; enOk: boolean }>();
+        const wordMap = new Map<string, { deOk: boolean; enOk: boolean }>();
         for (const r of sessionResults) {
-          const existing = wordResultMap.get(r.wordId) || { deOk: false, enOk: false };
+          const e = wordMap.get(r.wordId) || { deOk: false, enOk: false };
           const pass = r.grade === "correct" || r.grade === "close";
-          if (r.direction === "de-to-en") existing.deOk = pass;
-          else existing.enOk = pass;
-          wordResultMap.set(r.wordId, existing);
+          if (r.direction === "de-to-en") e.deOk = pass; else e.enOk = pass;
+          wordMap.set(r.wordId, e);
         }
-
-        let correct = 0, close = 0, wrong = 0;
-        const promoted: string[] = [];
-        const demoted: string[] = [];
-        const newlyMastered: string[] = [];
-
+        let correct = 0, close = 0, wrong = 0, pointsEarned = 0;
+        const promoted: string[] = [], demoted: string[] = [], newlyMastered: string[] = [];
         for (const r of sessionResults) {
-          if (r.grade === "correct") correct++;
-          else if (r.grade === "close") close++;
+          if (r.grade === "correct") { correct++; pointsEarned += 10; }
+          else if (r.grade === "close") { close++; pointsEarned += 7; }
           else wrong++;
         }
-
-        for (const [wordId, result] of wordResultMap) {
-          const ws = wordStates[wordId];
+        for (const [wid, res] of wordMap) {
+          const ws = wordStates[wid];
           if (!ws) continue;
-          if (result.deOk && result.enOk) {
-            promoted.push(wordId);
-            if (ws.box === 6) newlyMastered.push(wordId);
-          } else {
-            demoted.push(wordId);
-          }
+          if (res.deOk && res.enOk) { promoted.push(wid); if (ws.box === 6) newlyMastered.push(wid); }
+          else demoted.push(wid);
         }
-
-        return { type: sessionType, totalCards: sessionResults.length, correct, close, wrong, promoted, demoted, newlyMastered };
+        return { type: sessionType, totalCards: sessionResults.length, correct, close, wrong, promoted, demoted, newlyMastered, pointsEarned };
       },
 
       getDueWordIds: () => {
         const { wordStates, currentDay } = get();
-        return getAllWords()
-          .filter((w) => w.day <= currentDay && wordStates[w.id] && isDue(wordStates[w.id]))
-          .map((w) => w.id);
+        return getAllWords().filter(w => w.day <= currentDay && wordStates[w.id] && isDue(wordStates[w.id])).map(w => w.id);
       },
-
       getNewWordIds: () => {
         const { wordStates, currentDay } = get();
-        return getAllWords()
-          .filter((w) => w.day <= currentDay && !wordStates[w.id])
-          .map((w) => w.id);
+        return getAllWords().filter(w => w.day <= currentDay && !wordStates[w.id]).map(w => w.id);
       },
-
-      // Box 0 = untested
       getBoxCounts: () => {
         const { wordStates, currentDay } = get();
-        const allWords = getAllWords().filter(w => w.day <= currentDay);
-        const counts: Record<LeitnerBox | 0, number> = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
-        for (const w of allWords) {
-          const ws = wordStates[w.id];
-          if (!ws) {
-            counts[0]++;
-          } else {
-            counts[ws.box]++;
-          }
+        const c: Record<LeitnerBox | 0, number> = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
+        for (const w of getAllWords().filter(w => w.day <= currentDay)) {
+          const ws = wordStates[w.id]; if (!ws) c[0]++; else c[ws.box]++;
         }
-        return counts;
+        return c;
       },
-
+      getDueTodayCount: () => get().getDueWordIds().length,
+      isAllRevisedToday: () => {
+        const { wordStates, currentDay } = get();
+        for (const w of getAllWords()) {
+          if (w.day > currentDay) continue;
+          const ws = wordStates[w.id];
+          if (ws && isDue(ws)) return false;
+        }
+        return Object.keys(wordStates).length > 0;
+      },
       getTopicProgress: (topicId) => {
         const { wordStates, currentDay } = get();
-        const topicWords = getAllWords().filter((w) => w.topicId === topicId && w.day <= currentDay);
-        const total = topicWords.length;
+        const tw = getAllWords().filter(w => w.topicId === topicId && w.day <= currentDay);
         let mastered = 0, inProgress = 0, untested = 0;
-        for (const w of topicWords) {
-          const ws = wordStates[w.id];
-          if (!ws) { untested++; continue; }
-          if (ws.box === 6) mastered++;
-          else inProgress++;
-        }
-        return { total, mastered, inProgress, untested };
+        for (const w of tw) { const ws = wordStates[w.id]; if (!ws) untested++; else if (ws.box === 6) mastered++; else inProgress++; }
+        return { total: tw.length, mastered, inProgress, untested };
       },
-
-      resetAll: () =>
-        set({
-          view: "dashboard",
-          currentDay: 1,
-          wordStates: {},
-          sessionCards: [],
-          sessionIndex: 0,
-          sessionResults: [],
-          sessionDirectionPhase: 1,
-          selectedTopicId: null,
-        }),
+      resetAll: () => set({
+        view: "dashboard", currentDay: 1, wordStates: {}, sessionCards: [], sessionIndex: 0,
+        sessionResults: [], selectedTopicId: null, stats: defaultStats(),
+      }),
     }),
     {
-      name: "german-vocab-leitner-v1",
-      partialize: (state) => ({
-        currentDay: state.currentDay,
-        wordStates: state.wordStates,
-      }),
+      name: "german-vocab-leitner-v3",
+      partialize: (state) => ({ currentDay: state.currentDay, wordStates: state.wordStates, stats: state.stats }),
     }
   )
 );

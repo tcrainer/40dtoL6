@@ -53,6 +53,9 @@ export function SessionComplete() {
           ).size || Math.ceil(summary.totalCards / 2)}{" "}
           words
         </p>
+        <p style={{ fontSize: "14px", fontWeight: 600, color: "#7c4dba", margin: "6px 0 0" }}>
+          +{summary.pointsEarned} points earned
+        </p>
       </div>
 
       {/* Accuracy ring + stats */}
