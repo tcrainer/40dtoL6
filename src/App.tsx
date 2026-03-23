@@ -4,6 +4,7 @@ import { Flashcard } from "@/components/Flashcard";
 import { SessionComplete } from "@/components/SessionComplete";
 import { VocabBrowser } from "@/components/VocabBrowser";
 import { TopicDetail } from "@/components/TopicDetail";
+import { BoxDetail } from "@/components/BoxDetail";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -37,6 +38,11 @@ export function App() {
           {view === "topic-detail" && (
             <motion.div key="topic" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.2 }}>
               <TopicDetail />
+            </motion.div>
+          )}
+          {view === "box-detail" && (
+            <motion.div key="box" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.2 }}>
+              <BoxDetail />
             </motion.div>
           )}
         </AnimatePresence>
