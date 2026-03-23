@@ -1,11 +1,11 @@
 import { useStore } from "@/store/useStore";
 import { getWordById } from "@/data/vocabulary";
 import { gradeAnswer } from "@/utils/grading";
-import { TOPICS, BOX_COLORS } from "@/types";
+import { BOX_COLORS } from "@/types";
 import type { LeitnerBox, GradeDetail } from "@/types";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, ArrowRight, Check, X, AlertTriangle, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, X, AlertTriangle, Star, Trophy } from "lucide-react";
 
 const UMLAUTS = ["ä", "ö", "ü", "ß", "Ä", "Ö", "Ü"];
 
@@ -21,6 +21,7 @@ function makeGapFill(sentence: string, targetWord: string): string | null {
 export function Flashcard() {
   const sessionCards = useStore((s) => s.sessionCards);
   const sessionIndex = useStore((s) => s.sessionIndex);
+  const sessionResults = useStore((s) => s.sessionResults);
   const recordAnswer = useStore((s) => s.recordAnswer);
   const nextCard = useStore((s) => s.nextCard);
   const getWordState = useStore((s) => s.getWordState);
@@ -29,6 +30,7 @@ export function Flashcard() {
 
   const [input, setInput] = useState("");
   const [gradeResult, setGradeResult] = useState<GradeDetail | null>(null);
+  const [showBothCorrect, setShowBothCorrect] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const card = sessionCards[sessionIndex];
@@ -38,35 +40,58 @@ export function Flashcard() {
   const isDeToEn = card?.direction === "de-to-en";
   const promptText = word ? (isDeToEn ? word.german : word.english) : "";
   const correctText = word ? (isDeToEn ? word.english : word.german) : "";
-
-  // Only show the sentence in the PROMPT language (not the answer language!)
   const promptSentence = word ? (isDeToEn ? word.germanSentence : word.englishSentence) : "";
 
-  // Gap fill uses the ANSWER-language sentence with the answer blanked out
   const gapFill = word ? makeGapFill(
     isDeToEn ? word.englishSentence : word.germanSentence,
     correctText
   ) : null;
 
-  const boxColors = wordState ? BOX_COLORS[wordState.box as LeitnerBox] : null;
+  // Check what the other direction result was for this word in this session
+  const otherDirResult = useMemo(() => {
+    if (!card) return null;
+    const otherDir = isDeToEn ? "en-to-de" : "de-to-en";
+    return sessionResults.find(r => r.wordId === card.wordId && r.direction === otherDir) || null;
+  }, [card, isDeToEn, sessionResults]);
 
+  const otherDirPassed = otherDirResult && (otherDirResult.grade === "correct" || otherDirResult.grade === "close");
+
+  // Focus input on every card change — aggressive focus
   useEffect(() => {
     setInput("");
     setGradeResult(null);
-    const timer = setTimeout(() => inputRef.current?.focus(), 100);
-    return () => clearTimeout(timer);
+    setShowBothCorrect(false);
+    // Multiple focus attempts to ensure it works on mobile too
+    const t1 = setTimeout(() => inputRef.current?.focus(), 50);
+    const t2 = setTimeout(() => inputRef.current?.focus(), 150);
+    const t3 = setTimeout(() => inputRef.current?.focus(), 300);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, [sessionIndex]);
 
   const handleSubmit = useCallback(() => {
     if (!word || gradeResult) return;
+    if (input.trim().length === 0) {
+      // Empty input = wrong
+      const result = gradeAnswer("", correctText, card!.direction);
+      setGradeResult(result);
+      recordAnswer("wrong", "");
+      return;
+    }
     const result = gradeAnswer(input, correctText, card!.direction);
     setGradeResult(result);
     recordAnswer(result.result, input);
-  }, [word, gradeResult, input, correctText, card, recordAnswer]);
+
+    // Check if both directions are now correct
+    const thisPassed = result.result === "correct" || result.result === "close";
+    if (thisPassed && otherDirPassed) {
+      setShowBothCorrect(true);
+    }
+  }, [word, gradeResult, input, correctText, card, recordAnswer, otherDirPassed]);
 
   const handleNext = useCallback(() => {
     setGradeResult(null);
     setInput("");
+    setShowBothCorrect(false);
     nextCard();
   }, [nextCard]);
 
@@ -74,14 +99,15 @@ export function Flashcard() {
     if (e.key === "Enter") {
       e.preventDefault();
       if (gradeResult) handleNext();
-      else if (input.trim().length > 0) handleSubmit();
+      else handleSubmit();
     }
+    // Number keys 1-7 for umlauts only when typing German
     const num = parseInt(e.key);
     if (num >= 1 && num <= 7 && !gradeResult && !isDeToEn) {
       e.preventDefault();
       insertUmlaut(UMLAUTS[num - 1]);
     }
-  }, [gradeResult, handleNext, handleSubmit, input, isDeToEn]);
+  }, [gradeResult, handleNext, handleSubmit, isDeToEn]);
 
   const insertUmlaut = (char: string) => {
     const el = inputRef.current;
@@ -135,6 +161,19 @@ export function Flashcard() {
         <div style={{ height: "100%", width: `${progressPct}%`, background: "var(--color-accent)", borderRadius: "2px", transition: "width 0.3s" }} />
       </div>
 
+      {/* Other direction status badge */}
+      {otherDirResult && (
+        <div style={{
+          display: "flex", alignItems: "center", gap: "6px",
+          padding: "6px 12px", borderRadius: "var(--radius-md)", fontSize: "12px", fontWeight: 500,
+          background: otherDirPassed ? "#dcfce7" : "#fce4ec",
+          color: otherDirPassed ? "#16a34a" : "#dc2626",
+        }}>
+          {otherDirPassed ? <Check size={14} /> : <X size={14} />}
+          {isDeToEn ? "EN → DE" : "DE → EN"}: {otherDirPassed ? "correct" : "incorrect"} earlier
+        </div>
+      )}
+
       {/* Card */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -148,7 +187,7 @@ export function Flashcard() {
             borderRadius: "var(--radius-xl)", overflow: "hidden",
           }}
         >
-          {/* Prompt section */}
+          {/* Prompt */}
           <div style={{
             background: isDeToEn ? "#eef2ff" : "#fef9e0",
             padding: "20px 24px",
@@ -164,7 +203,6 @@ export function Flashcard() {
             <div style={{ fontSize: "24px", fontWeight: 700, textAlign: "center", margin: "8px 0" }}>
               {promptText}
             </div>
-            {/* Only show the prompt-language sentence — NOT the answer language */}
             {promptSentence && (
               <div style={{ fontSize: "13px", fontStyle: "italic", textAlign: "center", color: isDeToEn ? "#4338ca" : "#b45309", opacity: 0.6, marginTop: "4px" }}>
                 {promptSentence}
@@ -172,7 +210,7 @@ export function Flashcard() {
             )}
           </div>
 
-          {/* Answer section */}
+          {/* Answer */}
           <div style={{
             background: isDeToEn ? "#fef9e0" : "#eef2ff",
             padding: "20px 24px",
@@ -194,7 +232,8 @@ export function Flashcard() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={isDeToEn ? "Type English translation..." : "Type German translation..."}
-                  autoComplete="off" autoCapitalize="off" spellCheck={false}
+                  autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false}
+                  autoFocus
                   style={{
                     width: "100%", boxSizing: "border-box", fontSize: "16px",
                     padding: "12px 14px", borderRadius: "var(--radius-md)",
@@ -203,7 +242,6 @@ export function Flashcard() {
                   }}
                 />
 
-                {/* Umlaut buttons (only for German typing) */}
                 {!isDeToEn && (
                   <div style={{ display: "flex", gap: "4px", marginTop: "8px", justifyContent: "center" }}>
                     {UMLAUTS.map((ch, i) => (
@@ -221,7 +259,6 @@ export function Flashcard() {
                   </div>
                 )}
 
-                {/* Gap fill hint — uses answer-language sentence with blanks */}
                 {gapFill && (
                   <div style={{ fontSize: "12px", color: isDeToEn ? "#b45309" : "#4338ca", opacity: 0.5, textAlign: "center", marginTop: "8px", fontStyle: "italic" }}>
                     {gapFill}
@@ -230,7 +267,6 @@ export function Flashcard() {
               </>
             ) : (
               <>
-                {/* Reveal the correct answer */}
                 <div style={{
                   fontSize: "11px", fontWeight: 700, textTransform: "uppercase",
                   letterSpacing: "0.08em", marginBottom: "8px",
@@ -241,7 +277,6 @@ export function Flashcard() {
                 <div style={{ fontSize: "24px", fontWeight: 700, textAlign: "center", margin: "8px 0" }}>
                   {correctText}
                 </div>
-                {/* Now show the answer-language sentence too */}
                 {(isDeToEn ? word.englishSentence : word.germanSentence) && (
                   <div style={{ fontSize: "13px", fontStyle: "italic", textAlign: "center", color: isDeToEn ? "#b45309" : "#4338ca", opacity: 0.6, marginTop: "4px" }}>
                     {isDeToEn ? word.englishSentence : word.germanSentence}
@@ -252,6 +287,28 @@ export function Flashcard() {
           </div>
         </motion.div>
       </AnimatePresence>
+
+      {/* Both directions correct reward */}
+      {showBothCorrect && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
+            padding: "14px 16px", borderRadius: "var(--radius-lg)",
+            background: "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)",
+            color: "#78350f",
+          }}
+        >
+          <Trophy size={22} />
+          <div>
+            <div style={{ fontSize: "15px", fontWeight: 700 }}>Both directions correct!</div>
+            <div style={{ fontSize: "12px", opacity: 0.8 }}>This word is moving up a box</div>
+          </div>
+          <Trophy size={22} />
+        </motion.div>
+      )}
 
       {/* Feedback */}
       {gradeResult && (
@@ -286,7 +343,7 @@ export function Flashcard() {
             </div>
           )}
 
-          <button onClick={handleNext} style={{
+          <button onClick={handleNext} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleNext(); } }} autoFocus style={{
             width: "100%", padding: "14px", fontSize: "15px", fontWeight: 700,
             border: "none", borderRadius: "var(--radius-lg)",
             background: "var(--color-ink)", color: "var(--color-surface)",
@@ -300,12 +357,13 @@ export function Flashcard() {
 
       {/* Check button */}
       {!gradeResult && (
-        <button onClick={handleSubmit} disabled={input.trim().length === 0} style={{
+        <button onClick={handleSubmit} style={{
           width: "100%", padding: "14px", fontSize: "15px", fontWeight: 700,
           border: "none", borderRadius: "var(--radius-lg)", fontFamily: "var(--font-sans)",
-          background: input.trim().length > 0 ? "#6366f1" : "var(--color-surface-sunken)",
-          color: input.trim().length > 0 ? "#fff" : "var(--color-ink-faint)",
-          cursor: input.trim().length > 0 ? "pointer" : "not-allowed",
+          background: input.trim().length > 0 ? "#6366f1" : "#6366f1",
+          color: "#fff",
+          cursor: "pointer",
+          opacity: input.trim().length > 0 ? 1 : 0.6,
           display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
         }}>
           Check Answer <ArrowRight size={16} />
