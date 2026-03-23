@@ -2,7 +2,7 @@ import { useStore } from "@/store/useStore";
 import { TOPICS, BOX_LABELS, BOX_COLORS, LEITNER_BOXES, MAX_DAY } from "@/types";
 import type { LeitnerBox } from "@/types";
 import { getTopicWordCounts, getTopicDays, getWordsForTopicDay, getAllWords } from "@/data/vocabulary";
-import { BookOpen, RotateCcw, ChevronDown, ChevronUp, Flame, Star, Trophy } from "lucide-react";
+import { BookOpen, RotateCcw, ChevronDown, ChevronUp, Flame, Star } from "lucide-react";
 import { useState, useMemo } from "react";
 
 export function Dashboard() {
@@ -16,7 +16,7 @@ export function Dashboard() {
   const getDueWordIds = useStore((s) => s.getDueWordIds);
   const getNewWordIds = useStore((s) => s.getNewWordIds);
   const getBoxCounts = useStore((s) => s.getBoxCounts);
-  const getDueTodayCount = useStore((s) => s.getDueTodayCount);
+  const getTopicProgress = useStore((s) => s.getTopicProgress);
   const isAllRevisedToday = useStore((s) => s.isAllRevisedToday);
   const resetAll = useStore((s) => s.resetAll);
   const wordStates = useStore((s) => s.wordStates);
@@ -28,17 +28,14 @@ export function Dashboard() {
   const dueCount = getDueWordIds().length;
   const newCount = getNewWordIds().length;
   const boxCounts = getBoxCounts();
-  const dueTodayCount = getDueTodayCount();
   const allRevised = isAllRevisedToday();
+  const topicCounts = useMemo(() => getTopicWordCounts(), []);
 
-  // Selected words count
   const selectedWordIds = useMemo(() => {
     const ids: string[] = [];
     for (const [topicId, days] of selectedDays) {
       for (const day of days) {
-        for (const w of getWordsForTopicDay(topicId, day)) {
-          ids.push(w.id);
-        }
+        for (const w of getWordsForTopicDay(topicId, day)) ids.push(w.id);
       }
     }
     return ids;
@@ -61,15 +58,13 @@ export function Dashboard() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-      {/* Header with streak */}
+      {/* Header with streak + points */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <div>
           <h1 style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>GCSE German</h1>
-          <p style={{ fontSize: "13px", color: "var(--color-ink-muted)", margin: "4px 0 0" }}>
-            {MAX_DAY}-day Leitner vocabulary course
-          </p>
+          <p style={{ fontSize: "13px", color: "var(--color-ink-muted)", margin: "4px 0 0" }}>{MAX_DAY}-day Leitner vocabulary course</p>
         </div>
-        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
           <div style={{ textAlign: "center" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "#d97a1a" }}>
               <Flame size={16} />
@@ -130,130 +125,93 @@ export function Dashboard() {
 
       {/* Leitner boxes */}
       <div>
-        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-          GCSE words
-        </h2>
-
+        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>GCSE words</h2>
         <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "4px" }}>
-          {/* Untested */}
-          <div style={{
-            minWidth: "90px", background: "var(--color-surface-sunken)", borderRadius: "var(--radius-md)",
-            padding: "10px", textAlign: "center", flexShrink: 0,
-          }}>
-            <div style={{ fontSize: "11px", fontWeight: 700, color: "var(--color-ink-muted)", textTransform: "uppercase" }}>Untested</div>
-            <div style={{ fontSize: "22px", fontWeight: 700, fontFamily: "var(--font-mono)", color: "var(--color-ink-muted)", margin: "2px 0" }}>{boxCounts[0]}</div>
-            <div style={{ fontSize: "9px", color: "var(--color-ink-faint)" }}>{Object.keys(wordStates).length} tested</div>
-          </div>
-
+          <BoxCard label="Untested" count={boxCounts[0]} sub={`${Object.keys(wordStates).length} tested`} fg="var(--color-ink-muted)" bg="var(--color-surface-sunken)" smiley={false} />
           {LEITNER_BOXES.map((box) => {
             const c = BOX_COLORS[box];
-            const count = boxCounts[box];
-            const isDueBox = box >= 1 && box <= 5;
-            // Count due in this box
-            let dueInBox = 0;
-            if (isDueBox) {
-              const allW = getAllWords();
-              for (const w of allW) {
-                const ws = wordStates[w.id];
-                if (ws && ws.box === box) {
-                  if (box === 1 || !ws.lastReviewDate || daysBetween(ws.lastReviewDate, todayISO()) >= BOX_INTERVALS[box]) {
-                    dueInBox++;
-                  }
-                }
-              }
-            }
-
-            return (
-              <div key={box} style={{
-                minWidth: "90px", background: c.bg, borderRadius: "var(--radius-md)",
-                padding: "10px", textAlign: "center", flexShrink: 0,
-              }}>
-                <div style={{ fontSize: "11px", fontWeight: 700, color: c.fg, textTransform: "uppercase" }}>Box {box}</div>
-                <div style={{ fontSize: "9px", color: c.fg, opacity: 0.7 }}>{BOX_LABELS[box]}</div>
-                <div style={{ fontSize: "22px", fontWeight: 700, fontFamily: "var(--font-mono)", color: c.fg, margin: "2px 0" }}>
-                  {dueInBox > 0 && box !== 6 ? dueInBox : count === 0 && allRevised && Object.keys(wordStates).length > 0 ? "😊" : count}
-                </div>
-                {dueInBox > 0 && box !== 6 && (
-                  <div style={{ fontSize: "9px", color: c.fg, opacity: 0.8 }}>{dueInBox} due today</div>
-                )}
-                {dueInBox === 0 && count > 0 && box !== 6 && (
-                  <div style={{ fontSize: "9px", color: c.fg, opacity: 0.6 }}>{count} total</div>
-                )}
-              </div>
-            );
+            const dueInBox = box < 6 ? countDueInBox(box, wordStates) : 0;
+            const showSmiley = allRevised && boxCounts[box] > 0 && box < 6 && dueInBox === 0;
+            return <BoxCard key={box} label={`Box ${box}`} count={showSmiley ? -1 : boxCounts[box]} sub={BOX_LABELS[box]} fg={c.fg} bg={c.bg} dueCount={dueInBox} smiley={showSmiley} />;
           })}
         </div>
       </div>
 
-      {/* Topics with day grid */}
+      {/* Topics with progress bars AND day grid */}
       <div>
         <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 10px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>
-          Topics grouped by day
+          Topics
         </h2>
 
-        {/* Selected count + start button */}
         {selectedWordIds.length > 0 && (
           <div style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
             background: "var(--color-accent)", color: "#fff", borderRadius: "var(--radius-lg)",
             padding: "12px 16px", marginBottom: "10px",
           }}>
-            <span style={{ fontSize: "13px" }}>
-              {selectedDays.size} day{selectedDays.size !== 1 ? "s" : ""}, {selectedWordIds.length} words selected
-            </span>
+            <span style={{ fontSize: "13px" }}>{selectedWordIds.length} words selected</span>
             <button onClick={() => startCustomSession(selectedWordIds)} style={{
               fontSize: "13px", fontWeight: 600, padding: "6px 16px", borderRadius: "var(--radius-md)",
               border: "none", background: "#fff", color: "var(--color-accent)", cursor: "pointer", fontFamily: "var(--font-sans)",
-            }}>
-              Test these chosen ones
-            </button>
+            }}>Test these</button>
           </div>
         )}
 
-        <div style={{ overflowX: "auto", paddingBottom: "8px" }}>
-          <div style={{ display: "flex", gap: "16px", minWidth: "max-content" }}>
-            {TOPICS.map((topic) => {
-              const days = getTopicDays(topic.id).filter((d) => d <= MAX_DAY);
-              const topicSelected = selectedDays.get(topic.id) || new Set<number>();
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {TOPICS.map((topic) => {
+            const progress = getTopicProgress(topic.id);
+            const totalForTopic = topicCounts[topic.id] || 0;
+            const pct = totalForTopic > 0 ? Math.round((progress.mastered / totalForTopic) * 100) : 0;
+            const days = getTopicDays(topic.id).filter((d) => d <= MAX_DAY);
+            const topicSelected = selectedDays.get(topic.id) || new Set<number>();
 
-              return (
-                <div key={topic.id} style={{ minWidth: "160px" }}>
+            return (
+              <div key={topic.id} style={{
+                background: "var(--color-surface)", border: "1.5px solid var(--color-border)",
+                borderRadius: "var(--radius-lg)", padding: "14px 16px",
+              }}>
+                {/* Topic header with progress */}
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: topic.color, flexShrink: 0 }} />
                   <button onClick={() => handleTopicClick(topic.id)} style={{
-                    fontSize: "12px", fontWeight: 600, marginBottom: "6px", padding: 0,
-                    border: "none", background: "none", cursor: "pointer", color: "var(--color-ink)",
-                    fontFamily: "var(--font-sans)", textAlign: "left",
+                    fontSize: "14px", fontWeight: 600, padding: 0, border: "none", background: "none",
+                    cursor: "pointer", color: "var(--color-ink)", fontFamily: "var(--font-sans)", textAlign: "left", flex: 1,
                   }}>
                     {topic.name}
                   </button>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
-                    {days.map((day) => {
-                      const words = getWordsForTopicDay(topic.id, day);
-                      const allTested = words.every((w) => wordStates[w.id]);
-                      const someTested = words.some((w) => wordStates[w.id]);
-                      const isSelected = topicSelected.has(day);
-
-                      return (
-                        <button
-                          key={day}
-                          onClick={() => toggleDay(topic.id, day)}
-                          style={{
-                            width: "28px", height: "28px", fontSize: "10px", fontWeight: 500,
-                            border: isSelected ? `2px solid ${topic.color}` : "1px solid var(--color-border)",
-                            borderRadius: "4px", cursor: "pointer", fontFamily: "var(--font-mono)",
-                            background: isSelected ? topic.color : allTested ? "var(--color-surface-sunken)" : "var(--color-surface)",
-                            color: isSelected ? "#fff" : allTested ? "var(--color-ink-faint)" : "var(--color-ink)",
-                            opacity: someTested && !allTested ? 0.85 : 1,
-                          }}
-                        >
-                          {day}
-                        </button>
-                      );
-                    })}
-                  </div>
+                  <span style={{ fontSize: "11px", color: "var(--color-ink-muted)", fontFamily: "var(--font-mono)", flexShrink: 0 }}>
+                    {progress.mastered}/{totalForTopic}
+                  </span>
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Progress bar */}
+                <div style={{ height: "6px", background: "var(--color-surface-sunken)", borderRadius: "3px", overflow: "hidden", marginBottom: "10px" }}>
+                  <div style={{ height: "100%", width: `${pct}%`, background: topic.color, borderRadius: "3px", transition: "width 0.3s" }} />
+                </div>
+
+                {/* Day grid */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
+                  {days.map((day) => {
+                    const words = getWordsForTopicDay(topic.id, day);
+                    const allTested = words.every((w) => wordStates[w.id]);
+                    const isSelected = topicSelected.has(day);
+
+                    return (
+                      <button key={day} onClick={() => toggleDay(topic.id, day)} style={{
+                        width: "28px", height: "28px", fontSize: "10px", fontWeight: 500,
+                        border: isSelected ? `2px solid ${topic.color}` : "1px solid var(--color-border)",
+                        borderRadius: "4px", cursor: "pointer", fontFamily: "var(--font-mono)",
+                        background: isSelected ? topic.color : allTested ? "var(--color-surface-sunken)" : "var(--color-surface)",
+                        color: isSelected ? "#fff" : allTested ? "var(--color-ink-faint)" : "var(--color-ink)",
+                      }}>
+                        {day}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -262,20 +220,33 @@ export function Dashboard() {
         <button onClick={() => setView("browse")} style={{
           fontSize: "13px", fontWeight: 500, color: "var(--color-accent)", background: "none",
           border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0, textDecoration: "underline", textUnderlineOffset: "2px",
-        }}>
-          Browse all words
-        </button>
+        }}>Browse all words</button>
         {!showReset ? (
-          <button onClick={() => setShowReset(true)} style={{ fontSize: "11px", color: "var(--color-ink-faint)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0 }}>
-            Reset progress
-          </button>
+          <button onClick={() => setShowReset(true)} style={{ fontSize: "11px", color: "var(--color-ink-faint)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0 }}>Reset progress</button>
         ) : (
           <div style={{ display: "flex", gap: "8px", fontSize: "11px" }}>
-            <button onClick={() => { resetAll(); setShowReset(false); setSelectedDays(new Map()); }} style={{ fontWeight: 600, color: "#fff", background: "var(--color-wrong)", border: "none", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Yes, reset</button>
+            <button onClick={() => { resetAll(); setShowReset(false); setSelectedDays(new Map()); }} style={{ fontWeight: 600, color: "#fff", background: "#d94f4f", border: "none", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Yes, reset</button>
             <button onClick={() => setShowReset(false)} style={{ color: "var(--color-ink-muted)", background: "none", border: "1px solid var(--color-border)", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Cancel</button>
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+function BoxCard({ label, count, sub, fg, bg, dueCount, smiley }: {
+  label: string; count: number; sub: string; fg: string; bg: string; dueCount?: number; smiley: boolean;
+}) {
+  return (
+    <div style={{ minWidth: "90px", background: bg, borderRadius: "var(--radius-md)", padding: "10px", textAlign: "center", flexShrink: 0 }}>
+      <div style={{ fontSize: "11px", fontWeight: 700, color: fg, textTransform: "uppercase" }}>{label}</div>
+      <div style={{ fontSize: "9px", color: fg, opacity: 0.7 }}>{sub}</div>
+      <div style={{ fontSize: "22px", fontWeight: 700, fontFamily: "var(--font-mono)", color: fg, margin: "2px 0" }}>
+        {smiley ? "😊" : count}
+      </div>
+      {dueCount !== undefined && dueCount > 0 && (
+        <div style={{ fontSize: "9px", color: fg, opacity: 0.8 }}>{dueCount} due today</div>
+      )}
     </div>
   );
 }
@@ -291,8 +262,16 @@ function DayBtn({ onClick, disabled, children }: { onClick: () => void; disabled
   );
 }
 
-function todayISO(): string { return new Date().toISOString().slice(0, 10); }
-function daysBetween(a: string, b: string): number {
-  return Math.floor((new Date(b).getTime() - new Date(a).getTime()) / 86400000);
+function countDueInBox(box: LeitnerBox, wordStates: Record<string, any>): number {
+  const intervals: Record<number, number> = { 1: 0, 2: 2, 3: 4, 4: 8, 5: 14, 6: Infinity };
+  const today = new Date().toISOString().slice(0, 10);
+  let count = 0;
+  for (const ws of Object.values(wordStates)) {
+    if (ws.box !== box) continue;
+    if (box === 1) { count++; continue; }
+    if (!ws.lastReviewDate) { count++; continue; }
+    const elapsed = Math.floor((new Date(today).getTime() - new Date(ws.lastReviewDate).getTime()) / 86400000);
+    if (elapsed >= intervals[box]) count++;
+  }
+  return count;
 }
-const BOX_INTERVALS: Record<number, number> = { 1: 0, 2: 2, 3: 4, 4: 8, 5: 14, 6: Infinity };
