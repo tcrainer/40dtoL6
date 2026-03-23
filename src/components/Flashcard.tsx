@@ -257,7 +257,7 @@ export function Flashcard() {
                   color: boxColors.fg,
                 }}
               >
-                Box {wordState.box}
+                Box {wordState?.box}
               </span>
             )}
           </div>

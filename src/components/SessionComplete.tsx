@@ -284,7 +284,7 @@ function WordListSection({
   title: string;
   icon: React.ReactNode;
   wordIds: string[];
-  getWordState: (id: string) => { box: number };
+  getWordState: (id: string) => { box: number } | null;
   accentColor: string;
 }) {
   // Deduplicate
@@ -324,7 +324,7 @@ function WordListSection({
         {uniqueIds.slice(0, 10).map((id, i) => {
           const word = getWordById(id);
           const ws = getWordState(id);
-          const boxColors = BOX_COLORS[ws.box as LeitnerBox];
+          const boxColors = ws ? BOX_COLORS[ws.box as LeitnerBox] : null;
           if (!word) return null;
 
           return (
@@ -380,7 +380,7 @@ function WordListSection({
                     flexShrink: 0,
                   }}
                 >
-                  B{ws.box}
+                  B{ws?.box}
                 </span>
               )}
             </div>
