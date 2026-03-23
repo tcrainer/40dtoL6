@@ -62,8 +62,8 @@ export function Dashboard() {
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <div>
-          <h1 style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>GCSE German</h1>
-          <p style={{ fontSize: "13px", color: "var(--color-ink-muted)", margin: "4px 0 0" }}>{MAX_DAY}-day Leitner vocabulary course</p>
+          <h1 style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>L6 Exam Countdown</h1>
+          <p style={{ fontSize: "13px", color: "var(--color-ink-muted)", margin: "4px 0 0" }}>{MAX_DAY}-day vocabulary course</p>
         </div>
         <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
           <div style={{ textAlign: "center" }}>
