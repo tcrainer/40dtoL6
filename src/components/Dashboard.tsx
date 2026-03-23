@@ -31,6 +31,7 @@ export function Dashboard() {
   const boxCounts = getBoxCounts();
   const allRevised = isAllRevisedToday();
   const topicCounts = useMemo(() => getTopicWordCounts(), []);
+  const allWords = useMemo(() => getAllWords(), []);
 
   const selectedWordIds = useMemo(() => {
     const ids: string[] = [];
@@ -62,8 +63,8 @@ export function Dashboard() {
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <div>
-          <h1 style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>L6 Exam Countdown</h1>
-          <p style={{ fontSize: "13px", color: "var(--color-ink-muted)", margin: "4px 0 0" }}>{MAX_DAY}-day vocabulary course</p>
+          <h1 style={{ fontSize: "22px", fontWeight: 600, letterSpacing: "-0.02em", margin: 0 }}>GCSE German</h1>
+          <p style={{ fontSize: "13px", color: "var(--color-ink-muted)", margin: "4px 0 0" }}>{MAX_DAY}-day Leitner vocabulary course</p>
         </div>
         <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
           <div style={{ textAlign: "center" }}>
@@ -134,6 +135,30 @@ export function Dashboard() {
             const dueInBox = box < 6 ? countDueInBox(box, wordStates) : 0;
             const showSmiley = allRevised && boxCounts[box] > 0 && box < 6 && dueInBox === 0;
             return <BoxCard key={box} label={`Box ${box}`} count={showSmiley ? -1 : boxCounts[box]} sub={BOX_LABELS[box]} fg={c.fg} bg={c.bg} dueCount={dueInBox} smiley={showSmiley} />;
+          })}
+        </div>
+      </div>
+
+      {/* Importance breakdown */}
+      <div>
+        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Progress by importance</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
+          {([
+            { stars: 4, label: "★★★★ Essential", color: "#d94f4f", bg: "#fce8e8" },
+            { stars: 3, label: "★★★ Very Important", color: "#d97a1a", bg: "#fef0de" },
+            { stars: 2, label: "★★ Important", color: "#2a6fb5", bg: "#e4f0fb" },
+            { stars: 1, label: "★ Specialist", color: "#7c4dba", bg: "#f0eafb" },
+          ] as const).map(({ stars, label, color, bg }) => {
+            const allOfTier = allWords.filter(w => w.importance === stars);
+            const learnt = allOfTier.filter(w => wordStates[w.id]?.box >= 5).length;
+            const total = allOfTier.length;
+            return (
+              <div key={stars} style={{ background: bg, borderRadius: "var(--radius-md)", padding: "10px 8px", textAlign: "center" }}>
+                <div style={{ fontSize: "9px", fontWeight: 700, color, lineHeight: 1.3 }}>{label}</div>
+                <div style={{ fontSize: "18px", fontWeight: 700, fontFamily: "var(--font-mono)", color, margin: "4px 0 2px" }}>{learnt}/{total}</div>
+                <div style={{ fontSize: "9px", color, opacity: 0.7 }}>learnt</div>
+              </div>
+            );
           })}
         </div>
       </div>
