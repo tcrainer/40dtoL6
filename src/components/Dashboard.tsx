@@ -22,6 +22,7 @@ export function Dashboard() {
   const resetAll = useStore((s) => s.resetAll);
   const wordStates = useStore((s) => s.wordStates);
   const stats = useStore((s) => s.stats);
+  const setSelectedBox = useStore((s) => s.setSelectedBox);
 
   const [showReset, setShowReset] = useState(false);
   const [selectedDays, setSelectedDays] = useState<Map<string, Set<number>>>(new Map());
@@ -56,6 +57,11 @@ export function Dashboard() {
   const handleTopicClick = (topicId: string) => {
     setSelectedTopicId(topicId);
     setView("topic-detail");
+  };
+
+  const handleBoxClick = (box: number) => {
+    setSelectedBox(box);
+    setView("box-detail");
   };
 
   return (
@@ -129,12 +135,12 @@ export function Dashboard() {
       <div>
         <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>GCSE words</h2>
         <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "4px" }}>
-          <BoxCard label="Untested" count={boxCounts[0]} sub={`${Object.keys(wordStates).length} tested`} fg="var(--color-ink-muted)" bg="var(--color-surface-sunken)" smiley={false} />
+          <BoxCard label="Untested" count={boxCounts[0]} sub={`${Object.keys(wordStates).length} tested`} fg="var(--color-ink-muted)" bg="var(--color-surface-sunken)" smiley={false} onClick={() => handleBoxClick(0)} />
           {LEITNER_BOXES.map((box) => {
             const c = BOX_COLORS[box];
             const dueInBox = box < 6 ? countDueInBox(box, wordStates) : 0;
             const showSmiley = allRevised && boxCounts[box] > 0 && box < 6 && dueInBox === 0;
-            return <BoxCard key={box} label={`Box ${box}`} count={showSmiley ? -1 : boxCounts[box]} sub={BOX_LABELS[box]} fg={c.fg} bg={c.bg} dueCount={dueInBox} smiley={showSmiley} />;
+            return <BoxCard key={box} label={`Box ${box}`} count={showSmiley ? -1 : boxCounts[box]} sub={BOX_LABELS[box]} fg={c.fg} bg={c.bg} dueCount={dueInBox} smiley={showSmiley} onClick={() => handleBoxClick(box)} />;
           })}
         </div>
       </div>
@@ -254,11 +260,11 @@ export function Dashboard() {
   );
 }
 
-function BoxCard({ label, count, sub, fg, bg, dueCount, smiley }: {
-  label: string; count: number; sub: string; fg: string; bg: string; dueCount?: number; smiley: boolean;
+function BoxCard({ label, count, sub, fg, bg, dueCount, smiley, onClick }: {
+  label: string; count: number; sub: string; fg: string; bg: string; dueCount?: number; smiley: boolean; onClick?: () => void;
 }) {
   return (
-    <div style={{ minWidth: "90px", background: bg, borderRadius: "var(--radius-md)", padding: "10px", textAlign: "center", flexShrink: 0 }}>
+    <button onClick={onClick} style={{ minWidth: "90px", background: bg, borderRadius: "var(--radius-md)", padding: "10px", textAlign: "center", flexShrink: 0, border: "none", cursor: "pointer", fontFamily: "var(--font-sans)" }}>
       <div style={{ fontSize: "11px", fontWeight: 700, color: fg, textTransform: "uppercase" }}>{label}</div>
       <div style={{ fontSize: "9px", color: fg, opacity: 0.7 }}>{sub}</div>
       <div style={{ fontSize: "22px", fontWeight: 700, fontFamily: "var(--font-mono)", color: fg, margin: "2px 0" }}>
@@ -267,7 +273,7 @@ function BoxCard({ label, count, sub, fg, bg, dueCount, smiley }: {
       {dueCount !== undefined && dueCount > 0 && (
         <div style={{ fontSize: "9px", color: fg, opacity: 0.8 }}>{dueCount} due today</div>
       )}
-    </div>
+    </button>
   );
 }
 
