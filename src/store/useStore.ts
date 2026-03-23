@@ -7,16 +7,38 @@ import type {
 import { BOX_INTERVALS, MAX_DAY } from "@/types";
 import { getAllWords, getWordById } from "@/data/vocabulary";
 
-function todayISO(): string { return new Date().toISOString().slice(0, 10); }
-function daysBetween(a: string, b: string): number {
-  return Math.floor((new Date(b).getTime() - new Date(a).getTime()) / 86400000);
+/** Returns YYYY-MM-DD in local timezone */
+function todayISO(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 }
+
+/** Count calendar days between two YYYY-MM-DD strings (timezone-safe) */
+function daysBetween(a: string, b: string): number {
+  const [ay,am,ad] = a.split("-").map(Number);
+  const [by,bm,bd] = b.split("-").map(Number);
+  const da = Date.UTC(ay,am-1,ad);
+  const db = Date.UTC(by,bm-1,bd);
+  return Math.floor((db - da) / 86400000);
+}
+
 function isDue(state: WordState): boolean {
   if (state.box === 6) return false;
   if (state.box === 1) return true;
   if (!state.lastReviewDate) return true;
   return daysBetween(state.lastReviewDate, todayISO()) >= BOX_INTERVALS[state.box];
 }
+
+/** Get the next review date for a word */
+export function getNextReviewDate(state: WordState): string | null {
+  if (state.box === 6) return null; // mastered
+  if (state.box === 1 || !state.lastReviewDate) return todayISO();
+  const interval = BOX_INTERVALS[state.box];
+  const [y,m,d] = state.lastReviewDate.split("-").map(Number);
+  const date = new Date(y, m-1, d + interval);
+  return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+}
+
 function shuffle<T>(arr: T[]): T[] {
   const s = [...arr];
   for (let i = s.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [s[i], s[j]] = [s[j], s[i]]; }
@@ -26,12 +48,8 @@ function shuffle<T>(arr: T[]): T[] {
 function buildSessionCards(wordIds: string[]): SessionCard[] {
   const cards: SessionCard[] = [];
   const batchSize = 5;
-
-  // Separate verbs from regular words
   const verbIds = wordIds.filter(id => getWordById(id)?.isVerb);
   const regularIds = wordIds.filter(id => !getWordById(id)?.isVerb);
-
-  // Regular words: batched in groups of 5, both directions
   for (let i = 0; i < regularIds.length; i += batchSize) {
     const batch = regularIds.slice(i, i + batchSize);
     const firstDir: Direction = Math.random() < 0.5 ? "de-to-en" : "en-to-de";
@@ -40,12 +58,7 @@ function buildSessionCards(wordIds: string[]): SessionCard[] {
     for (const id of shuffled) cards.push({ wordId: id, direction: firstDir });
     for (const id of shuffle(shuffled)) cards.push({ wordId: id, direction: secondDir });
   }
-
-  // Verbs: only "verb-forms" direction (German only, one card per verb)
-  for (const id of shuffle(verbIds)) {
-    cards.push({ wordId: id, direction: "verb-forms" });
-  }
-
+  for (const id of shuffle(verbIds)) cards.push({ wordId: id, direction: "verb-forms" });
   return cards;
 }
 
@@ -61,6 +74,8 @@ interface AppState {
   setSelectedTopicId: (id: string | null) => void;
   selectedBox: number | null;
   setSelectedBox: (box: number | null) => void;
+  selectedImportance: number | null;
+  setSelectedImportance: (imp: number | null) => void;
   currentDay: number;
   setCurrentDay: (d: number) => void;
   wordStates: Record<string, WordState>;
@@ -78,11 +93,13 @@ interface AppState {
   nextCard: () => void;
   getSessionSummary: () => SessionSummary;
   getDueWordIds: () => string[];
-  getNewWordIds: () => string[];
+  getNewWordIdsToday: () => string[];
+  getAllUntestedIds: () => string[];
   getBoxCounts: () => Record<LeitnerBox | 0, number>;
   isAllRevisedToday: () => boolean;
   getTopicProgress: (topicId: string) => { total: number; mastered: number; inProgress: number; untested: number };
   isTopicDayTested: (topicId: string, day: number) => boolean;
+  isTopicDayPartial: (topicId: string, day: number) => boolean;
   resetAll: () => void;
 }
 
@@ -95,6 +112,8 @@ export const useStore = create<AppState>()(
       setSelectedTopicId: (id) => set({ selectedTopicId: id }),
       selectedBox: null,
       setSelectedBox: (box) => set({ selectedBox: box }),
+      selectedImportance: null,
+      setSelectedImportance: (imp) => set({ selectedImportance: imp }),
       currentDay: 1,
       setCurrentDay: (d) => set({ currentDay: Math.max(1, Math.min(MAX_DAY, d)) }),
       wordStates: {},
@@ -157,18 +176,10 @@ export const useStore = create<AppState>()(
         const passing = grade === "correct" || grade === "close";
         const existing = get().wordStates[card.wordId];
         const ws = existing ? { ...existing } : newWordState();
-
-        if (card.direction === "verb-forms") {
-          // Verbs: both directions set at once
-          ws.deToEnCorrect = passing;
-          ws.enToDeCorrect = passing;
-        } else if (card.direction === "de-to-en") {
-          ws.deToEnCorrect = passing;
-        } else {
-          ws.enToDeCorrect = passing;
-        }
+        if (card.direction === "verb-forms") { ws.deToEnCorrect = passing; ws.enToDeCorrect = passing; }
+        else if (card.direction === "de-to-en") ws.deToEnCorrect = passing;
+        else ws.enToDeCorrect = passing;
         if (passing) ws.totalCorrect++; else ws.totalIncorrect++;
-
         const pts = grade === "correct" ? 10 : grade === "close" ? 7 : 0;
         set((s) => ({
           sessionResults: [...s.sessionResults, { wordId: card.wordId, direction: card.direction, grade, userAnswer }],
@@ -183,13 +194,10 @@ export const useStore = create<AppState>()(
         const currentCard = sessionCards[sessionIndex];
         const ws = wordStates[currentCard.wordId];
         const word = getWordById(currentCard.wordId);
-
         if (ws) {
           const isVerb = word?.isVerb;
           const answeredCount = sessionResults.filter(r => r.wordId === currentCard.wordId).length;
-          // Verbs need 1 answer, regular words need 2
           const needsCount = isVerb ? 1 : 2;
-
           if (answeredCount >= needsCount) {
             const bothCorrect = ws.deToEnCorrect && ws.enToDeCorrect;
             const isFirstTest = ws.totalCorrect + ws.totalIncorrect <= needsCount;
@@ -203,7 +211,6 @@ export const useStore = create<AppState>()(
             set((s) => ({ wordStates: { ...s.wordStates, [currentCard.wordId]: updated } }));
           }
         }
-
         const nextIdx = sessionIndex + 1;
         set({ sessionIndex: nextIdx, view: nextIdx >= sessionCards.length ? "session-complete" : get().view });
       },
@@ -220,8 +227,7 @@ export const useStore = create<AppState>()(
           seen.add(r.wordId);
         }
         for (const wid of seen) {
-          const ws = wordStates[wid];
-          if (!ws) continue;
+          const ws = wordStates[wid]; if (!ws) continue;
           if (ws.box >= 2) promoted.push(wid); else demoted.push(wid);
           if (ws.box === 6) newlyMastered.push(wid);
         }
@@ -232,9 +238,15 @@ export const useStore = create<AppState>()(
         const { wordStates, currentDay } = get();
         return getAllWords().filter(w => w.day <= currentDay && wordStates[w.id] && isDue(wordStates[w.id])).map(w => w.id);
       },
-      getNewWordIds: () => {
+      // Only today's untested words (for "Test today's words" button)
+      getNewWordIdsToday: () => {
         const { wordStates, currentDay } = get();
         return getAllWords().filter(w => w.day <= currentDay && !wordStates[w.id]).map(w => w.id);
+      },
+      // ALL untested words across all days
+      getAllUntestedIds: () => {
+        const { wordStates } = get();
+        return getAllWords().filter(w => !wordStates[w.id]).map(w => w.id);
       },
       getBoxCounts: () => {
         const { wordStates, currentDay } = get();
@@ -265,13 +277,20 @@ export const useStore = create<AppState>()(
         const words = getAllWords().filter(w => w.topicId === topicId && w.day === day);
         return words.length > 0 && words.every(w => !!wordStates[w.id]);
       },
+      isTopicDayPartial: (topicId: string, day: number) => {
+        const { wordStates } = get();
+        const words = getAllWords().filter(w => w.topicId === topicId && w.day === day);
+        if (words.length === 0) return false;
+        const tested = words.filter(w => !!wordStates[w.id]).length;
+        return tested > 0 && tested < words.length;
+      },
       resetAll: () => set({
         view: "dashboard", currentDay: 1, wordStates: {}, sessionCards: [], sessionIndex: 0,
-        sessionResults: [], selectedTopicId: null, selectedBox: null, stats: defaultStats(),
+        sessionResults: [], selectedTopicId: null, selectedBox: null, selectedImportance: null, stats: defaultStats(),
       }),
     }),
     {
-      name: "german-vocab-leitner-v4",
+      name: "german-vocab-leitner-v5",
       partialize: (state) => ({ currentDay: state.currentDay, wordStates: state.wordStates, stats: state.stats }),
     }
   )
