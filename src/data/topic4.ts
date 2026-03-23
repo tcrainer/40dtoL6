@@ -1,417 +1,290 @@
 export const topic4Raw = `
-1	die Familie	family	Meine Familie ist sehr groß und lustig.	My family is very large and funny.
-1	der Freund / in	friend	Mein bester Freund spielt gern Fußball am Wochenende.	My best friend likes playing football at the weekend.
-1	die Eltern	parents	Meine Eltern arbeiten beide in der Stadt.	My parents both work in the town.
-1	die Mutter	mother	Meine Mutter kocht jeden Abend ein leckeres Essen.	My mother cooks a delicious meal every evening.
-1	der Vater	father	Mein Vater ist sehr groß und hat braune Haare.	My father is very tall and has brown hair.
-1	der Bruder	brother	Mein kleiner Bruder ist oft ein bisschen nervig.	My little brother is often a bit annoying.
-1	die Schwester	sister	Meine große Schwester studiert Medizin an der Uni.	My big sister studies medicine at the uni.
-2	das Kind	child	Das kleine Kind spielt glücklich im Sandkasten.	The small child is playing happily in the sandpit.
-2	das Kind, Kinder	child, children	Die Kinder rennen nach der Schule schnell nach Hause.	The children run home quickly after school.
-2	die Geschwister	siblings	Hast du Geschwister oder bist du ein Einzelkind?	Do you have siblings or are you an only child?
-2	das Haus	house	Unser Haus hat einen schönen Garten hinter der Küche.	Our house has a lovely garden behind the kitchen.
-2	das Haustier	pet	Ich möchte wirklich gern ein kleines Haustier haben.	I would really like to have a small pet.
-2	die Wohnung	flat	Wir wohnen in einer modernen Wohnung im Stadtzentrum.	We live in a modern flat in the town centre.
-2	die Küche	kitchen	Meine Oma backt samstags oft Kuchen in der Küche.	My grandma often bakes cakes in the kitchen on Saturdays.
-3	das Badezimmer	bathroom	Das Badezimmer ist morgens leider oft besetzt.	The bathroom is unfortunately often occupied in the mornings.
-3	das Bad	bath	Ich nehme am Abend nach dem Sport ein heißes Bad.	I take a hot bath in the evening after sport.
-3	das Schlafzimmer	bedroom	Mein Schlafzimmer ist im ersten Stock und sehr hell.	My bedroom is on the first floor and very bright.
-3	der Garten	garden	Wir grillen im Sommer oft zusammen im Garten.	We often have a barbecue together in the garden in the summer.
-3	aufstehen	to get up	Ich stehe jeden Morgen um Punkt sieben Uhr auf.	I get up at exactly seven o'clock every morning.
-3	frühstücken	to have breakfast	Wir frühstücken am Sonntag oft sehr spät gemeinsam.	We often have breakfast very late together on Sunday.
-3	früh	early	Mein Vater muss für seine Arbeit extrem früh aufstehen.	My father has to get up extremely early for his work.
-4	sich waschen	to wash	Ich wasche mich morgens schnell im Badezimmer.	I wash myself quickly in the bathroom in the mornings.
-4	sich anziehen	to get dressed	Nach dem Duschen ziehe ich mich sofort an.	After showering I get dressed immediately.
-4	ziehen	to pull	Bitte zieh nicht so stark an meinem Pullover!	Please do not pull so strongly on my jumper!
-4	aufräumen	to tidy up	Ich räume am Wochenende immer mein unordentliches Zimmer auf.	I always tidy up my messy room at the weekend.
-4	putzen	to clean (teeth etc.)	Wir müssen am Samstag das ganze Haus putzen.	We have to clean the whole house on Saturday.
-4	sich die Zähne putzen	to clean one's teeth	Ich putze mir nach dem Essen immer die Zähne.	I always clean my teeth after eating.
-4	kochen	to cook	Mein Vater kocht heute ein tolles Essen für die Familie.	My father is cooking a great meal for the family today.
-5	abwaschen	to wash up	Nach dem Abendessen muss mein Bruder das Geschirr abwaschen.	After dinner my brother has to wash up the dishes.
-5	helfen	to help	Ich helfe meiner Mutter oft bei der Hausarbeit.	I often help my mother with the housework.
-5	heiraten	to marry	Meine Cousine wird nächsten Monat in der Kirche heiraten.	My cousin will marry in the church next month.
-5	der Mann	man, husband	Der Mann liest am Morgen ruhig die Zeitung.	The man is quietly reading the newspaper in the morning.
-5	die Frau	woman, wife	Die freundliche Frau arbeitet als Lehrerin in der Schule.	The friendly woman works as a teacher in the school.
-5	der Hund	dog	Unser Hund spielt den ganzen Tag im Garten.	Our dog plays in the garden all day.
-5	die Katze	cat	Die schwarze Katze schläft gern auf dem weichen Sofa.	The black cat likes sleeping on the soft sofa.
-6	streiten	to argue	Meine Geschwister streiten sich oft über das Fernsehprogramm.	My siblings often argue about the TV programme.
-6	lieben	to love	Ich liebe meine Familie über alles auf der Welt.	I love my family above everything in the world.
-6	die Kindheit	childhood	Ich hatte eine sehr glückliche Kindheit auf dem Lande.	I had a very happy childhood in the country.
-6	das Spielzeug	toy	Das kleine Kind räumt sein Spielzeug in die Kiste.	The small child tidies his toy into the box.
-6	die Tür	door	Bitte mach die Tür zu, es ist hier kalt.	Please close the door, it is cold here.
-6	das Fenster	window	Ich mache das Fenster auf, weil es im Zimmer heiß ist.	I open the window because it is hot in the room.
-6	das Bett	bed	Mein neues Bett ist unglaublich bequem und weich.	My new bed is incredibly comfortable and soft.
-7	das Bett frisch beziehen	to change the bed	Am Wochenende müssen wir das Bett frisch beziehen.	At the weekend we must change the bed.
-7	das Bett machen	to make the bed	Ich mache mein Bett jeden Morgen vor der Schule.	I make my bed every morning before school.
-7	das Bettlaken	sheet	Wir waschen das weiße Bettlaken in der Waschmaschine.	We wash the white sheet in the washing machine.
-7	der Schrank	cupboard	Meine Kleidung hängt sauber und ordentlich im Schrank.	My clothes hang cleanly and tidily in the cupboard.
-7	der Stuhl	chair	Der alte Stuhl im Esszimmer ist sehr unbequem.	The old chair in the dining room is very uncomfortable.
-7	arbeiten	to work	Meine Eltern arbeiten beide hart für unsere Familie.	My parents both work hard for our family.
-7	decken	to set/lay (the table), to cover	Ich decke den Tisch für das Abendessen mit Tellern.	I set the table for dinner with plates.
-8	eintreten	to go in	Bitte treten Sie ein, die Tür ist schon offen.	Please go in, the door is already open.
-8	kennen	to know	Ich kenne diesen netten Jungen aus meiner Schule.	I know this nice boy from my school.
-8	leben	to live	Meine Großeltern leben schon lange in einer kleinen Wohnung.	My grandparents have lived in a small flat for a long time.
-8	mögen	to like	Ich mag meine neue Schule und meine netten Lehrer.	I like my new school and my nice teachers.
-8	schlafen	to sleep	Am Wochenende schlafe ich oft sehr lange und gut.	At the weekend I often sleep very long and well.
-8	umziehen	to move (house)	Wir ziehen nächsten Monat in ein größeres Haus um.	We are moving to a larger house next month.
-8	wohnen	to live	Ich wohne mit meiner Familie in einer ruhigen Vorstadt.	I live with my family in a quiet suburb.
-9	altmodisch	old-fashioned	Die Möbel in diesem alten Zimmer sind sehr altmodisch.	The furniture in this old room is very old-fashioned.
-9	angenehm	pleasant, nice, kind	Das Wetter heute ist sonnig und wirklich sehr angenehm.	The weather today is sunny and really very pleasant.
-9	bequem	comfortable	Dieses große, weiche Sofa ist unglaublich bequem.	This large, soft sofa is incredibly comfortable.
-9	brav	well-behaved, good	Der kleine Hund war gestern beim Spaziergang sehr brav.	The small dog was very well-behaved on the walk yesterday.
-9	böse	angry, bad	Mein Vater war sehr böse wegen meiner schlechten Note.	My father was very angry because of my bad grade.
-9	freundlich	friendly, kind, nice	Unsere neuen Nachbarn sind wirklich sehr freundlich.	Our new neighbours are really very friendly.
-9	gegenwärtig	present day	Dieses Buch zeigt das gegenwärtige Leben in Deutschland.	This book shows present day life in Germany.
-10	glücklich	happy, pleased, glad	Ich bin heute glücklich, weil ich keine Hausaufgaben habe.	I am happy today because I have no homework.
-10	groß	tall, big	Mein älterer Bruder ist schon unglaublich groß.	My older brother is already incredibly tall.
-10	klein	small, short	Das Badezimmer in unserer alten Wohnung ist ziemlich klein.	The bathroom in our old flat is quite small.
-10	komfortabel	comfortable	Unser neues Auto ist sehr komfortabel für lange Reisen.	Our new car is very comfortable for long journeys.
-10	morgens	in the mornings	Ich trinke morgens vor der Schule immer einen Tee.	I always drink a tea in the mornings before school.
-10	müde	tired	Nach dem langen Fußballtraining bin ich oft sehr müde.	After the long football training I am often very tired.
-10	neu	new	Wir brauchen unbedingt einen neuen Schrank für mein Zimmer.	We absolutely need a new cupboard for my room.
-11	schlimm	bad	Oh nein, das ist ein wirklich sehr schlimmer Fehler!	Oh no, that is a really very bad mistake!
-11	sympathisch	nice	Ich finde den neuen Lehrer für Erdkunde sehr sympathisch.	I find the new teacher for geography very nice.
-11	traurig	sad	Der kleine Junge weint, weil er heute sehr traurig ist.	The little boy is crying because he is very sad today.
-11	unbequem	uncomfortable	Diese alten Schuhe sind leider ziemlich hart und unbequem.	These old shoes are unfortunately quite hard and uncomfortable.
-11	Durst haben	to be thirsty	Nach dem Sportunterricht habe ich immer starken Durst.	After the PE lesson I am always very thirsty.
-11	Hunger haben	to be hungry	Ich habe Hunger, weil ich heute nicht gefrühstückt habe.	I am hungry because I did not have breakfast today.
-11	Spaß haben	to have fun	Wir haben am Wochenende mit Freunden viel Spaß.	We have a lot of fun with friends at the weekend.
-12	Spaß machen	to be fun	Das neue Videospiel macht wirklich unglaublich viel Spaß.	The new video game is really an incredible amount of fun.
-12	geboren sein	to be born	Meine kleine Schwester ist im August zweitausendzehn geboren.	My little sister was born in August two thousand and ten.
-12	gern (haben)	to like	Ich habe meine Großeltern sehr gern und besuche sie oft.	I like my grandparents very much and visit them often.
-12	leid tun	to be sorry	Es tut mir leid, dass ich leider dein Buch vergessen habe.	I am sorry that I have unfortunately forgotten your book.
-12	sich langweilen	to be bored	Ich langweile mich am Sonntag oft, wenn es draußen regnet.	I am often bored on Sunday when it rains outside.
-12	sich verhalten	to behave	Man muss sich in der Bibliothek leise und gut verhalten.	One must behave quietly and well in the library.
-12	verliebt sein	to be in love	Mein großer Bruder ist total in seine neue Freundin verliebt.	My big brother is totally in love with his new girlfriend.
-13	(gutes/schlechtes) Vorbild	(good/bad) example, role model	Mein Onkel ist ein sehr gutes Vorbild für meine Karriere.	My uncle is a very good role model for my career.
-13	das Doppelhaus	semi-detached house	Wir wohnen in einem modernen Doppelhaus am Stadtrand.	We live in a modern semi-detached house on the outskirts.
-13	das Einfamilienhaus	detached house	Dieses alte Einfamilienhaus hat einen großen, schönen Garten.	This old detached house has a large, beautiful garden.
-13	das Esszimmer	dining room	Wir essen am Sonntag immer zusammen im Esszimmer.	We always eat together in the dining room on Sunday.
-13	das Kopfkissen	pillow	Ich brauche ein weiches Kopfkissen, um gut zu schlafen.	I need a soft pillow to sleep well.
-13	das Mädchen	girl	Das kleine Mädchen malt ein buntes Bild für ihre Mutter.	The little girl is painting a colourful picture for her mother.
-13	das Reihenhaus	terraced house	Mein bester Freund wohnt in einem Reihenhaus im Stadtzentrum.	My best friend lives in a terraced house in the town centre.
-14	der Goldfisch	goldfish	Mein kleiner Bruder hat einen orangen Goldfisch als Haustier.	My little brother has an orange goldfish as a pet.
-14	der Großvater	grandfather	Mein Großvater erzählt uns oft interessante Geschichten von früher.	My grandfather often tells us interesting stories from the past.
-14	der Halbbruder	half-brother	Mein Halbbruder besucht uns immer am Wochenende zu Hause.	My half-brother always visits us at home at the weekend.
-14	der Junge	boy	Der Junge spielt am Nachmittag begeistert Fußball im Park.	The boy is enthusiastically playing football in the park in the afternoon.
-14	der Teppichboden	fitted carpet, wall-to-wall carpeting	Unser Wohnzimmer hat einen blauen und sehr weichen Teppichboden.	Our living room has a blue and very soft fitted carpet.
-14	der/die Sportler/in	sportsman/ sportswoman	Mein Onkel ist ein professioneller und sehr erfolgreicher Sportler.	My uncle is a professional and very successful sportsman.
-14	die Freundschaft	friendship	Eine gute und ehrliche Freundschaft ist im Leben extrem wichtig.	A good and honest friendship is extremely important in life.
-15	die Großmutter	grandmother	Meine nette Großmutter backt immer die allerbesten Kuchen.	My nice grandmother always bakes the absolute best cakes.
-15	die Halbschwester	half-sister	Meine Halbschwester wohnt mit ihrer Mutter in einer anderen Stadt.	My half-sister lives in another town with her mother.
-15	die Hausfrau	housewife	Meine Tante arbeitet nicht im Büro, sie ist Hausfrau.	My aunt does not work in the office, she is a housewife.
-15	die Tischdecke	tablecloth	Vor dem Abendessen lege ich eine saubere Tischdecke auf den Tisch.	Before dinner I put a clean tablecloth on the table.
-15	gut gelaunt	in a good mood	Ich bin heute Morgen sehr gut gelaunt, weil das Wetter schön ist.	I am in a very good mood this morning because the weather is lovely.
-15	schlecht gelaunt	in a bad mood	Er ist leider heute schlecht gelaunt wegen seiner Matheprüfung.	He is unfortunately in a bad mood today because of his maths exam.
-15	abspülen	to wash up	Ich muss nach dem Mittagessen das schmutzige Geschirr abspülen.	I have to wash up the dirty dishes after lunch.
-16	aufwachen	to wake up	Ich wache jeden Morgen um Punkt sieben Uhr auf.	I wake up at exactly seven o'clock every morning.
-16	aufwachsen	to grow up	Mein kleiner Cousin wächst auf einem Bauernhof auf.	My little cousin is growing up on a farm.
-16	ausmachen	to switch off, to turn off	Bitte mach sofort das helle Licht im Schlafzimmer aus.	Please switch off the bright light in the bedroom immediately.
-16	ausschimpfen	to tell off	Meine Mutter schimpft meinen kleinen Bruder oft aus.	My mother often tells off my little brother.
-16	aussehen	to look	Dein neues blaues Kleid sieht wirklich sehr hübsch aus.	Your new blue dress looks really very pretty.
-16	beeinflussen	to influence	Meine Freunde beeinflussen oft meine Meinung über Musik.	My friends often influence my opinion about music.
-16	begleiten	to accompany	Ich begleite meine kleine Schwester am Morgen zur Schule.	I accompany my little sister to school in the morning.
-17	betreten	to enter	Wir betreten leise das große Klassenzimmer für den Test.	We quietly enter the large classroom for the test.
-17	bevorzugen	to prefer	Ich bevorzuge ganz klar das ruhige Leben auf dem Lande.	I clearly prefer the quiet life in the country.
-17	bügeln	to iron	Mein Vater bügelt am Wochenende oft seine Arbeitshemden.	My father often irons his work shirts at the weekend.
-17	bürsten	to brush	Ich bürste meine Haare jeden Morgen ganz schnell im Badezimmer.	I brush my hair very quickly in the bathroom every morning.
-17	drücken	to press, to push	Du musst diesen roten Knopf fest drücken, um die Tür zu öffnen.	You have to press this red button firmly to open the door.
-17	eingießen	to pour (in)	Ich gieße mir ein großes Glas kaltes Wasser ein.	I pour myself a large glass of cold water.
-17	erzählen	to tell (a story)	Mein Großvater erzählt uns oft extrem spannende Geschichten.	My grandfather often tells us extremely exciting stories.
-18	faulenzen	to laze about	Am Sonntag faulenze ich am liebsten den ganzen Tag auf dem Sofa.	On Sunday I prefer to laze about on the sofa all day.
-18	folgen	to follow	Der kleine Hund folgt meinem Bruder einfach überallhin.	The small dog simply follows my brother everywhere.
-18	fühlen	to feel	Ich fühle mich heute leider ein bisschen krank und müde.	Unfortunately I feel a little ill and tired today.
-18	hassen	to hate	Ich hasse es, mein unordentliches Zimmer am Wochenende aufzuräumen.	I hate tidying up my messy room at the weekend.
-18	holen	to fetch	Ich hole mein neues Mathebuch schnell aus meiner Schultasche.	I quickly fetch my new maths book from my school bag.
-18	klettern	to climb	Die Kinder klettern mutig auf den hohen Baum im Park.	The children bravely climb the tall tree in the park.
-18	klopfen	to knock	Bitte klopfen Sie an die Tür, bevor Sie das Büro betreten.	Please knock on the door before you enter the office.
-19	lachen	to laugh	Wir lachen sehr viel, wenn wir am Wochenende mit Freunden spielen.	We laugh a lot when we play with friends at the weekend.
-19	leeren	to empty	Ich leere jeden Abend den vollen Mülleimer in der Küche.	I empty the full dustbin in the kitchen every evening.
-19	legen	to put (onto)	Ich lege mein schweres Buch ordentlich auf den großen Schreibtisch.	I put my heavy book neatly onto the large desk.
-19	leihen	to lend, to loan, to borrow	Ich leihe dir sehr gern meinen blauen Kuli für den Grammatiktest.	I very gladly lend you my blue pen for the grammar test.
-19	lächeln	to smile	Das nette kleine Mädchen lächelt immer sehr freundlich.	The nice little girl always smiles very pleasantly.
-19	nachmachen	to copy, imitate	Mein kleiner Bruder macht oft meine Fehler bei den Hausaufgaben nach.	My little brother often copies my mistakes in the homework.
-19	scheinen	to shine, to appear	Die Sonne scheint heute sehr hell von einem blauen Himmel.	The sun shines very brightly from a blue sky today.
-20	schieben	to push	Mein Vater schiebt das kaputte Auto sehr langsam in die Garage.	My father very slowly pushes the broken car into the garage.
-20	schneiden	to cut	Ich schneide das frische Brot für unser leckeres Frühstück.	I cut the fresh bread for our delicious breakfast.
-20	stecken	to put (into)	Ich stecke den neuen Hausschlüssel schnell in meine Tasche.	I quickly put the new house key into my pocket.
-20	teilen	to share	Ich teile meinen großen Schokoladenkuchen gerecht mit meiner Schwester.	I share my large chocolate cake fairly with my sister.
-20	treffen	to meet	Ich treffe meine besten Freunde am Samstagmittag im Stadtzentrum.	I meet my best friends in the town centre on Saturday lunchtime.
-20	vergeben	to forgive	Meine Mutter vergibt mir immer extrem schnell meine kleinen Fehler.	My mother always forgives me my small mistakes extremely quickly.
-20	vorziehen	to prefer	Ich ziehe einen sehr ruhigen Abend zu Hause vor.	I prefer a very quiet evening at home.
-21	wecken	to wake (someone)	Mein furchtbar lauter Wecker weckt mich jeden Morgen um sechs Uhr.	My terribly loud alarm clock wakes me every morning at six o'clock.
-21	weinen	to cry	Das traurige Baby weint laut in seinem kleinen Bettchen.	The sad baby cries loudly in its small bed.
-21	wiederholen	to repeat	Können Sie diese extrem schwierige Frage bitte noch einmal wiederholen?	Can you please repeat this extremely difficult question again?
-21	ärgern	to annoy	Mein älterer Bruder ärgert mich fast jeden Tag nach der Schule.	My older brother annoys me almost every day after school.
-21	ins Bett gehen	to go to bed	Ich bin heute Abend sehr müde und gehe früh ins Bett.	I am very tired this evening and am going to bed early.
-21	nach Hause gehen	to go home	Wir gehen nach dem anstrengenden Schultag immer sofort nach Hause.	We always go straight home after the tiring school day.
-21	nach oben gehen	to go upstairs	Ich gehe nach oben in mein helles Schlafzimmer, um zu schlafen.	I am going upstairs into my bright bedroom to sleep.
-22	nach unten gehen	to go downstairs	Wir gehen nach unten in die große Küche, um früh zu frühstücken.	We are going downstairs into the large kitchen to have an early breakfast.
-22	sich gut verstehen	to get on well	Ich verstehe mich eigentlich extrem gut mit meinem älteren Bruder.	I actually get on extremely well with my older brother.
-22	adoptiert	adopted	Mein süßer kleiner Cousin ist glücklicherweise adoptiert.	My cute little cousin is fortunately adopted.
-22	allein	alone	Er wohnt ganz allein in einer sehr kleinen Wohnung im Zentrum.	He lives completely alone in a very small flat in the centre.
-22	ander	other	Ich ziehe heute lieber meine anderen Schuhe für den Spaziergang an.	I prefer to put on my other shoes for the walk today.
-22	anstrengend	tiring	Die extrem lange Klassenfahrt nach London war wirklich sehr anstrengend.	The extremely long school trip to London was really very tiring.
-22	berühmt	famous	Dieser amerikanische Schauspieler aus dem Film ist unglaublich berühmt.	This American actor from the film is incredibly famous.
-23	blau	blue	Mein bequemer Lieblingspullover ist sehr hell und blau.	My comfortable favourite jumper is very bright and blue.
-23	blond	blonde	Meine Schwester hat sehr lange, blonde Haare und hellblaue Augen.	My sister has very long, blonde hair and light blue eyes.
-23	braun	brown	Der alte Schrank in meinem Zimmer ist aus dunkelbraunem Holz.	The old cupboard in my room is made of dark brown wood.
-23	dankbar	thankful	Ich bin dir sehr dankbar für deine gute Hilfe bei den Hausaufgaben.	I am very thankful to you for your good help with the homework.
-23	dick	fat	Mein dicker Kater schläft den ganzen Tag auf dem Sofa.	My fat tomcat sleeps on the sofa all day.
-23	dumm	stupid	Dieser blöde Fehler in meiner Französischprüfung war leider ziemlich dumm.	This silly mistake in my French exam was unfortunately quite stupid.
-23	dunkel	dark	Es ist im Winter abends leider schon sehr früh dunkel.	It is unfortunately already dark very early in the evenings in winter.
-24	dynamisch	dynamic	Unsere neue Lehrerin für Biologie ist extrem freundlich und dynamisch.	Our new teacher for biology is extremely friendly and dynamic.
-24	dünn	thin	Mein neues Buch für den Geschichtsunterricht ist glücklicherweise sehr dünn.	My new book for the history lesson is fortunately very thin.
-24	echt	real, genuine	Dieser ziemlich teure Schmuck aus dem Geschäft ist absolut echt.	This quite expensive jewellery from the shop is absolutely real.
-24	ehemalig	former, earlier	Mein ehemaliger Mathelehrer wohnt jetzt sehr glücklich in Spanien.	My former maths teacher now lives very happily in Spain.
-24	ehrlich	honest, decent, fair	Ein wirklich guter Freund muss dir gegenüber immer absolut ehrlich sein.	A really good friend must always be absolutely honest with you.
-24	eigen	own	Ich habe endlich ein eigenes, schönes Zimmer im zweiten Stock.	I finally have my own beautiful room on the second floor.
-24	einzig	only	Er ist leider das einzige Kind in seiner kleinen, ruhigen Familie.	He is unfortunately the only child in his small, quiet family.
-25	elegant	elegant	Meine Mutter trägt auf der Party heute ein sehr elegantes Kleid.	My mother is wearing a very elegant dress at the party today.
-25	ermüdend	tiring	Die sehr lange Reise mit dem langsamen Bus war wirklich extrem ermüdend.	The very long journey by slow bus was really extremely tiring.
-25	erschöpft	exhausted	Nach dem anstrengenden Fußballspiel bin ich völlig erschöpft.	After the tiring football match I am completely exhausted.
-25	faul	lazy	Am Sonntag bin ich oft sehr faul und schlafe furchtbar lange.	On Sunday I am often very lazy and sleep for a terribly long time.
-25	frech	naughty	Der freche Junge spielt oft viel zu laut auf dem ruhigen Schulhof.	The naughty boy often plays much too loudly in the quiet playground.
-25	gefährlich	dangerous	Es ist extrem gefährlich, nachts auf der dunklen Straße zu spielen.	It is extremely dangerous to play on the dark street at night.
-25	gelb	yellow	Im Frühling blühen in unserem großen Garten viele gelbe Blumen.	In spring many yellow flowers bloom in our large garden.
-26	gemütlich	cozy	Unser kleines Wohnzimmer ist im Winter extrem warm und gemütlich.	Our small living room is extremely warm and cozy in winter.
-26	gepunktet	spotted, dotted	Ich trage heute mein neues rotes gepunktetes T-Shirt zur Schule.	I am wearing my new red dotted T-shirt to school today.
-26	geräumig	spacious	Die moderne Küche in unserem neuen Haus ist sehr hell und geräumig.	The modern kitchen in our new house is very bright and spacious.
-26	geschieden	divorced	Leider sind die Eltern von meinem besten Freund seit einem Jahr geschieden.	Unfortunately my best friend's parents have been divorced for a year.
-26	geschwätzig	chatty, talkative	Meine kleine Schwester ist beim Abendessen oft extrem geschwätzig.	My little sister is often extremely chatty at dinner.
-26	gestreift	striped	Mein Vater liebt seine alte gestreifte Krawatte wirklich sehr.	My father really loves his old striped tie very much.
-26	glatt	straight	Ich habe glatte Haare, aber ich möchte manchmal gern lockige Haare haben.	I have straight hair, but sometimes I would like to have curly hair.
-27	grau	grey	Der Himmel über der ruhigen Stadt ist heute furchtbar traurig und grau.	The sky above the quiet town is terribly sad and grey today.
-27	großzügig	generous	Meine Großmutter ist sehr nett und unglaublich großzügig zu mir.	My grandmother is very nice and incredibly generous to me.
-27	grün	green	Das weiche Gras im großen Park ist im späten Frühling sehr grün.	The soft grass in the large park is very green in late spring.
-27	hell	bright	Mein neues kleines Schlafzimmer unter dem Dach ist zum Glück sehr hell.	My new small bedroom under the roof is fortunately very bright.
-27	hässlich	ugly	Ich finde dieses alte Sofa im Wohnzimmer ehrlich gesagt extrem hässlich.	I find this old sofa in the living room extremely ugly, to be honest.
-27	höflich	polite	Der nette Schüler ist immer sehr höflich zu den strengen Lehrern.	The nice pupil is always very polite to the strict teachers.
-27	hübsch	pretty	Meine große Schwester hat gestern ein unglaublich hübsches Kleid gekauft.	My big sister bought an incredibly pretty dress yesterday.
-28	jung	young	Der neue Mathelehrer an unserer großen Schule ist noch ziemlich jung.	The new maths teacher at our large school is still quite young.
-28	klasse	great	Wir haben eine tolle Klassenfahrt nach Berlin gemacht, es war klasse!	We went on a great school trip to Berlin, it was great!
-28	klug	clever	Das leise Mädchen liest sehr viele Bücher und ist wirklich sehr klug.	The quiet girl reads a lot of books and is really very clever.
-28	kompliziert	complicated	Die neue Grammatik in Französisch ist oft leider extrem kompliziert.	The new grammar in French is often unfortunately extremely complicated.
-28	kurz	short	Mein täglicher Schulweg mit dem Fahrrad ist glücklicherweise sehr kurz.	My daily way to school by bike is fortunately very short.
-28	lang	long	Wir machen am Wochenende bei dem guten Wetter einen schönen langen Spaziergang.	We are going for a lovely long walk at the weekend in the good weather.
-28	laut	loud	Die fröhliche Musik auf der tollen Party war leider viel zu laut.	The happy music at the great party was unfortunately much too loud.
-29	ledig	single, unmarried	Mein junger Onkel wohnt in einer Wohnung in London und ist noch ledig.	My young uncle lives in a flat in London and is still single.
-29	leise	quiet	Die Schüler müssen in der Schulbibliothek beim Lernen immer sehr leise sein.	The pupils must always be very quiet in the school library when studying.
-29	letzt	last	Der letzte Tag unserer schönen Sommerferien war wirklich wunderschön.	The last day of our lovely summer holidays was really beautiful.
-29	lila	lilac, purple	Ich habe mir einen neuen, sehr warmen Pullover in lila für den Winter gekauft.	I bought myself a new, very warm jumper in purple for the winter.
-29	lockig	curly	Mein bester Freund hat blonde und extrem lockige Haare.	My best friend has blonde and extremely curly hair.
-29	modern	modern	Wir wohnen jetzt glücklich in einer extrem modernen Wohnung am Stadtrand.	We now live happily in an extremely modern flat on the outskirts.
-29	mutig	brave	Der mutige Polizist half den Menschen schnell bei dem schlimmen Unfall.	The brave policeman quickly helped the people in the bad accident.
-30	nachmittags	in the afternoons	Ich mache meine Hausaufgaben meistens direkt nachmittags nach der Schule.	I usually do my homework directly in the afternoons after school.
-30	nächst	next	Wir fahren sicher nächste Woche für ein paar entspannte Tage nach Spanien.	We are definitely travelling to Spain next week for a few relaxing days.
-30	orange	orange	Mein Bruder trägt beim Fußballspielen oft ein sehr helles, oranges T-Shirt.	My brother often wears a very bright orange T-shirt when playing football.
-30	perfekt	perfect	Das sonnige Wetter an unserem Urlaubsort war glücklicherweise absolut perfekt.	The sunny weather at our holiday resort was fortunately absolutely perfect.
-30	prima	great	Diese fantastische Idee für das große Schulfest im Sommer ist wirklich prima!	This fantastic idea for the large school festival in the summer is really great!
-30	reif	mature, ripe	Dieser süße Apfel aus unserem Garten ist schon sehr rot und reif.	This sweet apple from our garden is already very red and ripe.
-30	reizend	charming	Unsere neuen, netten Nachbarn aus Frankreich sind unglaublich reizend.	Our nice new neighbours from France are incredibly charming.
-31	rosa	pink	Mein neues T-Shirt für den Sommer ist rosa.	My new T-shirt for the summer is pink.
-31	rot	red	Mein älterer Bruder fährt ein schnelles, rotes Auto.	My older brother drives a fast, red car.
-31	schlank	slim	Meine Schwester macht viel Sport und ist sehr schlank.	My sister does a lot of sport and is very slim.
-31	schrecklich	terrible, dreadful	Das extrem kalte Wetter im Winter finde ich einfach schrecklich.	I simply find the extremely cold weather in winter terrible.
-31	schwarz	black	Meine schwarze Katze schläft oft gemütlich auf meinem Bett.	My black cat often sleeps cozily on my bed.
-31	schwer	heavy, hard	Mein Rucksack mit all den Schulbüchern ist furchtbar schwer.	My backpack with all the textbooks is terribly heavy.
-31	schüchtern	shy	Der neue Schüler in unserer kleinen Klasse ist noch sehr schüchtern.	The new pupil in our small class is still very shy.
-32	seiden	made of silk	Meine Mutter trägt eine unglaublich schöne seidene Bluse zur Arbeit.	My mother wears an incredibly beautiful blouse made of silk to work.
-32	selbstsicher	self-confident	Mein bester Freund ist sehr intelligent und total selbstsicher.	My best friend is very intelligent and totally self-confident.
-32	selbstsüchtig	selfish	Man muss mit Freunden teilen, man darf nicht selbstsüchtig sein.	You must share with friends, you must not be selfish.
-32	selten	rarely	Ich gehe sehr selten ins Kino, weil es heutzutage so teuer ist.	I rarely go to the cinema because it is so expensive nowadays.
-32	sportlich	sporty	Meine ganze Familie ist am Wochenende unglaublich sportlich und aktiv.	My whole family is incredibly sporty and active at the weekend.
-32	spät	late	Wir müssen uns jetzt wirklich beeilen, es ist schon furchtbar spät!	We really have to hurry up now, it is already terribly late!
-32	still	silent	Die Schüler sind während der schweren Prüfung in der Aula absolut still.	The pupils are absolutely silent during the difficult exam in the hall.
-33	super	super	Meine Geburtstagsparty am letzten Wochenende war einfach super!	My birthday party last weekend was simply super!
-33	toll	mad, crazy	Der unglaubliche Lärm von der Straße macht mich wirklich völlig toll.	The incredible noise from the street is really making me completely mad.
-33	tot	dead	Mein armer kleiner Goldfisch ist leider gestern gestorben und jetzt tot.	My poor little goldfish unfortunately died yesterday and is now dead.
-33	typisch	typical	Das ist ein wirklich typisches deutsches Abendessen mit leckerem Brot und Käse.	That is a really typical German dinner with delicious bread and cheese.
-33	unglaublich	unbelievable	Die fantastische Aussicht von diesem hohen Berg ist einfach unglaublich.	The fantastic view from this high mountain is simply unbelievable.
-33	unhöflich	rude, impolite	Es ist extrem unhöflich, den Lehrer im Unterricht einfach zu unterbrechen.	It is extremely rude to simply interrupt the teacher in the lesson.
-33	verantwortlich	responsible	Ich bin für meinen kleinen Hund verantwortlich, wenn wir im Park spazieren gehen.	I am responsible for my small dog when we go for a walk in the park.
-34	verheiratet	married	Mein Onkel und meine Tante sind glücklicherweise schon sehr lange verheiratet.	My uncle and aunt have fortunately been married for a very long time.
-34	verwöhnt	spoilt	Das kleine Einzelkind bekommt sehr viele Geschenke und ist unglaublich verwöhnt.	The small only child gets a lot of presents and is incredibly spoilt.
-34	weiß	white	Im kalten Winter ist die ganze Landschaft oft weiß vom frischen Schnee.	In the cold winter the whole landscape is often white from the fresh snow.
-34	wellig	wavy	Meine Cousine hat sehr lange, wellige, blonde Haare.	My cousin has very long, wavy, blonde hair.
-34	zornig	angry	Mein Vater war gestern sehr zornig über mein schlechtes Zeugnis in Mathe.	My father was very angry yesterday about my bad report in maths.
-34	zufrieden	satisfied	Ich bin mit meiner fantastischen Note in Geschichte wirklich sehr zufrieden.	I am really very satisfied with my fantastic mark in history.
-34	alt, älter, ältest	old, older, oldest	Mein Haus ist alt, aber die große Kirche ist das älteste Gebäude in der Stadt.	My house is old, but the large church is the oldest building in the town.
-35	mir ist kalt	I am cold	Mir ist draußen im Schnee ohne dicke Jacke leider sehr kalt.	I am unfortunately very cold outside in the snow without a thick jacket.
-35	Staub saugen	to vacuum	Ich sauge jeden Samstagmorgen brav Staub in meinem Zimmer.	I dutifully vacuum in my room every Saturday morning.
-35	bitten um	to ask for	Ich muss meine Eltern leider dringend um etwas mehr Taschengeld bitten.	I unfortunately urgently have to ask my parents for a little more pocket money.
-35	fallen lassen	to drop	Bitte pass gut auf und lass diesen teuren Teller nicht fallen!	Please pay good attention and do not drop this expensive plate!
-35	kennen lernen	to meet	Auf der lustigen Klassenfahrt lernen wir glücklicherweise viele neue Leute kennen.	On the fun school trip we fortunately meet a lot of new people.
-35	lieber (haben)	to prefer	Ich habe im Sommer das warme und sonnige Wetter viel lieber.	I prefer the warm and sunny weather much more in the summer.
-35	sauber machen	to clean	Wir machen vor der großen Party am Wochenende das ganze Haus sauber.	We are cleaning the whole house before the big party at the weekend.
-36	sich duschen	to shower	Ich dusche mich jeden Morgen sofort nach dem Aufstehen im Badezimmer.	I shower every morning immediately after getting up in the bathroom.
-36	sich rasieren	to shave	Mein älterer Onkel rasiert sich jeden Morgen gründlich am Waschbecken.	My older uncle shaves thoroughly at the washbasin every morning.
-36	streben nach	to aspire to	Viele ehrgeizige und fleißige Schüler streben nach exzellenten Noten in der Schule.	Many ambitious and hard-working pupils aspire to excellent grades in school.
-36	umdrehen (sich)	to turn around	Ich drehe mich schnell um, als ich meinen Vornamen auf der Straße höre.	I turn around quickly when I hear my first name on the street.
-36	das Baby	baby	Das winzige Baby meiner Tante weint manchmal laut in der Nacht.	My aunt's tiny baby sometimes cries loudly in the night.
-36	das Dach	roof	Das schräge Dach von unserem großen Haus ist dunkelrot und ziemlich hoch.	The sloping roof of our large house is dark red and quite high.
-36	das Einzelkind	only child	Als Einzelkind habe ich zu Hause leider keine Brüder oder Schwestern zum Spielen.	As an only child I unfortunately have no brothers or sisters to play with at home.
-37	das Erdgeschoss	ground floor	Unsere helle Küche und das gemütliche Wohnzimmer sind unten im Erdgeschoss.	Our bright kitchen and the cozy living room are downstairs on the ground floor.
-37	das Gas	gas	Wir kochen unser Essen jeden Abend ziemlich schnell mit Gas auf dem Herd.	We cook our food quite quickly with gas on the cooker every evening.
-37	das Hemd	shirt	Mein Vater trägt ein sauberes weißes Hemd und eine Krawatte zur Arbeit im Büro.	My father wears a clean white shirt and a tie to work in the office.
-37	das Hochhaus	high rise	Mein bester Freund wohnt ganz oben im zehnten Stock in einem modernen Hochhaus.	My best friend lives right at the top on the tenth floor in a modern high rise.
-37	das Idol	idol	Mein absolutes Idol ist ein sehr berühmter und talentierter amerikanischer Popstar.	My absolute idol is a very famous and talented American popstar.
-37	das Kaninchen	rabbit	Mein kleines, weißes Kaninchen frisst unglaublich gern frische Karotten im Garten.	My small, white rabbit incredibly likes eating fresh carrots in the garden.
-37	das Kleid	dress	Meine ältere Schwester trägt ein unglaublich hübsches rotes Kleid auf der Party.	My older sister is wearing an incredibly pretty red dress at the party.
-38	das Kleidungsstück	garment, article of clothing	Eine unglaublich dicke und warme Jacke ist ein wichtiges Kleidungsstück für den Winter.	An incredibly thick and warm jacket is an important article of clothing for the winter.
-38	das Klo	loo	Entschuldigung, darf ich während des Unterrichts bitte kurz auf das Klo gehen?	Excuse me, may I please go to the loo briefly during the lesson?
-38	das Licht	light	Bitte mach sofort das Licht an, weil es hier in diesem Zimmer extrem dunkel ist.	Please turn the light on immediately because it is extremely dark here in this room.
-38	das Meerschweinchen	guinea pig	Ich reinige jeden Samstag brav den Käfig für mein süßes, kleines Meerschweinchen.	I dutifully clean the cage for my cute, little guinea pig every Saturday.
-38	das Messer	knife	Ich brauche wirklich ein sehr scharfes Messer, um dieses Stück Fleisch zu schneiden.	I really need a very sharp knife to cut this piece of meat.
-38	das Modell/Model	model	Sie ist ein berühmtes Model und trägt wunderschöne Kleidung auf dem Laufsteg.	She is a famous model and wears beautiful clothing on the catwalk.
-38	das Möbelstück	piece of furniture	Dieses alte Sofa ist ohne Zweifel mein absolutes Lieblingsmöbelstück im Wohnzimmer.	This old sofa is without a doubt my absolute favourite piece of furniture in the living room.
-39	das Regal	shelf, shelving	Meine vielen bunten Bücher stehen alle sauber und ordentlich im Regal an der Wand.	My many colourful books all stand cleanly and tidily on the shelf on the wall.
-39	das Sakko	jacket	Mein Onkel trägt ein dunkles Sakko und eine blaue Krawatte bei der Arbeit.	My uncle wears a dark jacket and a blue tie at work.
-39	das Shampoo	shampoo	Ich wasche meine nassen Haare unter der heißen Dusche mit einem frischen Shampoo.	I wash my wet hair under the hot shower with a fresh shampoo.
-39	das Sofa	sofa, settee	Wir sitzen am Samstagabend oft alle gemütlich zusammen auf dem bequemen Sofa.	We often all sit cozily together on the comfortable sofa on Saturday evening.
-39	das Spülbecken	kitchen sink	Das schmutzige Geschirr von unserem großen Frühstück steht immer noch im Spülbecken.	The dirty dishes from our large breakfast are still standing in the kitchen sink.
-39	das Sweatshirt	sweatshirt	Ich trage heute glücklich mein extrem warmes und graues Sweatshirt in der Schule.	I am happily wearing my extremely warm and grey sweatshirt in school today.
-39	das T-Shirt	T-shirt	Im heißen Sommer trage ich an den Wochenenden meistens nur ein einfaches, weißes T-Shirt.	In the hot summer I mostly only wear a simple, white T-shirt at the weekends.
-40	das Verhalten	behaviour	Das laute Verhalten von meinem kleinen Bruder im Restaurant ist heute wirklich furchtbar.	The loud behaviour of my little brother in the restaurant today is really terrible.
-40	das Waschbecken	washbasin	Ich putze mir morgens extrem schnell die Zähne am weißen Waschbecken im Bad.	I clean my teeth extremely quickly at the white washbasin in the bathroom in the morning.
-40	der Abfall	rubbish	Bitte wirf deinen Abfall in den großen Mülleimer und definitiv nicht auf den Boden.	Please throw your rubbish into the large dustbin and definitely not onto the floor.
-40	der Anhänger	pendant (jewellery)	Meine Mutter trägt am Abend glücklich eine feine, goldene Kette mit einem schönen Anhänger.	My mother happily wears a fine, gold necklace with a beautiful pendant in the evening.
-40	der Bart	beard	Mein netter Großvater hat schneeweiße Haare und einen unglaublich langen Bart.	My nice grandfather has snow-white hair and an incredibly long beard.
-40	der Baum	tree	In unserem großen, grünen Garten steht ein sehr alter und wunderschöner Baum.	In our large, green garden stands a very old and beautiful tree.
-40	der Boden	floor	Die vielen kleinen Kinder sitzen entspannt auf dem Boden und spielen ein Brettspiel.	The many small children are sitting relaxed on the floor and playing a board game.
-41	der Dachboden	attic	Wir haben viele furchtbar alte und kaputte Möbel oben auf unserem staubigen Dachboden.	We have many terribly old and broken pieces of furniture upstairs in our dusty attic.
-41	der Dosenöffner	can opener	Ich brauche dringend einen Dosenöffner, um die kleinen Tomaten für die Soße zu öffnen.	I urgently need a can opener to open the small tomatoes for the sauce.
-41	der Einfluss	influence	Meine ehrlichen und strengen Eltern haben einen sehr großen Einfluss auf mein Leben.	My honest and strict parents have a very big influence on my life.
-41	der Familienname	surname	Mein lieber Vorname ist Thomas und mein stolzer Familienname ist eigentlich Müller.	My dear first name is Thomas and my proud surname is actually Müller.
-41	der Flaschenöffner	bottle opener	Hast du vielleicht einen Flaschenöffner für diese eiskalte Flasche Cola aus dem Kühlschrank?	Do you perhaps have a bottle opener for this ice-cold bottle of cola from the fridge?
-41	der Flur	hall, hallway	Bitte lass deine extrem schmutzigen Schuhe nach dem Regen im Flur vor der Tür stehen.	Please leave your extremely dirty shoes in the hallway in front of the door after the rain.
-41	der Fußboden	floor	Meine Mutter putzt am Wochenende den furchtbar schmutzigen und harten Fußboden in der Küche.	My mother is cleaning the terribly dirty and hard floor in the kitchen at the weekend.
-42	der Gefrierschrank	freezer	Wir haben im heißen Sommer immer fantastisch viel leckeres Eis in unserem Gefrierschrank.	We always have a fantastic amount of delicious ice cream in our freezer in the hot summer.
-42	der Geschirrspüler	dishwasher	Nach dem fantastischen Abendessen räume ich die schmutzigen Teller geduldig in den Geschirrspüler.	After the fantastic dinner I patiently load the dirty plates into the dishwasher.
-42	der Gürtel	belt	Meine blaue Hose ist leider ein bisschen zu groß, also brauche ich unbedingt einen Gürtel.	My blue trousers are unfortunately a bit too large, so I absolutely need a belt.
-42	der Hahn	tap	Das unglaublich kalte Wasser für meine heiße Suppe kommt aus dem silbernen Hahn im Badezimmer.	The incredibly cold water for my hot soup comes from the silver tap in the bathroom.
-42	der Handschuh	glove	Oh nein, ich habe heute Nachmittag leider meinen linken Handschuh im Schulbus verloren.	Oh no, I unfortunately lost my left glove in the school bus this afternoon.
-42	der Herd	cooker	Der große Kochtopf mit der extrem heißen Suppe steht nach dem Essen noch auf dem Herd.	The large saucepan with the extremely hot soup is still standing on the cooker after the meal.
-42	der Keller	cellar	Wir haben eine schrecklich alte und sehr laute Waschmaschine unten in unserem dunklen Keller.	We have a terribly old and very loud washing machine downstairs in our dark cellar.
-43	der Kochtopf	saucepan	Ich koche die leckeren italienischen Nudeln in einem ziemlich großen Kochtopf mit heißem Wasser.	I am cooking the delicious Italian pasta in a quite large saucepan with hot water.
-43	der Kühlschrank	fridge	Die eiskalte und frische Milch für mein Frühstücksmüsli steht ganz unten im Kühlschrank.	The ice-cold and fresh milk for my breakfast muesli is standing right at the bottom of the fridge.
-43	der Lippenstift	lipstick	Meine ältere Schwester trägt oft leuchtend roten Lippenstift, wenn sie schick auf eine Party geht.	My older sister often wears bright red lipstick when she goes smartly to a party.
-43	der Löffel	spoon	Ich brauche unbedingt einen großen Löffel für meine leckere und warme Suppe zum Mittagessen.	I absolutely need a large spoon for my delicious and warm soup for lunch.
-43	der Mikrowellenherd	microwave oven	Ich mache mein kaltes Essen heute Mittag ausnahmsweise extrem schnell im Mikrowellenherd warm.	I am exceptionally warming up my cold food extremely quickly in the microwave oven this lunchtime.
-43	der Müll	rubbish, refuse	Wir bringen jeden Dienstagmorgen vor der Schule pünktlich den ganzen ekligen Müll nach draußen.	We take all the disgusting rubbish outside punctually every Tuesday morning before school.
-43	der Mülleimer	dustbin	Bitte wirf dein altes, nutzloses Papier sofort in den großen grünen Mülleimer unten im Hof.	Please immediately throw your old, useless paper into the large green dustbin downstairs in the yard.
-44	der Nachname	surname	Bitte schreiben Sie Ihren vollständigen Vornamen und Ihren Nachnamen deutlich auf das offizielle Formular.	Please write your full first name and your surname clearly on the official form.
-44	der Name	name	Hallo, mein Name ist Sarah und ich bin heute glücklich fünfzehn Jahre alt geworden.	Hello, my name is Sarah and I happily became fifteen years old today.
-44	der Neffe	nephew	Mein extrem kleiner und furchtbar süßer Neffe ist natürlich der Sohn von meinem älteren Bruder.	My extremely small and terribly cute nephew is of course the son of my older brother.
-44	der Onkel	uncle	Mein lustiger Onkel wohnt zusammen mit meiner Tante in einer wunderbar kleinen Stadt in Wales.	My funny uncle lives together with my aunt in a wonderfully small town in Wales.
-44	der Opa	granddad	Mein Opa geht jeden Tag entspannt mit seinem Hund bei gutem Wetter im Park spazieren.	My granddad goes for a relaxed walk with his dog in the park every day in good weather.
-44	der Popstar	popstar	Dieser extrem berühmte und reiche Popstar singt wirklich unglaublich gute Lieder laut im Radio.	This extremely famous and rich popstar really sings incredibly good songs loudly on the radio.
-44	der Pulli	sweater, pullover	Im extrem kalten und weißen Winter trage ich hier immer einen sehr warmen, dicken Pulli.	In the extremely cold and white winter I always wear a very warm, thick sweater here.
-45	der Pullover	sweater, pullover	Mein brandneuer blauer Pullover für die kalte Schule ist unglaublich weich, warm und bequem.	My brand new blue pullover for the cold school is incredibly soft, warm and comfortable.
-45	der Rasen	lawn	Mein fleißiger Vater muss am anstrengenden Wochenende den unglaublich langen Rasen im Garten mähen.	My hard-working father has to mow the incredibly long lawn in the garden on the tiring weekend.
-45	der Rock	skirt	In unserer strengen Schule müssen die Schülerinnen leider immer einen traditionellen schwarzen Rock tragen.	In our strict school the female pupils unfortunately always have to wear a traditional black skirt.
-45	der Schlafanzug	pyjamas	Nach dem wunderbar heißen Bad am späten Abend ziehe ich sofort meinen warmen Schlafanzug an.	After the wonderfully hot bath late in the evening I immediately put on my warm pyjamas.
-45	der Schlips	tie	Zu seinem komplett neuen und schicken Anzug trägt mein Vater heute Abend stolz einen roten Schlips.	With his completely new and smart suit my father proudly wears a red tie this evening.
-45	der Schlüssel	key	Oh nein, das ist schrecklich, ich habe leider meinen wichtigen Schlüssel für das Haus komplett vergessen!	Oh no, that is terrible, I have unfortunately completely forgotten my important key for the house!
-45	der Schlüsselbund	key ring	An meinem ziemlich schweren Schlüsselbund habe ich glücklicherweise drei verschiedene, aber extrem wichtige Schlüssel.	On my quite heavy key ring I fortunately have three different but extremely important keys.
-46	der Schuh	shoe	Ich muss heute einen neuen schwarzen Schuh für die Schule kaufen.	I have to buy a new black shoe for school today.
-46	der Sessel	armchair, easy chair	Mein Vater liest abends entspannt die Zeitung in seinem gemütlichen Sessel.	My father reads the newspaper relaxed in his cozy armchair in the evening.
-46	der Sohn	son	Der kleine Sohn von meiner Tante spielt gern laut im Garten.	My aunt's little son likes playing loudly in the garden.
-46	der Spitzname	nick name	Mein eigentlicher Name ist Thomas, aber mein Spitzname ist einfach Tom.	My actual name is Thomas, but my nick name is simply Tom.
-46	der Staubsauger	vacuum cleaner	Unser alter Staubsauger ist leider unglaublich laut und ziemlich schwer.	Our old vacuum cleaner is unfortunately incredibly loud and quite heavy.
-46	der Teller	plate	Ich stelle den heißen Teller mit dem Abendessen schnell auf den Tisch.	I quickly put the hot plate with the dinner on the table.
-46	der Topf	pot, saucepan	Die frische Gemüsesuppe kocht schon auf dem Herd in einem großen Topf.	The fresh vegetable soup is already cooking on the cooker in a large pot.
-47	der Trainingsanzug	tracksuit	Beim Sportunterricht in der Turnhalle trage ich immer einen warmen Trainingsanzug.	During the PE lesson in the gym I always wear a warm tracksuit.
-47	der Vorhang	curtain	Ich ziehe den blauen Vorhang im Schlafzimmer zu, weil es dunkel wird.	I close the blue curtain in the bedroom because it is getting dark.
-47	der Vorname	first name	Mein Vorname ist Sarah und ich komme glücklich aus einer großen Familie.	My first name is Sarah and I happily come from a large family.
-47	der Wasserhahn	tap	Bitte mach den silbernen Wasserhahn im Badezimmer nach dem Waschen richtig zu.	Please close the silver tap in the bathroom properly after washing.
-47	der Wecker	alarm clock	Mein lauter Wecker klingelt jeden Morgen pünktlich um Viertel nach sieben.	My loud alarm clock rings punctually at a quarter past seven every morning.
-47	der Zwilling	twin	Mein Bruder ist ein Zwilling, aber ich bin leider fünf Jahre älter.	My brother is a twin, but I am unfortunately five years older.
-47	der/die Cousin/e	cousin	Meine nette Cousine wohnt in London und wir besuchen sie im Sommer.	My nice cousin lives in London and we visit her in the summer.
-48	der/die Erwachsene	grown-up	Ein Erwachsener muss auf der Reise immer auf die kleinen Kinder aufpassen.	A grown-up must always look after the small children on the journey.
-48	der/die Fußballspieler/in	footballer	Mein absolutes Idol ist ein unglaublich berühmter und sehr reicher Fußballspieler.	My absolute idol is an incredibly famous and very rich footballer.
-48	der/die Jugendliche	young person	Der Jugendliche hört in seinem Zimmer nach der Schule oft furchtbar laute Musik.	The young person often listens to terribly loud music in his room after school.
-48	der/die Nachbar/in	neighbour	Unsere freundliche Nachbarin hilft uns am Wochenende oft fleißig im Garten.	Our friendly neighbour often helps us hard in the garden at the weekend.
-48	der/die Schauspieler/in	actor	Dieser talentierte amerikanische Schauspieler spielt die fantastische Hauptrolle in meinem Lieblingsfilm.	This talented American actor plays the fantastic lead role in my favourite film.
-48	der/die Unternehmer/in	entrepreneur	Die mutige Unternehmerin hat vor fünf Jahren eine extrem erfolgreiche Firma gegründet.	The brave entrepreneur founded an extremely successful company five years ago.
-48	die Adresse	address	Bitte schreiben Sie Ihre aktuelle Adresse und Ihre Telefonnummer auf dieses Formular.	Please write your current address and your telephone number on this form.
-49	die Armbanduhr	wristwatch	Ich habe zum Geburtstag eine sehr schicke und teure Armbanduhr bekommen.	I received a very smart and expensive wristwatch for my birthday.
-49	die Augen	eyes	Meine kleine Schwester hat wunderschöne, helle Haare und große, blaue Augen.	My little sister has beautiful, light hair and large, blue eyes.
-49	die Badewanne	bath tub	Nach dem kalten Winterspaziergang liege ich gern entspannt in der heißen Badewanne.	After the cold winter walk I like lying relaxed in the hot bath tub.
-49	die Baumwolle	cotton	Mein leichtes und bequemes Sommerhemd ist komplett aus weißer Baumwolle.	My light and comfortable summer shirt is completely made of white cotton.
-49	die Bettdecke	blanket, duvet	Mir ist nachts furchtbar kalt, also brauche ich eine extrem warme Bettdecke.	I am terribly cold at night, so I need an extremely warm duvet.
-49	die Bluse	blouse	Meine Mutter trägt bei der wichtigen Arbeit oft eine elegante, weiße Bluse.	My mother often wears an elegant, white blouse at her important work.
-49	die Bratpfanne	frying pan	Ich brate die leckeren Eier für das Frühstück schnell in der Bratpfanne.	I fry the delicious eggs for breakfast quickly in the frying pan.
-50	die Brille	glasses, spectacles	Mein Großvater kann die kleine Zeitung leider nicht ohne seine Brille lesen.	My grandfather unfortunately cannot read the small newspaper without his glasses.
-50	die Decke	blanket	Auf dem Sofa kuschele ich mich beim Fernsehen gern unter eine weiche Decke.	On the sofa I like to cuddle under a soft blanket while watching TV.
-50	die Filme	films	Wir sehen uns am Samstagabend oft gemeinsam lustige Filme im Wohnzimmer an.	We often watch funny films together in the living room on Saturday evening.
-50	die Gabel	fork	Ich esse die langen Spaghetti heute Abend lieber mit einer großen Gabel.	I prefer to eat the long spaghetti this evening with a large fork.
-50	die Gardine	net curtain	Meine Tante wäscht im Frühling jede weiße Gardine in ihrem großen Haus.	My aunt washes every white net curtain in her large house in spring.
-50	die Geräte	devices	Viele moderne Geräte in der Küche machen die Hausarbeit heute extrem leicht.	Many modern devices in the kitchen make housework extremely easy today.
-50	die Glatze	bald head	Mein lustiger Onkel hat keine Haare mehr, sondern schon eine komplette Glatze.	My funny uncle has no hair anymore, but already a complete bald head.
-51	die Haarbürste	hairbrush	Ich brauche dringend eine neue Haarbürste, weil meine Haare so lang sind.	I urgently need a new hairbrush because my hair is so long.
-51	die Handtasche	handbag	Meine ältere Schwester hat ihr Handy glücklicherweise noch in ihrer schwarzen Handtasche.	My older sister fortunately still has her mobile phone in her black handbag.
-51	die Hose	trousers	Ich trage in der strengen Schule normalerweise immer eine klassische, schwarze Hose.	I normally always wear classic, black trousers in the strict school.
-51	die Jacke	jacket	Es regnet draußen furchtbar stark, also ziehe ich sofort meine warme Jacke an.	It is raining terribly heavily outside, so I put my warm jacket on immediately.
-51	die Jeans	jeans	Am Wochenende trage ich eigentlich am liebsten ein einfaches T-Shirt und blaue Jeans.	At the weekend I actually prefer to wear a simple T-shirt and blue jeans.
-51	die Jugend	youth	Meine Großeltern erzählen oft interessante und spannende Geschichten aus ihrer wilden Jugend.	My grandparents often tell interesting and exciting stories from their wild youth.
-51	die Kaffeemaschine	coffee maker	Mein Vater kocht jeden Morgen extrem starken Kaffee mit der lauten Kaffeemaschine.	My father makes extremely strong coffee with the loud coffee maker every morning.
-52	die Klamotten	clothes (colloquial)	Ich kaufe meine neuen Klamotten für den Sommer meistens im großen Einkaufszentrum.	I mostly buy my new clothes for the summer in the large shopping centre.
-52	die Kleidung	clothes	Sportliche und bequeme Kleidung ist mir im Alltag eigentlich immer am wichtigsten.	Sporty and comfortable clothes are actually always most important to me in everyday life.
-52	die Krawatte	tie	Mein älterer Bruder trägt zu seinem dunklen Sakko eine ziemlich bunte Krawatte.	My older brother wears a quite colourful tie with his dark jacket.
-52	die Lichter	lights	Die vielen bunten Lichter am Weihnachtsbaum sehen am Abend absolut wunderschön aus.	The many colourful lights on the Christmas tree look absolutely beautiful in the evening.
-52	die Mauer	wall (outside, external)	Um unseren großen Garten steht eine sehr alte und ziemlich hohe Mauer.	Around our large garden stands a very old and quite high wall.
-52	die Maus	mouse	Die schnelle, graue Maus läuft furchtbar ängstlich in der Küche unter den Schrank.	The fast, grey mouse runs terribly anxiously under the cupboard in the kitchen.
-52	die Mikrowelle	microwave	Ich mache mein kaltes Essen nach der Schule einfach schnell in der Mikrowelle warm.	I simply warm my cold food up quickly in the microwave after school.
-53	die Möbel	furniture	Wir kaufen heute Nachmittag glücklich neue, moderne Möbel für unser großes Wohnzimmer.	We are happily buying new, modern furniture for our large living room this afternoon.
-53	die Nase	nose	Mein lustiger kleiner Bruder hat leider eine ziemlich große, rote Nase vom Winterwetter.	My funny little brother unfortunately has a quite large, red nose from the winter weather.
-53	die Nichte	niece	Meine furchtbar süße Nichte spielt am Wochenende immer entspannt im Garten mit mir.	My terribly cute niece always plays relaxed in the garden with me at the weekend.
-53	die Ohren	ears	Der große Hund meines Onkels hat zwei braune Augen und sehr lange Ohren.	My uncle's large dog has two brown eyes and very long ears.
-53	die Ohrringe	earrings	Meine Mutter trägt heute auf der Party ihre schönen, teuren, silbernen Ohrringe.	My mother is wearing her beautiful, expensive, silver earrings at the party today.
-53	die Oma	grandma	Meine herzliche Oma liest jeden Tag ruhig ein gutes Buch auf dem Sofa.	My affectionate grandma quietly reads a good book on the sofa every day.
-53	die Pflanze	plant	Die große grüne Pflanze in meinem Schlafzimmer braucht heute dringend frisches Wasser.	The large green plant in my bedroom urgently needs fresh water today.
-54	die Presse	press	Die lokale Presse schreibt heute einen sehr interessanten Artikel über unsere gute Schule.	The local press is writing a very interesting article about our good school today.
-54	die Puppe	doll	Das kleine Mädchen spielt im Zimmer glücklich mit einer sehr schönen, alten Puppe.	The little girl is playing happily with a very beautiful, old doll in the room.
-54	die Schildkröte	tortoise	Meine kleine Schildkröte frisst sehr langsam ein sauberes Blatt Salat im Garten.	My small tortoise is eating a clean leaf of lettuce very slowly in the garden.
-54	die Schminke	makeup	Meine ältere Schwester benutzt morgens furchtbar viel Zeit für ihre bunte Schminke.	My older sister uses a terribly large amount of time for her colourful makeup in the mornings.
-54	die Schublade	drawer	Mein blauer Kuli liegt ganz unten in der ersten Schublade von meinem Schreibtisch.	My blue pen lies right at the bottom in the first drawer of my desk.
-54	die Schüssel	bowl	Ich esse mein gesundes Müsli jeden Morgen vor der Schule aus einer blauen Schüssel.	I eat my healthy muesli from a blue bowl every morning before school.
-54	die Seife	soap	Ich wasche meine Hände im Badezimmer immer gründlich mit einer gut riechenden Seife.	I always wash my hands thoroughly in the bathroom with a good smelling soap.
-55	die Socke	sock	Ich kann meine zweite rote Socke in meinem unordentlichen Zimmer leider nicht finden.	I unfortunately cannot find my second red sock in my messy room.
-55	die Spülmaschine	dishwasher	Wir räumen die dreckigen Teller nach dem Essen sofort fleißig in die Spülmaschine.	We load the dirty plates into the dishwasher immediately and hard after eating.
-55	die Staatsangehörigkeit	nationality	Meine Mutter ist in London geboren, also ist ihre Staatsangehörigkeit natürlich britisch.	My mother was born in London, so her nationality is naturally British.
-55	die Stars	celebrities	Die berühmten Stars aus Hollywood tragen auf dem roten Teppich unglaublich schicke Kleidung.	The famous celebrities from Hollywood wear incredibly smart clothes on the red carpet.
-55	die Stereoanlage	stereo system	Ich höre nach der Schule entspannt Musik auf meiner neuen, fantastischen Stereoanlage.	I listen to music relaxed on my new, fantastic stereo system after school.
-55	die Stimme	voice	Der amerikanische Sänger in der Band hat eine wirklich furchtbar laute und kräftige Stimme.	The American singer in the band has a really terribly loud and strong voice.
-55	die Strumpfhose	tights	Im kalten Winter trägt das kleine Mädchen glücklich eine warme Strumpfhose unter dem Kleid.	In the cold winter the little girl happily wears warm tights under the dress.
-56	die Tante	aunt	Meine nette Tante bringt uns am Wochenende oft einen frisch gebackenen Kuchen mit.	My nice aunt often brings us a freshly baked cake at the weekend.
-56	die Tasse	cup	Mein Vater trinkt morgens nach dem Aufstehen immer eine extrem große Tasse Kaffee.	My father always drinks an extremely large cup of coffee in the mornings after getting up.
-56	die Terrasse	patio, terrace	Wir sitzen im Sommer oft abends bei gutem Wetter zusammen draußen auf der Terrasse.	We often sit together outside on the patio in the evening in the summer in good weather.
-56	die Tiefkühltruhe	freezer	Die schwere Tiefkühltruhe steht ganz unten in unserem dunklen und ziemlich kühlen Keller.	The heavy freezer stands right at the bottom in our dark and quite cool cellar.
-56	die Tochter	daughter	Die junge Tochter meiner Tante geht glücklich schon in die kleine, lokale Grundschule.	My aunt's young daughter happily already goes to the small, local primary school.
-56	die Toilette	toilet	Entschuldigung, können Sie mir bitte schnell sagen, wo hier in der Schule die Toilette ist?	Excuse me, can you please tell me quickly where the toilet is here in the school?
-57	die Treppe	stairs	Mein kleines Schlafzimmer ist im ersten Stock, also muss ich immer die Treppe hochgehen.	My small bedroom is on the first floor, so I always have to go up the stairs.
-57	die Uhr	watch, clock	Die große, alte Uhr an der grauen Wand im Klassenzimmer ist schon wieder kaputt.	The large, old clock on the grey wall in the classroom is broken again.
-57	die Verwandten	relatives	An Weihnachten besuchen uns glücklicherweise immer sehr viele lustige Verwandte aus ganz Deutschland.	At Christmas very many funny relatives from all over Germany fortunately always visit us.
-57	die Verwandtschaft	relations, relatives	Unsere ganze Verwandtschaft feiert den siebzigsten Geburtstag von meinem Großvater im Restaurant.	All our relations are celebrating my grandfather's seventieth birthday in the restaurant.
-57	die Wand	wall (internal, inside)	Ich habe ein tolles, großes Poster von meiner Lieblingsband an meiner Wand im Schlafzimmer.	I have a great, large poster of my favourite band on my wall in the bedroom.
-57	die Waschmaschine	washing machine	Meine Mutter wäscht am Wochenende fleißig unsere extrem schmutzige Kleidung in der Waschmaschine.	My mother washes our extremely dirty clothes hard in the washing machine at the weekend.
-58	die Werbung	adverts	Ich finde die lange Werbung im Fernsehen vor dem Film oft extrem furchtbar langweilig.	I often find the long adverts on television before the film extremely terribly boring.
-58	die Zahnbürste	toothbrush	Ich putze mir jeden Morgen gründlich die Zähne mit meiner neuen, blauen Zahnbürste.	I brush my teeth thoroughly every morning with my new, blue toothbrush.
-58	die Zeitschrift	magazine	Mein Vater liest am entspannten Sonntag oft eine sehr interessante Zeitschrift über schöne Autos.	My father often reads a very interesting magazine about beautiful cars on a relaxed Sunday.
-58	ein Paar	a couple, a pair	Ich habe heute im Geschäft ein schickes neues Paar Schuhe für die Party gekauft.	I bought a smart new pair of shoes for the party in the shop today.
-58	unartig, frech	naughty	Der furchtbar freche Junge spielt oft sehr laut und ärgert lustig seine kleine Schwester.	The terribly naughty boy often plays very loudly and funnily annoys his little sister.
-58	zu Hause	at home	Ich bleibe an diesem Wochenende entspannt zu Hause und faulenze den ganzen langen Tag.	I am staying at home relaxed this weekend and lazing about all long day.
-59	den Rasen mähen	to mow the lawn	Ich mähe jeden zweiten Samstagmorgen brav und fleißig den großen Rasen in unserem Garten.	I dutifully and hard mow the large lawn in our garden every other Saturday morning.
-59	sich auf etwas vorbereiten	to get ready for	Ich bereite mich jeden Nachmittag sehr intensiv auf meine nächste schwere Klausur vor.	I get ready very intensively for my next difficult exam every afternoon.
-59	sich erinnern an	to remember	Ich erinnere mich sehr gut an unseren tollen und sonnigen letzten Sommerurlaub in Spanien.	I remember our great and sunny last summer holiday in Spain very well.
-59	sich gut/ schlecht verhalten	to behave well/badly	Das kleine Kind verhält sich im ruhigen Supermarkt heute leider wirklich extrem schlecht.	The small child is unfortunately really behaving extremely badly in the quiet supermarket today.
-59	die sozialen Netzwerke	social networks	Viele Jugendliche verbringen jeden Tag furchtbar viel Zeit auf den modernen sozialen Netzwerken.	Many young people spend a terribly large amount of time on modern social networks every day.
-59	im ersten Stock	on the first floor	Mein helles Schlafzimmer und unser kleines Badezimmer sind oben im ersten Stock.	My bright bedroom and our small bathroom are upstairs on the first floor.
-60	jung, jünger, jüngest	young, younger, youngest	Mein kleiner Bruder ist jünger als ich, aber meine liebe Schwester ist das jüngste Kind.	My little brother is younger than me, but my dear sister is the youngest child.
-60	mir ist warm	I am hot/warm	Mir ist furchtbar warm in dieser dicken Jacke, also ziehe ich sie sofort aus.	I am terribly hot in this thick jacket, so I am taking it off immediately.
-60	das Haar / die Haare	hair	Meine beste Freundin hat unglaublich schöne, braune und extrem lockige Haare.	My best friend has incredibly beautiful, brown and extremely curly hair.
-60	der Text, die Lyrik	lyrics	Der tiefgründige Text von diesem wunderschönen und berühmten Lied ist leider ein bisschen traurig.	The profound lyrics of this beautiful and famous song are unfortunately a bit sad.
-60	die Shorts, kurze Hosen	shorts	Im furchtbar heißen Sommer trage ich im Park eigentlich immer nur extrem bequeme Shorts.	In the terribly hot summer I actually always only wear extremely comfortable shorts in the park.
-60	die Songs die Lieder	songs	Wir singen oft am lustigen Abend zusammen am warmen Lagerfeuer tolle, alte Lieder.	We often sing great, old songs together by the warm bonfire on a funny evening.
+1	sich entwickeln	to develop	Die Musikszene hat sich in den letzten Jahren stark entwickelt.	The music scene has developed greatly in recent years.	★★★★
+1	die Entwicklung (en)	development	Die Entwicklung neuer Technologien verändert die Musikindustrie.	The development of new technologies is changing the music industry.	★★★★
+1	erfolgreich	successful	Diese Band ist in ganz Europa erfolgreich.	This band is successful across the whole of Europe.	★★★★
+1	Erfolg haben	to be successful	Viele junge Musiker wollen Erfolg haben.	Many young musicians want to be successful.	★★★★
+1	verkaufen	to sell	Der Sänger hat Millionen von Alben verkauft.	The singer has sold millions of albums.	★★★★
+1	beliebt	popular, much-loved	Hip-Hop ist bei Jugendlichen sehr beliebt.	Hip-hop is very popular with young people.	★★★★
+1	berühmt, namhaft	famous	Beethoven ist einer der berühmtesten Komponisten der Welt.	Beethoven is one of the most famous composers in the world.	★★★★
+1	sich ausdrücken	to express oneself	Durch Musik kann man sich kreativ ausdrücken.	Through music one can express oneself creatively.	★★★★
+2	das Gefühl (e)	feeling	Dieses Lied weckt starke Gefühle in mir.	This song awakens strong feelings in me.	★★★★
+2	die Stimme (n)	voice	Die Sängerin hat eine wunderschöne Stimme.	The singer has a beautiful voice.	★★★★
+2	die Sprache (n)	language	Musik ist eine universelle Sprache.	Music is a universal language.	★★★★
+2	erscheinen	to appear, to be published	Das neue Album erscheint nächste Woche.	The new album is being released next week.	★★★★
+2	beitragen zu (DAT)	to contribute to	Festivals tragen zur lokalen Wirtschaft bei.	Festivals contribute to the local economy.	★★★★
+2	teilnehmen an (DAT)	to take part in	Sie nimmt an einem Musikwettbewerb teil.	She is taking part in a music competition.	★★★★
+2	vergleichen mit (DAT)	to compare with	Man kann klassische Musik nicht mit Pop vergleichen.	You cannot compare classical music with pop.	★★★★
+2	einzigartig	unique	Jeder Künstler hat einen einzigartigen Stil.	Every artist has a unique style.	★★★★
+3	üblich	common, normal	Es ist üblich, Musik online zu streamen.	It is common to stream music online.	★★★★
+3	gängig	current, common	Streaming ist die gängigste Art, Musik zu hören.	Streaming is the most common way to listen to music.	★★★★
+3	oberflächlich	superficial	Viele Popsongs sind leider oberflächlich.	Many pop songs are unfortunately superficial.	★★★★
+3	die Kritik (en)	critique, review	Die Kritik des neuen Albums war sehr positiv.	The review of the new album was very positive.	★★★★
+3	bewundern	to admire	Ich bewundere Musiker, die mehrere Instrumente spielen.	I admire musicians who play several instruments.	★★★★
+3	das Vorbild (er)	role model	Viele Jugendliche sehen Popstars als Vorbilder.	Many young people see pop stars as role models.	★★★★
+3	der Geschmack	taste	Über Geschmack lässt sich nicht streiten.	There is no accounting for taste.	★★★★
+3	die Unterhaltung	entertainment	Musik ist eine der beliebtesten Formen der Unterhaltung.	Music is one of the most popular forms of entertainment.	★★★★
+4	die Tendenz (en)	trend, tendency	Es gibt eine Tendenz zu kürzeren Songs.	There is a trend towards shorter songs.	★★★★
+4	aktuelle Trends	current trends	Aktuelle Trends in der Musik ändern sich ständig.	Current trends in music are constantly changing.	★★★★
+4	sich durchsetzen	to achieve success, catch on	Streaming hat sich als Hauptmedium durchgesetzt.	Streaming has established itself as the main medium.	★★★★
+4	der Traum (¨e)	dream	Sein Traum ist es, eines Tages auf großen Bühnen zu spielen.	His dream is to play on big stages one day.	★★★★
+4	die Laune (n) / die Stimmung (en)	mood	Musik kann die Stimmung sofort verändern.	Music can change your mood instantly.	★★★★
+4	zum Nachdenken anregen	to make one think	Gute Liedtexte regen zum Nachdenken an.	Good lyrics make you think.	★★★★
+4	neue Wege beschreiten	to break new ground	Dieser Künstler beschreitet neue Wege in der elektronischen Musik.	This artist is breaking new ground in electronic music.	★★★★
+4	die Grenzen verschieben	to push the boundaries	Experimentelle Musiker verschieben die Grenzen der Kunst.	Experimental musicians push the boundaries of art.	★★★★
+5	der Gruppenzwang	peer pressure	Gruppenzwang beeinflusst den Musikgeschmack vieler Jugendlicher.	Peer pressure influences the musical taste of many young people.	★★★★
+5	der Herdentrieb	herd instinct	Der Herdentrieb führt dazu, dass alle die gleiche Musik hören.	Herd instinct leads to everyone listening to the same music.	★★★★
+5	jemandem nacheifern	to emulate someone	Viele Teenager eifern ihren Lieblingsstars nach.	Many teenagers emulate their favourite stars.	★★★★
+5	provozieren	to provoke	Manche Künstler wollen mit ihrer Musik provozieren.	Some artists want to provoke with their music.	★★★★
+5	sich ausgegrenzt fühlen	to feel excluded	Wer andere Musik hört, kann sich ausgegrenzt fühlen.	Those who listen to different music can feel excluded.	★★★★
+5	das Aussehen	appearance	Das Aussehen eines Stars ist oft genauso wichtig wie die Musik.	A star's appearance is often just as important as the music.	★★★★
+5	die Kleidung	clothing	Die Kleidung der Fans spiegelt oft den Stil der Band wider.	The fans' clothing often reflects the style of the band.	★★★★
+5	modebewusst	fashion-conscious	Viele junge Musikfans sind sehr modebewusst.	Many young music fans are very fashion-conscious.	★★★★
+6	der Ruhm	fame	Der Ruhm kann für junge Musiker überwältigend sein.	Fame can be overwhelming for young musicians.	★★★★
+6	der Preis (e)	prize	Die Band hat mehrere Preise gewonnen.	The band has won several prizes.	★★★★
+6	der Sieg (e)	victory	Ihr Sieg beim Wettbewerb war überraschend.	Their victory in the competition was surprising.	★★★★
+6	der Wettbewerb (e)	contest, competition	Der Eurovision Song Contest ist ein internationaler Wettbewerb.	The Eurovision Song Contest is an international competition.	★★★★
+6	der Star (s)	star	Nicht jeder Star bleibt langfristig erfolgreich.	Not every star remains successful in the long term.	★★★★
+6	der Misserfolg (e)	flop, failure	Nach dem Misserfolg ihres Albums löste sich die Band auf.	After the failure of their album, the band split up.	★★★★
+6	kurzlebig	short-lived	Die meisten Musiktrends sind kurzlebig.	Most music trends are short-lived.	★★★★
+6	die Eintagsfliege (n)	passing craze	Viele Hits sind nur Eintagsfliegen.	Many hits are just passing crazes.	★★★★
+7	der Stil (e)	style	Ihr musikalischer Stil ist sehr vielfältig.	Her musical style is very diverse.	★★★★
+7	angesagt	fashionable, trendy	K-Pop ist momentan bei Jugendlichen sehr angesagt.	K-Pop is currently very trendy among young people.	★★★★
+7	in Mode kommen	to come into fashion	Schallplatten sind wieder in Mode gekommen.	Vinyl records have come back into fashion.	★★★★
+7	aus der Mode kommen	to go out of fashion	CDs sind fast völlig aus der Mode gekommen.	CDs have almost completely gone out of fashion.	★★★★
+7	die Modeerscheinung (en)	passing fashion	Ist TikTok-Musik nur eine Modeerscheinung?	Is TikTok music just a passing fashion?	★★★★
+7	ein Ausdruck der Zugehörigkeit	an expression of belonging	Das Tragen von Bandshirts ist ein Ausdruck der Zugehörigkeit.	Wearing band T-shirts is an expression of belonging.	★★★★
+7	die Mode ändert sich schnell und ohne Warnung	fashions change quickly and without warning	In der Musikwelt ändert sich die Mode schnell und ohne Warnung.	In the music world, fashions change quickly and without warning.	★★★★
+7	alles dreht sich um …	everything has to do with …	Bei diesem Festival dreht sich alles um elektronische Musik.	At this festival, everything revolves around electronic music.	★★★★
+8	das Konzert (e)	concert	Gestern waren wir auf einem tollen Konzert.	Yesterday we went to a great concert.	★★★
+8	der Künstler (-)	artist	Der Künstler hat ein neues Album veröffentlicht.	The artist has released a new album.	★★★
+8	das Lied (er) / der Song (s)	song	Dieses Lied ist seit Wochen auf Platz eins.	This song has been at number one for weeks.	★★★
+8	der Sänger (-)	singer	Der Sänger hat eine beeindruckende Stimme.	The singer has an impressive voice.	★★★
+8	Musik hören	to listen to music	Ich höre jeden Tag auf dem Schulweg Musik.	I listen to music every day on the way to school.	★★★
+8	das Publikum	audience, public	Das Publikum war von der Show begeistert.	The audience was thrilled by the show.	★★★
+8	die Bühne (n)	stage	Die Band betrat um neun Uhr die Bühne.	The band went on stage at nine o'clock.	★★★
+8	der Fan (s)	fan	Die Fans warteten stundenlang vor der Halle.	The fans waited for hours outside the venue.	★★★
+9	auftreten	to perform, appear	Die Band tritt nächste Woche in Berlin auf.	The band is performing in Berlin next week.	★★★
+9	der Auftritt (e)	performance, gig	Sein erster Auftritt war ein großer Erfolg.	His first performance was a great success.	★★★
+9	live singen, spielen	to perform live	Es ist etwas Besonderes, Musik live zu erleben.	There is something special about experiencing music live.	★★★
+9	auf Tournee gehen	to go on tour	Die Sängerin geht im Herbst auf Tournee.	The singer is going on tour in autumn.	★★★
+9	stattfinden	to take place	Das Festival findet jedes Jahr im August statt.	The festival takes place every year in August.	★★★
+9	ausverkauft	sold out	Das Konzert war innerhalb von Minuten ausverkauft.	The concert was sold out within minutes.	★★★
+9	die Eintrittskarte (n)	entry ticket	Die Eintrittskarten kosten fünfzig Euro.	The entry tickets cost fifty euros.	★★★
+9	üben	to practise	Man muss täglich üben, um besser zu werden.	You have to practise daily to get better.	★★★
+10	der Klang (¨e)	sound	Der Klang dieser Geige ist wunderschön.	The sound of this violin is beautiful.	★★★
+10	klingen	to sound	Das neue Album klingt ganz anders als das erste.	The new album sounds completely different from the first.	★★★
+10	es klingt nach / wie	it sounds like	Es klingt nach einer Mischung aus Pop und Jazz.	It sounds like a mixture of pop and jazz.	★★★
+10	die Melodie (n)	tune, melody	Die Melodie dieses Liedes bleibt sofort im Kopf.	The melody of this song stays in your head immediately.	★★★
+10	der Rhythmus, Rhythmen	rhythm	Der Rhythmus ist so mitreißend, dass man tanzen muss.	The rhythm is so catchy that you have to dance.	★★★
+10	die Musikrichtung (en)	kind of music, genre	Welche Musikrichtung hörst du am liebsten?	What kind of music do you like listening to most?	★★★
+10	das Genre (s) / die Stilrichtung	genre	Dieses Genre spricht vor allem junge Leute an.	This genre appeals mainly to young people.	★★★
+10	musikalisch	musical (adjective)	Sie kommt aus einer sehr musikalischen Familie.	She comes from a very musical family.	★★★
+11	der Liedtext (e)	lyrics	Die Liedtexte handeln von Liebe und Verlust.	The lyrics are about love and loss.	★★★
+11	in den Texten geht es um	the lyrics are about	In den Texten geht es um soziale Ungerechtigkeit.	The lyrics are about social injustice.	★★★
+11	singen über (AKK)	to sing about	Viele Rapper singen über ihr Leben in der Großstadt.	Many rappers sing about their life in the city.	★★★
+11	mitreißend	exciting, rousing	Die Musik war so mitreißend, dass alle aufgestanden sind.	The music was so rousing that everyone stood up.	★★★
+11	mitreißen (AKK)	to carry away (emotionally)	Die Energie des Konzerts hat alle mitgerissen.	The energy of the concert carried everyone away.	★★★
+11	es macht mir gute Laune	it puts me in a good mood	Wenn ich traurig bin, höre ich Musik – es macht mir gute Laune.	When I am sad, I listen to music – it puts me in a good mood.	★★★
+11	die Musik sagt Jugendlichen zu	the music appeals to young people	Diese Musikrichtung sagt Jugendlichen besonders zu.	This kind of music particularly appeals to young people.	★★★
+11	alltägliche Sehnsüchte, Träume und Ängste	everyday longings, dreams and fears	Die Lieder beschreiben alltägliche Sehnsüchte, Träume und Ängste.	The songs describe everyday longings, dreams and fears.	★★★
+12	veröffentlichen	to publish, to release	Der Künstler hat sein neues Album online veröffentlicht.	The artist released his new album online.	★★★
+12	aufnehmen	to record	Die Band nimmt gerade ein neues Album auf.	The band is currently recording a new album.	★★★
+12	downloaden / herunterladen	to download	Man kann das Lied kostenlos herunterladen.	You can download the song for free.	★★★
+12	die Hitliste / die Charts	charts	Das Lied ist sofort in die Charts eingestiegen.	The song went straight into the charts.	★★★
+12	in die Charts gelangen	to get into the charts	Nur wenige Künstler schaffen es, in die Charts zu gelangen.	Only a few artists manage to get into the charts.	★★★
+12	auf Platz eins in den Charts	number one in the charts	Ihr Song war drei Wochen auf Platz eins in den Charts.	Their song was number one in the charts for three weeks.	★★★
+12	die Playlist (s)	playlist	Ich habe eine Playlist für jede Stimmung.	I have a playlist for every mood.	★★★
+12	einen Streamingdienst abonnieren	to subscribe to a streaming service	Immer mehr Menschen abonnieren einen Streamingdienst.	More and more people are subscribing to a streaming service.	★★★
+13	beeinflusst von (DAT)	influenced by	Ihre Musik ist stark von Jazz beeinflusst.	Her music is strongly influenced by jazz.	★★★
+13	die Beliebtheit	popularity	Die Beliebtheit von K-Pop wächst weltweit.	The popularity of K-Pop is growing worldwide.	★★★
+13	die Subkultur (en)	subculture	Punk war ursprünglich eine Subkultur.	Punk was originally a subculture.	★★★
+13	die Fangemeinde (n)	fan base	Die Fangemeinde dieser Band ist riesig.	The fan base of this band is huge.	★★★
+13	eine treue Fangemeinde haben	to have a loyal fan base	Trotz weniger Hits hat die Band eine treue Fangemeinde.	Despite few hits, the band has a loyal fan base.	★★★
+13	der Fanartikel (-)	merchandise (fans)	Fanartikel wie T-Shirts sind eine wichtige Einnahmequelle.	Merchandise like T-shirts is an important source of income.	★★★
+13	die Werbekampagne (n)	promotion campaign	Die Werbekampagne für das Album lief über soziale Medien.	The promotion campaign for the album ran via social media.	★★★
+13	werben für (AKK)	to promote	Stars werben oft für Markenprodukte.	Stars often promote brand-name products.	★★★
+14	sich entspannen	to relax	Nach der Schule höre ich Musik, um mich zu entspannen.	After school I listen to music to relax.	★★★
+14	cool / gelassen / locker / entspannt	laid-back, relaxed	Die Atmosphäre beim Festival war total entspannt.	The atmosphere at the festival was totally relaxed.	★★★
+14	chillen	to chill out	Am Wochenende chillen wir gern und hören Musik.	At the weekend we like to chill out and listen to music.	★★★
+14	dazu kann man gut tanzen	you can really dance to it	Der Beat ist super – dazu kann man gut tanzen.	The beat is great – you can really dance to it.	★★★
+14	mitsingen	to sing along	Bei diesem Lied muss man einfach mitsingen.	With this song you simply have to sing along.	★★★
+14	der Ohrwurm (¨er)	catchy tune, earworm	Dieser Song ist ein totaler Ohrwurm!	This song is a total earworm!	★★★
+14	die Disco (s)	disco, club	Am Samstag gehen wir in die Disco.	On Saturday we are going to the club.	★★★
+14	klingeln	to ring	Mein Handy klingelt – es ist mein Lieblingslied als Klingelton.	My phone is ringing – it's my favourite song as a ringtone.	★★★
+15	in einer Band spielen	to play in a band	Mein Bruder spielt seit drei Jahren in einer Band.	My brother has been playing in a band for three years.	★★★
+15	die Lieblingsband (s)	favourite band	Meine Lieblingsband kommt aus Hamburg.	My favourite band is from Hamburg.	★★★
+15	sie ist Mitglied in einer Band	she's a member of a band	Seit letztem Jahr ist sie Mitglied in einer Band.	Since last year she has been a member of a band.	★★★
+15	der Musiker (-)	musician	Er ist ein sehr talentierter Musiker.	He is a very talented musician.	★★★
+15	das Musikfestival (s)	music festival	Dieses Musikfestival zieht jedes Jahr Tausende an.	This music festival attracts thousands every year.	★★★
+15	das Festival (s)	festival	Wir fahren diesen Sommer zu einem Festival.	We are going to a festival this summer.	★★★
+15	zusammenarbeiten	to collaborate	Die beiden Künstler arbeiten an einem gemeinsamen Projekt zusammen.	The two artists are collaborating on a joint project.	★★★
+15	begleiten	to accompany	Er begleitet die Sängerin auf der Gitarre.	He accompanies the singer on the guitar.	★★★
+16	das Musikvideo (s)	music video	Das Musikvideo hat über hundert Millionen Aufrufe.	The music video has over a hundred million views.	★★★
+16	Musik über YouTube hören	to listen to music on YouTube	Die meisten Jugendlichen hören Musik über YouTube.	Most young people listen to music on YouTube.	★★★
+16	digitale Musikdateien	digital music files	Digitale Musikdateien haben die CD fast ersetzt.	Digital music files have almost replaced the CD.	★★★
+16	das Copyright / das Urheberrecht	copyright	Das Urheberrecht schützt die Arbeit der Künstler.	Copyright protects the work of artists.	★★★
+16	urheberrechtlich geschützt	in copyright	Dieser Song ist urheberrechtlich geschützt.	This song is protected by copyright.	★★★
+16	die Raubkopie (n)	pirated copy	Raubkopien schaden der Musikindustrie.	Pirated copies harm the music industry.	★★★
+16	die sinkende Bereitschaft, für Musik zu bezahlen	the declining willingness to pay for music	Die sinkende Bereitschaft, für Musik zu bezahlen, ist ein großes Problem.	The declining willingness to pay for music is a big problem.	★★★
+16	die Tonqualität	sound quality	Die Tonqualität von Streaming ist oft schlechter als von CDs.	The sound quality of streaming is often worse than CDs.	★★★
+17	der letzte Schrei	the latest thing, craze	Dieses neue Genre ist der letzte Schrei.	This new genre is the latest craze.	★★★
+17	richtunggebend	trend-setting	Dieses Album war richtunggebend für die Popmusik.	This album was trend-setting for pop music.	★★★
+17	die neuesten Musiktrends	the latest trends in music	Soziale Medien bestimmen die neuesten Musiktrends.	Social media determines the latest trends in music.	★★★
+17	veralten	to go out of date	Musikformate veralten immer schneller.	Music formats are going out of date faster and faster.	★★★
+17	von Jahr zu Jahr	from year to year	Die Festivalbesucherzahlen steigen von Jahr zu Jahr.	Festival attendance figures rise from year to year.	★★★
+17	bekannt werden	to become known	Viele Musiker sind durch soziale Medien bekannt geworden.	Many musicians have become known through social media.	★★★
+17	weltbekannt / weltberühmt	world-famous	Die Berliner Philharmoniker sind weltberühmt.	The Berlin Philharmonic is world-famous.	★★★
+17	die Volksmusik / Folklore	folk music	Volksmusik hat in Bayern eine lange Tradition.	Folk music has a long tradition in Bavaria.	★★★
+18	aufführen	to perform (classical)	Das Orchester führt heute Abend Beethoven auf.	The orchestra is performing Beethoven this evening.	★★★
+18	das Orchester (-)	orchestra	Das Orchester besteht aus über achtzig Musikern.	The orchestra consists of over eighty musicians.	★★★
+18	der Chor, Chöre	choir	Der Chor singt bei der Weihnachtsfeier.	The choir is singing at the Christmas celebration.	★★★
+18	im Chor singen	to sing in a choir	Seit meiner Kindheit singe ich im Chor.	I have been singing in a choir since my childhood.	★★★
+18	die Oper (n)	opera	Die Oper ist eine Mischung aus Musik und Theater.	Opera is a mixture of music and theatre.	★★★
+18	komponieren	to compose	Mozart begann schon als Kind zu komponieren.	Mozart began to compose as a child.	★★★
+18	der Komponist (en)	composer	Bach ist ein bedeutender deutscher Komponist.	Bach is an important German composer.	★★★
+18	die Emotion (en)	emotion	Klassische Musik drückt tiefe Emotionen aus.	Classical music expresses deep emotions.	★★★
+19	der Algorithmus, Algorithmen	algorithm	Der Algorithmus schlägt Lieder vor, die zu meinem Geschmack passen.	The algorithm suggests songs that match my taste.	★★★
+19	die Künstliche Intelligenz (KI)	artificial intelligence (AI)	Künstliche Intelligenz kann inzwischen eigene Musik komponieren.	Artificial intelligence can now compose its own music.	★★★
+19	KI-generierte Musik	AI-generated music	KI-generierte Musik ist ein umstrittenes Thema in der Branche.	AI-generated music is a controversial topic in the industry.	★★★
+19	der Streamingdienst (e)	streaming service	Streamingdienste wie Spotify haben die Musikindustrie revolutioniert.	Streaming services like Spotify have revolutionised the music industry.	★★★
+19	die sozialen Medien	social media	Soziale Medien spielen eine große Rolle bei der Verbreitung von Musik.	Social media play a big role in the spread of music.	★★★
+19	viral gehen	to go viral	Ein kurzer Clip auf TikTok kann viral gehen und einen Star erschaffen.	A short clip on TikTok can go viral and create a star.	★★★
+19	der Influencer (-)	influencer	Viele Influencer beeinflussen den Musikgeschmack ihrer Follower.	Many influencers shape the musical taste of their followers.	★★★
+19	die Reichweite	reach (social media)	Durch soziale Medien hat ein Künstler eine viel größere Reichweite.	Through social media, an artist has a much greater reach.	★★★
+20	die psychische Gesundheit	mental health	Viele Künstler sprechen offen über ihre psychische Gesundheit.	Many artists speak openly about their mental health.	★★★
+20	die Vielfalt / die Diversität	diversity	Vielfalt in der Musikszene bereichert die Kultur.	Diversity in the music scene enriches culture.	★★★
+20	die Nachhaltigkeit	sustainability	Nachhaltigkeit wird auch bei Musikfestivals immer wichtiger.	Sustainability is becoming ever more important at music festivals too.	★★★
+20	die Identität (en)	identity	Musik spielt eine wichtige Rolle bei der Bildung der eigenen Identität.	Music plays an important role in shaping one's identity.	★★★
+20	sich identifizieren mit	to identify with	Jugendliche identifizieren sich oft mit den Texten ihrer Lieblingskünstler.	Young people often identify with the lyrics of their favourite artists.	★★★
+20	die Zugehörigkeit	belonging	Musik vermittelt ein Gefühl der Zugehörigkeit.	Music conveys a sense of belonging.	★★★
+20	die Globalisierung	globalisation	Die Globalisierung hat den Austausch von Musik weltweit erleichtert.	Globalisation has made the worldwide exchange of music easier.	★★★
+20	die kulturelle Aneignung	cultural appropriation	Die Debatte über kulturelle Aneignung in der Musik ist komplex.	The debate about cultural appropriation in music is complex.	★★★
+21	die Komposition (en)	composition	Diese Komposition stammt aus dem 18. Jahrhundert.	This composition dates from the 18th century.	★★
+21	das Musikstück (e)	piece of music	Das Musikstück dauert ungefähr zwanzig Minuten.	The piece of music lasts about twenty minutes.	★★
+21	der Konzertsaal	concert hall	Der Konzertsaal war bis auf den letzten Platz besetzt.	The concert hall was full to the last seat.	★★
+21	in ein Konzert gehen	to go to a concert	Am Wochenende gehe ich mit Freunden in ein Konzert.	At the weekend I am going to a concert with friends.	★★
+21	Klavier spielen	to play the piano	Meine Schwester lernt seit fünf Jahren Klavier spielen.	My sister has been learning to play the piano for five years.	★★
+21	Geige spielen	to play the violin	Er übt jeden Tag zwei Stunden Geige spielen.	He practises playing the violin for two hours every day.	★★
+21	das Musikinstrument (e)	musical instrument	Spielst du ein Musikinstrument?	Do you play a musical instrument?	★★
+21	die Noten	sheet music	Der Pianist liest die Noten perfekt.	The pianist reads sheet music perfectly.	★★
+22	der Songschreiber (-)	songwriter	Die Songschreiberin schreibt Texte für andere Künstler.	The songwriter writes lyrics for other artists.	★★
+22	der Leadsänger (-)	lead singer	Der Leadsänger hat die Band letztes Jahr verlassen.	The lead singer left the band last year.	★★
+22	der Gitarrist (en)	guitarist	Der Gitarrist spielte ein beeindruckendes Solo.	The guitarist played an impressive solo.	★★
+22	der Backing-Sänger (-)	backing vocal	Die Backing-Sänger unterstützen die Hauptstimme.	The backing vocalists support the main voice.	★★
+22	der Dirigent (en)	conductor	Der Dirigent leitet das Orchester mit großer Leidenschaft.	The conductor leads the orchestra with great passion.	★★
+22	der Zuhörer	listener	Die Zuhörer waren von der Aufführung begeistert.	The listeners were delighted by the performance.	★★
+22	der Musikfreund (e)	music lover	Als Musikfreund gehe ich oft in Konzerte.	As a music lover, I often go to concerts.	★★
+22	der Nachwuchsmusiker (-)	up-and-coming musician	Das Programm fördert junge Nachwuchsmusiker.	The programme supports young up-and-coming musicians.	★★
+23	das Aufnahmestudio (s)	recording studio	Die Band hat eine Woche im Aufnahmestudio verbracht.	The band spent a week in the recording studio.	★★
+23	die Plattenfirma	record company	Die Plattenfirma hat einen neuen Vertrag angeboten.	The record company offered a new contract.	★★
+23	der Plattenvertrag (¨e)	recording contract	Einen Plattenvertrag zu bekommen ist sehr schwierig.	Getting a recording contract is very difficult.	★★
+23	die Single (s)	single	Die erste Single wurde ein Riesenerfolg.	The first single was a huge success.	★★
+23	das Album, Alben	album	Das Album enthält zwölf neue Songs.	The album contains twelve new songs.	★★
+23	herausgeben	to publish	Die Plattenfirma gibt das Album im Mai heraus.	The record company is releasing the album in May.	★★
+23	die Tantiemen	royalties	Musiker verdienen Tantiemen, wenn ihre Lieder gespielt werden.	Musicians earn royalties when their songs are played.	★★
+23	Musik als Hintergrund	music as a background	Viele benutzen Musik als Hintergrund beim Arbeiten.	Many people use music as a background while working.	★★
+24	kitschig	kitschy, corny, trashy	Manche finden Schlagermusik kitschig.	Some people find schlager music corny.	★★
+24	eintönig	monotonous	Ich finde diesen Song etwas eintönig.	I find this song somewhat monotonous.	★★
+24	misstönend	discordant	Das Orchester klang heute leider misstönend.	Unfortunately, the orchestra sounded discordant today.	★★
+24	tiefsinnig	profound	Die Liedtexte dieses Albums sind besonders tiefsinnig.	The lyrics of this album are particularly profound.	★★
+24	lohnend	rewarding, worthwhile	Das Erlernen eines Instruments ist äußerst lohnend.	Learning an instrument is extremely rewarding.	★★
+24	aggressiv	aggressive	Manche Musikgenres klingen sehr aggressiv.	Some music genres sound very aggressive.	★★
+24	die Schlagermusik	light music, easy listening	Schlagermusik ist vor allem bei älteren Generationen beliebt.	Schlager music is particularly popular with older generations.	★★
+24	die zeitgenössische Musik	contemporary music	Die zeitgenössische Musik verbindet oft verschiedene Genres.	Contemporary music often combines different genres.	★★
+25	der Fanklub (s)	fan club	Der Fanklub organisiert regelmäßig Treffen.	The fan club organises regular meetups.	★★
+25	der Werbevertrag (¨e)	endorsement deal	Berühmte Musiker bekommen lukrative Werbeverträge.	Famous musicians get lucrative endorsement deals.	★★
+25	die Frisur (en)	hair style	Viele Fans kopieren die Frisur ihres Lieblingsstars.	Many fans copy their favourite star's hairstyle.	★★
+25	der Kapuzenpullover (-)	hoodie	Kapuzenpullover mit Bandlogos sind sehr beliebt.	Hoodies with band logos are very popular.	★★
+25	der Kopfhörer (-)	headphones	Gute Kopfhörer verbessern das Musikerlebnis.	Good headphones improve the music experience.	★★
+25	Stil haben	to have style	Diese Sängerin hat wirklich Stil.	This singer really has style.	★★
+25	floppen / durchfallen	to flop	Das zweite Album ist leider gefloppt.	Unfortunately, the second album flopped.	★★
+25	die persönlichen Musikvorlieben	personal preferences in music	Die persönlichen Musikvorlieben werden oft durch Freunde geprägt.	Personal preferences in music are often shaped by friends.	★★
+26	das Schlagzeug	percussion, drums	Er spielt seit zehn Jahren Schlagzeug.	He has been playing drums for ten years.	★★
+26	die Akustikgitarre (n)	acoustic guitar	Sie begleitet sich selbst auf der Akustikgitarre.	She accompanies herself on the acoustic guitar.	★★
+26	die Geige (n)	violin	Die Geige ist eines der schwierigsten Instrumente.	The violin is one of the most difficult instruments.	★★
+26	der Flügel (-)	grand piano	Im Konzertsaal steht ein wunderschöner Flügel.	There is a beautiful grand piano in the concert hall.	★★
+26	der Ton (¨e)	note (sound)	Der erste Ton des Stückes war absolut rein.	The first note of the piece was absolutely pure.	★★
+26	die Saite (n)	string	Die Saite meiner Gitarre ist gerissen.	The string of my guitar has broken.	★★
+26	der Takt / der Schlag	beat	Der Schlagzeuger gibt den Takt vor.	The drummer sets the beat.	★★
+26	die Begleitung	backing (e.g. vocals)	Die musikalische Begleitung war ausgezeichnet.	The musical backing was excellent.	★★
+27	im Rundfunk / im Radio	on the radio	Das Lied wird oft im Radio gespielt.	The song is often played on the radio.	★★
+27	das Online-Musikgeschäft (e)	online music store	Das Online-Musikgeschäft hat den traditionellen Handel verändert.	The online music store has changed traditional retail.	★★
+27	die Demoaufnahme (n)	demo recording	Sie hat ihre Demoaufnahme an mehrere Labels geschickt.	She sent her demo recording to several labels.	★★
+27	downloadbar	downloadable	Alle Songs sind sofort downloadbar.	All songs are immediately downloadable.	★★
+27	der/das Download (s)	download	Die Zahl der Downloads ist stark gestiegen.	The number of downloads has risen sharply.	★★
+27	der Tonträger (-)	recording medium	Schallplatten sind ein klassischer Tonträger.	Vinyl records are a classic recording medium.	★★
+27	die Musikberieselung	constant background music	Musikberieselung in Geschäften nervt manche Kunden.	Constant background music in shops annoys some customers.	★★
+27	das Mikrofon (e)	microphone	Der Sänger hielt das Mikrofon ganz nah an den Mund.	The singer held the microphone very close to his mouth.	★★
+28	rappen	to rap	Er rappt über das Leben in seiner Heimatstadt.	He raps about life in his home town.	★★
+28	der Rapper	rapper	Dieser Rapper hat eine starke Botschaft.	This rapper has a powerful message.	★★
+28	der Straßenmusikant (en)	street musician, busker	In der Fußgängerzone spielen oft Straßenmusikanten.	Street musicians often play in the pedestrian zone.	★★
+28	toben	to go crazy	Das Publikum tobte nach dem letzten Song.	The audience went crazy after the last song.	★★
+28	das Musical (s)	musical	Wir haben uns ein Musical im Theater angesehen.	We watched a musical at the theatre.	★★
+28	die Originalversion (en)	original version	Die Originalversion ist besser als das Remake.	The original version is better than the remake.	★★
+28	die Sprachwahl	choice of language	Die Sprachwahl in den Liedtexten ist sehr kreativ.	The choice of language in the lyrics is very creative.	★★
+28	musizieren	to play a musical instrument	In unserer Familie musizieren alle gern.	In our family, everyone enjoys making music.	★★
+29	die Filterblase (n)	filter bubble	Algorithmen erzeugen eine Filterblase, die den Musikgeschmack einschränkt.	Algorithms create a filter bubble that limits musical taste.	★★
+29	die Echokammer (n)	echo chamber	In einer Echokammer hört man nur noch Meinungen, die man schon teilt.	In an echo chamber, you only hear opinions you already share.	★★
+29	das Wohlbefinden	well-being	Musik kann das Wohlbefinden erheblich verbessern.	Music can significantly improve well-being.	★★
+29	die Bildschirmzeit	screen time	Zu viel Bildschirmzeit kann sich negativ auf die Gesundheit auswirken.	Too much screen time can have a negative impact on health.	★★
+29	die Aufmerksamkeitsspanne	attention span	Die Aufmerksamkeitsspanne der Zuhörer wird immer kürzer.	The attention span of listeners is getting shorter and shorter.	★★
+29	die Abhängigkeit	dependency, addiction	Die Abhängigkeit von sozialen Medien ist ein wachsendes Problem.	Dependency on social media is a growing problem.	★★
+29	die Ticketpreise (pl.)	ticket prices	Die Ticketpreise für große Konzerte sind sehr hoch geworden.	Ticket prices for big concerts have become very high.	★★
+29	die Lebenshaltungskosten (pl.)	cost of living	Wegen der steigenden Lebenshaltungskosten können sich viele keine Konzertkarten leisten.	Because of rising living costs, many cannot afford concert tickets.	★★
+30	sich etwas leisten können	to be able to afford sth.	Nicht jeder kann sich Eintrittskarten für ein Großkonzert leisten.	Not everyone can afford tickets for a big concert.	★★
+30	der Zugang	access	Alle sollten Zugang zu kulturellen Veranstaltungen haben.	Everyone should have access to cultural events.	★★
+30	die Barrierefreiheit	accessibility	Barrierefreiheit bei Konzerten ist noch nicht selbstverständlich.	Accessibility at concerts is still not a given.	★★
+30	die Selbstdarstellung	self-presentation	Soziale Medien fördern die Selbstdarstellung junger Musiker.	Social media promote the self-presentation of young musicians.	★★
+30	der gesellschaftliche Druck	societal pressure	Der gesellschaftliche Druck, immer die neueste Musik zu kennen, ist groß.	The societal pressure to always know the latest music is great.	★★
+30	die Meinungsfreiheit	freedom of expression	Meinungsfreiheit ist wichtig, auch in der Musik.	Freedom of expression is important, including in music.	★★
+30	die Zensur	censorship	In manchen Ländern gibt es Zensur von Musiktexten.	In some countries there is censorship of song lyrics.	★★
+30	die Protestmusik	protest music	Protestmusik hat eine lange Tradition in Deutschland.	Protest music has a long tradition in Germany.	★★
+31	die Streicher	strings (section)	Die Streicher spielen in dieser Passage besonders leise.	The strings play particularly softly in this passage.	★
+31	die Blechbläser	brass (section)	Die Blechbläser eröffnen das Stück mit einem kraftvollen Einsatz.	The brass section opens the piece with a powerful entry.	★
+31	die Holzbläser	woodwind (section)	Die Holzbläser verleihen dem Stück eine warme Klangfarbe.	The woodwind section gives the piece a warm tone colour.	★
+31	die Blaskapelle (n)	brass band	Die Blaskapelle spielt auf dem Dorffest.	The brass band is playing at the village fête.	★
+31	die Kapelle (n)	band (brass etc)	Die Kapelle marschierte durch die Straßen.	The band marched through the streets.	★
+31	das Streichquartett (e)	string quartet	Das Streichquartett gab ein wunderbares Konzert.	The string quartet gave a wonderful concert.	★
+31	das Kammerorchester (-)	chamber orchestra	Das Kammerorchester tritt in kleinen Sälen auf.	The chamber orchestra performs in small halls.	★
+31	der Solist (en)	soloist	Die Solistin spielte das Klavierkonzert brillant.	The soloist played the piano concerto brilliantly.	★
+32	die Opernaufführung (en)	opera performance	Die Opernaufführung dauerte über drei Stunden.	The opera performance lasted over three hours.	★
+32	die Partitur (en)	score	Der Dirigent studierte die Partitur sehr genau.	The conductor studied the score very carefully.	★
+32	probieren / einstudieren	to rehearse	Wir müssen das Stück noch einmal einstudieren.	We need to rehearse the piece once more.	★
+32	der Virtuose (n)	virtuoso	Er gilt als Virtuose auf der Geige.	He is regarded as a virtuoso on the violin.	★
+32	dirigieren	to conduct	Sie dirigiert eines der besten Orchester Europas.	She conducts one of the best orchestras in Europe.	★
+32	vom Blatt spielen	to sight-read	Ein guter Musiker kann vom Blatt spielen.	A good musician can sight-read.	★
+32	nach Gehör spielen	to play by ear	Mein Großvater konnte nach Gehör spielen.	My grandfather could play by ear.	★
+32	jemanden musikalisch ausbilden	to train someone in music	Das Konservatorium bildet junge Talente musikalisch aus.	The conservatoire trains young talents in music.	★
+33	richtig singen	to sing in tune	Es ist gar nicht so einfach, richtig zu singen.	It is not so easy to sing in tune.	★
+33	falsch singen	to sing out of tune	Im Chor fällt es auf, wenn jemand falsch singt.	In a choir, it is noticeable when someone sings out of tune.	★
+33	eine Zugabe verlangen	to call for an encore	Das Publikum verlangte lautstark eine Zugabe.	The audience loudly called for an encore.	★
+33	Übung macht den Meister	practice makes perfect	Übung macht den Meister – das gilt besonders für Musik.	Practice makes perfect – that is especially true for music.	★
+33	der Musikunterricht	music lessons	Der Musikunterricht in der Schule sollte gefördert werden.	Music lessons at school should be promoted.	★
+33	der Musiklehrer (-)	music teacher	Unser Musiklehrer spielt fünf Instrumente.	Our music teacher plays five instruments.	★
+33	die Gage (n)	fee (for performance)	Die Gage für den Auftritt war sehr gering.	The fee for the performance was very low.	★
+33	die Bezahlung (en)	pay, payment	Viele Musiker kämpfen mit schlechter Bezahlung.	Many musicians struggle with poor pay.	★
+34	die Schallplatte (n)	vinyl record	Schallplatten erleben zurzeit ein echtes Comeback.	Vinyl records are currently experiencing a real comeback.	★
+34	chillig	chilled (mood)	Die Musik ist total chillig – perfekt zum Entspannen.	The music is totally chilled – perfect for relaxing.	★
+34	der Jazz	jazz	Jazz entstand Anfang des 20. Jahrhunderts in den USA.	Jazz originated at the beginning of the 20th century in the USA.	★
+34	der Einfluss der Musik auf die populäre Kultur	the influence of music on popular culture	Der Einfluss der Musik auf die populäre Kultur ist enorm.	The influence of music on popular culture is enormous.	★
+34	das Livestreaming	livestreaming	Livestreaming ermöglicht es Fans, Konzerte von zu Hause zu sehen.	Livestreaming allows fans to watch concerts from home.	★
+34	das virtuelle Konzert (e)	virtual concert	Während der Pandemie gab es viele virtuelle Konzerte.	During the pandemic there were many virtual concerts.	★
+34	der Podcast (s)	podcast	Es gibt viele interessante Podcasts über Musikgeschichte.	There are many interesting podcasts about music history.	★
+34	der Klimawandel	climate change	Immer mehr Musiker setzen sich für den Kampf gegen den Klimawandel ein.	More and more musicians are committed to the fight against climate change.	★
+35	die Inklusion	inclusion	Inklusion bedeutet, dass Musik für alle zugänglich sein sollte.	Inclusion means that music should be accessible to everyone.	★
+35	die Repräsentation	representation	Die Repräsentation verschiedener Kulturen in der Musik ist wichtig.	The representation of different cultures in music is important.	★
+35	die Desinformation	disinformation	Desinformation verbreitet sich leider auch in der Musikwelt.	Disinformation unfortunately also spreads in the music world.	★
+35	die Fake News	fake news	Man muss zwischen echten Nachrichten und Fake News unterscheiden können.	One must be able to distinguish between real news and fake news.	★
+35	der Kurzclip (s)	short clip (TikTok etc.)	Kurze Clips auf TikTok bestimmen heute die Charts.	Short clips on TikTok determine the charts today.	★
+35	die Nostalgie	nostalgia	Die Nostalgie nach analogen Medien treibt den Vinyl-Trend an.	Nostalgia for analogue media is driving the vinyl trend.	★
+35	die Datenschutzbedenken (pl.)	data privacy concerns	Datenschutzbedenken spielen auch bei Streamingdiensten eine Rolle.	Data privacy concerns also play a role with streaming services.	★
+35	die Urheberrechtsdebatte	copyright debate	Die Urheberrechtsdebatte um KI-Musik wird immer hitziger.	The copyright debate around AI music is becoming increasingly heated.	★
+36	meiner Meinung nach	in my opinion	Meiner Meinung nach ist Live-Musik besser als Aufnahmen.	In my opinion, live music is better than recordings.	★
+36	es lässt sich nicht leugnen, dass	it cannot be denied that	Es lässt sich nicht leugnen, dass Streaming die Industrie verändert hat.	It cannot be denied that streaming has changed the industry.	★
+36	einerseits … andererseits	on the one hand … on the other	Einerseits ist Musik kostenlos verfügbar, andererseits leiden die Künstler darunter.	On the one hand music is freely available; on the other hand artists suffer from this.	★
+36	im Vergleich zu (DAT)	in comparison to	Im Vergleich zu früher ist Musik heute viel zugänglicher.	In comparison to the past, music is much more accessible today.	★
+36	es ist auffallend, dass	it is striking that	Es ist auffallend, dass immer mehr deutsche Rapper international Erfolg haben.	It is striking that more and more German rappers are having international success.	★
+36	zusammenfassend lässt sich sagen	in summary, one can say	Zusammenfassend lässt sich sagen, dass Musik die Gesellschaft stark beeinflusst.	In summary, one can say that music strongly influences society.	★
+36	das spielt eine wichtige Rolle	that plays an important role	Musik spielt eine wichtige Rolle im Leben der meisten Jugendlichen.	Music plays an important role in the lives of most young people.	★
+36	immer mehr / immer weniger	more and more / less and less	Immer mehr junge Leute hören Podcasts statt Radio.	More and more young people listen to podcasts instead of radio.	★
 `;
