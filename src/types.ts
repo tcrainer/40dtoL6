@@ -39,16 +39,16 @@ export const LEITNER_BOXES = [1, 2, 3, 4, 5, 6] as const;
 export type LeitnerBox = (typeof LEITNER_BOXES)[number];
 
 export const BOX_INTERVALS: Record<LeitnerBox, number> = {
-  1: 0, 2: 2, 3: 4, 4: 8, 5: 14, 6: Infinity,
+  1: 0, 2: 1, 3: 3, 4: 7, 5: 14, 6: Infinity,
 };
 
 export const BOX_LABELS: Record<LeitnerBox, string> = {
-  1: "empty me every day!",
-  2: "see you tomorrow!",
-  3: "see you in a few days!",
-  4: "see you in a week!",
-  5: "see you in a fortnight!",
-  6: "mastered",
+  1: "repeat any time",
+  2: "review tomorrow",
+  3: "review in 3 days",
+  4: "review in 7 days",
+  5: "review in 14 days",
+  6: "mastered!",
 };
 
 export const BOX_COLORS: Record<LeitnerBox, { fg: string; bg: string }> = {
