@@ -10,11 +10,19 @@ const UMLAUTS = ["ä", "ö", "ü", "ß", "Ä", "Ö", "Ü"];
 
 function makeGapFill(sentence: string, targetWord: string): string | null {
   if (!sentence || !targetWord) return null;
-  const plain = targetWord.replace(/^(der|die|das|den|dem|des|ein|eine)\s+/i, "").trim();
+  // Strip article from the vocab entry to find the core word
+  const plain = targetWord.replace(/^(der|die|das|den|dem|des|ein|eine|einen|einem|einer|eines)\s+/i, "").trim();
   if (plain.length < 2) return null;
-  const idx = sentence.toLowerCase().indexOf(plain.toLowerCase());
+  const lowerSentence = sentence.toLowerCase();
+  const lowerPlain = plain.toLowerCase();
+  const idx = lowerSentence.indexOf(lowerPlain);
   if (idx === -1) return null;
-  return sentence.slice(0, idx) + "______" + sentence.slice(idx + plain.length);
+  // Check if there's an article immediately before the word in the sentence
+  const before = sentence.slice(0, idx);
+  const articleMatch = before.match(/((?:der|die|das|den|dem|des|ein|eine|einen|einem|einer|eines)\s+)$/i);
+  const gapStart = articleMatch ? idx - articleMatch[1].length : idx;
+  const gapEnd = idx + plain.length;
+  return sentence.slice(0, gapStart) + "______" + sentence.slice(gapEnd);
 }
 
 function splitPerfekt(perfekt: string): { aux: string; participle: string } | null {
