@@ -59,6 +59,8 @@ interface AppState {
   setView: (v: AppView) => void;
   selectedTopicId: string | null;
   setSelectedTopicId: (id: string | null) => void;
+  selectedBox: number | null;
+  setSelectedBox: (box: number | null) => void;
   currentDay: number;
   setCurrentDay: (d: number) => void;
   wordStates: Record<string, WordState>;
@@ -91,6 +93,8 @@ export const useStore = create<AppState>()(
       setView: (v) => set({ view: v }),
       selectedTopicId: null,
       setSelectedTopicId: (id) => set({ selectedTopicId: id }),
+      selectedBox: null,
+      setSelectedBox: (box) => set({ selectedBox: box }),
       currentDay: 1,
       setCurrentDay: (d) => set({ currentDay: Math.max(1, Math.min(MAX_DAY, d)) }),
       wordStates: {},
@@ -263,7 +267,7 @@ export const useStore = create<AppState>()(
       },
       resetAll: () => set({
         view: "dashboard", currentDay: 1, wordStates: {}, sessionCards: [], sessionIndex: 0,
-        sessionResults: [], selectedTopicId: null, stats: defaultStats(),
+        sessionResults: [], selectedTopicId: null, selectedBox: null, stats: defaultStats(),
       }),
     }),
     {
