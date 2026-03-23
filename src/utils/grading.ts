@@ -42,14 +42,12 @@ function stripParens(s: string): string {
   return s.replace(/\s*\([^)]*\)/g, "").trim();
 }
 
-/** Remove slash-separated alternatives — keep only the first option.
- *  e.g. "lustig / witzig" → "lustig"
- *  e.g. "to go, to travel, to drive" → "to go"
+/**
+ * Strip "to " prefix from English verbs.
+ * e.g. "to go" → "go", "to be able to" → "be able to"
  */
-function firstAlternative(s: string): string {
-  // Split on " / " or ", " when they separate alternatives
-  const slashParts = s.split(/\s*\/\s*/);
-  return slashParts[0].trim();
+function stripToPrefix(s: string): string {
+  return s.replace(/^to\s+/i, "").trim();
 }
 
 /** Core normalization pipeline. */
@@ -73,19 +71,10 @@ function normalizeForCompare(s: string, stripArt: boolean): string {
 
 // ── Accepted alternatives list ──────────────────────────────────────────────
 
-/**
- * Generate all plausible answer variants from a correct answer string.
- * Handles: slash alternatives, comma alternatives, article stripping.
- */
-function getAcceptableAnswers(correct: string, stripArt: boolean): string[] {
+function getAcceptableAnswers(correct: string, stripArt: boolean, isEnglish: boolean): string[] {
   const answers: string[] = [];
 
-  // Split on " / " for explicit alternatives
   const slashAlts = correct.split(/\s*\/\s*/);
-
-  // Also split on ", " for comma-separated alternatives
-  // but only when they look like full alternative answers
-  // e.g. "to go, to travel" → ["to go", "to travel"]
   const commaAlts = correct.split(/,\s+/).filter((p) => p.length > 1);
 
   const allAlts = [...slashAlts];
@@ -97,9 +86,17 @@ function getAcceptableAnswers(correct: string, stripArt: boolean): string[] {
     const n = normalizeForCompare(alt, stripArt);
     if (n.length > 0) answers.push(n);
 
-    // Also add version without articles
     const noArt = normalizeForCompare(stripArticle(alt), stripArt);
     if (noArt.length > 0 && noArt !== n) answers.push(noArt);
+
+    // For English: also accept without "to" prefix (for verbs)
+    if (isEnglish) {
+      const noTo = normalizeForCompare(stripToPrefix(alt), stripArt);
+      if (noTo.length > 0 && noTo !== n) answers.push(noTo);
+
+      const noToNoArt = normalizeForCompare(stripToPrefix(stripArticle(alt)), stripArt);
+      if (noToNoArt.length > 0 && noToNoArt !== n && noToNoArt !== noTo) answers.push(noToNoArt);
+    }
   }
 
   return [...new Set(answers)];
@@ -107,14 +104,6 @@ function getAcceptableAnswers(correct: string, stripArt: boolean): string[] {
 
 // ── Main grading function ───────────────────────────────────────────────────
 
-/**
- * Grade a student's typed answer against the correct answer.
- *
- * @param userAnswer  What the student typed
- * @param correctAnswer  The canonical correct answer
- * @param direction  "de-to-en" or "en-to-de" — affects article stripping behavior
- * @returns GradeDetail with result, answers, and normalized forms
- */
 export function gradeAnswer(
   userAnswer: string,
   correctAnswer: string,
@@ -133,21 +122,29 @@ export function gradeAnswer(
     };
   }
 
-  // Articles are optional in both directions
+  const isEnglish = direction === "de-to-en";
   const stripArt = true;
 
   const normalizedUser = normalizeForCompare(trimmedUser, stripArt);
-  const acceptableAnswers = getAcceptableAnswers(trimmedCorrect, stripArt);
+  const acceptableAnswers = getAcceptableAnswers(trimmedCorrect, stripArt, isEnglish);
 
-  // Also create a user variant with umlauts expanded
   const userExpanded = expandUmlauts(normalizedUser);
+
+  // For English: also strip "to" from user input
+  const userNoTo = isEnglish ? normalizeForCompare(stripToPrefix(trimmedUser), stripArt) : normalizedUser;
+  const userNoToExpanded = expandUmlauts(userNoTo);
 
   let bestResult: GradeResult = "wrong";
   let bestCorrectNorm = acceptableAnswers[0] || normalizeForCompare(trimmedCorrect, stripArt);
 
   for (const acceptable of acceptableAnswers) {
-    // Exact match
-    if (normalizedUser === acceptable || userExpanded === acceptable) {
+    // Exact match (with various normalizations)
+    if (
+      normalizedUser === acceptable ||
+      userExpanded === acceptable ||
+      userNoTo === acceptable ||
+      userNoToExpanded === acceptable
+    ) {
       return {
         result: "correct",
         userAnswer: trimmedUser,
@@ -157,9 +154,8 @@ export function gradeAnswer(
       };
     }
 
-    // Check if user typed umlauts as ae/oe/ue and we should accept
     const acceptableExpanded = expandUmlauts(acceptable);
-    if (userExpanded === acceptableExpanded) {
+    if (userExpanded === acceptableExpanded || userNoToExpanded === acceptableExpanded) {
       return {
         result: "correct",
         userAnswer: trimmedUser,
@@ -169,16 +165,23 @@ export function gradeAnswer(
       };
     }
 
-    // Levenshtein distance for close matches
+    // Levenshtein — try all user variants
     const dist = Math.min(
       levenshtein(normalizedUser, acceptable),
-      levenshtein(userExpanded, acceptableExpanded)
+      levenshtein(userExpanded, acceptableExpanded),
+      levenshtein(userNoTo, acceptable),
+      levenshtein(userNoToExpanded, acceptableExpanded)
     );
 
     const maxLen = Math.max(normalizedUser.length, acceptable.length);
 
-    // Close: 1 edit for short words, up to 2 for longer words
-    const closeThreshold = maxLen <= 5 ? 1 : 2;
+    // English: very lenient. German: slightly less.
+    let closeThreshold: number;
+    if (isEnglish) {
+      closeThreshold = maxLen <= 4 ? 1 : maxLen <= 8 ? 2 : 3;
+    } else {
+      closeThreshold = maxLen <= 5 ? 1 : 2;
+    }
 
     if (dist <= closeThreshold && dist > 0) {
       bestResult = "close";
@@ -195,10 +198,6 @@ export function gradeAnswer(
   };
 }
 
-/**
- * Quick check: is the answer correct or close (i.e. not "wrong")?
- * Used for Leitner promotion logic.
- */
 export function isPassingGrade(result: GradeResult): boolean {
   return result === "correct" || result === "close";
 }
