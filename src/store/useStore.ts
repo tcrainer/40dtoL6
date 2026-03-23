@@ -203,7 +203,7 @@ export const useStore = create<AppState>()(
             const isFirstTest = ws.totalCorrect + ws.totalIncorrect <= needsCount;
             const updated = { ...ws };
             if (sessionType === "learn" && isFirstTest) {
-              updated.box = (bothCorrect ? 5 : 2) as LeitnerBox;
+              updated.box = (bothCorrect ? 5 : 1) as LeitnerBox;
             } else {
               updated.box = bothCorrect ? Math.min(6, updated.box + 1) as LeitnerBox : 1 as LeitnerBox;
             }
