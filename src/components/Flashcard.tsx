@@ -131,7 +131,7 @@ export function Flashcard() {
       results.push(gradeVerbField(verbInputs[3], perfektParts.aux));
       results.push(gradeVerbField(verbInputs[4], perfektParts.participle));
     } else {
-      results.push("correct", "correct"); // no perfekt to check
+      results.push("correct", "correct");
     }
     setVerbResults(results);
 
@@ -170,7 +170,7 @@ export function Flashcard() {
       if (verbResults) { handleNext(); return; }
       // Tab to next box, or submit if last
       if (idx < 4 && perfektParts) { verbRefs.current[idx + 1]?.focus(); }
-      else if (idx < 2) { verbRefs.current[idx + 1]?.focus(); }
+      else if (idx < 2 && !perfektParts) { verbRefs.current[idx + 1]?.focus(); }
       else handleVerbSubmit();
     }
     const num = parseInt(e.key);
@@ -242,14 +242,21 @@ export function Flashcard() {
             <div style={{ fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#b45309", marginBottom: "12px" }}>German verb forms</div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-              <VerbField label="Infinitive" placeholder={word.german} value={verbInputs[0]} correct={word.german} result={verbResults?.[0]} onChange={v => { const n = [...verbInputs]; n[0] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[0] = el} onKeyDown={e => handleVerbKeyDown(e, 0)} disabled={!!verbResults} />
-              <VerbField label="er/sie ___" placeholder="3rd person" value={verbInputs[1]} correct={word.german3rd?.replace(/^er\s+/i,"").replace(/^sie\s+/i,"").trim() || "—"} result={verbResults?.[1]} onChange={v => { const n = [...verbInputs]; n[1] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[1] = el} onKeyDown={e => handleVerbKeyDown(e, 1)} disabled={!!verbResults} />
-              <VerbField label="ich ___ (Imperfekt)" placeholder="past tense" value={verbInputs[2]} correct={word.germanImperfekt?.replace(/^ich\s+/i,"").trim() || "—"} result={verbResults?.[2]} onChange={v => { const n = [...verbInputs]; n[2] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[2] = el} onKeyDown={e => handleVerbKeyDown(e, 2)} disabled={!!verbResults} />
+              <VerbField label="Infinitiv" placeholder="e.g. nehmen" value={verbInputs[0]} correct={word.german} result={verbResults?.[0]} onChange={v => { const n = [...verbInputs]; n[0] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[0] = el} onKeyDown={e => handleVerbKeyDown(e, 0)} disabled={!!verbResults} />
+              <VerbField label="er/sie ___" placeholder="e.g. nimmt" value={verbInputs[1]} correct={word.german3rd?.replace(/^er\s+/i,"").replace(/^sie\s+/i,"").trim() || "—"} result={verbResults?.[1]} onChange={v => { const n = [...verbInputs]; n[1] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[1] = el} onKeyDown={e => handleVerbKeyDown(e, 1)} disabled={!!verbResults} />
+              <VerbField label="Imperfekt: ich ___" placeholder="e.g. nahm" value={verbInputs[2]} correct={word.germanImperfekt?.replace(/^ich\s+/i,"").trim() || "—"} result={verbResults?.[2]} onChange={v => { const n = [...verbInputs]; n[2] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[2] = el} onKeyDown={e => handleVerbKeyDown(e, 2)} disabled={!!verbResults} />
               {perfektParts && (
-                <>
-                  <VerbField label="ich ___ (Perfekt aux)" placeholder="habe / bin" value={verbInputs[3]} correct={perfektParts.aux} result={verbResults?.[3]} onChange={v => { const n = [...verbInputs]; n[3] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[3] = el} onKeyDown={e => handleVerbKeyDown(e, 3)} disabled={!!verbResults} />
-                  <VerbField label="___ (Partizip)" placeholder="participle" value={verbInputs[4]} correct={perfektParts.participle} result={verbResults?.[4]} onChange={v => { const n = [...verbInputs]; n[4] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[4] = el} onKeyDown={e => handleVerbKeyDown(e, 4)} disabled={!!verbResults} />
-                </>
+                <div>
+                  <div style={{ fontSize: "11px", fontWeight: 600, color: "var(--color-ink-muted)", marginBottom: "4px" }}>Perfekt: ich ___ ___</div>
+                  <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                    <div style={{ flex: "0 0 90px" }}>
+                      <VerbFieldInline placeholder="habe/bin" value={verbInputs[3]} correct={perfektParts.aux} result={verbResults?.[3]} onChange={v => { const n = [...verbInputs]; n[3] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[3] = el} onKeyDown={e => handleVerbKeyDown(e, 3)} disabled={!!verbResults} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <VerbFieldInline placeholder="e.g. genommen" value={verbInputs[4]} correct={perfektParts.participle} result={verbResults?.[4]} onChange={v => { const n = [...verbInputs]; n[4] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[4] = el} onKeyDown={e => handleVerbKeyDown(e, 4)} disabled={!!verbResults} />
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
 
@@ -389,6 +396,23 @@ function VerbField({ label, placeholder, value, correct, result, onChange, input
         )}
         {result === "correct" && <Check size={16} style={{ color: "#16a34a", flexShrink: 0 }} />}
       </div>
+    </div>
+  );
+}
+
+function VerbFieldInline({ placeholder, value, correct, result, onChange, inputRef, onKeyDown, disabled }: {
+  placeholder: string; value: string; correct: string; result?: "correct" | "close" | "wrong"; onChange: (v: string) => void; inputRef: (el: HTMLInputElement | null) => void; onKeyDown: (e: React.KeyboardEvent) => void; disabled: boolean;
+}) {
+  const borderColor = !result ? "#d97a1a" : result === "correct" ? "#16a34a" : result === "close" ? "#d97706" : "#dc2626";
+  const bgColor = !result ? "var(--color-surface)" : result === "correct" ? "#dcfce7" : result === "close" ? "#fef3c7" : "#fce4ec";
+
+  return (
+    <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+      <input ref={inputRef} type="text" value={value} onChange={e => onChange(e.target.value)} onKeyDown={onKeyDown} placeholder={placeholder} disabled={disabled} autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} style={{ width: "100%", fontSize: "15px", padding: "8px 12px", borderRadius: "var(--radius-sm)", border: `2px solid ${borderColor}`, background: bgColor, boxSizing: "border-box", opacity: disabled && !result ? 0.5 : 1 }} />
+      {result && result !== "correct" && (
+        <span style={{ fontSize: "12px", fontWeight: 600, color: "#15803d", flexShrink: 0 }}>{correct}</span>
+      )}
+      {result === "correct" && <Check size={16} style={{ color: "#16a34a", flexShrink: 0 }} />}
     </div>
   );
 }
