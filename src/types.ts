@@ -19,16 +19,18 @@ export interface Topic {
 }
 
 export const TOPICS: Topic[] = [
-  { id: "T1", name: "The world around us", shortName: "Umwelt", color: "var(--color-box4)" },
-  { id: "T2", name: "Education & Employment", shortName: "Bildung", color: "var(--color-box5)" },
-  { id: "T3", name: "Home & Abroad", shortName: "Zuhause", color: "var(--color-box2)" },
-  { id: "T4", name: "Personal life & Relationships", shortName: "Leben", color: "var(--color-box6)" },
-  { id: "T5", name: "B1 Advanced vocabulary", shortName: "B1", color: "var(--color-box1)" },
-  { id: "T6", name: "Opinion, Intensifiers & Adj.", shortName: "Meinung", color: "var(--color-close)" },
-  { id: "SW", name: "Strukturwörter", shortName: "Struktur", color: "var(--color-ink-muted)" },
-  { id: "VB", name: "Important Verbs & Tenses", shortName: "Verben", color: "var(--color-box3)" },
-  { id: "WR", name: "Writing phrases", shortName: "Schreiben", color: "var(--color-accent)" },
+  { id: "T1", name: "The world around us", shortName: "Umwelt", color: "#3a8a3a" },
+  { id: "T2", name: "Education & Employment", shortName: "Bildung", color: "#2a6fb5" },
+  { id: "T3", name: "Home & Abroad", shortName: "Zuhause", color: "#d97a1a" },
+  { id: "T4", name: "Personal life & Relationships", shortName: "Leben", color: "#7c4dba" },
+  { id: "T5", name: "B1 Advanced vocabulary", shortName: "B1", color: "#d94f4f" },
+  { id: "T6", name: "Opinion, Intensifiers & Adj.", shortName: "Meinung", color: "#a16b07" },
+  { id: "SW", name: "Strukturwörter", shortName: "Struktur", color: "#6b6b6b" },
+  { id: "VB", name: "Important Verbs & Tenses", shortName: "Verben", color: "#c4a000" },
+  { id: "WR", name: "Writing phrases", shortName: "Schreiben", color: "#2d5a27" },
 ];
+
+export const MAX_DAY = 36;
 
 // ── Leitner system ──────────────────────────────────────────────────────────
 
@@ -36,7 +38,7 @@ export const LEITNER_BOXES = [1, 2, 3, 4, 5, 6] as const;
 export type LeitnerBox = (typeof LEITNER_BOXES)[number];
 
 /**
- * Review intervals in days for each box.
+ * Box 0 = untested (not in LEITNER_BOXES, handled separately)
  * Box 1: every session (0 = always due)
  * Box 2: every 2 days
  * Box 3: every 4 days
@@ -54,7 +56,7 @@ export const BOX_INTERVALS: Record<LeitnerBox, number> = {
 };
 
 export const BOX_LABELS: Record<LeitnerBox, string> = {
-  1: "New / struggling",
+  1: "Struggling",
   2: "2-day review",
   3: "4-day review",
   4: "8-day review",
@@ -75,9 +77,9 @@ export const BOX_COLORS: Record<LeitnerBox, { fg: string; bg: string }> = {
 
 export interface WordState {
   box: LeitnerBox;
-  lastReviewDate: string | null; // ISO date string
-  deToEnCorrect: boolean; // current session: got DE→EN right
-  enToDeCorrect: boolean; // current session: got EN→DE right
+  lastReviewDate: string | null;
+  deToEnCorrect: boolean;
+  enToDeCorrect: boolean;
   totalCorrect: number;
   totalIncorrect: number;
 }
@@ -120,11 +122,11 @@ export interface SessionSummary {
   correct: number;
   close: number;
   wrong: number;
-  promoted: string[]; // word IDs that moved up
-  demoted: string[];  // word IDs that went back to box 1
-  newlyMastered: string[]; // word IDs that reached box 6
+  promoted: string[];
+  demoted: string[];
+  newlyMastered: string[];
 }
 
 // ── App view state ──────────────────────────────────────────────────────────
 
-export type AppView = "dashboard" | "session" | "session-complete" | "browse";
+export type AppView = "dashboard" | "session" | "session-complete" | "browse" | "topic-detail";
