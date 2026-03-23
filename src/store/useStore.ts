@@ -23,36 +23,21 @@ function shuffle<T>(arr: T[]): T[] {
   return s;
 }
 
-/**
- * Build session cards with batched directions:
- * Take words, split into groups of ~5, for each group:
- * test all in direction A, then all in direction B.
- */
 function buildSessionCards(wordIds: string[]): SessionCard[] {
   const cards: SessionCard[] = [];
   const batchSize = 5;
-
   for (let i = 0; i < wordIds.length; i += batchSize) {
     const batch = wordIds.slice(i, i + batchSize);
     const firstDir: Direction = Math.random() < 0.5 ? "de-to-en" : "en-to-de";
     const secondDir: Direction = firstDir === "de-to-en" ? "en-to-de" : "de-to-en";
-
-    // Shuffle within batch
     const shuffledBatch = shuffle(batch);
-
-    // Direction A for all words in batch
-    for (const id of shuffledBatch) {
-      cards.push({ wordId: id, direction: firstDir });
-    }
-    // Direction B for same words (re-shuffled)
-    for (const id of shuffle(shuffledBatch)) {
-      cards.push({ wordId: id, direction: secondDir });
-    }
+    for (const id of shuffledBatch) cards.push({ wordId: id, direction: firstDir });
+    for (const id of shuffle(shuffledBatch)) cards.push({ wordId: id, direction: secondDir });
   }
   return cards;
 }
 
-const defaultWordState = (): WordState => ({
+const newWordState = (): WordState => ({
   box: 1, lastReviewDate: null, deToEnCorrect: false, enToDeCorrect: false, totalCorrect: 0, totalIncorrect: 0,
 });
 const defaultStats = (): UserStats => ({
@@ -69,10 +54,8 @@ interface AppState {
   wordStates: Record<string, WordState>;
   getWordState: (wordId: string) => WordState | null;
   stats: UserStats;
-  addPoints: (pts: number) => void;
   updateStreak: () => void;
 
-  // Session — now flat list, no phases
   sessionType: SessionType;
   sessionCards: SessionCard[];
   sessionIndex: number;
@@ -91,6 +74,7 @@ interface AppState {
   getDueTodayCount: () => number;
   isAllRevisedToday: () => boolean;
   getTopicProgress: (topicId: string) => { total: number; mastered: number; inProgress: number; untested: number };
+  isTopicDayTested: (topicId: string, day: number) => boolean;
   resetAll: () => void;
 }
 
@@ -106,8 +90,6 @@ export const useStore = create<AppState>()(
       wordStates: {},
       getWordState: (wid) => get().wordStates[wid] || null,
       stats: defaultStats(),
-
-      addPoints: (pts) => set((s) => ({ stats: { ...s.stats, points: s.stats.points + pts } })),
 
       updateStreak: () => set((s) => {
         const today = todayISO();
@@ -133,7 +115,6 @@ export const useStore = create<AppState>()(
         }
         dueIds.sort((a, b) => (wordStates[a]?.box || 1) - (wordStates[b]?.box || 1));
 
-        // Reset direction flags for due words
         const newStates = { ...get().wordStates };
         for (const id of dueIds) {
           if (newStates[id]) newStates[id] = { ...newStates[id], deToEnCorrect: false, enToDeCorrect: false };
@@ -147,6 +128,7 @@ export const useStore = create<AppState>()(
         get().updateStreak();
       },
 
+      // Learn: do NOT create wordStates yet — they stay "untested" until answers come in
       startLearnSession: () => {
         const { wordStates, currentDay } = get();
         const newIds: string[] = [];
@@ -154,23 +136,22 @@ export const useStore = create<AppState>()(
           if (w.day > currentDay) continue;
           if (!wordStates[w.id]) newIds.push(w.id);
         }
-        const newStates = { ...get().wordStates };
-        for (const id of newIds) newStates[id] = defaultWordState();
 
         set({
           view: "session", sessionType: "learn",
           sessionCards: buildSessionCards(newIds),
-          sessionIndex: 0, sessionResults: [], wordStates: newStates,
+          sessionIndex: 0, sessionResults: [],
         });
         get().updateStreak();
       },
 
       startCustomSession: (wordIds) => {
+        // Reset direction flags for already-tested words, don't create new ones
         const newStates = { ...get().wordStates };
         for (const id of wordIds) {
-          if (!newStates[id]) newStates[id] = defaultWordState();
-          else newStates[id] = { ...newStates[id], deToEnCorrect: false, enToDeCorrect: false };
+          if (newStates[id]) newStates[id] = { ...newStates[id], deToEnCorrect: false, enToDeCorrect: false };
         }
+
         set({
           view: "session", sessionType: "learn",
           sessionCards: buildSessionCards(wordIds),
@@ -185,7 +166,10 @@ export const useStore = create<AppState>()(
         const card = sessionCards[sessionIndex];
 
         const passing = grade === "correct" || grade === "close";
-        const ws = { ...(get().wordStates[card.wordId] || defaultWordState()) };
+
+        // Create wordState if it doesn't exist yet (first time testing)
+        const existing = get().wordStates[card.wordId];
+        const ws = existing ? { ...existing } : newWordState();
 
         if (card.direction === "de-to-en") ws.deToEnCorrect = passing;
         else ws.enToDeCorrect = passing;
@@ -201,20 +185,16 @@ export const useStore = create<AppState>()(
       },
 
       nextCard: () => {
-        const { sessionCards, sessionIndex, wordStates, sessionType } = get();
+        const { sessionCards, sessionIndex, wordStates, sessionType, sessionResults } = get();
         if (sessionIndex >= sessionCards.length) return;
 
         const currentCard = sessionCards[sessionIndex];
         const ws = wordStates[currentCard.wordId];
 
-        // Check if both directions for this word have now been answered
         if (ws) {
-          const bothAnswered = sessionCards.filter(c => c.wordId === currentCard.wordId).length <= 2;
-          const bothDone = ws.deToEnCorrect !== undefined && ws.enToDeCorrect !== undefined;
-          // Check if the second direction card has already been played
-          const answeredCards = get().sessionResults.filter(r => r.wordId === currentCard.wordId);
+          // Check if both directions have been answered for this word
+          const answeredCards = sessionResults.filter(r => r.wordId === currentCard.wordId);
           if (answeredCards.length >= 2) {
-            // Apply Leitner
             const bothCorrect = ws.deToEnCorrect && ws.enToDeCorrect;
             const isFirstTest = ws.totalCorrect + ws.totalIncorrect <= 2;
             const updated = { ...ws };
@@ -226,9 +206,7 @@ export const useStore = create<AppState>()(
             }
             updated.lastReviewDate = todayISO();
 
-            set((s) => ({
-              wordStates: { ...s.wordStates, [currentCard.wordId]: updated },
-            }));
+            set((s) => ({ wordStates: { ...s.wordStates, [currentCard.wordId]: updated } }));
           }
         }
 
@@ -296,6 +274,13 @@ export const useStore = create<AppState>()(
         let mastered = 0, inProgress = 0, untested = 0;
         for (const w of tw) { const ws = wordStates[w.id]; if (!ws) untested++; else if (ws.box === 6) mastered++; else inProgress++; }
         return { total: tw.length, mastered, inProgress, untested };
+      },
+      // Check if ALL words for a topic+day have been tested at least once
+      isTopicDayTested: (topicId: string, day: number) => {
+        const { wordStates } = get();
+        const words = getAllWords().filter(w => w.topicId === topicId && w.day === day);
+        if (words.length === 0) return false;
+        return words.every(w => !!wordStates[w.id]);
       },
       resetAll: () => set({
         view: "dashboard", currentDay: 1, wordStates: {}, sessionCards: [], sessionIndex: 0,
