@@ -1,368 +1,356 @@
 export const topic3Raw = `
-1	die Stadt	town	Wir wohnen in einer großen Stadt.	We live in a large town.
-1	die Stadtmitte	town centre	Die Geschäfte sind in der Stadtmitte.	The shops are in the town centre.
-1	das Dorf	village	Mein Freund wohnt in einem kleinen Dorf.	My friend lives in a small village.
-1	das Land	country(side), land	Ich verbringe meine Ferien gern auf dem Land.	I like spending my holidays in the countryside.
-1	der Ort	place, location	Das ist ein schöner Ort für ein Picknick.	This is a lovely place for a picnic.
-1	die Gegend	area	Diese Gegend ist sehr hügelig.	This area is very hilly.
-1	der Urlaub	holiday	Wir fahren im Sommer in den Urlaub.	We are going on holiday in the summer.
-2	die Ferien	holidays	Die Sommerferien dauern sechs Wochen.	The summer holidays last six weeks.
-2	der/die Reisende	traveller	Der Reisende kauft eine Fahrkarte.	The traveller buys a ticket.
-2	der Strand	beach	Wir spielen oft am Strand.	We often play on the beach.
-2	der Laden	shop, business	Der Laden schließt um acht Uhr.	The shop closes at eight o'clock.
-2	das Geschäft	shop, business	Dieses Geschäft verkauft schöne Kleidung.	This shop sells lovely clothes.
-2	der Nachbar	neighbour	Mein Nachbar ist sehr freundlich.	My neighbour is very friendly.
-2	der Markt	market	Ich kaufe frisches Obst auf dem Markt.	I buy fresh fruit at the market.
-3	der Marktplatz	market square	Das Rathaus liegt am Marktplatz.	The town hall is located on the market square.
-3	die Kirche	church	Die Kirche ist sehr alt.	The church is very old.
-3	das Rathaus	town hall	Der Bürgermeister arbeitet im Rathaus.	The mayor works in the town hall.
-3	der Parkplatz	car park	Wir lassen unser Auto auf dem Parkplatz.	We leave our car in the car park.
-3	die Postkarte	postcard	Ich schreibe eine Postkarte an meine Oma.	I am writing a postcard to my grandma.
-3	die Bank	bank	Ich muss zur Bank gehen, um Geld zu holen.	I need to go to the bank to get money.
-3	der Platz	square, space	Es gibt keinen Platz für mein Fahrrad.	There is no space for my bike.
-4	sehen	to see	Ich kann das Meer von meinem Zimmer aus sehen.	I can see the sea from my room.
-4	besichtigen	to visit, to look at, to look around	Morgen besichtigen wir das alte Schloss.	Tomorrow we will visit the old castle.
-4	übernachten	to spend the night, stay	Wir übernachten in einer Jugendherberge.	We are staying the night in a youth hostel.
-4	der Einwohner	inhabitant	Das Dorf hat nur hundert Einwohner.	The village has only a hundred inhabitants.
-4	die Brücke	bridge	Wir gehen über die Brücke.	We walk over the bridge.
-4	der Tourist/ die Touristin	tourist	Viele Touristen kommen im Sommer hierher.	Many tourists come here in the summer.
-4	die Pension	guest house	Meine Eltern haben ein Zimmer in einer Pension gebucht.	My parents booked a room in a guest house.
-5	die Jugendherberge	youth hostel	Eine Jugendherberge ist billig für Schüler.	A youth hostel is cheap for school students.
-5	die Unterkunft	accommodation	Wir suchen eine billige Unterkunft für das Wochenende.	We are looking for cheap accommodation for the weekend.
-5	buchen	to book	Ich möchte ein Doppelzimmer buchen.	I would like to book a double room.
-5	ankommen	to arrive	Mein Zug kommt am Nachmittag um 15 Uhr an.	My train arrives in the afternoon at 3 pm.
-5	der Koffer	suitcase	Ich packe meinen Koffer für die Reise.	I am packing my suitcase for the journey.
-5	der Stadtplan	street map	Hast du einen Stadtplan von Berlin?	Do you have a street map of Berlin?
-5	anrufen	to ring, to phone, to give a call	Ich rufe meine Mutter heute Abend an.	I will ring my mother this evening.
-6	ausfüllen	to complete, to fill in	Bitte füllen Sie dieses Formular aus.	Please fill in this form.
-6	bekommen	to receive, to get	Ich bekomme viele Geschenke zu Weihnachten.	I receive lots of presents for Christmas.
-6	finden	to find	Ich finde mein Handy nicht in meiner Tasche.	I cannot find my mobile phone in my bag.
-6	füllen	to fill	Er füllt die Flasche mit Wasser.	He fills the bottle with water.
-6	geben	to give	Kannst du mir bitte das Buch geben?	Can you please give me the book?
-6	Deutsche/r	German	Mein Brieffreund ist Deutscher.	My penpal is German.
-6	Deutschland	Germany	Die Hauptstadt von Deutschland ist Berlin.	The capital of Germany is Berlin.
-7	Engländer/in	Englishman/ Englishwoman	Er ist Engländer und kommt aus London.	He is an Englishman and comes from London.
-7	Franzose/Französin	Frenchman/ Frenchwoman	Meine Tante ist Französin.	My aunt is a Frenchwoman.
-7	Holländer/in	Dutchman/ Dutchwoman	Die Holländer fahren in der Stadt gern Rad.	Dutch people like riding bikes in the city.
-7	Ire/Irin	Irishman/ Irishwoman	Der Ire trinkt gern Tee.	The Irishman likes drinking tea.
-7	Waliser/in	Welshman/ Welshwoman	Meine Lehrerin ist Waliserin.	My teacher is a Welshwoman.
-7	hügelig	hilly	Die Landschaft in Wales ist sehr hügelig.	The landscape in Wales is very hilly.
-8	schön	beautiful, lovely	Das Wetter am Strand ist heute sehr schön.	The weather at the beach is very beautiful today.
-8	Geld ausgeben	to spend money	Im Urlaub gebe ich viel Geld für Essen aus.	On holiday I spend a lot of money on food.
-8	Geld wechseln	to exchange money	Wo kann ich hier Geld wechseln?	Where can I exchange money here?
-8	Zeit verbringen	to spend time	Ich verbringe viel Zeit mit meinen Freunden.	I spend a lot of time with my friends.
-8	sich befinden	to be, to be located, to be situated	Das Museum befindet sich neben der alten Kirche.	The museum is located next to the old church.
-8	wechseln, umtauschen	to change (money)	Ich muss meine Pfund in Euro umtauschen.	I have to change my pounds into euros.
-9	das Doppelbett	double bed	Unser Hotelzimmer hat ein großes Doppelbett.	Our hotel room has a large double bed.
-9	das Geld	money	Hast du genug Geld für das Kino?	Do you have enough money for the cinema?
-9	das Hallenbad	indoor swimming pool	Wenn es regnet, gehen wir ins Hallenbad.	When it rains, we go to the indoor swimming pool.
-9	der Ausweis	ID-card	Vergiss deinen Ausweis für die Reise nicht!	Don't forget your ID-card for the trip!
-9	der Fasching	carnival	Im Februar feiern wir Fasching in der Schule.	In February we celebrate carnival at school.
-9	der Geburtstag	birthday	Wann hast du Geburtstag?	When is your birthday?
-10	der Geburtstagskuchen	birthday cake	Meine Mutter backt einen leckeren Geburtstagskuchen.	My mother bakes a delicious birthday cake.
-10	der Geldwechsel	exchange (of money)	Der Geldwechsel ist am Schalter in der Bank möglich.	Money exchange is possible at the counter in the bank.
-10	der Hügel	hill	Wir wandern am Nachmittag auf den Hügel.	We are walking up the hill in the afternoon.
-10	der Karneval	carnival	Der Karneval in Köln ist sehr berühmt.	The carnival in Cologne is very famous.
-10	der Muttertag	Mother's Day	Zum Muttertag kaufe ich schöne Blumen.	For Mother's Day I am buying lovely flowers.
-10	der Valentinstag	Valentine's Day	Am Valentinstag schreibe ich eine Karte an meinen Freund.	On Valentine's Day I write a card to my boyfriend.
-11	der Vatertag	Father's Day	Am Vatertag machen wir einen Ausflug mit meinem Papa.	On Father's Day we go on a trip with my dad.
-11	der Wasserski	waterskiing	Im Urlaub fahre ich gern Wasserski.	On holiday I like waterskiing.
-11	der Weihnachtsmann	Father Christmas	Der Weihnachtsmann bringt den Kindern Geschenke.	Father Christmas brings the children presents.
-11	der Wohnwagen	caravan	Wir fahren mit dem Wohnwagen nach Frankreich.	We are travelling to France with the caravan.
-11	der Zeitraum	period (of time)	Der Zeitraum für die Anmeldung ist sehr kurz.	The period for registration is very short.
-11	der Zeitungskiosk	newspaper stand	Ich kaufe eine Zeitung am Zeitungskiosk.	I buy a newspaper at the newspaper stand.
-12	die Ansichtskarte	picture postcard	Ich schicke eine Ansichtskarte aus dem Urlaub.	I am sending a picture postcard from the holiday.
-12	die Fastnacht	carnival	Die Fastnacht ist in Süddeutschland sehr beliebt.	Carnival is very popular in southern Germany.
-12	die Glückwunschkarte	greetings card	Ich schreibe eine Glückwunschkarte zum Geburtstag.	I am writing a greetings card for the birthday.
-12	abschicken	to send, to post	Ich schicke den Brief heute ab.	I am sending the letter today.
-12	aufmachen	to open	Bitte mach das Fenster auf, es ist heiß.	Please open the window, it is hot.
-12	aufschlagen	to pitch (tent), to open	Wir schlagen unser Zelt auf dem Campingplatz auf.	We are pitching our tent on the campsite.
-13	auspacken	to unpack	Nach der Reise packe ich meinen Koffer aus.	After the journey I unpack my suitcase.
-13	baden	to swim (in the sea)	Im Sommer baden wir oft im Meer.	In the summer we often swim in the sea.
-13	beschreiben	to describe	Kannst du deine Stadt beschreiben?	Can you describe your town?
-13	besuchen	to visit	Am Wochenende besuche ich meine Großeltern.	At the weekend I visit my grandparents.
-13	bleiben	to stay	Wir bleiben drei Nächte im Hotel.	We are staying three nights in the hotel.
-13	brennen	to burn	Das Lagerfeuer brennt hell in der Nacht.	The bonfire burns brightly in the night.
-14	danken	to thank	Ich möchte dir für das Geschenk danken.	I would like to thank you for the present.
-14	einladen	to invite	Ich lade meinen Freund zur Party ein.	I am inviting my friend to the party.
-14	einpacken	to wrap, pack	Ich packe meine Sachen für den Urlaub ein.	I am packing my things for the holiday.
-14	feiern	to celebrate	Wir feiern meinen Geburtstag mit einer großen Party.	We are celebrating my birthday with a big party.
-14	liefern	to deliver (package)	Der Briefträger liefert das Paket am Morgen.	The postman delivers the package in the morning.
-14	mieten	to rent, to hire	Wir mieten ein Auto für den Urlaub.	We are renting a car for the holiday.
-15	reservieren	to reserve	Ich möchte einen Tisch im Restaurant reservieren.	I would like to reserve a table in the restaurant.
-15	schicken	to send	Ich schicke eine E-Mail an meinen Lehrer.	I am sending an email to my teacher.
-15	schwimmen	to swim	Im Sommer schwimme ich gern im Freibad.	In the summer I like to swim in the open-air pool.
-15	sterben	to die	Die Blumen sterben, weil es zu heiß ist.	The flowers are dying because it is too hot.
-15	vergessen	to forget, to leave behind	Ich habe meinen Schlüssel zu Hause vergessen.	I have forgotten my key at home.
-15	verlassen	to leave (a place)	Wir verlassen das Hotel um neun Uhr.	We leave the hotel at nine o'clock.
-16	verlieren	to lose	Ich verliere oft meine Schlüssel.	I often lose my keys.
-16	wandern	to walk, hike	Am Sonntag wandern wir in den Bergen.	On Sunday we hike in the mountains.
-16	wählen	to choose, to dial, to vote	Ich wähle die Nummer vom Hotel.	I am dialling the hotel's number.
-16	wünschen	to wish	Ich wünsche dir alles Gute zum Geburtstag.	I wish you all the best for your birthday.
-16	zelten	to camp	Im Sommer zelten wir gern am See.	In the summer we like to camp by the lake.
-16	zustellen	to deliver (letter)	Der Briefträger stellt die Post jeden Tag zu.	The postman delivers the post every day.
-38	Afrika	Africa	Afrika ist ein großer Kontinent.	Africa is a large continent.
-38	Afrikaner/in	African	Die Afrikanerin spricht drei Sprachen.	The African woman speaks three languages.
-38	Amerikaner/in	American	Der Amerikaner kommt aus New York.	The American comes from New York.
-38	Asiat/in	Asian	Die Asiatin studiert in Berlin.	The Asian woman is studying in Berlin.
-38	Asien	Asia	China und Japan liegen in Asien.	China and Japan are in Asia.
-38	Australien	Australia	Mein Cousin lebt seit zwei Jahren in Australien.	My cousin has been living in Australia for two years.
-39	Bangladesch	Bangladesh	Bangladesch liegt in Südasien.	Bangladesh is in South Asia.
-39	Bangladescher/in	Bangladeshi	Der Bangladescher arbeitet in einer Fabrik.	The Bangladeshi works in a factory.
-39	Bayern	Bavaria	München ist die Hauptstadt von Bayern.	Munich is the capital of Bavaria.
-39	Belgien	Belgium	Brüssel ist die Hauptstadt von Belgien.	Brussels is the capital of Belgium.
-39	Belgier/in	Belgian	Der Belgier spricht Französisch und Niederländisch.	The Belgian speaks French and Dutch.
-39	China	China	Die Chinesische Mauer ist in China.	The Great Wall is in China.
-40	Chinese/Chinesin	Chinese (person)	Die Chinesin kocht sehr gut.	The Chinese woman cooks very well.
-40	Däne/Dänin	Dane	Der Däne fährt gern Rad.	The Dane likes to cycle.
-40	Dänemark	Denmark	Dänemark liegt nördlich von Deutschland.	Denmark is north of Germany.
-40	England	England	London ist die Hauptstadt von England.	London is the capital of England.
-40	Europa	Europe	Frankreich und Deutschland liegen in Europa.	France and Germany are in Europe.
-40	Europäer/in	European	Die Europäerin reist gern in andere Länder.	The European woman likes to travel to other countries.
-41	Frankreich	France	In Frankreich essen wir Croissants zum Frühstück.	In France we eat croissants for breakfast.
-41	Genf	Geneva	Genf liegt am See in der Schweiz.	Geneva is on the lake in Switzerland.
-41	Grieche/Griechin	Greek	Der Grieche isst gern Olivenöl und Feta.	The Greek man likes eating olive oil and feta.
-41	Griechenland	Greece	Im Sommer fahren wir nach Griechenland.	In the summer we travel to Greece.
-41	Großbritannien	Great Britain	Großbritannien ist eine Insel in Europa.	Great Britain is an island in Europe.
-41	Inder/in	Indian	Die Inderin kocht gern scharfes Essen.	The Indian woman likes cooking spicy food.
-42	Indien	India	Indien ist ein großes Land in Asien.	India is a large country in Asia.
-42	Irland	Ireland	Wir fahren mit der Fähre nach Irland.	We are travelling by ferry to Ireland.
-42	Island	Iceland	Es ist im Winter sehr kalt in Island.	It is very cold in Iceland in winter.
-42	Italien	Italy	In Italien essen wir oft Pizza und Nudeln.	In Italy we often eat pizza and pasta.
-42	Italiener/in	Italian	Meine Tante ist Italienerin.	My aunt is Italian.
-42	Japan	Japan	Tokio ist eine riesige Stadt in Japan.	Tokyo is a huge city in Japan.
-43	Japaner/in	Japanese	Der Japaner fährt mit dem schnellen Zug.	The Japanese man travels on the fast train.
-43	Kanada	Canada	Mein Onkel wohnt in Kanada.	My uncle lives in Canada.
-43	Kanadier/in	Canadian	Der Kanadier spricht Englisch und Französisch.	The Canadian speaks English and French.
-43	Köln	Cologne	Der Dom in Köln ist sehr berühmt.	The cathedral in Cologne is very famous.
-43	Liechtenstein	Liechtenstein	Liechtenstein ist ein sehr kleines Land.	Liechtenstein is a very small country.
-43	Luxemburg	Luxembourg	Wir machen am Wochenende einen Ausflug nach Luxemburg.	We are going on a trip to Luxembourg at the weekend.
-44	München	Munich	München liegt in Süddeutschland.	Munich is situated in southern Germany.
-44	Nordamerika	North America	Die USA und Kanada liegen in Nordamerika.	The USA and Canada are located in North America.
-44	Norwegen	Norway	Die Landschaft in Norwegen ist sehr schön.	The scenery in Norway is very beautiful.
-44	Norweger/in	Norwegian	Die Norwegerin geht im Winter oft Ski fahren.	The Norwegian woman often goes skiing in winter.
-44	Pakistan	Pakistan	Es ist im Sommer sehr heiß in Pakistan.	It is very hot in Pakistan in the summer.
-44	Polen	Poland	Polen ist ein Nachbarland von Deutschland.	Poland is a neighbouring country of Germany.
-45	Portugal	Portugal	Wir verbringen unsere Sommerferien in Portugal.	We spend our summer holidays in Portugal.
-45	Russland	Russia	Russland ist das größte Land der Welt.	Russia is the largest country in the world.
-45	Schotte/Schottin	Scot	Der Schotte trägt einen Kilt.	The Scot is wearing a kilt.
-45	Schottland	Scotland	Es gibt viele alte Schlösser in Schottland.	There are many old castles in Scotland.
-45	Schweden	Sweden	Schweden hat viele schöne Seen und Wälder.	Sweden has many beautiful lakes and forests.
-45	Schweizer/in	Swiss	Der Schweizer liebt Schokolade und Käse.	The Swiss man loves chocolate and cheese.
-46	Spanien	Spain	Wir fliegen im August nach Spanien.	We are flying to Spain in August.
-46	Spanier/in	Spaniard	Die Spanierin tanzt sehr gut.	The Spanish woman dances very well.
-46	Südamerika	South America, Latin America	Brasilien liegt in Südamerika.	Brazil is located in South America.
-46	Türke/Türkin	Turk	Mein bester Freund ist Türke.	My best friend is a Turk.
-46	Ungarn	Hungary	Die Hauptstadt von Ungarn ist Budapest.	The capital of Hungary is Budapest.
-46	Wales	Wales	Wir machen oft Urlaub an der Küste in Wales.	We often go on holiday on the coast in Wales.
-26	Wien	Vienna	Wien ist eine sehr historische Stadt.	Vienna is a very historic city.
-26	ausgebucht	booked up, fully booked	Leider ist das Hotel komplett ausgebucht.	Unfortunately the hotel is completely booked up.
-26	besetzt	occupied, taken, full	Der Platz am Fenster ist schon besetzt.	The seat by the window is already taken.
-26	einschließlich	including, inclusive	Der Preis ist einschließlich Frühstück.	The price is including breakfast.
-26	frei	free, vacant	Haben Sie noch ein Zimmer frei?	Do you still have a vacant room?
-26	geboren	born	Ich bin im Jahr zweitausendacht geboren.	I was born in the year two thousand and eight.
-27	historisch	historic(al)	Die Altstadt ist sehr historisch und malerisch.	The old town is very historic and picturesque.
-27	industriell	industrial	Diese Region am Fluss ist sehr industriell.	This region by the river is very industrial.
-27	inklusive	inclusive	Das Abendessen ist im Preis inklusive.	Dinner is inclusive in the price.
-27	langsam	slow(ly)	Der alte Zug fährt sehr langsam.	The old train travels very slowly.
-27	leise	quiet	Bitte sprich leise in der Bibliothek.	Please speak quietly in the library.
-27	malerisch	picturesque	Das kleine Dorf in den Bergen ist sehr malerisch.	The small village in the mountains is very picturesque.
-28	ruhig	quiet, peaceful	Unser Garten ist sehr ruhig und entspannend.	Our garden is very quiet and peaceful.
-28	trinkbar	drinkable	Das Wasser aus dem Wasserhahn ist trinkbar.	The water from the tap is drinkable.
-28	untrinkbar	not drinkable	Das Meerwasser ist salzig und untrinkbar.	The sea water is salty and not drinkable.
-28	Österreich	Austria	Im Winter fahren wir zum Skifahren nach Österreich.	In winter we travel to Austria to go skiing.
-28	Österreicher/in	Austrian	Der Österreicher isst gern Apfelstrudel.	The Austrian likes eating apple strudel.
-28	der Erste Mai	May Day	Der Erste Mai ist ein Feiertag in Deutschland.	May Day is a bank holiday in Germany.
-29	die Deutsche Post	German postal service	Ich schicke mein Paket mit der Deutschen Post.	I am sending my parcel with the German postal service.
-29	Geschenke austauschen	to exchange gifts	An Weihnachten tauschen wir Geschenke aus.	At Christmas we exchange gifts.
-29	sich sonnen	to sunbathe	Meine Schwester sonnt sich am Strand.	My sister is sunbathing on the beach.
-29	sich verkleiden	to dress up, to masquerade	Zu Halloween verkleiden wir uns als Geister.	For Halloween we dress up as ghosts.
-29	zahlen, bezahlen	to pay	Ich möchte bitte die Rechnung bezahlen.	I would like to pay the bill please.
-29	Ostereier suchen	looking for easter eggs	Die Kinder suchen Ostereier im Garten.	The children are looking for Easter eggs in the garden.
-30	Portugiese/ Portugiesin	Portuguese	Die Portugiesin trinkt am Nachmittag gern Kaffee.	The Portuguese woman likes drinking coffee in the afternoon.
-30	Schwede/ Schwedin	Swede	Der Schwede baut ein rotes Haus am See.	The Swede is building a red house by the lake.
-30	alles Gute	all the best	Ich wünsche dir alles Gute für deine Prüfung!	I wish you all the best for your exam!
-30	bei mir	at (my) home	Nach der Schule machen wir die Hausaufgaben bei mir.	After school we do the homework at my home.
-30	das Call-Center	call centre	Meine Cousine arbeitet in einem großen Call-Center.	My cousin works in a large call centre.
-30	das Christkind	Christ child	In Süddeutschland bringt das Christkind die Geschenke.	In southern Germany the Christ child brings the presents.
-31	das Einkaufszentrum	shopping centre	Am Samstag gehe ich mit Freunden ins Einkaufszentrum.	On Saturday I am going to the shopping centre with friends.
-31	das Feuerwerk	fireworks	Das Feuerwerk um Mitternacht ist sehr laut.	The fireworks at midnight are very loud.
-31	das Feuerzeug	lighter	Hast du ein Feuerzeug für die Kerzen?	Do you have a lighter for the candles?
-31	das Fitnesszentrum	gym	Mein Bruder geht jeden Tag ins Fitnesszentrum.	My brother goes to the gym every day.
-31	das Freibad	open-air swimming pool	Im Sommer schwimmen wir oft im Freibad.	In the summer we often swim in the open-air swimming pool.
-31	das Fundbüro	lost property office	Ich habe meine Tasche verloren und gehe zum Fundbüro.	I have lost my bag and am going to the lost property office.
-32	das Gasthaus	inn	Wir essen zu Mittag in einem traditionellen Gasthaus.	We are eating lunch in a traditional inn.
-32	das Geburtsdatum	birth date	Bitte schreiben Sie Ihr Geburtsdatum auf das Formular.	Please write your birth date on the form.
-32	das Gebäude	building	Die neue Schule ist ein sehr modernes Gebäude.	The new school is a very modern building.
-32	das Geschenk	present, gift	Ich kaufe ein schönes Geschenk für meine Schwester.	I am buying a lovely present for my sister.
-32	das Gras	grass	Das Gras in unserem Garten ist sehr grün.	The grass in our garden is very green.
-32	das Halloween	Halloween	Zu Halloween bekommen die Kinder viele Süßigkeiten.	For Halloween the children get lots of sweets.
-33	das Hühnchen	chicken, hen	Auf dem Bauernhof gibt es ein braunes Hühnchen.	On the farm there is a brown chicken.
-33	das Informationsbüro	information office	Wir holen einen Stadtplan im Informationsbüro.	We are fetching a street map in the information office.
-33	das Kaufhaus	department store	Das Kaufhaus in der Stadtmitte ist sehr groß.	The department store in the town centre is very big.
-33	das Lagerfeuer	bonfire	Am Abend singen wir Lieder am Lagerfeuer.	In the evening we sing songs by the bonfire.
-33	das Museum	museum	Das Museum schließt heute um siebzehn Uhr.	The museum closes at 5 pm today.
-33	das Osterei	Easter egg	Ich esse ein großes Osterei aus Schokolade.	I am eating a large chocolate Easter egg.
-34	das Ostern	Easter	Zu Ostern haben wir zwei Wochen Ferien.	For Easter we have two weeks of holidays.
-34	das Osternest	Easter basket	Der Osterhase versteckt das Osternest im Garten.	The Easter bunny hides the Easter basket in the garden.
-34	das Paket	package	Der Briefträger bringt ein Paket für meine Mutter.	The postman brings a package for my mother.
-34	das Pferd	horse	Ich reite am Wochenende gern auf meinem Pferd.	I like riding my horse at the weekend.
-34	das Postamt	post office	Ich gehe zum Postamt, um Briefmarken zu kaufen.	I am going to the post office to buy stamps.
-34	das Schaf	sheep	Auf dem Feld steht ein weißes Schaf.	There is a white sheep standing in the field.
-35	das Schloss	castle, palace	Der König und die Königin wohnen im Schloss.	The king and the queen live in the palace.
-35	das Schmuckgeschäft	jewellery shop	Er kauft eine goldene Kette im Schmuckgeschäft.	He is buying a gold necklace in the jewellery shop.
-35	das Schreibwarengeschäft	stationery shop	Ich kaufe Kulis und Hefte im Schreibwarengeschäft.	I buy pens and exercise books in the stationery shop.
-35	das Schwein	pig	Das kleine rosa Schwein ist sehr süß.	The small pink pig is very cute.
-35	das Schwimmbad	swimming pool	Am Wochenende gehe ich mit meinem Bruder ins Schwimmbad.	At the weekend I am going to the swimming pool with my brother.
-35	das Sportzentrum	sports centre	Wir spielen am Freitag Tennis im Sportzentrum.	We are playing tennis in the sports centre on Friday.
-36	das Stadion	stadium	Wir sehen ein spannendes Fußballspiel im Stadion.	We are watching an exciting football match in the stadium.
-36	das Stockwerk	floor, storey	Mein Schlafzimmer ist im zweiten Stockwerk.	My bedroom is on the second floor.
-36	das Streichholz	match	Wir brauchen ein Streichholz für das Lagerfeuer.	We need a match for the bonfire.
-36	das Süßwarengeschäft	sweet shop	Ich kaufe Schokolade im Süßwarengeschäft.	I am buying chocolate in the sweet shop.
-36	das Verkehrsamt	tourist office	Wir fragen im Verkehrsamt nach einem Hotelzimmer.	We are asking for a hotel room in the tourist office.
-36	das Weihnachten	Christmas	Ich verbringe Weihnachten immer mit meiner Familie.	I always spend Christmas with my family.
-37	das Windsurfbrett	windsurfing board	Mein Vater kauft ein neues Windsurfbrett für den Sommer.	My father is buying a new windsurfing board for the summer.
-37	das Wohnmobil	motorhome	Wir fahren mit dem Wohnmobil an die Küste.	We are travelling to the coast with the motorhome.
-37	das Zelt	tent	Es regnet und wir schlafen im Zelt.	It is raining and we are sleeping in the tent.
-37	der Aufenthalt	stay	Unser Aufenthalt in Berlin war fantastisch.	Our stay in Berlin was fantastic.
-37	der Aufzug	lift	Wir fahren mit dem Aufzug in den fünften Stock.	We take the lift to the fifth floor.
-37	der Balkon	balcony	Am Morgen trinke ich meinen Tee auf dem Balkon.	In the morning I drink my tea on the balcony.
-17	der Bauernhof	farm	In den Sommerferien helfe ich auf einem Bauernhof.	During the summer holidays I help on a farm.
-17	der Baum	tree	In unserem Garten steht ein großer Apfelbaum.	In our garden stands a large apple tree.
-17	der Berg	mountain	Wir wandern im Winter auf den Berg.	We hike up the mountain in winter.
-17	der Besuch	visit	Ich freue mich auf deinen Besuch am Wochenende.	I am looking forward to your visit at the weekend.
-17	der Blick	view (of)	Von meinem Zimmer habe ich einen tollen Blick auf das Meer.	From my room I have a great view of the sea.
-17	der Bodensee	Lake Constance	Wir machen im Frühling einen Ausflug an den Bodensee.	We are going on a trip to Lake Constance in the spring.
-18	der Brief	letter	Ich schreibe einen langen Brief an meinen Brieffreund.	I am writing a long letter to my penpal.
-18	der Briefkasten	letter box	Wir werfen die Postkarten in den Briefkasten.	We drop the postcards into the letter box.
-18	der Brunnen	fountain, well	In der Stadtmitte steht ein sehr alter Brunnen.	In the town centre stands a very old fountain.
-18	der Camcorder	camcorder	Mein Onkel filmt die Hochzeit mit dem Camcorder.	My uncle is filming the wedding with the camcorder.
-18	der Campingplatz	campsite	Dieser Campingplatz ist sehr billig und sauber.	This campsite is very cheap and clean.
-18	der Dom	cathedral	Der Dom in dieser Stadt ist sehr hoch.	The cathedral in this town is very tall.
-19	der Empfang	reception	Bitte holen Sie Ihren Zimmerschlüssel am Empfang ab.	Please pick up your room key at the reception.
-19	der Fahrstuhl	lift	Der Fahrstuhl ist leider schon wieder kaputt.	The lift is unfortunately broken again.
-19	der Fehler	mistake/fault	Ich habe einen Fehler in meinen Hausaufgaben gemacht.	I have made a mistake in my homework.
-19	der Fluss	river	Der Rhein ist ein langer Fluss in Deutschland.	The Rhine is a long river in Germany.
-19	der Fotoapparat	camera	Ich mache viele Bilder mit meinem neuen Fotoapparat.	I take lots of pictures with my new camera.
-19	der Frühling	spring	Der Frühling ist meine Lieblingsjahreszeit, weil es wärmer wird.	Spring is my favourite season because it gets warmer.
-20	der Fußgänger	pedestrian	Der Fußgänger wartet an der Ampel.	The pedestrian waits at the traffic lights.
-20	der Geburtsort	place of birth	Mein Geburtsort ist London.	My place of birth is London.
-20	der Hafen	port, harbour	Es gibt viele große Schiffe im Hafen.	There are many large ships in the port.
-20	der Herbst	autumn	Im Herbst fallen die Blätter von den Bäumen.	In autumn the leaves fall from the trees.
-20	der Jugendklub	youth club	Freitags spiele ich Tischtennis im Jugendklub.	On Fridays I play table tennis in the youth club.
-20	der Kurort	spa town	Meine Oma verbringt eine Woche in einem Kurort.	My grandma is spending a week in a spa town.
-21	der Nachname	last name	Wie buchstabiert man deinen Nachnamen?	How do you spell your last name?
-21	der Nachtklub	nightclub	Die Musik im Nachtklub war gestern sehr laut.	The music in the nightclub was very loud yesterday.
-21	der Notanruf	emergency call	Bei einem Unfall musst du den Notanruf wählen.	In an accident you must dial the emergency call.
-21	der Osterhase	Easter bunny	Der Osterhase bringt Schokolade für die Kinder.	The Easter bunny brings chocolate for the children.
-21	der Palast	palace	Der Buckingham Palast ist in London.	Buckingham Palace is in London.
-21	der Pass	passport	Zeigen Sie mir bitte Ihren Pass.	Please show me your passport.
-22	der Sand	sand	Der Sand am Strand ist heute sehr warm.	The sand on the beach is very warm today.
-22	der Schlafsack	sleeping bag	Wenn wir zelten, schlafe ich in einem Schlafsack.	When we camp, I sleep in a sleeping bag.
-22	der Schwarzwald	the Black Forest	Wir wandern im Sommer oft im Schwarzwald.	We often hike in the Black Forest in the summer.
-22	der See	lake	Im Sommer schwimmen wir oft im See.	In the summer we often swim in the lake.
-22	der Sekt	champagne	Zu Silvester trinken die Erwachsenen Sekt.	On New Year's Eve the adults drink champagne.
-22	der Sommer	summer	Im Sommer fahre ich immer ans Meer.	In summer I always travel to the seaside.
-23	der Souvenirladen	souvenir, gift shop	Ich kaufe eine Tasse im Souvenirladen.	I am buying a mug in the souvenir shop.
-23	der Stadtrand	outskirts	Wir wohnen am Stadtrand in einem kleinen Haus.	We live on the outskirts in a small house.
-23	der Stadtteil	part of town, district	Dieser Stadtteil ist sehr modern und sauber.	This part of town is very modern and clean.
-23	der Stock	floor, storey	Mein Zimmer ist oben im ersten Stock.	My room is upstairs on the first floor.
-23	der Supermarkt	supermarket	Wir kaufen Obst und Gemüse im Supermarkt.	We buy fruit and vegetables in the supermarket.
-23	der Tante-Emma-Laden	corner shop	Der kleine Tante-Emma-Laden um die Ecke ist sehr praktisch.	The small corner shop around the corner is very practical.
-24	der Tod	death	Der Tod ihres Hundes war sehr traurig.	The death of her dog was very sad.
-24	der Turm	tower	Wir klettern auf den hohen Turm, um die Aussicht zu sehen.	We are climbing the high tower to see the view.
-24	der Umzug	parade	Der Umzug zum Karneval ist sehr bunt und laut.	The carnival parade is very colourful and loud.
-24	der Verlust	loss	Der Verlust meines Handys ist sehr ärgerlich.	The loss of my mobile phone is very annoying.
-24	der Vorname	first name	Mein Vorname ist Thomas.	My first name is Thomas.
-24	der Wald	forest	Wir machen am Sonntag einen Spaziergang durch den Wald.	We are going for a walk through the forest on Sunday.
-25	der Weihnachtsbaum	Christmas tree	Wir schmücken den Weihnachtsbaum mit bunten Kugeln.	We are decorating the Christmas tree with colourful baubles.
-25	der Winter	winter	Im Winter schneit es oft in den Bergen.	In winter it often snows in the mountains.
-25	der Wintersport	winter sport	Skifahren ist ein sehr beliebter Wintersport.	Skiing is a very popular winter sport.
-25	der Wohnort	place of residence	Mein Wohnort ist eine ruhige Stadt in England.	My place of residence is a quiet town in England.
-25	die Alpen	the Alps	Die Alpen sind ein großes Gebirge in Europa.	The Alps are a large mountain range in Europe.
-25	die Apotheke	chemist's (dispensing)	Ich muss zur Apotheke gehen, um Medizin zu kaufen.	I need to go to the chemist's to buy medicine.
-47	die Auskunft	information	Der Mann an der Auskunft am Bahnhof ist sehr hilfsbereit.	The man at the information desk at the station is very helpful.
-47	die Aussicht	view	Die Aussicht vom Berg ist wunderschön.	The view from the mountain is beautiful.
-47	die Besichtigung	viewing, sightseeing	Die Besichtigung des Schlosses beginnt um zehn Uhr.	The viewing of the castle begins at ten o'clock.
-47	die Blume	flower	Meine Mutter liebt diese rote Blume.	My mother loves this red flower.
-47	die Briefmarke	postage stamp	Ich brauche eine Briefmarke für diese Postkarte nach England.	I need a postage stamp for this postcard to England.
-47	die Broschüre	brochure	Im Verkehrsamt lese ich eine Broschüre über die Stadt.	In the tourist office I am reading a brochure about the town.
-48	die Buchhandlung	bookshop	Ich kaufe einen neuen Roman in der Buchhandlung.	I am buying a new novel in the bookshop.
-48	die Burg	castle (fortified)	Diese alte Burg hat sehr hohe Mauern.	This old castle has very high walls.
-48	die Bäckerei	baker's shop	Ich kaufe morgens frisches Brot in der Bäckerei.	I buy fresh bread in the baker's shop in the morning.
-48	die Dauer	duration	Die Dauer der Fahrt mit dem Bus beträgt zwei Stunden.	The duration of the bus journey is two hours.
-48	die Disko	disco	Am Samstagabend tanzen wir mit Freunden in der Disko.	On Saturday evening we dance with friends in the disco.
-48	die Drogerie	chemist's (non-dispensing)	Ich kaufe Duschgel und Sonnencreme in der Drogerie.	I am buying shower gel and sun cream in the chemist's.
-49	die Dusche	shower	Unsere Unterkunft hat eine sehr moderne Dusche.	Our accommodation has a very modern shower.
-49	die Einladung	invitation	Danke für die Einladung zu deiner Party!	Thank you for the invitation to your party!
-49	die Eisbahn	skating rink	Im Winter fahren wir Schlittschuh auf der Eisbahn.	In winter we go ice skating on the skating rink.
-49	die Ente	duck	Im Park füttern wir die kleine braune Ente.	In the park we feed the small brown duck.
-49	die Etage	floor, storey	Wir wohnen in einer Wohnung in der dritten Etage.	We live in a flat on the third floor.
-49	die Feier	celebration	Die Feier zum Geburtstag meiner Schwester war sehr lustig.	The birthday celebration for my sister was very fun.
-50	die Feuerwehr	fire brigade	Die Feuerwehr kommt schnell, wenn es brennt.	The fire brigade comes quickly when there is a fire.
-50	die Fußgängerzone	pedestrian precinct	Es gibt viele tolle Geschäfte in der Fußgängerzone.	There are many great shops in the pedestrian precinct.
-50	die Galerie	gallery	Wir sehen uns moderne Kunst in der Galerie an.	We are looking at modern art in the gallery.
-50	die Geburt	birth	Die Geburt meines kleinen Bruders war im Mai.	The birth of my little brother was in May.
-50	die Gebühr	charge, fee	Die Gebühr für das Parken in der Stadtmitte ist sehr hoch.	The charge for parking in the town centre is very high.
-50	die Halbpension	half-board	Wir buchen ein Hotelzimmer mit Halbpension.	We are booking a hotel room with half-board.
-51	die Imbissstube	snack bar	Wir essen mittags oft eine Wurst in der Imbissstube.	We often eat a sausage in the snack bar at lunchtime.
-51	die Informationen	information	Ich brauche mehr Informationen über die Stadt.	I need more information about the town.
-51	die Kamera	camera	Meine neue Kamera macht sehr gute Fotos.	My new camera takes very good photos.
-51	die Kathedrale	cathedral	Die alte Kathedrale im Zentrum ist riesig.	The old cathedral in the centre is huge.
-51	die Kegelbahn	bowling alley	Am Freitagabend spielen wir auf der Kegelbahn.	On Friday evening we play at the bowling alley.
-51	die Kerze	candle	Wir zünden eine Kerze auf dem Tisch an.	We light a candle on the table.
-52	die Kuckucksuhr	cuckoo clock	Meine Großeltern haben eine Kuckucksuhr aus dem Schwarzwald.	My grandparents have a cuckoo clock from the Black Forest.
-52	die Kuh	cow	Die braune Kuh frisst Gras auf der Wiese.	The brown cow is eating grass in the meadow.
-52	die Küste	coast, seaside	Im Sommer fahren wir gern an die Küste.	In the summer we like to travel to the coast.
-52	die Landschaft	landscape, scenery, countryside	Die Landschaft in Wales ist sehr grün.	The scenery in Wales is very green.
-52	die Metzgerei	butcher's shop	Ich kaufe frische Wurst in der Metzgerei.	I buy fresh sausage in the butcher's shop.
-52	die Miete	rent	Die Miete für unsere Wohnung ist sehr teuer.	The rent for our flat is very expensive.
-53	die Moschee	mosque	Am Freitag beten viele Menschen in der Moschee.	On Friday many people pray in the mosque.
-53	die Mücke	midge, mosquito, gnat	Eine nervige Mücke fliegt in meinem Schlafzimmer herum.	An annoying midge is flying around in my bedroom.
-53	die Nachbarschaft	neighbourhood	Unsere neue Nachbarschaft ist sehr ruhig und freundlich.	Our new neighbourhood is very quiet and friendly.
-53	die Niederlande	The Netherlands	Die Niederlande sind sehr flach und toll zum Radfahren.	The Netherlands are very flat and great for cycling.
-53	die Person	person	Eine Person wartet draußen vor der Tür.	A person is waiting outside in front of the door.
-53	die Polizei	police	Die Polizei hilft uns bei dem Unfall.	The police help us with the accident.
-54	die Region	region	In dieser Region gibt es viele Industriegebiete.	In this region there are many industrial areas.
-54	die Sandburg	sand castle	Die Kinder bauen eine große Sandburg am Strand.	The children are building a large sand castle on the beach.
-54	die Schweiz	Switzerland	Die Schweiz ist berühmt für ihre Berge und Seen.	Switzerland is famous for its mountains and lakes.
-54	die Skiausrüstung	skiing equipment	Ich leihe meine Skiausrüstung im Winterurlaub aus.	I hire my skiing equipment on the winter holiday.
-54	die Sonnenbrille	sunglasses	Wenn die Sonne scheint, setze ich meine Sonnenbrille auf.	When the sun shines, I put on my sunglasses.
-54	die Sonnencreme	sun cream	Ich trage am Strand oft Sonnencreme auf.	I often apply sun cream at the beach.
-55	die Sparkasse	savings bank	Ich hebe mein Taschengeld bei der Sparkasse ab.	I withdraw my pocket money at the savings bank.
-55	die Taschenlampe	torch	Es ist dunkel, also mache ich die Taschenlampe an.	It is dark, so I turn the torch on.
-55	die Telefonzelle	telephone box	Es gibt heute nicht mehr viele Telefonzellen auf der Straße.	There are not many telephone boxes on the street anymore today.
-55	die Tracht	traditional costume	Auf dem Oktoberfest tragen viele Leute eine Tracht.	At the Oktoberfest many people wear a traditional costume.
-55	die Tradition	tradition	Das Feuerwerk zu Silvester ist eine alte Tradition.	The fireworks on New Year's Eve are an old tradition.
-55	die Türkei	Turkey	Im Sommer verbringen wir unseren Urlaub in der Türkei.	In the summer we spend our holiday in Turkey.
-56	die Verkleidung	costume, disguise	Meine Verkleidung für die Party ist sehr lustig.	My costume for the party is very funny.
-56	die Vollpension	full board	Wir buchen ein Hotelzimmer mit Vollpension für eine Woche.	We are booking a hotel room with full board for a week.
-56	die Vorbereitungen	preparations	Die Vorbereitungen für das Fest dauern lange.	The preparations for the festival take a long time.
-56	die Wanderung	hike, walk	Die Wanderung durch den Wald war sehr anstrengend.	The hike through the forest was very tiring.
-56	die Wechselstube	bureau de change	Wir tauschen unser Geld in der Wechselstube um.	We exchange our money in the bureau de change.
-56	es gab	there was	Gestern gab es ein großes Gewitter in der Stadt.	Yesterday there was a big thunderstorm in the town.
-57	es gibt	there is	In unserer Stadt gibt es ein neues Einkaufszentrum.	In our town there is a new shopping centre.
-57	gut aussehend	handsome	Der Schauspieler in diesem Film ist sehr gut aussehend.	The actor in this film is very handsome.
-57	im Ausland	abroad	Ich möchte später gern im Ausland studieren.	I would like to study abroad later.
-57	im Voraus bezahlen	to pay in advance	Wir müssen das Hotelzimmer im Voraus bezahlen.	We have to pay for the hotel room in advance.
-57	Bleiben Sie bitte am Apparat	please hold the line, please stay on the line	Einen Moment, bleiben Sie bitte am Apparat.	One moment, please hold the line.
-57	auf dem Lande	in the country	Das Leben auf dem Lande ist sehr ruhig und gesund.	Life in the country is very quiet and healthy.
-58	das Plakat, Poster	poster	Ich hänge ein Poster von meiner Lieblingsband auf.	I am hanging up a poster of my favourite band.
-58	das Vereinigte Königreich	United Kingdom	Das Vereinigte Königreich besteht aus vier Ländern.	The United Kingdom consists of four countries.
-58	der Dieb/die Diebin	thief	Der Dieb stiehlt eine teure Uhr aus dem Geschäft.	The thief steals an expensive watch from the shop.
-58	der Gott/die Göttin	god/goddess	Jupiter war ein römischer Gott.	Jupiter was a Roman god.
-58	der Tag der Deutschen Einheit	Day of German Unity	Der Tag der Deutschen Einheit ist am dritten Oktober.	The Day of German Unity is on the third of October.
-58	die Vereinigten Staaten	United States	Mein Onkel lebt schon lange in den Vereinigten Staaten.	My uncle has lived in the United States for a long time.
-59	das Viertel, der Bezirk	district, quarter	Mein Viertel ist sehr multikulturell und lebhaft.	My district is very multicultural and lively.
-59	das WC / Klo, die Toilette	toilet	Entschuldigung, wo finde ich die Toilette?	Excuse me, where can I find the toilet?
-59	der Bauer / die Bäuerin	farmer	Der Bauer arbeitet früh am Morgen auf dem Feld.	The farmer works early in the morning in the field.
-59	der Berg, die Berge	mountain	Wir fahren im Winter in die Berge, um Ski zu fahren.	We go to the mountains in winter to ski.
-59	der Kuchen, die Torte	cake	Meine Oma backt sonntags immer einen leckeren Kuchen.	My grandma always bakes a delicious cake on Sundays.
-59	die Bibliothek die Bücherei	library	Ich leihe ein spannendes Buch aus der Bibliothek aus.	I borrow an exciting book from the library.
-60	die Vorstadt, der Vorort	suburb(s)	Wir wohnen in einem ruhigen Vorort von London.	We live in a quiet suburb of London.
-60	es tut mir leid	I'm sorry	Es tut mir leid, dass ich heute zu spät komme.	I'm sorry that I am late today.
-60	der Reiseleiter/ die Reiseleiterin	tourist guide	Der Reiseleiter zeigt uns die historische Altstadt.	The tourist guide shows us the historic old town.
-60	die Klimatisierung die Klimaanlage	air conditioning	Es ist heiß, also schalte ich die Klimaanlage ein.	It is hot, so I switch the air conditioning on.
-60	für eine Woche, eine Woche lang	for a week	Wir bleiben für eine Woche in diesem schönen Hotel.	We are staying in this lovely hotel for a week.
-60	für zwei Wochen, zwei Wochen lang	for a fortnight	Wir fahren im August für zwei Wochen nach Spanien.	We are travelling to Spain for a fortnight in August.
+1	der Beruf (e)	occupation, profession	Was ist Ihr Beruf?	What is your occupation?	★★★★
+1	der Arbeitnehmer (-) / der Angestellte (n)	employee	Der Arbeitnehmer hat Rechte.	The employee has rights.	★★★★
+1	der Arbeitgeber (-)	employer	Der Arbeitgeber bietet gute Bedingungen.	The employer offers good conditions.	★★★★
+1	anstellen / einstellen / beschäftigen	to employ	Die Firma stellt neue Mitarbeiter ein.	The company is employing new staff.	★★★★
+1	berufstätig	employed, having a job	Sie ist seit zehn Jahren berufstätig.	She has been employed for ten years.	★★★★
+1	die Firma / das Unternehmen	firm, company	Die Firma hat 500 Mitarbeiter.	The company has 500 employees.	★★★★
+1	der Betrieb (e)	business, company, factory	Er arbeitet in einem kleinen Betrieb.	He works in a small business.	★★★★
+1	verdienen	to earn	Sie verdient gut als Ingenieurin.	She earns well as an engineer.	★★★★
+1	das Gehalt (ä-er)	salary	Das Gehalt wird am Ende des Monats gezahlt.	The salary is paid at the end of the month.	★★★★
+1	die Karriere (n)	career	Sie hat eine erfolgreiche Karriere gemacht.	She has had a successful career.	★★★★
+1	eine Stelle suchen	to look for a job	Er sucht seit Monaten eine Stelle.	He has been looking for a job for months.	★★★★
+1	sich bewerben um (AKK)	to apply for	Ich bewerbe mich um die Stelle als Manager.	I am applying for the position of manager.	★★★★
+2	die Bewerbung	the application	Ich habe meine Bewerbung abgeschickt.	I have sent my application.	★★★★
+2	die Ausbildung / die Lehre (n)	training, apprenticeship	Die Ausbildung dauert drei Jahre.	The training lasts three years.	★★★★
+2	die Qualifikation (en)	qualifications	Welche Qualifikationen haben Sie?	What qualifications do you have?	★★★★
+2	die Erfahrung / die Berufserfahrung	experience (professional)	Berufserfahrung ist für diese Stelle wichtig.	Professional experience is important for this job.	★★★★
+2	die Aufgabe (n)	task	Das ist eine schwierige Aufgabe.	That is a difficult task.	★★★★
+2	der Kollege (n) / die Kollegin (nen)	colleague	Meine Kollegin hilft mir immer.	My colleague always helps me.	★★★★
+2	der Mitarbeiter (-)	colleague, employee	Die Mitarbeiter sind zufrieden.	The employees are satisfied.	★★★★
+2	die Steuer (n)	tax	Die Steuern in Deutschland sind hoch.	Taxes in Germany are high.	★★★★
+2	die Anforderung (en)	demand, requirement	Die Anforderungen an die Stelle sind hoch.	The requirements for the job are high.	★★★★
+2	verantwortlich / zuständig für (Akk)	responsible for	Er ist für das Projekt verantwortlich.	He is responsible for the project.	★★★★
+2	gut bezahlt	well paid	Diese Arbeit ist gut bezahlt.	This work is well paid.	★★★★
+2	fleißig	hard-working	Deutsche Arbeitnehmer gelten als fleißig.	German employees are considered hard-working.	★★★★
+3	arbeitslos / erwerbslos	unemployed	Er ist seit einem Jahr arbeitslos.	He has been unemployed for a year.	★★★★
+3	die Arbeitslosigkeit	unemployment	Die Arbeitslosigkeit ist gestiegen.	Unemployment has risen.	★★★★
+3	die Wirtschaft	the economy	Die deutsche Wirtschaft wächst langsam.	The German economy is growing slowly.	★★★★
+3	der Gewinn (e)	profit	Die Firma hat einen hohen Gewinn erzielt.	The company made a high profit.	★★★★
+3	der Verlust (e)	loss	Das Unternehmen hat Verluste gemacht.	The company made losses.	★★★★
+3	die Konkurrenz	competition	Die Konkurrenz ist in dieser Branche groß.	Competition is fierce in this industry.	★★★★
+3	konkurrenzfähig	competitive	Deutsche Produkte sind sehr konkurrenzfähig.	German products are very competitive.	★★★★
+3	der Kunde / die Kundin	customer	Der Kunde ist immer König.	The customer is always king.	★★★★
+3	herstellen / erzeugen	to make, produce, manufacture	Deutschland stellt viele Autos her.	Germany manufactures many cars.	★★★★
+3	der Hersteller (-)	manufacturer	BMW ist ein bekannter Hersteller.	BMW is a well-known manufacturer.	★★★★
+3	die Dienstleistungsbranche	service industry	Die Dienstleistungsbranche wächst schnell.	The service industry is growing fast.	★★★★
+3	Angebot und Nachfrage	supply and demand	Angebot und Nachfrage bestimmen den Preis.	Supply and demand determine the price.	★★★★
+4	der Import / der Export	import / export	Deutschland ist für seinen Export bekannt.	Germany is known for its exports.	★★★★
+4	importieren / exportieren	to import / to export	Wir exportieren Maschinen in alle Welt.	We export machines worldwide.	★★★★
+4	die Rezession (en)	recession	Während einer Rezession steigt die Arbeitslosigkeit.	During a recession unemployment rises.	★★★★
+4	die Finanzkrise (n)	financial crisis	Die Finanzkrise hat viele Firmen getroffen.	The financial crisis hit many companies.	★★★★
+4	die Währung (en)	currency	Der Euro ist die gemeinsame Währung.	The euro is the common currency.	★★★★
+4	die Inflation	inflation	Die Inflation ist auf 6% gestiegen.	Inflation has risen to 6%.	★★★★
+4	investieren / die Investition (en)	to invest / investment	Firmen investieren in neue Technologien.	Companies invest in new technologies.	★★★★
+4	der Staat (en)	state	Der Staat muss die Wirtschaft unterstützen.	The state must support the economy.	★★★★
+4	die Einkommenssteuer (n)	income tax	Die Einkommenssteuer ist progressiv.	Income tax is progressive.	★★★★
+4	der Lebensstandard	standard of living	Der Lebensstandard in Deutschland ist hoch.	The standard of living in Germany is high.	★★★★
+4	das Recht (e)	right	Jeder hat das Recht auf faire Arbeit.	Everyone has the right to fair work.	★★★★
+4	die Gleichstellung	equal opportunities	Gleichstellung ist ein wichtiges Thema.	Equal opportunities is an important topic.	★★★★
+5	die Arbeitsbelastung	workload	Die Arbeitsbelastung hat zugenommen.	The workload has increased.	★★★★
+5	die Gleitzeit	flexible working hours, flexitime	Viele Firmen bieten Gleitzeit an.	Many companies offer flexitime.	★★★★
+5	von zu Hause arbeiten / das Homeoffice	working from home / home office	Seit Corona arbeiten viele im Homeoffice.	Since Covid many work from home.	★★★★
+5	eine gute Work-Life-Balance haben	to have a good work-life balance	Eine gute Work-Life-Balance ist wichtig.	A good work-life balance is important.	★★★★
+5	der steigende Leistungsdruck	increasing pressure to achieve	Der steigende Leistungsdruck macht krank.	The increasing pressure to perform causes illness.	★★★★
+5	die Ganztagsarbeit	full-time work	Nicht jeder möchte Ganztagsarbeit.	Not everyone wants full-time work.	★★★★
+5	die Teilzeitarbeit / die Teilzeit	part-time work	Viele Mütter arbeiten in Teilzeit.	Many mothers work part-time.	★★★★
+5	freiberuflich / selbstständig arbeiten	self-employed / freelance	Er arbeitet seit fünf Jahren selbstständig.	He has been self-employed for five years.	★★★★
+5	der Urlaub (e)	holiday, leave	Ich habe 30 Tage Urlaub im Jahr.	I have 30 days holiday per year.	★★★★
+5	Überstunden machen	to do overtime	Viele Angestellte machen regelmäßig Überstunden.	Many employees regularly do overtime.	★★★★
+5	der Arbeitstag (e)	working day	Ein typischer Arbeitstag beginnt um acht.	A typical working day starts at eight.	★★★★
+5	in Rente gehen / der Rentner (-)	to retire / pensioner	Er geht nächstes Jahr in Rente.	He is retiring next year.	★★★★
+6	die Arbeitslosenhilfe / das Arbeitslosengeld	unemployment benefit	Er bekommt Arbeitslosengeld vom Staat.	He receives unemployment benefit from the state.	★★★★
+6	eine Arbeitslosenquote von 5%	an unemployment rate of 5%	Die Arbeitslosenquote liegt bei 5%.	The unemployment rate is at 5%.	★★★★
+6	die Arbeitslosenzahlen	unemployment figures	Die Arbeitslosenzahlen sind gesunken.	Unemployment figures have fallen.	★★★★
+6	entlassen / feuern	to sack, dismiss	Die Firma hat 200 Arbeiter entlassen.	The company dismissed 200 workers.	★★★★
+6	die Kündigung (en)	notice of dismissal	Er hat seine Kündigung bekommen.	He received his notice of dismissal.	★★★★
+6	die Armut	poverty	Armut ist ein wachsendes Problem.	Poverty is a growing problem.	★★★★
+6	die Sorge (n)	worry, concern	Er hat große Sorgen um seinen Arbeitsplatz.	He is very worried about his job.	★★★★
+6	gleicher Lohn für gleiche Arbeit	equal pay for equal work	Frauen fordern gleichen Lohn für gleiche Arbeit.	Women demand equal pay for equal work.	★★★★
+6	die Gewerkschaft (en)	trade union	Die Gewerkschaft kämpft für bessere Löhne.	The trade union fights for better wages.	★★★★
+6	streiken / der Streik (s)	to strike / strike	Die Arbeiter streiken für höhere Löhne.	The workers are striking for higher wages.	★★★★
+6	der gesetzliche Mindestlohn	statutory minimum wage	Der Mindestlohn wurde auf 12 Euro erhöht.	The minimum wage was raised to 12 euros.	★★★★
+6	der Anstieg der Lebenshaltungskosten	the rise in living costs	Der Anstieg der Lebenshaltungskosten belastet viele.	The rise in living costs burdens many.	★★★★
+7	die Künstliche Intelligenz (KI)	artificial intelligence (AI)	KI verändert die Arbeitswelt grundlegend.	AI is fundamentally changing the world of work.	★★★★
+7	die Digitalisierung	digitalisation	Die Digitalisierung schafft neue Berufe.	Digitalisation creates new professions.	★★★★
+7	der Fachkräftemangel	skilled worker shortage	Der Fachkräftemangel betrifft viele Branchen.	The skilled worker shortage affects many industries.	★★★★
+7	die Nachhaltigkeit	sustainability	Nachhaltigkeit wird für Firmen immer wichtiger.	Sustainability is becoming increasingly important for companies.	★★★★
+7	die Energiewende	energy transition	Die Energiewende kostet Milliarden.	The energy transition costs billions.	★★★★
+7	die Lieferkette (n) / Lieferkettenprobleme	supply chain / supply chain problems	Lieferkettenprobleme haben die Produktion gestört.	Supply chain problems disrupted production.	★★★★
+7	das Bürgergeld	citizens income (replaced Hartz IV)	Das Bürgergeld hat Hartz IV ersetzt.	Citizens income has replaced Hartz IV.	★★★★
+7	die Vier-Tage-Woche	the four-day working week	Immer mehr Firmen testen die Vier-Tage-Woche.	More and more companies are testing the four-day week.	★★★★
+7	das hybride Arbeiten	hybrid working	Hybrides Arbeiten ist nach Corona normal geworden.	Hybrid working has become normal after Covid.	★★★★
+7	die Automatisierung	automation	Die Automatisierung bedroht viele Arbeitsplätze.	Automation threatens many jobs.	★★★★
+7	der Klimawandel	climate change	Der Klimawandel beeinflusst die Wirtschaft.	Climate change affects the economy.	★★★★
+7	der demografische Wandel	demographic change	Der demografische Wandel führt zum Fachkräftemangel.	Demographic change leads to a skills shortage.	★★★★
+8	das Einkommen	income	Ein niedriges Einkommen reicht kaum zum Leben.	A low income is barely enough to live on.	★★★
+8	ausgeben (i-a-e)	to spend (money)	Sie gibt viel Geld für Kleidung aus.	She spends a lot of money on clothes.	★★★
+8	die Ausgaben / Einnahmen und Ausgaben	outgoings / income and expenditure	Die Ausgaben übersteigen die Einnahmen.	Expenditure exceeds income.	★★★
+8	sparen für	to save for	Wir sparen für ein neues Auto.	We are saving for a new car.	★★★
+8	die Miete (n) / mieten	rent / to rent	Die Mieten in München sind sehr hoch.	Rents in Munich are very high.	★★★
+8	die Versicherung	insurance	Jeder braucht eine Krankenversicherung.	Everyone needs health insurance.	★★★
+8	die Krankenversicherung (en)	health insurance	In Deutschland ist die Krankenversicherung Pflicht.	In Germany health insurance is compulsory.	★★★
+8	ein niedriges / mittleres / hohes Einkommen	a low / medium / high income	Viele haben nur ein niedriges Einkommen.	Many have only a low income.	★★★
+8	das kann ich mir nicht leisten	I cannot afford that	Eine große Wohnung kann ich mir nicht leisten.	I cannot afford a big flat.	★★★
+8	die Inflation ist gestiegen	inflation has risen	Die Inflation ist auf über 5% gestiegen.	Inflation has risen to over 5%.	★★★
+9	sich arbeitslos melden	to register as unemployed	Er hat sich beim Arbeitsamt arbeitslos gemeldet.	He registered as unemployed at the job centre.	★★★
+9	der Arbeitsplatzabbau	job cuts	Der Arbeitsplatzabbau trifft die ganze Region.	Job cuts affect the whole region.	★★★
+9	die Langzeitarbeitslosigkeit	long-term unemployment	Langzeitarbeitslosigkeit ist schwer zu bekämpfen.	Long-term unemployment is hard to combat.	★★★
+9	die Kurzarbeit	short-time working	Während Corona wurde viel Kurzarbeit gemacht.	During Covid a lot of short-time working was done.	★★★
+9	die Selbstachtung	self-respect, self-esteem	Arbeitslosigkeit schadet der Selbstachtung.	Unemployment damages self-esteem.	★★★
+9	Arbeitsplätze gingen verloren	jobs were lost	Tausende Arbeitsplätze gingen verloren.	Thousands of jobs were lost.	★★★
+9	betroffen sind vor allem ...	those most affected are...	Betroffen sind vor allem junge Menschen.	Those most affected are young people.	★★★
+9	vorzeitig in den Ruhestand gehen	to take early retirement	Viele gehen vorzeitig in den Ruhestand.	Many take early retirement.	★★★
+9	er ist auf Sozialhilfe angewiesen	he is dependent on state benefits	Er ist auf Sozialhilfe angewiesen.	He depends on state benefits.	★★★
+9	sie geraten in finanzielle Schwierigkeiten	they get into financial difficulties	Viele Familien geraten in finanzielle Schwierigkeiten.	Many families get into financial difficulties.	★★★
+10	sich beschweren / die Beschwerde (n)	to complain / complaint	Die Mitarbeiter beschweren sich über die Bedingungen.	The staff complain about conditions.	★★★
+10	das Mobbing	bullying / harassment	Mobbing am Arbeitsplatz ist ein ernstes Problem.	Bullying at work is a serious problem.	★★★
+10	die Pflicht (en)	duty	Es ist unsere Pflicht gute Arbeit zu leisten.	It is our duty to do good work.	★★★
+10	die Schichtarbeit	shift work	Schichtarbeit ist schlecht für die Gesundheit.	Shift work is bad for health.	★★★
+10	die Stimmung (en)	atmosphere, mood	Die Stimmung im Büro ist sehr gut.	The atmosphere in the office is very good.	★★★
+10	der Feiertag (e)	day off, holiday	In Bayern gibt es viele Feiertage.	In Bavaria there are many public holidays.	★★★
+10	der Elternurlaub	paternity / maternity leave	In Deutschland gibt es großzügigen Elternurlaub.	In Germany there is generous parental leave.	★★★
+10	die Frustration (en)	frustration	Die Frustration unter den Arbeitern wächst.	Frustration among workers is growing.	★★★
+10	die Zeitarbeit	temporary work	Zeitarbeit bietet wenig Sicherheit.	Temporary work offers little security.	★★★
+10	eine 35-Stunden-Woche	a 35-hour working week	In Frankreich gibt es eine 35-Stunden-Woche.	In France there is a 35-hour working week.	★★★
+11	die Frauenquote	proportion of jobs set for women	Die Frauenquote soll Gleichstellung fördern.	The women quota should promote equality.	★★★
+11	das Kindergeld	child benefit	Kindergeld hilft vielen Familien.	Child benefit helps many families.	★★★
+11	die Kinderkrippe (n)	crèche, nursery	Es gibt nicht genug Kinderkrippen.	There are not enough nurseries.	★★★
+11	die Lohngleichheit	equality of pay	Lohngleichheit ist noch nicht erreicht.	Pay equality has not yet been achieved.	★★★
+11	die sexuelle Belästigung	sexual harassment	Sexuelle Belästigung am Arbeitsplatz ist verboten.	Sexual harassment at work is forbidden.	★★★
+11	Frauen sind Benachteiligungen ausgesetzt	women face discrimination	Frauen sind immer noch Benachteiligungen ausgesetzt.	Women still face discrimination.	★★★
+11	der Anteil von Frauen in führenden Positionen	the proportion of women in top positions	Der Anteil von Frauen in führenden Positionen steigt.	The proportion of women in top positions is rising.	★★★
+11	zurück in den Beruf	go back to work/careers	Nach der Elternzeit wollen viele zurück in den Beruf.	After parental leave many want to go back to work.	★★★
+11	der Arbeitskampf	industrial action	Die Gewerkschaft droht mit Arbeitskampf.	The union is threatening industrial action.	★★★
+11	die Tarifverhandlungen	pay negotiations, collective bargaining	Die Tarifverhandlungen sind gescheitert.	Pay negotiations have failed.	★★★
+12	der Lebenslauf (ä-e)	curriculum vitae, CV	Ein guter Lebenslauf ist sehr wichtig.	A good CV is very important.	★★★
+12	das Vorstellungsgespräch	the interview	Ich habe morgen ein Vorstellungsgespräch.	I have an interview tomorrow.	★★★
+12	das Bewerbungsschreiben (-)	letter of application	Das Bewerbungsschreiben muss fehlerfrei sein.	The application letter must be error-free.	★★★
+12	gute Kenntnisse in ...	a good knowledge of...	Gute Kenntnisse in Englisch sind erforderlich.	A good knowledge of English is required.	★★★
+12	sehr motiviert	well motivated	Ich bin sehr motiviert für diese Stelle.	I am well motivated for this position.	★★★
+12	persönliche Daten	personal details	Persönliche Daten stehen am Anfang des Lebenslaufs.	Personal details are at the start of the CV.	★★★
+12	die Unterlagen	documents, papers	Bitte senden Sie Ihre Unterlagen per E-Mail.	Please send your documents by email.	★★★
+12	ein Formular ausfüllen	to fill in a form	Sie müssen dieses Formular ausfüllen.	You must fill in this form.	★★★
+12	ich kann fließend Deutsch	I can speak fluent German	Ich kann fließend Deutsch und Englisch.	I speak fluent German and English.	★★★
+12	sich bewerben um eine Stelle als ...	to apply for a job as...	Ich bewerbe mich um eine Stelle als Verkäufer.	I am applying for a job as a salesperson.	★★★
+13	einen guten Eindruck machen	to make a good impression	Im Vorstellungsgespräch muss man einen guten Eindruck machen.	In the interview you have to make a good impression.	★★★
+13	der Arbeitsvertrag (ä-e)	job contract	Lesen Sie den Arbeitsvertrag sorgfältig.	Read the job contract carefully.	★★★
+13	einen Vertrag unterschreiben	to sign a contract	Er hat den Vertrag gestern unterschrieben.	He signed the contract yesterday.	★★★
+13	die Zusage (n)	firm job offer	Ich habe eine Zusage bekommen!	I received a job offer!	★★★
+13	man hat mir die Stelle angeboten	they offered me the job	Man hat mir die Stelle als Teamleiter angeboten.	They offered me the position of team leader.	★★★
+13	jemandem eine Absage erteilen	to turn s.o. down	Leider mussten wir ihm eine Absage erteilen.	Unfortunately we had to turn him down.	★★★
+13	der sichere Arbeitsplatz (ä-e)	job security	Ein sicherer Arbeitsplatz ist vielen wichtig.	Job security is important to many.	★★★
+13	die Gehaltserhöhung (en)	pay rise	Ich möchte um eine Gehaltserhöhung bitten.	I would like to ask for a pay rise.	★★★
+13	die Berufsaussichten / Aufstiegsmöglichkeiten	career prospects	Die Berufsaussichten in der IT sind sehr gut.	Career prospects in IT are very good.	★★★
+13	beruflich erfolgreich sein	to be successful in ones career	Um beruflich erfolgreich zu sein muss man flexibel sein.	To be successful in your career you must be flexible.	★★★
+14	die Berufsberatung	careers advice	Die Berufsberatung hilft bei der Berufswahl.	Careers advice helps with choosing a career.	★★★
+14	das Berufspraktikum	work experience	Ein Berufspraktikum ist für Schüler wichtig.	Work experience is important for pupils.	★★★
+14	die Berufswahl	choice of career	Die Berufswahl fällt vielen Jugendlichen schwer.	Choosing a career is hard for many young people.	★★★
+14	Was sind Sie von Beruf?	What do you do for a living?	Was sind Sie von Beruf? – Ich bin Lehrerin.	What do you do for a living? – I am a teacher.	★★★
+14	die Annonce (n)	advertisement	Ich habe die Annonce in der Zeitung gelesen.	I read the advertisement in the newspaper.	★★★
+14	die Arbeitsmarktlage	state of the job market	Die Arbeitsmarktlage hat sich verbessert.	The state of the job market has improved.	★★★
+14	das Stellenangebot (e)	job vacancy	Es gibt viele Stellenangebote im Internet.	There are many job vacancies online.	★★★
+14	eine freie Stelle / eine passende Stelle	vacancy / a suitable job	Es gibt eine freie Stelle in der Marketingabteilung.	There is a vacancy in the marketing department.	★★★
+14	die Stellenbeschreibung (en)	job description	Lesen Sie die Stellenbeschreibung sorgfältig.	Read the job description carefully.	★★★
+14	das Arbeitsamt (ä-er)	job centre	Das Arbeitsamt vermittelt Arbeitssuchende.	The job centre places job seekers.	★★★
+15	die Abteilung (-en)	department	Er arbeitet in der Marketingabteilung.	He works in the marketing department.	★★★
+15	die Arbeitskräfte (pl) / die Belegschaft	workforce, employees	Die Belegschaft ist mit den Bedingungen unzufrieden.	The workforce is unhappy with the conditions.	★★★
+15	am Arbeitsplatz	at work, in the office	Am Arbeitsplatz muss man professionell sein.	At work one must be professional.	★★★
+15	die Fabrik (en)	factory	Die Fabrik produziert Autoteile.	The factory produces car parts.	★★★
+15	der Geschäftsführer (-)	managing director, CEO	Der Geschäftsführer leitet das Unternehmen.	The CEO manages the company.	★★★
+15	das Personal	personnel, staff	Das Personal wurde reduziert.	Staff was reduced.	★★★
+15	die Konferenz (en) / die Besprechung (en)	meeting, conference	Wir haben eine Besprechung um zehn Uhr.	We have a meeting at ten o clock.	★★★
+15	der Vorgesetzte (n)	line manager	Mein Vorgesetzter ist immer erreichbar.	My line manager is always available.	★★★
+15	die Branche (n)	area of business, industry	Die Automobilbranche ist in der Krise.	The automotive industry is in crisis.	★★★
+15	leistungsorientiert	performance-oriented	Deutsche Firmen sind sehr leistungsorientiert.	German companies are very performance-oriented.	★★★
+16	befördert werden / die Beförderung	to gain promotion / promotion	Sie wurde zur Abteilungsleiterin befördert.	She was promoted to department head.	★★★
+16	das Fachwissen	specialised knowledge	Fachwissen ist in diesem Beruf entscheidend.	Specialised knowledge is crucial in this profession.	★★★
+16	eine Frist einhalten	to keep to a deadline	Man muss die Frist einhalten.	You must keep to the deadline.	★★★
+16	der Termin (e)	appointment, deadline	Ich habe einen wichtigen Termin.	I have an important appointment.	★★★
+16	Verantwortung tragen	to take responsibility	Er trägt viel Verantwortung.	He bears a lot of responsibility.	★★★
+16	die Zufriedenheit am Arbeitsplatz	job satisfaction	Zufriedenheit am Arbeitsplatz ist entscheidend.	Job satisfaction is crucial.	★★★
+16	pendeln / der Pendler (-)	to commute / commuter	Millionen Deutsche pendeln jeden Tag.	Millions of Germans commute every day.	★★★
+16	sich hocharbeiten	to work ones way up	Er hat sich vom Praktikanten hochgearbeitet.	He worked his way up from intern.	★★★
+16	der Fleiß	hard work, diligence	Fleiß ist der Schlüssel zum Erfolg.	Diligence is the key to success.	★★★
+16	arbeiten bei	to work for	Sie arbeitet bei Siemens.	She works for Siemens.	★★★
+17	die Aktie (n)	share	Die Aktien sind stark gefallen.	Shares have dropped sharply.	★★★
+17	der Auftrag / die Bestellung (en)	order	Wir haben einen großen Auftrag bekommen.	We received a large order.	★★★
+17	Bankrott machen / pleitegehen	to go bankrupt	Die Firma ist pleitegegangen.	The company went bankrupt.	★★★
+17	die Börse (n)	stock exchange	Die Börse hat heute viel verloren.	The stock exchange lost a lot today.	★★★
+17	finanzieren	to finance	Wie finanzieren Sie Ihr Projekt?	How do you finance your project?	★★★
+17	der multinationale Konzern (e)	multinational company	Multinationale Konzerne dominieren den Markt.	Multinational companies dominate the market.	★★★
+17	rentabel / die Rentabilität	profitable / profitability	Das Unternehmen ist sehr rentabel.	The company is very profitable.	★★★
+17	schließen / stilllegen	to close down (factory)	Die Fabrik wurde stillgelegt.	The factory was closed down.	★★★
+17	die Übernahme (n) / übernehmen	takeover / to take over	Die Übernahme war sehr umstritten.	The takeover was very controversial.	★★★
+17	die Ware (n)	goods	Die Waren werden weltweit exportiert.	The goods are exported worldwide.	★★★
+18	Produktionsprozesse automatisieren	to automate production	Firmen automatisieren immer mehr Prozesse.	Companies are automating more and more processes.	★★★
+18	Arbeitskräfte durch Roboter ersetzen	to replace workers with robots	Roboter ersetzen Arbeitskräfte in Fabriken.	Robots are replacing workers in factories.	★★★
+18	die Produktion ins Ausland verlagern	to transfer production abroad	Viele Firmen verlagern die Produktion nach Asien.	Many companies transfer production to Asia.	★★★
+18	das Geschäft blüht / geht schlecht	business is booming / slack	Das Geschäft blüht seit der Digitalisierung.	Business has been booming since digitalisation.	★★★
+18	in finanzielle Schwierigkeiten geraten	to get into financial difficulties	Kleine Firmen geraten oft in finanzielle Schwierigkeiten.	Small companies often get into financial difficulties.	★★★
+18	der Besitzer (-)	owner	Der Besitzer hat die Firma verkauft.	The owner sold the company.	★★★
+18	der Chef (s)	head, boss	Mein Chef ist sehr streng.	My boss is very strict.	★★★
+18	der Manager (-) / der Direktor (en)	manager / director	Der Manager leitet das Team.	The manager leads the team.	★★★
+18	das Angebot	goods on offer	Das Angebot ist sehr vielfältig.	The range of goods is very diverse.	★★★
+18	die Konkurrenzfähigkeit	competitiveness	Deutschland muss seine Konkurrenzfähigkeit stärken.	Germany must strengthen its competitiveness.	★★★
+19	der Arbeitskräftemangel	labour shortage	Der Arbeitskräftemangel ist ein großes Problem.	The labour shortage is a big problem.	★★★
+19	flexibel	adaptable, flexible	Arbeitnehmer müssen flexibel sein.	Employees must be flexible.	★★★
+19	die neuen Technologien	new technologies	Neue Technologien verändern die Arbeitswelt.	New technologies are changing the world of work.	★★★
+19	die Umschulung	retraining	Eine Umschulung kann neue Chancen eröffnen.	Retraining can open up new opportunities.	★★★
+19	neue Arbeitsplätze wurden geschaffen	new jobs were created	Durch die IT wurden viele Arbeitsplätze geschaffen.	Many jobs were created through IT.	★★★
+19	sich den veränderten Verhältnissen anpassen	to adapt to change	Man muss sich den veränderten Verhältnissen anpassen.	One must adapt to changing circumstances.	★★★
+19	mit dem technischen Wandel zurechtkommen	to cope with technological change	Ältere Mitarbeiter müssen mit dem technischen Wandel zurechtkommen.	Older employees must cope with technological change.	★★★
+19	der Mangel an qualifizierten Arbeitskräften	shortage of qualified staff	Es gibt einen Mangel an qualifizierten Arbeitskräften.	There is a shortage of qualified staff.	★★★
+19	Maßnahmen zum Abbau der Arbeitslosigkeit	measures to reduce unemployment	Die Regierung ergreift Maßnahmen zum Abbau der Arbeitslosigkeit.	The government is taking measures to reduce unemployment.	★★★
+19	die Lebenshaltungskosten steigen	the cost of living is rising	Die Lebenshaltungskosten steigen immer weiter.	The cost of living keeps rising.	★★★
+20	der Abzug / nach Abzug von Steuern (Netto)	deduction / after tax	Nach Abzug von Steuern bleibt wenig übrig.	After tax there is little left.	★★★
+20	das Bargeld / bar bezahlen	cash / to pay cash	Viele Deutsche bezahlen gern bar.	Many Germans like to pay cash.	★★★
+20	die Kreditkarte (n)	credit card	Kann ich mit Kreditkarte bezahlen?	Can I pay by credit card?	★★★
+20	schulden	to owe	Er schuldet mir noch 50 Euro.	He still owes me 50 euros.	★★★
+20	das Konto	account	Ich habe ein Konto bei der Sparkasse.	I have an account at the Sparkasse.	★★★
+20	besitzen	to own	Er besitzt ein Haus in Berlin.	He owns a house in Berlin.	★★★
+20	eine Rechnung bezahlen	to settle a bill	Bitte bezahlen Sie die Rechnung.	Please settle the bill.	★★★
+20	der Zins (en)	interest	Die Zinsen sind gestiegen.	Interest rates have risen.	★★★
+20	über seine Verhältnisse leben	to live beyond ones means	Viele junge Leute leben über ihre Verhältnisse.	Many young people live beyond their means.	★★★
+20	50 000 Euro Schulden haben	to be 50000 euros in debt	Er hat 50 000 Euro Schulden.	He is 50000 euros in debt.	★★★
+21	von der Hand in den Mund leben	to live from hand to mouth	Viele Familien leben von der Hand in den Mund.	Many families live from hand to mouth.	★★
+21	den Gürtel enger schnallen	to tighten ones belt	Wir müssen den Gürtel enger schnallen.	We have to tighten our belts.	★★
+21	in den roten Zahlen stecken	to be in the red	Die Firma steckt in den roten Zahlen.	The company is in the red.	★★
+21	er hat Geldsorgen	he has got money problems	Er hat Geldsorgen seit der Krise.	He has had money problems since the crisis.	★★
+21	das verfügbare Einkommen	disposable income	Das verfügbare Einkommen sinkt.	Disposable income is falling.	★★
+21	die Kaufkraft	purchasing power	Die Kaufkraft der Verbraucher sinkt.	Consumers purchasing power is falling.	★★
+21	das Bruttoeinkommen / das Nettoeinkommen	gross income / net income	Das Nettoeinkommen ist viel niedriger als das Brutto.	Net income is much lower than gross.	★★
+21	ohne Abzüge (Brutto)	before deductions (gross)	Brutto verdient er 4000 Euro.	Before deductions he earns 4000 euros.	★★
+21	in einer Krankenkasse sein	to have health insurance	In Deutschland muss man in einer Krankenkasse sein.	In Germany you must have health insurance.	★★
+21	das Onlinebanking	online banking	Onlinebanking ist heute Standard.	Online banking is standard today.	★★
+22	die Arbeitsplatzteilung / das Jobsharing	job sharing	Jobsharing ist eine moderne Arbeitsform.	Job sharing is a modern form of work.	★★
+22	eine verantwortungsvolle Stelle	a responsible job	Sie hat eine verantwortungsvolle Stelle.	She has a responsible job.	★★
+22	der Tarifvertrag (ä-e)	pay agreement	Der Tarifvertrag wurde verhandelt.	The pay agreement was negotiated.	★★
+22	einen Konflikt lösen	to resolve a conflict	Man muss Konflikte am Arbeitsplatz lösen.	You must resolve conflicts at work.	★★
+22	die Auseinandersetzung (en)	disagreement	Es gab eine Auseinandersetzung zwischen Chef und Mitarbeitern.	There was a disagreement between boss and staff.	★★
+22	hoch qualifiziert	well qualified	Wir suchen hoch qualifizierte Mitarbeiter.	We are looking for well-qualified staff.	★★
+22	die Eigenschaft (en)	personal characteristic	Teamfähigkeit ist eine wichtige Eigenschaft.	Teamwork is an important characteristic.	★★
+22	jemanden um Rat bitten	to ask s.o. for advice	Er bittet seinen Mentor um Rat.	He asks his mentor for advice.	★★
+22	der Öffentliche Dienst	civil service	Im Öffentlichen Dienst ist der Job sicher.	In the civil service the job is secure.	★★
+22	der Beamte (-n) / die Beamtin (nen)	civil servant	Beamte haben eine sichere Stelle.	Civil servants have secure jobs.	★★
+23	der Unternehmer	entrepreneur, businessman	Unternehmer tragen ein hohes Risiko.	Entrepreneurs bear a high risk.	★★
+23	im Geschäft sein	to be in business	Er ist seit 20 Jahren im Geschäft.	He has been in business for 20 years.	★★
+23	der gelernte Arbeiter / der Facharbeiter (-)	skilled worker	Facharbeiter werden dringend gesucht.	Skilled workers are urgently needed.	★★
+23	der ungelernte Arbeiter (-)	unskilled worker	Ungelernte Arbeiter verdienen weniger.	Unskilled workers earn less.	★★
+23	der Feierabend	closing time (and the time after)	Nach Feierabend geht er ins Fitnessstudio.	After work he goes to the gym.	★★
+23	der Geschäftsmann / die Geschäftsfrau	businessman / businesswoman	Sie ist eine erfolgreiche Geschäftsfrau.	She is a successful businesswoman.	★★
+23	der Verkäufer (-)	salesperson / shop assistant	Der Verkäufer hat mich gut beraten.	The salesperson advised me well.	★★
+23	der Lieferant (en) / die Lieferung (en)	supplier / delivery	Der Lieferant hat die Ware pünktlich geliefert.	The supplier delivered the goods on time.	★★
+23	sich selbstständig machen	to go into business	Er hat sich mit 30 selbstständig gemacht.	He went into business at 30.	★★
+23	durch Erfahrung lernen	to learn by experience	Man lernt am besten durch Erfahrung.	You learn best through experience.	★★
+24	die Handelsbilanz / die Zahlungsbilanz	balance of trade / balance of payments	Deutschland hat eine positive Handelsbilanz.	Germany has a positive balance of trade.	★★
+24	der Aufschwung	upturn (economic)	Der wirtschaftliche Aufschwung hat begonnen.	The economic upturn has begun.	★★
+24	die Einheitswährung	single currency	Der Euro ist die Einheitswährung der EU.	The euro is the single currency of the EU.	★★
+24	die Handelsschranke (n)	trade barrier	Handelsschranken behindern den Export.	Trade barriers hinder exports.	★★
+24	der Kurs (e)	exchange rate, share price	Der Kurs des Euro ist gestiegen.	The euro exchange rate has risen.	★★
+24	der Protektionismus	protectionism	Protektionismus schadet dem Welthandel.	Protectionism damages world trade.	★★
+24	eine schnell wachsende Wirtschaft	a booming economy	Indien hat eine schnell wachsende Wirtschaft.	India has a booming economy.	★★
+24	der Dollar ist stark gefallen / gestiegen	the dollar has dropped / risen sharply	Der Dollar ist stark gefallen.	The dollar has dropped sharply.	★★
+24	die Wachstumsprognose (n)	growth forecast	Die Wachstumsprognose wurde gesenkt.	The growth forecast was lowered.	★★
+24	rückläufig	in decline	Die Exporte sind rückläufig.	Exports are in decline.	★★
+25	die Milliarde (n)	billion	Der Umsatz beträgt drei Milliarden Euro.	Turnover amounts to three billion euros.	★★
+25	der Zinssatz (ä-e)	interest rate	Die EZB hat den Zinssatz gesenkt.	The ECB has lowered the interest rate.	★★
+25	der Kapitalismus	capitalism	Kapitalismus hat Vorteile und Nachteile.	Capitalism has advantages and disadvantages.	★★
+25	die Massenproduktion	mass production	Massenproduktion senkt die Kosten.	Mass production reduces costs.	★★
+25	der Mittelstand	Germany medium-sized companies	Der Mittelstand ist das Rückgrat der deutschen Wirtschaft.	SMEs are the backbone of the German economy.	★★
+25	die Fusion (en)	merger	Die Fusion der zwei Konzerne wurde genehmigt.	The merger of the two corporations was approved.	★★
+25	der Jahresumsatz	annual turnover	Der Jahresumsatz liegt bei 10 Millionen.	Annual turnover is 10 million.	★★
+25	die Lohnkosten	wage costs	Die Lohnkosten in Deutschland sind hoch.	Wage costs in Germany are high.	★★
+25	Arbeitskräfte einsparen	to cut back on jobs	Die Firma will Arbeitskräfte einsparen.	The company wants to cut back on jobs.	★★
+25	die Marktkräfte	market forces	Marktkräfte bestimmen den Preis.	Market forces determine the price.	★★
+26	die erneuerbaren Energien	renewable energies	Deutschland investiert in erneuerbare Energien.	Germany invests in renewable energies.	★★
+26	die Zuwanderung von Fachkräften	immigration of skilled workers	Die Zuwanderung von Fachkräften soll erleichtert werden.	Immigration of skilled workers should be made easier.	★★
+26	die Start-up-Kultur	start-up culture	Berlin hat eine lebendige Start-up-Kultur.	Berlin has a vibrant start-up culture.	★★
+26	der CO2-Ausstoß	CO2 emissions	Der CO2-Ausstoß muss reduziert werden.	CO2 emissions must be reduced.	★★
+26	die Elektromobilität / das E-Auto	electric mobility / electric car	Die Elektromobilität wächst schnell.	Electric mobility is growing fast.	★★
+26	der Datenschutz	data protection	Datenschutz ist in der EU streng geregelt.	Data protection is strictly regulated in the EU.	★★
+26	die Gig-Economy	the gig economy	Die Gig-Economy bietet Flexibilität aber wenig Sicherheit.	The gig economy offers flexibility but little security.	★★
+26	die psychische Gesundheit am Arbeitsplatz	mental health at work	Psychische Gesundheit am Arbeitsplatz wird immer wichtiger.	Mental health at work is becoming increasingly important.	★★
+26	quiet quitting / die innere Kündigung	quiet quitting / disengaging from work	Quiet quitting ist ein wachsendes Phänomen.	Quiet quitting is a growing phenomenon.	★★
+26	die Gehaltstransparenz	salary transparency	Gehaltstransparenz soll den Gender Pay Gap verringern.	Salary transparency should reduce the gender pay gap.	★★
+27	die Stellenvermittlung (en)	employment agency	Die Stellenvermittlung hat mir geholfen.	The employment agency helped me.	★★
+27	die Referenz (en)	referee, reference	Können Sie mir eine Referenz geben?	Can you give me a reference?	★★
+27	die Verdienstmöglichkeiten (pl)	earning potential	Die Verdienstmöglichkeiten sind gut.	The earning potential is good.	★★
+27	beschäftigt	busy (a lot to do)	Ich bin heute sehr beschäftigt.	I am very busy today.	★★
+27	die Geschäftsstelle / die Filiale (n)	branch, office	Die Filiale in Hamburg wird geschlossen.	The Hamburg branch is being closed.	★★
+27	die Diversität am Arbeitsplatz	diversity in the workplace	Diversität am Arbeitsplatz fördert Innovation.	Diversity in the workplace promotes innovation.	★★
+27	der Mindestlohn wurde erhöht	the minimum wage was increased	Der Mindestlohn wurde auf 12,41 Euro erhöht.	The minimum wage was raised to 12.41 euros.	★★
+27	Geschick im Umgang mit Menschen haben	to be good at dealing with people	Als Lehrer muss man Geschick im Umgang mit Menschen haben.	As a teacher you need to be good at dealing with people.	★★
+28	die Produktivität pro Kopf	output per head	Die Produktivität pro Kopf ist gestiegen.	Output per head has risen.	★★
+28	die Arbeitsbeziehungen	industrial relations	Die Arbeitsbeziehungen haben sich verbessert.	Industrial relations have improved.	★★
+28	seine Spitzenposition behaupten	to maintain its leading position	Deutschland will seine Spitzenposition behaupten.	Germany wants to maintain its leading position.	★★
+28	ihre Produkte sind qualitativ besser	their products are of better quality	Ihre Produkte sind qualitativ besser als die Konkurrenz.	Their products are of better quality than the competition.	★★
+28	sie sind auf deutsches Know-how angewiesen	they rely on German know-how	Viele Länder sind auf deutsches Know-how angewiesen.	Many countries rely on German know-how.	★★
+28	der Einsatz neuer Techniken	the introduction of new technologies	Der Einsatz neuer Techniken steigert die Produktivität.	The use of new technologies increases productivity.	★★
+28	freie Arbeitsplätze	vacancies	Es gibt viele freie Arbeitsplätze in der Pflege.	There are many vacancies in nursing.	★★
+28	Gegenmaßnahmen ergreifen	to take counter-measures	Die Regierung muss Gegenmaßnahmen ergreifen.	The government must take counter-measures.	★★
+29	die Geschäftszeiten	business hours	Die Geschäftszeiten sind von 9 bis 17 Uhr.	Business hours are 9 to 5.	★★
+29	sich nach der Decke strecken	to cut ones coat according to ones cloth	Man muss sich nach der Decke strecken.	You must live within your means.	★★
+29	seinen Verhältnissen entsprechend leben	to live within ones means	Man sollte seinen Verhältnissen entsprechend leben.	One should live within ones means.	★★
+29	sie ist knapp bei Kasse	she is hard up	Sie ist knapp bei Kasse diesen Monat.	She is hard up this month.	★★
+29	Geld allein macht nicht glücklich	money does not make you happy	Geld allein macht nicht glücklich aber es beruhigt.	Money alone does not make you happy but it helps.	★★
+29	das Geld aus dem Fenster werfen	to spend money like water	Er wirft das Geld aus dem Fenster.	He spends money like water.	★★
+29	seine Bankgeschäfte elektronisch erledigen	to do ones banking electronically	Immer mehr Menschen erledigen Bankgeschäfte online.	More and more people do banking online.	★★
+29	ich bin blank	I am broke	Am Ende des Monats bin ich immer blank.	At the end of the month I am always broke.	★★
+30	die unterschiedliche Entlohnung	pay differentials	Die unterschiedliche Entlohnung ist ungerecht.	The pay gap is unfair.	★★
+30	Schutzvorschriften für Schwangere	regulations to protect pregnant women	Es gibt Schutzvorschriften für Schwangere.	There are regulations to protect pregnant women.	★★
+30	Deutschkenntnisse erforderlich	knowledge of German required	Für diese Stelle sind Deutschkenntnisse erforderlich.	Knowledge of German is required for this job.	★★
+30	seine EDV-Kenntnisse nutzen	to use ones knowledge of computers	Man muss seine EDV-Kenntnisse nutzen.	One must use ones IT knowledge.	★★
+30	Wie steht der Kurs momentan?	What is the rate of exchange?	Wie steht der Kurs des Euro momentan?	What is the euro exchange rate at the moment?	★★
+30	das Handelsvolumen hat sich rasch vergrößert	trade has increased rapidly	Das Handelsvolumen hat sich rasch vergrößert.	Trade volume has increased rapidly.	★★
+30	sein Anteil am gesamten Weltexport beträgt 5%	its share of world exports = 5%	Sein Anteil am gesamten Weltexport beträgt 5%.	Its share of total world exports amounts to 5%.	★★
+30	sie leben wie Gott in Frankreich	they live a life of luxury	Sie leben wie Gott in Frankreich.	They live a life of luxury.	★★
+31	die Arbeitsschutzvorschriften	health and safety regulations	Die Arbeitsschutzvorschriften müssen eingehalten werden.	Health and safety regulations must be observed.	★
+31	die dynamische Rente	index-linked pension	Die dynamische Rente steigt mit der Inflation.	The index-linked pension rises with inflation.	★
+31	die Gelegenheitsarbeit	casual work	Gelegenheitsarbeit bietet wenig Sicherheit.	Casual work offers little security.	★
+31	der Lohnstopp	pay freeze	Der Lohnstopp betrifft alle Mitarbeiter.	The pay freeze affects all employees.	★
+31	im Pensionsalter	of retirement age	Im Pensionsalter reist er gern.	At retirement age he likes to travel.	★
+31	die Probezeit	probationary period	Die Probezeit dauert drei Monate.	The probationary period lasts three months.	★
+31	eine stumpfsinnige Arbeit	boring work / job	Das ist eine stumpfsinnige Arbeit.	That is boring work.	★
+31	außerhalb der normalen Arbeitszeiten arbeiten	to work unsocial hours	Ärzte arbeiten oft außerhalb der normalen Arbeitszeiten.	Doctors often work unsocial hours.	★
+31	heute war viel los	it was a busy day today	Heute war im Büro viel los.	It was a busy day in the office today.	★
+32	die Dunkelziffer	estimated number of unreported cases	Die Dunkelziffer ist wahrscheinlich höher.	The estimated number of unreported cases is probably higher.	★
+32	fristlos	without notice	Er wurde fristlos entlassen.	He was dismissed without notice.	★
+32	der Kündigungsschutz	protection against wrongful dismissal	Der Kündigungsschutz ist gesetzlich geregelt.	Protection against dismissal is regulated by law.	★
+32	rausfliegen	to get the sack (informal)	Wenn du so weitermachst fliegst du raus.	If you carry on like this you will get the sack.	★
+32	bestimmte Arbeitsplätze überflüssig machen	to make certain jobs superfluous	Roboter machen bestimmte Arbeitsplätze überflüssig.	Robots make certain jobs superfluous.	★
+32	der Personalschwund	natural wastage	Der Personalschwund wird nicht aufgefangen.	Natural wastage is not being compensated.	★
+32	der Rationalisierungsschub	the drive to rationalise	Ein Rationalisierungsschub hat viele Jobs gekostet.	The drive to rationalise cost many jobs.	★
+33	die Arbeitsstreitigkeit	work dispute	Die Arbeitsstreitigkeit dauert schon Wochen.	The work dispute has lasted weeks already.	★
+33	der Gewerkschafter (-)	trade unionist	Der Gewerkschafter fordert höhere Löhne.	The trade unionist demands higher wages.	★
+33	der Schlichtungsversuch scheiterte	the arbitration attempt failed	Der Schlichtungsversuch scheiterte an den Forderungen.	The arbitration attempt failed over the demands.	★
+33	wild streiken	to go on unofficial strike	Die Arbeiter drohten wild zu streiken.	The workers threatened to go on unofficial strike.	★
+33	die Lohntarife kündigen	to terminate the wage rates	Die Gewerkschaft will die Lohntarife kündigen.	The union wants to terminate the wage rates.	★
+33	einen neutralen Schlichter einbeziehen	to call in an independent arbitrator	Man sollte einen neutralen Schlichter einbeziehen.	They should call in an independent arbitrator.	★
+33	die Urlaubsverlängerung	lengthening the holiday	Die Urlaubsverlängerung wurde abgelehnt.	The holiday extension was rejected.	★
+33	die Kosten des Streiks werden auf ... beziffert	the cost of the strike is estimated at...	Die Kosten des Streiks werden auf 10 Mio. beziffert.	The cost of the strike is estimated at 10 million.	★
+34	die Abwertung	devaluation	Die Abwertung der Währung schadet dem Import.	The devaluation of the currency harms imports.	★
+34	das Außenhandelsdefizit	trade gap deficit	Das Außenhandelsdefizit wächst.	The trade deficit is growing.	★
+34	die Handelsziffern	trade figures	Die Handelsziffern wurden veröffentlicht.	The trade figures were published.	★
+34	eine harte Währung	a stable currency	Der Schweizer Franken ist eine harte Währung.	The Swiss franc is a stable currency.	★
+34	die Transportkosten	transport costs	Die Transportkosten sind gestiegen.	Transport costs have risen.	★
+34	zahlungsunfähig / insolvent	insolvent	Die Firma wurde zahlungsunfähig.	The company became insolvent.	★
+34	die Aktiengesellschaft (en) / AG	public limited company, plc	BMW ist eine Aktiengesellschaft.	BMW is a public limited company.	★
+35	die Spesen	business expenses	Die Spesen werden erstattet.	Business expenses will be reimbursed.	★
+35	die Steuervergünstigung (en)	tax allowance	Familien bekommen Steuervergünstigungen.	Families receive tax allowances.	★
+35	das Weihnachtsgeld	Christmas bonus	Nicht jeder bekommt Weihnachtsgeld.	Not everyone gets a Christmas bonus.	★
+35	der Zahltag (e)	pay day	Der Zahltag ist immer am 25.	Pay day is always on the 25th.	★
+35	die Geheimzahl eingeben	to tap in ones PIN	Bitte geben Sie Ihre Geheimzahl ein.	Please enter your PIN.	★
+35	der Börsenmakler (-)	stockbroker	Der Börsenmakler handelt mit Aktien.	The stockbroker trades shares.	★
+35	der Betriebsleiter (-)	works manager	Der Betriebsleiter überwacht die Produktion.	The works manager oversees production.	★
+36	der Buchhalter (-)	accountant	Der Buchhalter prüft die Bücher.	The accountant checks the books.	★
+36	das Baugewerbe	construction industry	Das Baugewerbe boomt.	The construction industry is booming.	★
+36	im Aufsichtsrat sitzen	to be on the board of directors	Er sitzt im Aufsichtsrat eines Konzerns.	He sits on the board of a corporation.	★
+36	der Verlag (e)	publishing company	Der Verlag veröffentlicht Schulbücher.	The publishing company publishes textbooks.	★
+36	das Hotelgewerbe	hotel trade	Das Hotelgewerbe leidet unter Personalmangel.	The hotel trade suffers from staff shortages.	★
+36	der Drückeberger (-)	shirker	Niemand mag einen Drückeberger.	Nobody likes a shirker.	★
+36	die Sparte (n)	line of business	In welcher Sparte arbeiten Sie?	What line of business are you in?	★
+36	er hat es aus eigener Kraft zum Millionär gebracht	he is a self-made millionaire	Er hat es aus eigener Kraft zum Millionär gebracht.	He is a self-made millionaire.	★
+36	vorrätig haben / sein	to have / be in stock	Haben Sie das Produkt vorrätig?	Do you have the product in stock?	★
+36	die Wartung	maintenance, servicing	Regelmäßige Wartung ist wichtig.	Regular maintenance is important.	★
 `;
