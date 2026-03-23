@@ -26,9 +26,9 @@ export const TOPICS: Topic[] = [
   { id: "T1", name: "Topic 1 — Umwelt", shortName: "Umwelt", color: "#3a8a3a" },
   { id: "T2", name: "Topic 2 — Bildung", shortName: "Bildung", color: "#2a6fb5" },
   { id: "T3", name: "Topic 3 — Arbeit", shortName: "Arbeit", color: "#d97a1a" },
-  { id: "T4", name: "Topic 4 — Persönliches", shortName: "Leben", color: "#7c4dba" },
-  { id: "T5", name: "Topic 5 — B1 Erweitert", shortName: "B1", color: "#d94f4f" },
-  { id: "T6", name: "Topic 6 — Meinung & Adjektive", shortName: "Meinung", color: "#a16b07" },
+  { id: "T4", name: "Topic 4 — Musik", shortName: "Musik", color: "#7c4dba" },
+  { id: "T5", name: "Topic 5 — Medien", shortName: "Medien", color: "#d94f4f" },
+  { id: "T6", name: "Topic 6 — Traditionen und Feste", shortName: "Traditionen", color: "#a16b07" },
   { id: "SW", name: "Strukturwörter", shortName: "Struktur", color: "#6b6b6b" },
   { id: "VB", name: "Verben & Zeitformen", shortName: "Verben", color: "#c4a000" },
 ];
