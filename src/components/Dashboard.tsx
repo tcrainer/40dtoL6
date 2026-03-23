@@ -236,7 +236,7 @@ function DayBtn({ onClick, disabled, children }: { onClick: () => void; disabled
 }
 
 function countDueInBox(box: LeitnerBox, wordStates: Record<string, any>): number {
-  const intervals: Record<number, number> = { 1: 0, 2: 2, 3: 4, 4: 8, 5: 14, 6: Infinity };
+  const intervals: Record<number, number> = { 1: 0, 2: 1, 3: 3, 4: 7, 5: 14, 6: Infinity };
   const d = new Date();
   const today = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
   let count = 0;
