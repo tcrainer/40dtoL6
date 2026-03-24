@@ -245,12 +245,12 @@ export function Flashcard() {
       {/* ── VERB MODE ── */}
       {isVerbMode ? (
         <div style={{ background: "var(--color-surface)", border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-xl)", overflow: "hidden" }}>
-          <div style={{ background: "#eef2ff", padding: "20px 24px", borderBottom: "3px solid #6366f1" }}>
+          <div style={{ background: "#eef2ff", padding: "24px 30px", borderBottom: "3px solid #6366f1" }}>
             <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#4338ca", marginBottom: "8px" }}>English meaning</div>
-            <div style={{ fontSize: "26px", fontWeight: 700, textAlign: "center" }}>{word.english}</div>
+            <div style={{ fontSize: "30px", fontWeight: 700, textAlign: "center" }}>{word.english}</div>
             {word.verbType && <div style={{ fontSize: "12px", textAlign: "center", color: "#6366f1", marginTop: "6px" }}>{word.verbType}</div>}
           </div>
-          <div style={{ background: "#fef9e0", padding: "20px 24px" }}>
+          <div style={{ background: "#fef9e0", padding: "24px 30px" }}>
             <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#b45309", marginBottom: "12px" }}>German verb forms</div>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               <VerbField label="Infinitiv" placeholder="e.g. nehmen" value={verbInputs[0]} correct={word.german} result={verbResults?.[0]} onChange={v => { const n = [...verbInputs]; n[0] = v; setVerbInputs(n); }} inputRef={el => verbRefs.current[0] = el} onKeyDown={e => handleVerbKeyDown(e, 0)} disabled={!!verbResults} />
@@ -304,7 +304,7 @@ export function Flashcard() {
               const textColor = isGood ? "#15803d" : isBad ? "#991b1b" : "#4338ca";
               const wordColor = isGood ? "#15803d" : isBad ? "#dc2626" : "var(--color-ink)";
               return (
-                <div style={{ background: bgColor, padding: "24px 28px", borderBottom: `3px solid ${accentColor}`, position: "relative" }}>
+                <div style={{ background: bgColor, padding: "28px 34px", borderBottom: `3px solid ${accentColor}`, position: "relative" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
                     <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: textColor }}>English</div>
                     {englishStar && <div style={{ color: "#16a34a", display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 600 }}><Star size={14} fill="#16a34a" /> Known</div>}
@@ -314,17 +314,17 @@ export function Flashcard() {
                     <>
                       <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
                         placeholder="Type English translation..." autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} autoFocus
-                        style={{ width: "100%", boxSizing: "border-box", fontSize: "18px", padding: "14px 16px", borderRadius: "var(--radius-md)", border: "2px solid #6366f1", background: "var(--color-surface)" }} />
+                        style={{ width: "100%", boxSizing: "border-box", fontSize: "20px", padding: "16px 18px", borderRadius: "var(--radius-md)", border: "2px solid #6366f1", background: "var(--color-surface)" }} />
                       {word.englishSentence && (
-                        <div style={{ fontSize: "15px", color: "#4338ca", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
+                        <div style={{ fontSize: "16px", color: "#1e2a5a", textAlign: "center", marginTop: "12px", fontStyle: "italic" }}>
                           {makeGapFill(word.englishSentence, word.english) || ""}
                         </div>
                       )}
                     </>
                   ) : (
                     <>
-                      <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0", color: wordColor }}>{word.english}</div>
-                      {word.englishSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: textColor, opacity: 0.65, marginTop: "8px" }}>{word.englishSentence}</div>}
+                      <div style={{ fontSize: "32px", fontWeight: 700, textAlign: "center", margin: "8px 0", color: wordColor }}>{word.english}</div>
+                      {word.englishSentence && <div style={{ fontSize: "17px", fontStyle: "italic", textAlign: "center", color: isGood ? "#14532d" : isBad ? "#7f1d1d" : "#1e2a5a", marginTop: "10px" }}>{word.englishSentence}</div>}
                     </>
                   )}
                 </div>
@@ -339,7 +339,7 @@ export function Flashcard() {
               const textColor = isGood ? "#16a34a" : isBad ? "#dc2626" : "#b45309";
               const wordColor = isGood ? "#15803d" : isBad ? "#dc2626" : "var(--color-ink)";
               return (
-                <div style={{ background: bgColor, padding: "24px 28px", position: "relative" }}>
+                <div style={{ background: bgColor, padding: "28px 34px", position: "relative" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
                     <div style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: textColor }}>Deutsch</div>
                     {germanStar && <div style={{ color: "#16a34a", display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", fontWeight: 600 }}><Star size={14} fill="#16a34a" /> Known</div>}
@@ -349,11 +349,11 @@ export function Flashcard() {
                     <>
                       <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
                         placeholder="Type German translation..." autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} autoFocus
-                        style={{ width: "100%", boxSizing: "border-box", fontSize: "18px", padding: "14px 16px", borderRadius: "var(--radius-md)", border: "2px solid #d97a1a", background: "var(--color-surface)" }} />
-                      <div style={{ display: "flex", gap: "4px", marginTop: "10px", justifyContent: "center" }}>
+                        style={{ width: "100%", boxSizing: "border-box", fontSize: "20px", padding: "16px 18px", borderRadius: "var(--radius-md)", border: "2px solid #d97a1a", background: "var(--color-surface)" }} />
+                      <div style={{ display: "flex", gap: "4px", marginTop: "12px", justifyContent: "center" }}>
                         {UMLAUTS.map((ch, i) => (
                           <button key={ch} onClick={() => insertUmlaut(ch, inputRef.current, input, setInput)} style={{
-                            width: "38px", height: "38px", fontSize: "17px", fontWeight: 500,
+                            width: "40px", height: "40px", fontSize: "18px", fontWeight: 500,
                             border: "1px solid var(--color-border)", borderRadius: "6px",
                             background: "var(--color-surface)", cursor: "pointer", fontFamily: "var(--font-sans)", position: "relative", display: "flex", alignItems: "center", justifyContent: "center",
                           }}>
@@ -362,15 +362,15 @@ export function Flashcard() {
                         ))}
                       </div>
                       {word.germanSentence && (
-                        <div style={{ fontSize: "15px", color: "#b45309", opacity: 0.5, textAlign: "center", marginTop: "10px", fontStyle: "italic" }}>
+                        <div style={{ fontSize: "16px", color: "#5c3a10", textAlign: "center", marginTop: "12px", fontStyle: "italic" }}>
                           {makeGapFill(word.germanSentence, word.german) || ""}
                         </div>
                       )}
                     </>
                   ) : (
                     <>
-                      <div style={{ fontSize: "28px", fontWeight: 700, textAlign: "center", margin: "6px 0", color: wordColor }}>{word.german}</div>
-                      {word.germanSentence && <div style={{ fontSize: "15px", fontStyle: "italic", textAlign: "center", color: textColor, opacity: 0.65, marginTop: "8px" }}>{word.germanSentence}</div>}
+                      <div style={{ fontSize: "32px", fontWeight: 700, textAlign: "center", margin: "8px 0", color: wordColor }}>{word.german}</div>
+                      {word.germanSentence && <div style={{ fontSize: "17px", fontStyle: "italic", textAlign: "center", color: isGood ? "#14532d" : isBad ? "#7f1d1d" : "#5c3a10", marginTop: "10px" }}>{word.germanSentence}</div>}
                     </>
                   )}
                 </div>
