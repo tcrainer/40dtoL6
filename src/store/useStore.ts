@@ -101,6 +101,7 @@ interface AppState {
   isTopicDayTested: (topicId: string, day: number) => boolean;
   isTopicDayPartial: (topicId: string, day: number) => boolean;
   resetAll: () => void;
+  importProgress: (data: { currentDay?: number; wordStates?: Record<string, WordState>; stats?: UserStats }) => void;
 }
 
 export const useStore = create<AppState>()(
@@ -287,6 +288,12 @@ export const useStore = create<AppState>()(
       resetAll: () => set({
         view: "dashboard", currentDay: 1, wordStates: {}, sessionCards: [], sessionIndex: 0,
         sessionResults: [], selectedTopicId: null, selectedBox: null, selectedImportance: null, stats: defaultStats(),
+      }),
+      importProgress: (data) => set({
+        currentDay: data.currentDay || get().currentDay,
+        wordStates: data.wordStates || get().wordStates,
+        stats: data.stats || get().stats,
+        view: "dashboard",
       }),
     }),
     {
