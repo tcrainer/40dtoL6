@@ -2,8 +2,14 @@ import { useStore } from "@/store/useStore";
 import { TOPICS, BOX_LABELS, BOX_COLORS, LEITNER_BOXES, MAX_DAY } from "@/types";
 import type { LeitnerBox } from "@/types";
 import { getTopicWordCounts, getTopicDays, getWordsForTopicDay, getAllWords } from "@/data/vocabulary";
-import { BookOpen, RotateCcw, ChevronDown, ChevronUp, Flame, Star, Calendar } from "lucide-react";
+import { BookOpen, RotateCcw, ChevronDown, ChevronUp, Flame, Star, Calendar, X, Play } from "lucide-react";
 import { useState, useMemo } from "react";
+
+type TestPrompt = {
+  label: string;
+  allIds: string[];
+  untestedIds: string[];
+} | null;
 
 export function Dashboard() {
   const currentDay = useStore((s) => s.currentDay);
@@ -28,7 +34,7 @@ export function Dashboard() {
   const stats = useStore((s) => s.stats);
 
   const [showReset, setShowReset] = useState(false);
-  const [selectedDays, setSelectedDays] = useState<Map<string, Set<number>>>(new Map());
+  const [testPrompt, setTestPrompt] = useState<TestPrompt>(null);
 
   const dueCount = getDueWordIds().length;
   const newTodayCount = getNewWordIdsToday().length;
@@ -38,22 +44,26 @@ export function Dashboard() {
   const topicCounts = useMemo(() => getTopicWordCounts(), []);
   const allWords = useMemo(() => getAllWords(), []);
 
-  const selectedWordIds = useMemo(() => {
-    const ids: string[] = [];
-    for (const [topicId, days] of selectedDays) {
-      for (const day of days) for (const w of getWordsForTopicDay(topicId, day)) ids.push(w.id);
-    }
-    return ids;
-  }, [selectedDays]);
+  const openTestPrompt = (label: string, wordIds: string[]) => {
+    const untestedIds = wordIds.filter(id => !wordStates[id]);
+    setTestPrompt({ label, allIds: wordIds, untestedIds });
+  };
 
-  const toggleDay = (topicId: string, day: number) => {
-    setSelectedDays((prev) => {
-      const next = new Map(prev);
-      const days = new Set(next.get(topicId) || []);
-      if (days.has(day)) days.delete(day); else days.add(day);
-      if (days.size === 0) next.delete(topicId); else next.set(topicId, days);
-      return next;
-    });
+  const handleDayClick = (day: number) => {
+    const dayWords = allWords.filter(w => w.day === day);
+    if (dayWords.length > 0) openTestPrompt(`Day ${day}`, dayWords.map(w => w.id));
+  };
+
+  const handleTopicClick = (topicId: string) => {
+    const topic = TOPICS.find(t => t.id === topicId);
+    const topicWords = allWords.filter(w => w.topicId === topicId);
+    if (topicWords.length > 0) openTestPrompt(topic?.name || topicId, topicWords.map(w => w.id));
+  };
+
+  const handleTopicDayClick = (topicId: string, day: number) => {
+    const topic = TOPICS.find(t => t.id === topicId);
+    const words = getWordsForTopicDay(topicId, day);
+    if (words.length > 0) openTestPrompt(`${topic?.shortName || topicId} — Day ${day}`, words.map(w => w.id));
   };
 
   return (
@@ -111,6 +121,48 @@ export function Dashboard() {
         </button>
       </div>
 
+      {/* Test prompt popup */}
+      {testPrompt && (
+        <div style={{
+          background: "var(--color-surface)", border: "2px solid var(--color-accent)", borderRadius: "var(--radius-lg)",
+          padding: "18px 20px", display: "flex", flexDirection: "column", gap: "12px",
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ fontSize: "16px", fontWeight: 700 }}>{testPrompt.label}</div>
+            <button onClick={() => setTestPrompt(null)} style={{ width: "28px", height: "28px", border: "1px solid var(--color-border)", borderRadius: "50%", background: "var(--color-surface)", cursor: "pointer", color: "var(--color-ink)", display: "flex", alignItems: "center", justifyContent: "center" }}><X size={14} /></button>
+          </div>
+          <div style={{ fontSize: "13px", color: "var(--color-ink-muted)" }}>
+            {testPrompt.allIds.length} words total · {testPrompt.untestedIds.length} untested
+          </div>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button
+              onClick={() => { setTestPrompt(null); if (testPrompt.untestedIds.length > 0) startCustomSession(testPrompt.untestedIds); }}
+              disabled={testPrompt.untestedIds.length === 0}
+              style={{
+                flex: 1, padding: "14px 12px", border: "none", borderRadius: "var(--radius-md)",
+                background: testPrompt.untestedIds.length > 0 ? "var(--color-accent)" : "var(--color-surface-sunken)",
+                color: testPrompt.untestedIds.length > 0 ? "#fff" : "var(--color-ink-faint)",
+                cursor: testPrompt.untestedIds.length > 0 ? "pointer" : "not-allowed",
+                fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 600,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+              }}>
+              <Play size={14} /> Test untested ({testPrompt.untestedIds.length})
+            </button>
+            <button
+              onClick={() => { setTestPrompt(null); startCustomSession(testPrompt.allIds); }}
+              style={{
+                flex: 1, padding: "14px 12px", border: "2px solid var(--color-accent)",
+                borderRadius: "var(--radius-md)", background: "var(--color-surface)",
+                color: "var(--color-accent)", cursor: "pointer",
+                fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 600,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+              }}>
+              <RotateCcw size={14} /> Test all ({testPrompt.allIds.length})
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Leitner boxes */}
       <div>
         <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Leitner boxes</h2>
@@ -152,7 +204,7 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* Day by day — test all words for a given day */}
+      {/* Day by day */}
       <div>
         <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Day by day</h2>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
@@ -164,23 +216,16 @@ export function Dashboard() {
             const partial = testedInDay > 0 && testedInDay < totalInDay;
             const isUnlocked = day <= currentDay;
             return (
-              <button
-                key={day}
-                onClick={() => {
-                  if (totalInDay > 0) startCustomSession(dayWords.map(w => w.id));
-                }}
-                disabled={totalInDay === 0}
+              <button key={day} onClick={() => handleDayClick(day)} disabled={totalInDay === 0}
                 style={{
                   width: "52px", height: "52px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
                   gap: "1px", fontSize: "14px", fontWeight: allTested ? 700 : 600,
                   border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-md)",
-                  cursor: totalInDay > 0 ? "pointer" : "default",
-                  fontFamily: "var(--font-mono)",
+                  cursor: totalInDay > 0 ? "pointer" : "default", fontFamily: "var(--font-mono)",
                   background: allTested ? "#fbbf24" : partial ? "#93c5fd" : !isUnlocked ? "var(--color-surface-sunken)" : "var(--color-surface)",
                   color: allTested ? "#78350f" : partial ? "#1e3a5f" : !isUnlocked ? "var(--color-ink-faint)" : "var(--color-ink)",
                   opacity: totalInDay === 0 ? 0.4 : 1,
-                }}
-              >
+                }}>
                 <span style={{ fontSize: "15px", fontWeight: 700 }}>{day}</span>
                 <span style={{ fontSize: "9px", fontWeight: 400, opacity: 0.7 }}>{totalInDay}w</span>
               </button>
@@ -192,24 +237,17 @@ export function Dashboard() {
       {/* Topics */}
       <div>
         <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 10px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Topics</h2>
-        {selectedWordIds.length > 0 && (
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--color-accent)", color: "#fff", borderRadius: "var(--radius-lg)", padding: "12px 16px", marginBottom: "10px" }}>
-            <span style={{ fontSize: "13px" }}>{selectedWordIds.length} words selected</span>
-            <button onClick={() => startCustomSession(selectedWordIds)} style={{ fontSize: "13px", fontWeight: 600, padding: "6px 16px", borderRadius: "var(--radius-md)", border: "none", background: "#fff", color: "var(--color-accent)", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Test these</button>
-          </div>
-        )}
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           {TOPICS.map((topic) => {
             const progress = getTopicProgress(topic.id);
             const totalForTopic = topicCounts[topic.id] || 0;
             const pct = totalForTopic > 0 ? Math.round((progress.mastered / totalForTopic) * 100) : 0;
             const days = getTopicDays(topic.id).filter((d) => d <= MAX_DAY);
-            const topicSelected = selectedDays.get(topic.id) || new Set<number>();
             return (
               <div key={topic.id} style={{ background: "var(--color-surface)", border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "14px 16px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
                   <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: topic.color, flexShrink: 0 }} />
-                  <button onClick={() => { setSelectedTopicId(topic.id); setView("topic-detail"); }} style={{ fontSize: "14px", fontWeight: 600, padding: 0, border: "none", background: "none", cursor: "pointer", color: "var(--color-ink)", fontFamily: "var(--font-sans)", textAlign: "left", flex: 1 }}>{topic.name}</button>
+                  <button onClick={() => handleTopicClick(topic.id)} style={{ fontSize: "14px", fontWeight: 600, padding: 0, border: "none", background: "none", cursor: "pointer", color: "var(--color-ink)", fontFamily: "var(--font-sans)", textAlign: "left", flex: 1 }}>{topic.name}</button>
                   <span style={{ fontSize: "11px", color: "var(--color-ink-muted)", fontFamily: "var(--font-mono)", flexShrink: 0 }}>{progress.mastered}/{totalForTopic}</span>
                 </div>
                 <div style={{ height: "6px", background: "var(--color-surface-sunken)", borderRadius: "3px", overflow: "hidden", marginBottom: "10px" }}>
@@ -217,16 +255,15 @@ export function Dashboard() {
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
                   {days.map((day) => {
-                    const isSelected = topicSelected.has(day);
                     const allTested = isTopicDayTested(topic.id, day);
                     const partial = isTopicDayPartial(topic.id, day);
                     return (
-                      <button key={day} onClick={() => toggleDay(topic.id, day)} style={{
+                      <button key={day} onClick={() => handleTopicDayClick(topic.id, day)} style={{
                         width: "28px", height: "28px", fontSize: "10px", fontWeight: allTested ? 700 : 500,
-                        border: isSelected ? `2px solid ${topic.color}` : "1px solid var(--color-border)",
+                        border: "1px solid var(--color-border)",
                         borderRadius: "4px", cursor: "pointer", fontFamily: "var(--font-mono)",
-                        background: isSelected ? topic.color : allTested ? "#fbbf24" : partial ? "#93c5fd" : "var(--color-surface)",
-                        color: isSelected ? "#fff" : allTested ? "#78350f" : partial ? "#1e3a5f" : "var(--color-ink)",
+                        background: allTested ? "#fbbf24" : partial ? "#93c5fd" : "var(--color-surface)",
+                        color: allTested ? "#78350f" : partial ? "#1e3a5f" : "var(--color-ink)",
                       }}>{day}</button>
                     );
                   })}
@@ -244,7 +281,7 @@ export function Dashboard() {
           <button onClick={() => setShowReset(true)} style={{ fontSize: "11px", color: "var(--color-ink-faint)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0 }}>Reset progress</button>
         ) : (
           <div style={{ display: "flex", gap: "8px", fontSize: "11px" }}>
-            <button onClick={() => { resetAll(); setShowReset(false); setSelectedDays(new Map()); }} style={{ fontWeight: 600, color: "#fff", background: "#d94f4f", border: "none", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Yes, reset</button>
+            <button onClick={() => { resetAll(); setShowReset(false); }} style={{ fontWeight: 600, color: "#fff", background: "#d94f4f", border: "none", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Yes, reset</button>
             <button onClick={() => setShowReset(false)} style={{ color: "var(--color-ink-muted)", background: "none", border: "1px solid var(--color-border)", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Cancel</button>
           </div>
         )}
