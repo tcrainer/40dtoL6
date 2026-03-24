@@ -116,6 +116,37 @@ function getAcceptableAnswers(correct: string, stripArt: boolean, isEnglish: boo
   return [...new Set(answers)];
 }
 
+// ── ie / ei swap detection ──────────────────────────────────────────────
+
+/**
+ * Detects if the difference between user and correct is an ie↔ei swap.
+ * e.g. "veilen" vs "vielen", "lieder" vs "leider"
+ */
+function hasIeEiSwap(user: string, correct: string): boolean {
+  if (user === correct) return false;
+  if (Math.abs(user.length - correct.length) > 0) return false;
+  // Find positions where they differ
+  let diffCount = 0;
+  for (let i = 0; i < user.length; i++) {
+    if (user[i] !== correct[i]) diffCount++;
+  }
+  if (diffCount > 2) return false;
+  // Check for ie↔ei at each position
+  for (let i = 0; i < user.length - 1; i++) {
+    const userPair = user.slice(i, i + 2);
+    const correctPair = correct.slice(i, i + 2);
+    if (
+      (userPair === "ie" && correctPair === "ei") ||
+      (userPair === "ei" && correctPair === "ie")
+    ) {
+      // Check if the rest matches
+      const userFixed = user.slice(0, i) + correctPair + user.slice(i + 2);
+      if (userFixed === correct) return true;
+    }
+  }
+  return false;
+}
+
 // ── Main grading function ───────────────────────────────────────────────────
 
 export function gradeAnswer(
@@ -142,13 +173,12 @@ export function gradeAnswer(
   const normalizedUser = normalizeForCompare(trimmedUser, stripArt);
   const acceptableAnswers = getAcceptableAnswers(trimmedCorrect, stripArt, isEnglish);
 
-  const userExpanded = expandUmlauts(normalizedUser);
-
-  // For English: also strip "to" and "the" from user input
+  // For English: expand umlauts and strip "to"/"the"
+  const userExpanded = isEnglish ? expandUmlauts(normalizedUser) : normalizedUser;
   const userNoTo = isEnglish ? normalizeForCompare(stripToPrefix(trimmedUser), stripArt) : normalizedUser;
-  const userNoToExpanded = expandUmlauts(userNoTo);
+  const userNoToExpanded = isEnglish ? expandUmlauts(userNoTo) : normalizedUser;
   const userNoThe = isEnglish ? normalizeForCompare(stripThePrefix(trimmedUser), stripArt) : normalizedUser;
-  const userNoTheExpanded = expandUmlauts(userNoThe);
+  const userNoTheExpanded = isEnglish ? expandUmlauts(userNoThe) : normalizedUser;
 
   let bestResult: GradeResult = "wrong";
   let bestCorrectNorm = acceptableAnswers[0] || normalizeForCompare(trimmedCorrect, stripArt);
@@ -157,11 +187,8 @@ export function gradeAnswer(
     // Exact match (with various normalizations)
     if (
       normalizedUser === acceptable ||
-      userExpanded === acceptable ||
       userNoTo === acceptable ||
-      userNoToExpanded === acceptable ||
-      userNoThe === acceptable ||
-      userNoTheExpanded === acceptable
+      userNoThe === acceptable
     ) {
       return {
         result: "correct",
@@ -172,38 +199,89 @@ export function gradeAnswer(
       };
     }
 
-    const acceptableExpanded = expandUmlauts(acceptable);
-    if (userExpanded === acceptableExpanded || userNoToExpanded === acceptableExpanded || userNoTheExpanded === acceptableExpanded) {
-      return {
-        result: "correct",
-        userAnswer: trimmedUser,
-        correctAnswer: trimmedCorrect,
-        normalizedUser,
-        normalizedCorrect: acceptable,
-      };
+    // For English only: also match via umlaut expansion
+    if (isEnglish) {
+      const acceptableExpanded = expandUmlauts(acceptable);
+      if (
+        userExpanded === acceptable ||
+        userNoToExpanded === acceptable ||
+        userNoTheExpanded === acceptable ||
+        userExpanded === acceptableExpanded ||
+        userNoToExpanded === acceptableExpanded ||
+        userNoTheExpanded === acceptableExpanded
+      ) {
+        return {
+          result: "correct",
+          userAnswer: trimmedUser,
+          correctAnswer: trimmedCorrect,
+          normalizedUser,
+          normalizedCorrect: acceptable,
+        };
+      }
     }
 
-    // Levenshtein — try all user variants
-    const dist = Math.min(
-      levenshtein(normalizedUser, acceptable),
-      levenshtein(userExpanded, acceptableExpanded),
-      levenshtein(userNoTo, acceptable),
-      levenshtein(userNoToExpanded, acceptableExpanded),
-      levenshtein(userNoThe, acceptable),
-      levenshtein(userNoTheExpanded, acceptableExpanded)
-    );
+    // For German: check if the ONLY difference is umlauts → mark as "close" not "correct"
+    if (!isEnglish) {
+      const userExp = expandUmlauts(normalizedUser);
+      const accExp = expandUmlauts(acceptable);
+      if (userExp === accExp && normalizedUser !== acceptable) {
+        // Student typed ae/oe/ue/ss instead of ä/ö/ü/ß — close but not correct
+        bestResult = "close";
+        bestCorrectNorm = acceptable;
+        continue;
+      }
+    }
+
+    // For German: check for ie↔ei swap — this is WRONG, not close
+    if (!isEnglish && hasIeEiSwap(normalizedUser, acceptable)) {
+      // ie/ei confusion is a meaningful vocabulary error → wrong
+      continue;
+    }
+
+    // Levenshtein fuzzy matching
+    let dist: number;
+    if (isEnglish) {
+      const acceptableExpanded = expandUmlauts(acceptable);
+      dist = Math.min(
+        levenshtein(normalizedUser, acceptable),
+        levenshtein(userExpanded, acceptableExpanded),
+        levenshtein(userNoTo, acceptable),
+        levenshtein(userNoToExpanded, acceptableExpanded),
+        levenshtein(userNoThe, acceptable),
+        levenshtein(userNoTheExpanded, acceptableExpanded)
+      );
+    } else {
+      // German: NO umlaut expansion in fuzzy match — strict
+      dist = levenshtein(normalizedUser, acceptable);
+    }
 
     const maxLen = Math.max(normalizedUser.length, acceptable.length);
 
-    // English: very lenient. German: slightly less.
+    // English: lenient. German: strict.
     let closeThreshold: number;
     if (isEnglish) {
       closeThreshold = maxLen <= 4 ? 1 : maxLen <= 8 ? 2 : 3;
     } else {
-      closeThreshold = maxLen <= 5 ? 1 : 2;
+      // German: only 1 edit allowed, and only for longer words
+      closeThreshold = maxLen <= 5 ? 0 : 1;
     }
 
     if (dist <= closeThreshold && dist > 0) {
+      // For German: even within threshold, reject if the edit is an umlaut or ie/ei issue
+      if (!isEnglish) {
+        const userExp = expandUmlauts(normalizedUser);
+        const accExp = expandUmlauts(acceptable);
+        // If expanding umlauts makes them match, the error IS an umlaut — not "close"
+        if (userExp === accExp) {
+          bestResult = "close";
+          bestCorrectNorm = acceptable;
+          continue;
+        }
+        // If swapping ie/ei would match, it's wrong
+        if (hasIeEiSwap(normalizedUser, acceptable)) {
+          continue;
+        }
+      }
       bestResult = "close";
       bestCorrectNorm = acceptable;
     }
