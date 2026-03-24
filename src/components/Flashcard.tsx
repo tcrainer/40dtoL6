@@ -38,15 +38,29 @@ function gradeVerbField(input: string, correct: string): "correct" | "close" | "
   if (!correct || correct === "—" || correct === "-") return "correct";
   const n1 = normalizeVerb(input), n2 = normalizeVerb(correct);
   if (n1 === n2) return "correct";
+  // Check if only difference is umlauts (ae vs ä etc.) — close, not correct
   const expand = (s: string) => s.replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss");
-  if (expand(n1) === expand(n2)) return "correct";
+  if (expand(n1) === expand(n2)) return "close";
+  // Check for ie↔ei swap — wrong
+  if (n1.length === n2.length) {
+    for (let i = 0; i < n1.length - 1; i++) {
+      const up = n1.slice(i, i + 2), cp = n2.slice(i, i + 2);
+      if ((up === "ie" && cp === "ei") || (up === "ei" && cp === "ie")) {
+        const fixed = n1.slice(0, i) + cp + n1.slice(i + 2);
+        if (fixed === n2) return "wrong";
+      }
+    }
+  }
+  // Levenshtein — strict for German
   const m = n1.length, n = n2.length;
   const dp: number[][] = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
   for (let i = 0; i <= m; i++) dp[i][0] = i;
   for (let j = 0; j <= n; j++) dp[0][j] = j;
   for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++)
     dp[i][j] = n1[i-1] === n2[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
-  if (dp[m][n] <= 1) return "close";
+  // Only 1 edit allowed for longer words, 0 for short
+  const maxLen = Math.max(m, n);
+  if (dp[m][n] <= 1 && maxLen > 5) return "close";
   return "wrong";
 }
 
