@@ -5,11 +5,7 @@ import { getTopicWordCounts, getTopicDays, getWordsForTopicDay, getAllWords } fr
 import { BookOpen, RotateCcw, ChevronDown, ChevronUp, Flame, Star, Calendar, X, Play, Download, Upload } from "lucide-react";
 import { useState, useMemo, useRef } from "react";
 
-type TestPrompt = {
-  label: string;
-  allIds: string[];
-  untestedIds: string[];
-} | null;
+type TestPrompt = { label: string; allIds: string[]; untestedIds: string[] } | null;
 
 export function Dashboard() {
   const currentDay = useStore((s) => s.currentDay);
@@ -18,7 +14,6 @@ export function Dashboard() {
   const startLearnSession = useStore((s) => s.startLearnSession);
   const startCustomSession = useStore((s) => s.startCustomSession);
   const setView = useStore((s) => s.setView);
-  const setSelectedTopicId = useStore((s) => s.setSelectedTopicId);
   const setSelectedBox = useStore((s) => s.setSelectedBox);
   const setSelectedImportance = useStore((s) => s.setSelectedImportance);
   const getDueWordIds = useStore((s) => s.getDueWordIds);
@@ -89,7 +84,48 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* Day selector */}
+      {/* ── 1. LEITNER BOXES ── */}
+      <div>
+        <h2 style={sectionTitle}>Leitner boxes</h2>
+        <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "4px" }}>
+          <BoxCard label="Untested" count={allUntestedCount} sub="all words" fg="var(--color-ink-muted)" bg="var(--color-surface-sunken)" smiley={false} onClick={() => { setSelectedBox(0); setView("box-detail"); }} />
+          {LEITNER_BOXES.map((box) => {
+            const c = BOX_COLORS[box];
+            const dueInBox = box < 6 ? countDueInBox(box, wordStates) : 0;
+            const showSmiley = allRevised && boxCounts[box] > 0 && box < 6 && dueInBox === 0;
+            return <BoxCard key={box} label={`Box ${box}`} count={showSmiley ? -1 : boxCounts[box]} sub={BOX_LABELS[box]} fg={c.fg} bg={c.bg} dueCount={dueInBox} smiley={showSmiley} onClick={() => { setSelectedBox(box); setView("box-detail"); }} />;
+          })}
+        </div>
+      </div>
+
+      {/* ── 2. PROGRESS BY IMPORTANCE ── */}
+      <div>
+        <h2 style={sectionTitle}>Progress by importance</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
+          {([
+            { stars: 4, label: "★★★★ Essential", color: "#d94f4f", bg: "#fce8e8" },
+            { stars: 3, label: "★★★ Very Important", color: "#d97a1a", bg: "#fef0de" },
+            { stars: 2, label: "★★ Important", color: "#2a6fb5", bg: "#e4f0fb" },
+            { stars: 1, label: "★ Specialist", color: "#7c4dba", bg: "#f0eafb" },
+          ] as const).map(({ stars, label, color, bg }) => {
+            const allOfTier = allWords.filter(w => w.importance === stars);
+            const learnt = allOfTier.filter(w => wordStates[w.id]?.box >= 5).length;
+            const total = allOfTier.length;
+            return (
+              <button key={stars} onClick={() => { setSelectedImportance(stars); setView("box-detail"); }} style={{
+                background: bg, borderRadius: "var(--radius-md)", padding: "10px 8px", textAlign: "center",
+                border: "none", cursor: "pointer", fontFamily: "var(--font-sans)",
+              }}>
+                <div style={{ fontSize: "9px", fontWeight: 700, color, lineHeight: 1.3 }}>{label}</div>
+                <div style={{ fontSize: "18px", fontWeight: 700, fontFamily: "var(--font-mono)", color, margin: "4px 0 2px" }}>{learnt}/{total}</div>
+                <div style={{ fontSize: "9px", color, opacity: 0.7 }}>learnt</div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── 3. DAY SELECTOR + TEST BUTTONS ── */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--color-surface)", border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "12px 18px" }}>
         <div>
           <div style={{ fontSize: "11px", fontWeight: 500, color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Current day</div>
@@ -101,7 +137,6 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* Action buttons */}
       <div style={{ display: "flex", gap: "10px" }}>
         <button onClick={startLearnSession} disabled={newTodayCount === 0} style={{
           flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: "4px",
@@ -122,6 +157,145 @@ export function Dashboard() {
           <RotateCcw size={18} />
           <span style={{ fontSize: "14px", fontWeight: 600 }}>Revise due ({dueCount})</span>
         </button>
+      </div>
+
+      {/* ── 4. DAY BY DAY ── */}
+      <div>
+        <h2 style={sectionTitle}>Day by day</h2>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+          {Array.from({ length: MAX_DAY }, (_, i) => i + 1).map((day) => {
+            const dayWords = allWords.filter(w => w.day === day);
+            const totalInDay = dayWords.length;
+            const testedInDay = dayWords.filter(w => !!wordStates[w.id]).length;
+            const allTested = totalInDay > 0 && testedInDay === totalInDay;
+            const partial = testedInDay > 0 && testedInDay < totalInDay;
+            const isUnlocked = day <= currentDay;
+            return (
+              <button key={day} onClick={() => handleDayClick(day)} disabled={totalInDay === 0}
+                style={{
+                  width: "52px", height: "52px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                  gap: "1px", fontWeight: allTested ? 700 : 600,
+                  border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-md)",
+                  cursor: totalInDay > 0 ? "pointer" : "default", fontFamily: "var(--font-mono)",
+                  background: allTested ? "#fbbf24" : partial ? "#93c5fd" : !isUnlocked ? "var(--color-surface-sunken)" : "var(--color-surface)",
+                  color: allTested ? "#78350f" : partial ? "#1e3a5f" : !isUnlocked ? "var(--color-ink-faint)" : "var(--color-ink)",
+                  opacity: totalInDay === 0 ? 0.4 : 1,
+                }}>
+                <span style={{ fontSize: "15px", fontWeight: 700 }}>{day}</span>
+                <span style={{ fontSize: "9px", fontWeight: 400, opacity: 0.7 }}>{totalInDay}w</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── 5. TOPICS — side by side, 2 per row, days in blocks of 4 ── */}
+      <div>
+        <h2 style={sectionTitle}>Topics</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "12px" }}>
+          {TOPICS.map((topic) => {
+            const progress = getTopicProgress(topic.id);
+            const totalForTopic = topicCounts[topic.id] || 0;
+            const pct = totalForTopic > 0 ? Math.round((progress.mastered / totalForTopic) * 100) : 0;
+            const days = getTopicDays(topic.id).filter((d) => d <= MAX_DAY);
+            return (
+              <div key={topic.id} style={{ background: "var(--color-surface)", border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "12px 14px" }}>
+                {/* Topic header — clickable name */}
+                <button onClick={() => handleTopicClick(topic.id)} style={{
+                  display: "flex", alignItems: "center", gap: "8px", width: "100%", padding: 0,
+                  border: "none", background: "none", cursor: "pointer", fontFamily: "var(--font-sans)", textAlign: "left", marginBottom: "6px",
+                }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: topic.color, flexShrink: 0 }} />
+                  <span style={{ fontSize: "13px", fontWeight: 600, color: "var(--color-ink)", flex: 1, lineHeight: 1.2 }}>{topic.shortName}</span>
+                  <span style={{ fontSize: "10px", color: "var(--color-ink-muted)", fontFamily: "var(--font-mono)", flexShrink: 0 }}>{progress.mastered}/{totalForTopic}</span>
+                </button>
+                {/* Progress bar */}
+                <div style={{ height: "4px", background: "var(--color-surface-sunken)", borderRadius: "2px", overflow: "hidden", marginBottom: "8px" }}>
+                  <div style={{ height: "100%", width: `${pct}%`, background: topic.color, borderRadius: "2px", transition: "width 0.3s" }} />
+                </div>
+                {/* Day grid — 4 per row */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "3px" }}>
+                  {days.map((day) => {
+                    const allTested = isTopicDayTested(topic.id, day);
+                    const partial = isTopicDayPartial(topic.id, day);
+                    return (
+                      <button key={day} onClick={() => handleTopicDayClick(topic.id, day)} style={{
+                        height: "26px", fontSize: "10px", fontWeight: allTested ? 700 : 500,
+                        border: "1px solid var(--color-border)",
+                        borderRadius: "3px", cursor: "pointer", fontFamily: "var(--font-mono)",
+                        background: allTested ? "#fbbf24" : partial ? "#93c5fd" : "var(--color-surface)",
+                        color: allTested ? "#78350f" : partial ? "#1e3a5f" : "var(--color-ink)",
+                      }}>{day}</button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── 6. SAVE / LOAD / BROWSE / RESET ── */}
+      <div style={{ background: "var(--color-surface)", border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "14px 16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ display: "flex", gap: "8px" }}>
+          <button onClick={() => {
+            const raw = localStorage.getItem("german-vocab-leitner-v5");
+            if (!raw) { alert("No progress data found."); return; }
+            const blob = new Blob([raw], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            const d = new Date();
+            a.download = `vocab-backup-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+          }} style={actionBtnStyle}>
+            <Download size={14} /> Save progress
+          </button>
+          <button onClick={() => fileInputRef.current?.click()} style={actionBtnStyle}>
+            <Upload size={14} /> Load backup
+          </button>
+          <input ref={fileInputRef} type="file" accept=".json" style={{ display: "none" }} onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+              try {
+                const parsed = JSON.parse(reader.result as string);
+                const state = parsed?.state || parsed;
+                if (state.wordStates && typeof state.wordStates === "object") {
+                  importProgress({ currentDay: state.currentDay, wordStates: state.wordStates, stats: state.stats });
+                  setLoadMsg("Progress restored successfully!");
+                  setTimeout(() => setLoadMsg(null), 3000);
+                } else {
+                  setLoadMsg("Invalid backup file — no word data found.");
+                  setTimeout(() => setLoadMsg(null), 4000);
+                }
+              } catch {
+                setLoadMsg("Could not read file — make sure it's a valid backup.");
+                setTimeout(() => setLoadMsg(null), 4000);
+              }
+            };
+            reader.readAsText(file);
+            e.target.value = "";
+          }} />
+        </div>
+        {loadMsg && (
+          <div style={{ fontSize: "12px", padding: "8px 12px", borderRadius: "var(--radius-sm)", background: loadMsg.includes("success") ? "#dcfce7" : "#fce4ec", color: loadMsg.includes("success") ? "#16a34a" : "#dc2626", fontWeight: 500 }}>
+            {loadMsg}
+          </div>
+        )}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <button onClick={() => setView("browse")} style={{ fontSize: "13px", fontWeight: 500, color: "var(--color-accent)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0, textDecoration: "underline", textUnderlineOffset: "2px" }}>Browse all words</button>
+          {!showReset ? (
+            <button onClick={() => setShowReset(true)} style={{ fontSize: "11px", color: "var(--color-ink-faint)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0 }}>Reset progress</button>
+          ) : (
+            <div style={{ display: "flex", gap: "8px", fontSize: "11px" }}>
+              <button onClick={() => { resetAll(); setShowReset(false); }} style={{ fontWeight: 600, color: "#fff", background: "#d94f4f", border: "none", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Yes, reset</button>
+              <button onClick={() => setShowReset(false)} style={{ color: "var(--color-ink-muted)", background: "none", border: "1px solid var(--color-border)", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Cancel</button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Test prompt overlay */}
@@ -170,194 +344,20 @@ export function Dashboard() {
           </div>
         </>
       )}
-
-      {/* Leitner boxes */}
-      <div>
-        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Leitner boxes</h2>
-        <div style={{ display: "flex", gap: "8px", overflowX: "auto", paddingBottom: "4px" }}>
-          <BoxCard label="Untested" count={allUntestedCount} sub="all words" fg="var(--color-ink-muted)" bg="var(--color-surface-sunken)" smiley={false} onClick={() => { setSelectedBox(0); setView("box-detail"); }} />
-          {LEITNER_BOXES.map((box) => {
-            const c = BOX_COLORS[box];
-            const dueInBox = box < 6 ? countDueInBox(box, wordStates) : 0;
-            const showSmiley = allRevised && boxCounts[box] > 0 && box < 6 && dueInBox === 0;
-            return <BoxCard key={box} label={`Box ${box}`} count={showSmiley ? -1 : boxCounts[box]} sub={BOX_LABELS[box]} fg={c.fg} bg={c.bg} dueCount={dueInBox} smiley={showSmiley} onClick={() => { setSelectedBox(box); setView("box-detail"); }} />;
-          })}
-        </div>
-      </div>
-
-      {/* Importance breakdown — clickable */}
-      <div>
-        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Progress by importance</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
-          {([
-            { stars: 4, label: "★★★★ Essential", color: "#d94f4f", bg: "#fce8e8" },
-            { stars: 3, label: "★★★ Very Important", color: "#d97a1a", bg: "#fef0de" },
-            { stars: 2, label: "★★ Important", color: "#2a6fb5", bg: "#e4f0fb" },
-            { stars: 1, label: "★ Specialist", color: "#7c4dba", bg: "#f0eafb" },
-          ] as const).map(({ stars, label, color, bg }) => {
-            const allOfTier = allWords.filter(w => w.importance === stars);
-            const learnt = allOfTier.filter(w => wordStates[w.id]?.box >= 5).length;
-            const total = allOfTier.length;
-            return (
-              <button key={stars} onClick={() => { setSelectedImportance(stars); setView("box-detail"); }} style={{
-                background: bg, borderRadius: "var(--radius-md)", padding: "10px 8px", textAlign: "center",
-                border: "none", cursor: "pointer", fontFamily: "var(--font-sans)",
-              }}>
-                <div style={{ fontSize: "9px", fontWeight: 700, color, lineHeight: 1.3 }}>{label}</div>
-                <div style={{ fontSize: "18px", fontWeight: 700, fontFamily: "var(--font-mono)", color, margin: "4px 0 2px" }}>{learnt}/{total}</div>
-                <div style={{ fontSize: "9px", color, opacity: 0.7 }}>learnt</div>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Day by day */}
-      <div>
-        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Day by day</h2>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
-          {Array.from({ length: MAX_DAY }, (_, i) => i + 1).map((day) => {
-            const dayWords = allWords.filter(w => w.day === day);
-            const totalInDay = dayWords.length;
-            const testedInDay = dayWords.filter(w => !!wordStates[w.id]).length;
-            const allTested = totalInDay > 0 && testedInDay === totalInDay;
-            const partial = testedInDay > 0 && testedInDay < totalInDay;
-            const isUnlocked = day <= currentDay;
-            return (
-              <button key={day} onClick={() => handleDayClick(day)} disabled={totalInDay === 0}
-                style={{
-                  width: "52px", height: "52px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-                  gap: "1px", fontSize: "14px", fontWeight: allTested ? 700 : 600,
-                  border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-md)",
-                  cursor: totalInDay > 0 ? "pointer" : "default", fontFamily: "var(--font-mono)",
-                  background: allTested ? "#fbbf24" : partial ? "#93c5fd" : !isUnlocked ? "var(--color-surface-sunken)" : "var(--color-surface)",
-                  color: allTested ? "#78350f" : partial ? "#1e3a5f" : !isUnlocked ? "var(--color-ink-faint)" : "var(--color-ink)",
-                  opacity: totalInDay === 0 ? 0.4 : 1,
-                }}>
-                <span style={{ fontSize: "15px", fontWeight: 700 }}>{day}</span>
-                <span style={{ fontSize: "9px", fontWeight: 400, opacity: 0.7 }}>{totalInDay}w</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Topics */}
-      <div>
-        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 10px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Topics</h2>
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          {TOPICS.map((topic) => {
-            const progress = getTopicProgress(topic.id);
-            const totalForTopic = topicCounts[topic.id] || 0;
-            const pct = totalForTopic > 0 ? Math.round((progress.mastered / totalForTopic) * 100) : 0;
-            const days = getTopicDays(topic.id).filter((d) => d <= MAX_DAY);
-            return (
-              <div key={topic.id} style={{ background: "var(--color-surface)", border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "14px 16px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: topic.color, flexShrink: 0 }} />
-                  <button onClick={() => handleTopicClick(topic.id)} style={{ fontSize: "14px", fontWeight: 600, padding: 0, border: "none", background: "none", cursor: "pointer", color: "var(--color-ink)", fontFamily: "var(--font-sans)", textAlign: "left", flex: 1 }}>{topic.name}</button>
-                  <span style={{ fontSize: "11px", color: "var(--color-ink-muted)", fontFamily: "var(--font-mono)", flexShrink: 0 }}>{progress.mastered}/{totalForTopic}</span>
-                </div>
-                <div style={{ height: "6px", background: "var(--color-surface-sunken)", borderRadius: "3px", overflow: "hidden", marginBottom: "10px" }}>
-                  <div style={{ height: "100%", width: `${pct}%`, background: topic.color, borderRadius: "3px", transition: "width 0.3s" }} />
-                </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "3px" }}>
-                  {days.map((day) => {
-                    const allTested = isTopicDayTested(topic.id, day);
-                    const partial = isTopicDayPartial(topic.id, day);
-                    return (
-                      <button key={day} onClick={() => handleTopicDayClick(topic.id, day)} style={{
-                        width: "28px", height: "28px", fontSize: "10px", fontWeight: allTested ? 700 : 500,
-                        border: "1px solid var(--color-border)",
-                        borderRadius: "4px", cursor: "pointer", fontFamily: "var(--font-mono)",
-                        background: allTested ? "#fbbf24" : partial ? "#93c5fd" : "var(--color-surface)",
-                        color: allTested ? "#78350f" : partial ? "#1e3a5f" : "var(--color-ink)",
-                      }}>{day}</button>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Save / Load / Browse / Reset */}
-      <div style={{ background: "var(--color-surface)", border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "14px 16px", display: "flex", flexDirection: "column", gap: "10px" }}>
-        <div style={{ display: "flex", gap: "8px" }}>
-          <button onClick={() => {
-            const raw = localStorage.getItem("german-vocab-leitner-v5");
-            if (!raw) { alert("No progress data found."); return; }
-            const blob = new Blob([raw], { type: "application/json" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            const d = new Date();
-            a.download = `vocab-backup-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-          }} style={{
-            flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-            padding: "10px", fontSize: "13px", fontWeight: 600, border: "1.5px solid var(--color-border)",
-            borderRadius: "var(--radius-md)", background: "var(--color-surface)", color: "var(--color-ink)",
-            cursor: "pointer", fontFamily: "var(--font-sans)",
-          }}>
-            <Download size={14} /> Save progress
-          </button>
-          <button onClick={() => fileInputRef.current?.click()} style={{
-            flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-            padding: "10px", fontSize: "13px", fontWeight: 600, border: "1.5px solid var(--color-border)",
-            borderRadius: "var(--radius-md)", background: "var(--color-surface)", color: "var(--color-ink)",
-            cursor: "pointer", fontFamily: "var(--font-sans)",
-          }}>
-            <Upload size={14} /> Load backup
-          </button>
-          <input ref={fileInputRef} type="file" accept=".json" style={{ display: "none" }} onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = () => {
-              try {
-                const parsed = JSON.parse(reader.result as string);
-                const state = parsed?.state || parsed;
-                if (state.wordStates && typeof state.wordStates === "object") {
-                  importProgress({ currentDay: state.currentDay, wordStates: state.wordStates, stats: state.stats });
-                  setLoadMsg("Progress restored successfully!");
-                  setTimeout(() => setLoadMsg(null), 3000);
-                } else {
-                  setLoadMsg("Invalid backup file — no word data found.");
-                  setTimeout(() => setLoadMsg(null), 4000);
-                }
-              } catch {
-                setLoadMsg("Could not read file — make sure it's a valid backup.");
-                setTimeout(() => setLoadMsg(null), 4000);
-              }
-            };
-            reader.readAsText(file);
-            e.target.value = "";
-          }} />
-        </div>
-        {loadMsg && (
-          <div style={{ fontSize: "12px", padding: "8px 12px", borderRadius: "var(--radius-sm)", background: loadMsg.includes("success") ? "#dcfce7" : "#fce4ec", color: loadMsg.includes("success") ? "#16a34a" : "#dc2626", fontWeight: 500 }}>
-            {loadMsg}
-          </div>
-        )}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <button onClick={() => setView("browse")} style={{ fontSize: "13px", fontWeight: 500, color: "var(--color-accent)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0, textDecoration: "underline", textUnderlineOffset: "2px" }}>Browse all words</button>
-          {!showReset ? (
-            <button onClick={() => setShowReset(true)} style={{ fontSize: "11px", color: "var(--color-ink-faint)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0 }}>Reset progress</button>
-          ) : (
-            <div style={{ display: "flex", gap: "8px", fontSize: "11px" }}>
-              <button onClick={() => { resetAll(); setShowReset(false); }} style={{ fontWeight: 600, color: "#fff", background: "#d94f4f", border: "none", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Yes, reset</button>
-              <button onClick={() => setShowReset(false)} style={{ color: "var(--color-ink-muted)", background: "none", border: "1px solid var(--color-border)", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Cancel</button>
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   );
 }
 
+// ── Shared styles ──
+const sectionTitle: React.CSSProperties = { fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" };
+const actionBtnStyle: React.CSSProperties = {
+  flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+  padding: "10px", fontSize: "13px", fontWeight: 600, border: "1.5px solid var(--color-border)",
+  borderRadius: "var(--radius-md)", background: "var(--color-surface)", color: "var(--color-ink)",
+  cursor: "pointer", fontFamily: "var(--font-sans)",
+};
+
+// ── Sub-components ──
 function BoxCard({ label, count, sub, fg, bg, dueCount, smiley, onClick }: {
   label: string; count: number; sub: string; fg: string; bg: string; dueCount?: number; smiley: boolean; onClick?: () => void;
 }) {
