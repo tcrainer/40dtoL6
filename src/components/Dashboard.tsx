@@ -152,6 +152,43 @@ export function Dashboard() {
         </div>
       </div>
 
+      {/* Day by day — test all words for a given day */}
+      <div>
+        <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 8px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Day by day</h2>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+          {Array.from({ length: MAX_DAY }, (_, i) => i + 1).map((day) => {
+            const dayWords = allWords.filter(w => w.day === day);
+            const totalInDay = dayWords.length;
+            const testedInDay = dayWords.filter(w => !!wordStates[w.id]).length;
+            const allTested = totalInDay > 0 && testedInDay === totalInDay;
+            const partial = testedInDay > 0 && testedInDay < totalInDay;
+            const isUnlocked = day <= currentDay;
+            return (
+              <button
+                key={day}
+                onClick={() => {
+                  if (totalInDay > 0) startCustomSession(dayWords.map(w => w.id));
+                }}
+                disabled={totalInDay === 0}
+                style={{
+                  width: "52px", height: "52px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                  gap: "1px", fontSize: "14px", fontWeight: allTested ? 700 : 600,
+                  border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-md)",
+                  cursor: totalInDay > 0 ? "pointer" : "default",
+                  fontFamily: "var(--font-mono)",
+                  background: allTested ? "#fbbf24" : partial ? "#93c5fd" : !isUnlocked ? "var(--color-surface-sunken)" : "var(--color-surface)",
+                  color: allTested ? "#78350f" : partial ? "#1e3a5f" : !isUnlocked ? "var(--color-ink-faint)" : "var(--color-ink)",
+                  opacity: totalInDay === 0 ? 0.4 : 1,
+                }}
+              >
+                <span style={{ fontSize: "15px", fontWeight: 700 }}>{day}</span>
+                <span style={{ fontSize: "9px", fontWeight: 400, opacity: 0.7 }}>{totalInDay}w</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Topics */}
       <div>
         <h2 style={{ fontSize: "13px", fontWeight: 600, margin: "0 0 10px", color: "var(--color-ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Topics</h2>
