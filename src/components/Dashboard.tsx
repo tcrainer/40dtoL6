@@ -2,8 +2,8 @@ import { useStore } from "@/store/useStore";
 import { TOPICS, BOX_LABELS, BOX_COLORS, LEITNER_BOXES, MAX_DAY } from "@/types";
 import type { LeitnerBox } from "@/types";
 import { getTopicWordCounts, getTopicDays, getWordsForTopicDay, getAllWords } from "@/data/vocabulary";
-import { BookOpen, RotateCcw, ChevronDown, ChevronUp, Flame, Star, Calendar, X, Play } from "lucide-react";
-import { useState, useMemo } from "react";
+import { BookOpen, RotateCcw, ChevronDown, ChevronUp, Flame, Star, Calendar, X, Play, Download, Upload } from "lucide-react";
+import { useState, useMemo, useRef } from "react";
 
 type TestPrompt = {
   label: string;
@@ -30,11 +30,14 @@ export function Dashboard() {
   const isTopicDayTested = useStore((s) => s.isTopicDayTested);
   const isTopicDayPartial = useStore((s) => s.isTopicDayPartial);
   const resetAll = useStore((s) => s.resetAll);
+  const importProgress = useStore((s) => s.importProgress);
   const wordStates = useStore((s) => s.wordStates);
   const stats = useStore((s) => s.stats);
 
   const [showReset, setShowReset] = useState(false);
   const [testPrompt, setTestPrompt] = useState<TestPrompt>(null);
+  const [loadMsg, setLoadMsg] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const dueCount = getDueWordIds().length;
   const newTodayCount = getNewWordIdsToday().length;
@@ -274,17 +277,77 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* Browse + Reset */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "4px" }}>
-        <button onClick={() => setView("browse")} style={{ fontSize: "13px", fontWeight: 500, color: "var(--color-accent)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0, textDecoration: "underline", textUnderlineOffset: "2px" }}>Browse all words</button>
-        {!showReset ? (
-          <button onClick={() => setShowReset(true)} style={{ fontSize: "11px", color: "var(--color-ink-faint)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0 }}>Reset progress</button>
-        ) : (
-          <div style={{ display: "flex", gap: "8px", fontSize: "11px" }}>
-            <button onClick={() => { resetAll(); setShowReset(false); }} style={{ fontWeight: 600, color: "#fff", background: "#d94f4f", border: "none", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Yes, reset</button>
-            <button onClick={() => setShowReset(false)} style={{ color: "var(--color-ink-muted)", background: "none", border: "1px solid var(--color-border)", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Cancel</button>
+      {/* Save / Load / Browse / Reset */}
+      <div style={{ background: "var(--color-surface)", border: "1.5px solid var(--color-border)", borderRadius: "var(--radius-lg)", padding: "14px 16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ display: "flex", gap: "8px" }}>
+          <button onClick={() => {
+            const raw = localStorage.getItem("german-vocab-leitner-v5");
+            if (!raw) { alert("No progress data found."); return; }
+            const blob = new Blob([raw], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            const d = new Date();
+            a.download = `vocab-backup-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+          }} style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+            padding: "10px", fontSize: "13px", fontWeight: 600, border: "1.5px solid var(--color-border)",
+            borderRadius: "var(--radius-md)", background: "var(--color-surface)", color: "var(--color-ink)",
+            cursor: "pointer", fontFamily: "var(--font-sans)",
+          }}>
+            <Download size={14} /> Save progress
+          </button>
+          <button onClick={() => fileInputRef.current?.click()} style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+            padding: "10px", fontSize: "13px", fontWeight: 600, border: "1.5px solid var(--color-border)",
+            borderRadius: "var(--radius-md)", background: "var(--color-surface)", color: "var(--color-ink)",
+            cursor: "pointer", fontFamily: "var(--font-sans)",
+          }}>
+            <Upload size={14} /> Load backup
+          </button>
+          <input ref={fileInputRef} type="file" accept=".json" style={{ display: "none" }} onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+              try {
+                const parsed = JSON.parse(reader.result as string);
+                const state = parsed?.state || parsed;
+                if (state.wordStates && typeof state.wordStates === "object") {
+                  importProgress({ currentDay: state.currentDay, wordStates: state.wordStates, stats: state.stats });
+                  setLoadMsg("Progress restored successfully!");
+                  setTimeout(() => setLoadMsg(null), 3000);
+                } else {
+                  setLoadMsg("Invalid backup file — no word data found.");
+                  setTimeout(() => setLoadMsg(null), 4000);
+                }
+              } catch {
+                setLoadMsg("Could not read file — make sure it's a valid backup.");
+                setTimeout(() => setLoadMsg(null), 4000);
+              }
+            };
+            reader.readAsText(file);
+            e.target.value = "";
+          }} />
+        </div>
+        {loadMsg && (
+          <div style={{ fontSize: "12px", padding: "8px 12px", borderRadius: "var(--radius-sm)", background: loadMsg.includes("success") ? "#dcfce7" : "#fce4ec", color: loadMsg.includes("success") ? "#16a34a" : "#dc2626", fontWeight: 500 }}>
+            {loadMsg}
           </div>
         )}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <button onClick={() => setView("browse")} style={{ fontSize: "13px", fontWeight: 500, color: "var(--color-accent)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0, textDecoration: "underline", textUnderlineOffset: "2px" }}>Browse all words</button>
+          {!showReset ? (
+            <button onClick={() => setShowReset(true)} style={{ fontSize: "11px", color: "var(--color-ink-faint)", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-sans)", padding: 0 }}>Reset progress</button>
+          ) : (
+            <div style={{ display: "flex", gap: "8px", fontSize: "11px" }}>
+              <button onClick={() => { resetAll(); setShowReset(false); }} style={{ fontWeight: 600, color: "#fff", background: "#d94f4f", border: "none", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Yes, reset</button>
+              <button onClick={() => setShowReset(false)} style={{ color: "var(--color-ink-muted)", background: "none", border: "1px solid var(--color-border)", borderRadius: "4px", padding: "4px 10px", cursor: "pointer", fontFamily: "var(--font-sans)" }}>Cancel</button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
