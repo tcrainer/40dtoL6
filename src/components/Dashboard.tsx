@@ -124,46 +124,51 @@ export function Dashboard() {
         </button>
       </div>
 
-      {/* Test prompt popup */}
+      {/* Test prompt overlay */}
       {testPrompt && (
-        <div style={{
-          background: "var(--color-surface)", border: "2px solid var(--color-accent)", borderRadius: "var(--radius-lg)",
-          padding: "18px 20px", display: "flex", flexDirection: "column", gap: "12px",
-        }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div style={{ fontSize: "16px", fontWeight: 700 }}>{testPrompt.label}</div>
-            <button onClick={() => setTestPrompt(null)} style={{ width: "28px", height: "28px", border: "1px solid var(--color-border)", borderRadius: "50%", background: "var(--color-surface)", cursor: "pointer", color: "var(--color-ink)", display: "flex", alignItems: "center", justifyContent: "center" }}><X size={14} /></button>
+        <>
+          <div onClick={() => setTestPrompt(null)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.35)", zIndex: 999 }} />
+          <div style={{
+            position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", zIndex: 1000,
+            width: "min(400px, 90vw)", background: "var(--color-surface)", border: "2px solid var(--color-accent)",
+            borderRadius: "var(--radius-lg)", padding: "22px 24px", display: "flex", flexDirection: "column", gap: "14px",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ fontSize: "18px", fontWeight: 700 }}>{testPrompt.label}</div>
+              <button onClick={() => setTestPrompt(null)} style={{ width: "30px", height: "30px", border: "1px solid var(--color-border)", borderRadius: "50%", background: "var(--color-surface)", cursor: "pointer", color: "var(--color-ink)", display: "flex", alignItems: "center", justifyContent: "center" }}><X size={14} /></button>
+            </div>
+            <div style={{ fontSize: "14px", color: "var(--color-ink-muted)" }}>
+              {testPrompt.allIds.length} words total · {testPrompt.untestedIds.length} untested
+            </div>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <button
+                onClick={() => { setTestPrompt(null); if (testPrompt.untestedIds.length > 0) startCustomSession(testPrompt.untestedIds); }}
+                disabled={testPrompt.untestedIds.length === 0}
+                style={{
+                  flex: 1, padding: "14px 12px", border: "none", borderRadius: "var(--radius-md)",
+                  background: testPrompt.untestedIds.length > 0 ? "var(--color-accent)" : "var(--color-surface-sunken)",
+                  color: testPrompt.untestedIds.length > 0 ? "#fff" : "var(--color-ink-faint)",
+                  cursor: testPrompt.untestedIds.length > 0 ? "pointer" : "not-allowed",
+                  fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 600,
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                }}>
+                <Play size={14} /> Test untested ({testPrompt.untestedIds.length})
+              </button>
+              <button
+                onClick={() => { setTestPrompt(null); startCustomSession(testPrompt.allIds); }}
+                style={{
+                  flex: 1, padding: "14px 12px", border: "2px solid var(--color-accent)",
+                  borderRadius: "var(--radius-md)", background: "var(--color-surface)",
+                  color: "var(--color-accent)", cursor: "pointer",
+                  fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 600,
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                }}>
+                <RotateCcw size={14} /> Test all ({testPrompt.allIds.length})
+              </button>
+            </div>
           </div>
-          <div style={{ fontSize: "13px", color: "var(--color-ink-muted)" }}>
-            {testPrompt.allIds.length} words total · {testPrompt.untestedIds.length} untested
-          </div>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <button
-              onClick={() => { setTestPrompt(null); if (testPrompt.untestedIds.length > 0) startCustomSession(testPrompt.untestedIds); }}
-              disabled={testPrompt.untestedIds.length === 0}
-              style={{
-                flex: 1, padding: "14px 12px", border: "none", borderRadius: "var(--radius-md)",
-                background: testPrompt.untestedIds.length > 0 ? "var(--color-accent)" : "var(--color-surface-sunken)",
-                color: testPrompt.untestedIds.length > 0 ? "#fff" : "var(--color-ink-faint)",
-                cursor: testPrompt.untestedIds.length > 0 ? "pointer" : "not-allowed",
-                fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 600,
-                display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-              }}>
-              <Play size={14} /> Test untested ({testPrompt.untestedIds.length})
-            </button>
-            <button
-              onClick={() => { setTestPrompt(null); startCustomSession(testPrompt.allIds); }}
-              style={{
-                flex: 1, padding: "14px 12px", border: "2px solid var(--color-accent)",
-                borderRadius: "var(--radius-md)", background: "var(--color-surface)",
-                color: "var(--color-accent)", cursor: "pointer",
-                fontFamily: "var(--font-sans)", fontSize: "14px", fontWeight: 600,
-                display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
-              }}>
-              <RotateCcw size={14} /> Test all ({testPrompt.allIds.length})
-            </button>
-          </div>
-        </div>
+        </>
       )}
 
       {/* Leitner boxes */}
